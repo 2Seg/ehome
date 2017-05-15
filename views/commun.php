@@ -12,13 +12,15 @@ function menu($type) {
       <li><a href="index.php?cible=home"><img src="views/ressources/logos/logo2-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
       <li><a href="index.php?cible=about-us">Notre entreprise</a></li>
       <li><a href="index.php?cible=products">Nos produits</a></li>
-      <li><a href="index.php?cible=join-us">Nous rejoindre</a></li>
     <?php
     if($type == 'user') {
+      echo('<li><a href="index.php?cible=disconnect">Se déconnecter</a></li>');
       echo ('<li><a href="index.php?cible=signin"><img src="views/ressources/icons/man-13.png" alt="avatar"></a></li>');
     } elseif ($type == 'administrator') {
+      echo('<li><a href="index.php?cible=disconnect">Se déconnecter</a></li>');
       echo ('<li><a href="index.php?cible=signin"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
     } else {
+      echo('<li><a href="index.php?cible=join-us">Nous rejoindre</a></li>');
       echo('<li><a href="index.php?cible=signin">Connexion</a></li>');
     }
     ?>
@@ -30,11 +32,12 @@ function menu($type) {
 
 
 // fonction qui génère l'affichage du formulaire de connexion
+// l'argument permet un affichage des messages d'erreur
 function form_signin($erreur) {
   //ob_start();
   ?>
 
-  <form method="post" action="index.php?cible=connexion">
+  <form method="post" action="index.php?cible=connect">
     <fieldset>
       <?php
       if ($erreur != '') {
@@ -42,13 +45,13 @@ function form_signin($erreur) {
       }
       ?>
       <p>
-        <label for="login">Adresse e-mail ou identifiant</label><br/>
-        <input type="text" name="login" id="login" placeholder="example@mail.com"/>
+        <label for="login">Identifiant</label><br/>
+        <input type="text" name="login" id="login" placeholder="Votre identifiant"/>
         <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez l'adresse e-mail de votre compte client ou votre identifiant.">
       </p>
       <p>
         <label for="password">Mot de passe</label><a href="">Mot de passe oublié ?</a><br/>
-        <input type="password" name="password" id="password" placeholder="M0t2pASs3"/>
+        <input type="password" name="password" id="password" placeholder="Votre mot de passe"/>
         <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte.">
       </p>
       <p>
@@ -219,7 +222,7 @@ function form_subscribe($acteur) {
           </p>
           <p>
             <label for="superficie">Superficie (m²)</label><br/>
-            <input type="text" name="superficie" id="superficie" placeholder="superficie (m²)" required/>
+            <input type="text" name="superficie" id="superficie" placeholder="Superficie (m²)" required/>
           </p>
           <p>
             <label for="paiement">Option de paiement</label><br/>
@@ -231,10 +234,27 @@ function form_subscribe($acteur) {
               <option value="chèque_annuel">Chèque annuel</option>
             </select>
           </p>
+          <p>
+            <label for="nb_pièce">Nombre de pièces</label><br/>
+            <input type="number" name="nb_pièce" id="nb_piece" placeholder="Nombre de pièces" min="1" required/>
+          </p>
       </fieldset>
+
+      <p>
+        <input type="submit" value="Suivant"/>
+      </p>
     </form>
     <?php
     }
   //$formulaire = ob_get_clean();
   //return $formulaire;
+}
+
+function form_capteur_piece($nb_capteur) {
+  ?>
+  <form method="post" action="index.php?cible=form_capteur_piece">
+
+  </form>
+
+  <?php
 }

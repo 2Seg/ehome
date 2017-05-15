@@ -3,6 +3,6 @@
 vue gérant l'affichage de la page "Accueil"
 */
 
-$menu = menu('');
+$menu = menu($_SESSION['type']);
 
 echo 'Accueil';
