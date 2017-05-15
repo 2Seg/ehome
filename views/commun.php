@@ -1,4 +1,8 @@
 <?php
+/*
+vue répertoriant les fonctions gérant l'affichage des différentes parties des pages
+*/
+
 
 // fonction qui gère l'affichage du menu et qui redirige l'utilisateur à travers toutes les pages du site grâce aux 'cibles' dans les URL
 function menu($type) {

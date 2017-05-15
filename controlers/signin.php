@@ -1,14 +1,14 @@
 <?php
-// fichier gérant la connexion utilisateur au site
+/*
+controleur gérant la connexion utilisateur au site, notamment les cas d'erreur
+*/
 
 // on vérifie que l'user a validé le formulaire de connexion
 if(isset($_GET['cible']) && $_GET['cible'] == 'connexion') {
-
   // on vérifie que l'utilisateur a rempli tous les champs
   if(!empty($_POST['login']) && !empty($_POST['password'])) {
-
     include ('modeles/functions.php');
-    $donnees = user_in_db($bdd, $_POST['login']);
+    $donnees = user_in_db($bdd, $_POST['login']); // on récupère les données de la bdd
 
     if ($donnees -> rowcount() == 0) {
       // user non trouvé dans la bdd
@@ -17,9 +17,14 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connexion') {
 
     } else {
       // user trouvé dans la bdd
-      $erreur = '';
-      echo 'Utilisateur connu';
-
+      $ligne = $donnees->fetch(); // on extrait les données (pour qu'elles soient exploitables)
+      if(/*sha1(*/$_POST['password']/*)*/ == $ligne['mot_de_passe']) {
+        $erreur = '';
+        echo 'Vous êtes connecté !';
+      } else {
+        $erreur = 'le mot de passe est incorrect';
+        include('views/signin_error.php');
+      }
     }
 
   } elseif (!empty($_POST['login']) && empty($_POST['password'])) {

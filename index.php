@@ -1,4 +1,8 @@
 <?php
+/*
+fichier principal dirigeant l'utilisateur vers différentes pages en fonction de ses choix
+*/
+
 session_start();
 require("views/commun.php");
 require("modeles/db_access.php");
