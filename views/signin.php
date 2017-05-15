@@ -1,5 +1,8 @@
 <?php
-// fichier gérant les cas d'erreurs lors de la connexion utilisateur dans la bdd
+/*
+vue permettant à l'utilisateur de se connecter
+*/
+
 $menu = menu('');
 
 $form_signin = form_signin('');
