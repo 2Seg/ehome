@@ -6,7 +6,7 @@ vue répertoriant les fonctions gérant l'affichage des différentes parties des
 
 // fonction qui gère l'affichage du menu et qui redirige l'utilisateur à travers toutes les pages du site grâce aux 'cibles' dans les URL
 function menu($type) {
-  //ob_start();
+  ob_start();
   ?>
     <ul>
       <li><a href="index.php?cible=home"><img src="views/ressources/logos/logo2-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
@@ -15,7 +15,7 @@ function menu($type) {
     <?php
     if($type == 'user') {
       echo('<li><a href="index.php?cible=disconnect">Se déconnecter</a></li>');
-      echo ('<li><a href="index.php?cible=signin"><img src="views/ressources/icons/man-13.png" alt="avatar"></a></li>');
+      echo ('<li><a href="index.php?cible=signin"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
     } elseif ($type == 'administrator') {
       echo('<li><a href="index.php?cible=disconnect">Se déconnecter</a></li>');
       echo ('<li><a href="index.php?cible=signin"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
@@ -26,15 +26,15 @@ function menu($type) {
     ?>
     </ul>
     <?php
-  //$menu = ob_get_clean();
-  //return $menu;
+  $menu = ob_get_clean();
+  return $menu;
 }
 
 
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur
 function form_signin($erreur) {
-  //ob_start();
+  ob_start();
   ?>
 
   <form method="post" action="index.php?cible=connect">
@@ -60,8 +60,8 @@ function form_signin($erreur) {
     </fieldset>
   </form>
   <?php
-  //$formulaire = ob_get_clean();
-  //return $formulaire;
+  $formulaire = ob_get_clean();
+  return $formulaire;
 }
 
 
@@ -69,7 +69,7 @@ function form_signin($erreur) {
 // génère par défaut l'affichage du formulaire utilisateur
 // génère l'affichage du formulaire administrateur si on lui passe 'administrateur' en argument
 function form_subscribe($acteur) {
-  //ob_start();
+  ob_start();
   ?>
   <form method="post" action="index.php?cible=subscribe">
     <fieldset>
@@ -246,8 +246,8 @@ function form_subscribe($acteur) {
     </form>
     <?php
     }
-  //$formulaire = ob_get_clean();
-  //return $formulaire;
+  $formulaire = ob_get_clean();
+  return $formulaire;
 }
 
 function form_capteur_piece($nb_capteur) {

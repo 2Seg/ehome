@@ -21,10 +21,11 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connect') {
       if(/*sha1(*/$_POST['password']/*)*/ == $ligne['mot_de_passe']) {
         $erreur = '';
         $_SESSION['id'] = $ligne['id'];
+        $_SESSION['identifiant'] = $ligne['identifiant'];
         $_SESSION['type'] = 'user';
         include('views/home.php');
       } else {
-        $erreur = 'le mot de passe est incorrect';
+        $erreur = 'mot de passe est incorrect';
         include('views/signin_error.php');
       }
     }

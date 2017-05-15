@@ -3,10 +3,18 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title><?php echo($titre); ?></title>
   </head>
-  
-  <body>
 
+  <body>
+    <nav>
+      <?php echo($menu); ?>
+    </nav>
+
+    <?php echo($contenu); ?>
+
+    <footer>
+
+    </footer>
   </body>
 </html>

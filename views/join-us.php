@@ -2,7 +2,11 @@
 /*
 vue gérant l'affichage de la page "Nous rejoindre"
 */
+$titre = 'Nous rejoindre';
 
 $menu = menu($_SESSION['type']);
 
-$form_signin = form_subscribe('');
+$contenu = form_subscribe('');
+
+include('gabarit.php');
+?>
