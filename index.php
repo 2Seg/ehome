@@ -12,7 +12,7 @@ if(!isset($_SESSION['type'])){
   $_SESSION['type'] = '';
 }
 if(isset($_GET['cible'])) {
-  if ($_GET['cible'] == 'home') {
+  if ($_GET['cible'] == 'home') { // bonjour
     include 'views/home.php';
   } elseif ($_GET['cible'] == 'about-us') {
     include('views/about-us.php');

@@ -39,6 +39,7 @@ function form_signin($erreur) {
 
   <form method="post" action="index.php?cible=connect">
     <fieldset>
+      <legend>Connexion</legend>
       <?php
       if ($erreur != '') {
         echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
@@ -250,11 +251,62 @@ function form_subscribe($acteur) {
   return $formulaire;
 }
 
-function form_capteur_piece($nb_capteur) {
+function form_capteur_piece($nb_pièce) {
+  ob_start();
   ?>
   <form method="post" action="index.php?cible=form_capteur_piece">
+    <fieldset>
+      <legend>Choix des capteurs</legend>
+      <table>
+        <tr>
+          <th>Pièce</th>
+          <th>Capteur de luminosité</th>
+          <th>Capteur de température</th>
+          <th>Capteur d'humidité</th>
+          <th>Détecteur de mouvement</th>
+          <th>Détecteur de fumée</th>
+          <th>Caméra</th>
+          <th>Actionneur</th>
+        </tr>
+      <?php
+      for($i = 1; $i <= $nb_pièce; $i++) {
+      ?>
+      <tr>
+        <td>
+          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('luminosité_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('température_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('humidité_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('fumée_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('caméra_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+      </tr>
 
+      <?php
+      }
+      ?>
+      </table>
+      <input type="submit" value="Suivant" />
+    </fieldset>
   </form>
 
   <?php
+  $formulaire = ob_get_clean();
+  return $formulaire;
 }
