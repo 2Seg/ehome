@@ -9,7 +9,7 @@ function menu($type) {
   ob_start();
   ?>
     <ul>
-      <li><a href="index.php?cible=home"><img src="views/ressources/logos/logo2-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li><a href="index.php?cible=home"><img src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
       <li><a href="index.php?cible=about-us">Notre entreprise</a></li>
       <li><a href="index.php?cible=products">Nos produits</a></li>
     <?php
