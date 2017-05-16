@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "gr-med";
+  src: url(views/ressources/fonts/GothamRnd-Medium.otf);
+}
+
+@font-face {
+  font-family: "gr-book";
+  src: url(views/ressources/fonts/GothamRnd-Book.otf);
+}
+
+body
+{
+  font-family: "gr-book";
+}
+
+ul
+{
+  list-style: none;
+  background-color: rgb(210, 0, 0);
+  display: flex;
+  flex-direction: row;
+}
+
+a
+{
+  text-decoration: none;
+  color: white;
+  font-family: 'gr-book';
+}

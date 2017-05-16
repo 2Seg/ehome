@@ -3,6 +3,11 @@
 vue gérant l'affichage de la page "Nos produits"
 */
 
-$menu = menu('');
+$titre = 'Nos produits';
 
-echo 'Nos produits';
+$menu = menu($_SESSION['type']);
+
+$contenu = 'Nos produits';
+
+include('gabarit.php');
+?>

@@ -3,6 +3,11 @@
 vue gérant l'affichage de la page "Notre entreprise"
 */
 
-$menu = menu('');
+$titre = 'Notre entreprise';
 
-echo 'Notre entreprise';
+$menu = menu($_SESSION['type']);
+
+$contenu = 'Notre entreprise';
+
+include('gabarit.php');
+?>

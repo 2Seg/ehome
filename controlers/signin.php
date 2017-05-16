@@ -4,7 +4,7 @@ controleur gérant la connexion utilisateur au site, notamment les cas d'erreur
 */
 
 // on vérifie que l'user a validé le formulaire de connexion
-if(isset($_GET['cible']) && $_GET['cible'] == 'connexion') {
+if(isset($_GET['cible']) && $_GET['cible'] == 'connect') {
   // on vérifie que l'utilisateur a rempli tous les champs
   if(!empty($_POST['login']) && !empty($_POST['password'])) {
     include ('modeles/functions.php');
@@ -20,9 +20,12 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connexion') {
       $ligne = $donnees->fetch(); // on extrait les données (pour qu'elles soient exploitables)
       if(/*sha1(*/$_POST['password']/*)*/ == $ligne['mot_de_passe']) {
         $erreur = '';
-        echo 'Vous êtes connecté !';
+        $_SESSION['id'] = $ligne['id'];
+        $_SESSION['identifiant'] = $ligne['identifiant'];
+        $_SESSION['type'] = 'user';
+        include('views/home.php');
       } else {
-        $erreur = 'le mot de passe est incorrect';
+        $erreur = 'mot de passe est incorrect';
         include('views/signin_error.php');
       }
     }
@@ -43,4 +46,6 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connexion') {
     include('views/signin_error.php');
   }
 
+} else {
+  include('views/signin.php');
 }

@@ -7,6 +7,10 @@ session_start();
 require("views/commun.php");
 require("modeles/db_access.php");
 
+if(!isset($_SESSION['type'])){
+  // on créé une (fausse) variable session pour que le menu s'affiche différemment quand l'user n'est pas connecté
+  $_SESSION['type'] = '';
+}
 if(isset($_GET['cible'])) {
   if ($_GET['cible'] == 'home') {
     include 'views/home.php';
@@ -18,8 +22,10 @@ if(isset($_GET['cible'])) {
     include('views/join-us.php');
   } elseif ($_GET['cible'] == 'signin') {
     include("views/signin.php");
-  } elseif ($_GET['cible'] == 'connexion') {
+  } elseif ($_GET['cible'] == 'connect') {
     include('controlers/signin.php');
+  } elseif ($_GET['cible'] == 'disconnect') {
+    include('controlers/disconnect.php');
   } else {
     include ('views/home.php');
   }
