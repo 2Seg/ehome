@@ -30,6 +30,38 @@ function menu($type) {
   return $menu;
 }
 
+// fonction qui gère l'affichage du menu pour le menu des produits
+function menu_products() {
+
+  ?>
+    <ul>
+      <li><a href="index.php?cible=sensors"> Capteurs </a></li>
+      <li><a href="index.php?cible=actuators"> Actionneurs </a></li>
+      <li><a href="index.php?cible=cameras"> Caméras </a></li>
+    </ul>
+    <?php
+}
+
+function footer()
+{
+	?>
+	<ul>
+
+		<li> <em>Localisation</em> </li>
+		<ul>
+			<li> <p><img src="ehome/views/ressources/images/map_isep.png" alt="Map rue de Vanves"  title="Cliquez pour agrandir" /></p></li>
+		</ul>
+
+		<li> <em>Mentions légales</em> </li>
+		<li> <em>Contact</em> </li>
+		<ul>
+			<li> +33 1 23 45 67 89 </li>
+			<li> accueil@ehome.com </li>
+		</ul>
+
+	</ul>
+	<?php
+}
 
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur

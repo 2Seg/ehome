@@ -26,6 +26,12 @@ if(isset($_GET['cible'])) {
     include('controlers/signin.php');
   } elseif ($_GET['cible'] == 'disconnect') {
     include('controlers/disconnect.php');
+  } elseif ($_GET['cible'] == 'sensors') {
+    include("views/sensors.php");
+  } elseif ($_GET['cible'] == 'actuators') {
+    include("views/actuators.php");
+  } elseif ($_GET['cible'] == 'cameras') {
+    include("views/cameras.php");
   } else {
     include ('views/home.php');
   }
