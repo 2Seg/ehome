@@ -16,7 +16,7 @@
     <?php echo($contenu); ?>
 
     <footer>
-
+      
     </footer>
   </body>
 </html>
