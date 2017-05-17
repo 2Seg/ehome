@@ -20,7 +20,7 @@ function menu($type) {
       echo('<li><a href="index.php?cible=disconnect">Se déconnecter</a></li>');
       echo ('<li><a href="index.php?cible=signin"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
     } else {
-      echo('<li><a href="index.php?cible=join-us">Nous rejoindre</a></li>');
+      echo('<li><a href="index.php?cible=join-us_1">Nous rejoindre</a></li>');
       echo('<li><a href="index.php?cible=signin">Connexion</a></li>');
     }
     ?>
@@ -103,7 +103,7 @@ function form_signin($erreur) {
 // génère l'affichage du formulaire administrateur si on lui passe 'administrateur' en argument
 function form_subscribe($acteur) {
   ob_start();
-  /*
+
   ?>
   <form method="post" action="index.php?cible=subscribe">
     <fieldset>
@@ -267,7 +267,7 @@ function form_subscribe($acteur) {
               <option value="chèque_mensuel">Chèque mensuel</option>
               <option value="chèque_annuel">Chèque annuel</option>
             </select>
-          </p> */?>
+          </p>
           <p>
             <label for="nb_pièce">Nombre de pièces</label><br/>
             <input type="number" name="nb_pièce" id="nb_piece" placeholder="Nombre de pièces" min="1" required/>
