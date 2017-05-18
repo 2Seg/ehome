@@ -112,11 +112,11 @@ function form_subscribe_user() {
         </p>
         <p>
           <label for="password">Mot de passe</label><br/>
-          <input type="pass" name="password" id="password" placeholder="Mot de passe" required/>
+          <input type="password" name="password" id="password" placeholder="Mot de passe" required/>
         </p>
         <p>
           <label for="conf_password">Confirmez le mot de passe</label><br/>
-          <input type="pass" name="conf_password" id="conf_password" placeholder="Confirmation du mot de passe" required/>
+          <input type="password" name="conf_password" id="conf_password" placeholder="Confirmation du mot de passe" required/>
         </p>
     </fieldset>
 
@@ -185,7 +185,7 @@ function form_subscribe_user() {
         </p>
         <p>
           <label for="telephone">Téléphone</label><br/>
-          <input type="tel" name="telephone" id="telephone" placeholder="Votre téléphone" required/>
+          <input type="tel" name="telephone" id="telephone" maxlength="12" placeholder="Votre téléphone" required/>
         </p>
         <p>
           <label for="email">E-mail</label><br/>
@@ -260,16 +260,17 @@ function form_subscribe_user() {
           <input type="number" name="nb_habitant" id="nb_habitant" placeholder="Nombre d'habitants" required/>
         </p>
         <p>
-          <label for="superficie">Superficie (m²)</label><br/>
-          <input type="text" name="superficie" id="superficie" placeholder="Superficie (m²)" required/>
+          <label for="nb_piece">Nombre de pièces</label><br/>
+          <input type="number" name="nb_piece" id="nb_piece" placeholder="Nombre de pièces" min="1" required/>
         </p>
         <p>
-          <label for="nb_pièce">Nombre de pièces</label><br/>
-          <input type="number" name="nb_pièce" id="nb_piece" placeholder="Nombre de pièces" min="1" required/>
+          <label for="superficie">Superficie (m²)</label><br/>
+          <input type="text" name="superficie" id="superficie" placeholder="Superficie (m²)" required/>
         </p>
     </fieldset>
 
     <p>
+      <input type="reset" value="Rafraichir">
       <input type="submit" value="Suivant"/>
     </p>
   </form>
@@ -282,7 +283,7 @@ function form_subscribe_user() {
 function form_capteur_piece($nb_pièce) {
   ob_start();
   ?>
-  <form method="post" action="index.php?cible=form_capteur_piece">
+  <form method="post" action='index.php?cible=sensor_choice'>
     <fieldset>
       <legend>Choix des capteurs</legend>
       <table>
@@ -304,22 +305,22 @@ function form_capteur_piece($nb_pièce) {
           <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
         </td>
         <td>
-          <input type="number" name="<?php echo('luminosité_'.$i); ?>" min="0" placeholder="Nombre" required/>
+          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" placeholder="Nombre" required/>
         </td>
         <td>
-          <input type="number" name="<?php echo('température_'.$i); ?>" min="0" placeholder="Nombre" required/>
+          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" placeholder="Nombre" required/>
         </td>
         <td>
-          <input type="number" name="<?php echo('humidité_'.$i); ?>" min="0" placeholder="Nombre" required/>
+          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" placeholder="Nombre" required/>
         </td>
         <td>
           <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
         </td>
         <td>
-          <input type="number" name="<?php echo('fumée_'.$i); ?>" min="0" placeholder="Nombre" required/>
+          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" placeholder="Nombre" required/>
         </td>
         <td>
-          <input type="number" name="<?php echo('caméra_'.$i); ?>" min="0" placeholder="Nombre" required/>
+          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" placeholder="Nombre" required/>
         </td>
         <td>
           <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
@@ -330,7 +331,12 @@ function form_capteur_piece($nb_pièce) {
       }
       ?>
       </table>
+      <input type="reset" value="Rafraichir">
       <input type="submit" value="Envoyer" />
+  </form>
+
+  <form method="post" action="index.php?cible=join-us_success">
+    <input type="submit" value="Continuer sans sauvegarder" />
     </fieldset>
   </form>
 
