@@ -1,19 +1,17 @@
+<?php
+$titre = 'Notre entreprise';
+$menu = menu($_SESSION['type']);
+$contenu = about_us('');
+$footer = footer('');
+include('gabarit.php');
+
+function about_us(){
+  ?>
+
 <html>
-
-  <head>
-
-  </head>
-
   <body>
-
-    <header>
-      <?php
-      $titre = 'Notre entreprise';
-      $menu = menu($_SESSION['type']);
-      $contenu = 'Notre entreprise';
-      include('gabarit.php');
-      ?>
-    </header>
+    <head>
+    </head>
 
     <main>
       <h1> <strong> Notre entreprise </strong> </h1>
@@ -52,17 +50,14 @@
             ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
             humanitatis multiformibus officiis retentabant.</p>
 
+      <p><img src="views\ressources\images\maison_entreprise.jpeg" alt="Maison Entreprise"  title="Cliquez pour agrandir" /></p>
+
     </main>
-
-    <p><img src="ehome/views/ressources/images/maison_entreprise.jpeg" alt="Maison Entreprise"  title="Cliquez pour agrandir" /></p>
-
     <footer>
-      <?php
-      $footer = footer();
-      ?>
+
     </footer>
-
-
   </body>
-
 </html>
+
+<?php
+}

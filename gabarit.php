@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="views/styles/structure.css">
   </head>
 
-  <body>
-    <nav>
-      <?php echo($menu); ?>
-    </nav>
+  <body class="corps">
+      <nav>
+        <?php echo($menu);?>
+      </nav>
 
-    <?php echo($contenu); ?>
+      <div id="content">
+      <?php echo($contenu); ?>
+      </div>
 
-    <footer>
-      
-    </footer>
+      <footer>
+        <?php echo($footer); ?>
+      </footer>
   </body>
 </html>

@@ -8,6 +8,8 @@ $menu = menu($_SESSION['type']);
 
 $contenu = '<h2>Page 2/2</h2>';
 $contenu .= form_capteur_piece();
+$footer = footer();
+
 
 include('gabarit.php');
 ?>

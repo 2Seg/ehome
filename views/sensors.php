@@ -11,6 +11,7 @@
       $titre = 'Nos produits';
       $menu = menu($_SESSION['type']);
       $contenu = 'Nos produits';
+      $footer = footer();
       include('gabarit.php');
       $menu_products = menu_products('')
       ?>
@@ -43,9 +44,7 @@
 
 
     <footer>
-      <?php
-      $footer = footer();
-      ?>
+
     </footer>
 
 
