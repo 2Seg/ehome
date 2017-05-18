@@ -4,10 +4,12 @@ $titre = 'Notre entreprise';
 
 $menu = menu($_SESSION['type']);
 
+
 //debut du contenu...
 $contenu = '<html>
   <body>
     <head>
+
     </head>
 
     <main>

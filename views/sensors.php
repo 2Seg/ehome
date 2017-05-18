@@ -1,21 +1,21 @@
-<html>
+<?php
+/*
+Page Capteurs de Nos Produits
+*/
+$titre = 'Nos capteurs';
+
+$menu = menu2($_SESSION['type']);
+//$menu_products = menu_products('');
+
+// début du contenu...
+$contenu = 'Voici la page "Capteurs"';
+$contenu .= '<html>
 
   <head>
 
   </head>
 
   <body>
-
-    <header>
-      <?php
-      $titre = 'Nos produits';
-      $menu = menu($_SESSION['type']);
-      $contenu = 'Nos produits';
-      $footer = footer();
-      include('gabarit.php');
-      $menu_products = menu_products('')
-      ?>
-    </header>
 
     <main>
 
@@ -33,7 +33,7 @@
        </li>
 
         <li>
-          <h2> Capteurs d'humidité </h2>
+          <h2> Capteurs d\'humidité </h2>
           <p> HUMIDITE </p>
           <p><img src="ehome/views/ressources/images/maison_entreprise.jpeg" alt="Maison Entreprise"  title="Cliquez pour agrandir" /></p>
         </li>
@@ -50,4 +50,10 @@
 
   </body>
 
-</html>
+</html>';
+// fin du contenu
+
+$footer = footer('');
+include('gabarit.php');
+
+?>
