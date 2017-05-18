@@ -7,7 +7,7 @@ $titre = 'Accueil';
 
 $menu = menu($_SESSION['type']);
 
-$contenu = 'Accueil';
+$contenu = 'Voici la page "Accueil"';
 
 $footer = footer('');
 
