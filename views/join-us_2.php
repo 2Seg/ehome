@@ -1,8 +1,8 @@
 <?php
 /*
-vue gérant l'affichage de la page "Nous rejoindre"
+vue gérant l'affichage de la page "Nous rejoindre (page 2/2)"
 */
-$titre = 'Nous rejoindre';
+$titre = 'Nous rejoindre (2/2)';
 
 $menu = menu($_SESSION['type']);
 
