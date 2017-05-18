@@ -1,14 +1,11 @@
 <?php
+
 $titre = 'Notre entreprise';
+
 $menu = menu($_SESSION['type']);
-$contenu = about_us('');
-$footer = footer('');
-include('gabarit.php');
 
-function about_us(){
-  ?>
-
-<html>
+//debut du contenu...
+$contenu = '<html>
   <body>
     <head>
     </head>
@@ -33,7 +30,7 @@ function about_us(){
       <ul>
         <li> Créée en 2016 </li>
         <li> 92% de satisfaction</li>
-        <li> Prix de l'innovation 2016 </li>
+        <li> Prix de l\'innovation 2016 </li>
       </ul>
 
       <h2> Nos objectifs </h2>
@@ -58,6 +55,9 @@ function about_us(){
     </footer>
   </body>
 </html>
+';
+//fin du contenu
 
-<?php
-}
+$footer = footer();
+include('gabarit.php');
+?>

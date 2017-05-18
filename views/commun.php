@@ -65,6 +65,8 @@ function footer()
 	<?php
 }
 
+
+
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur
 function form_signin($erreur) {
