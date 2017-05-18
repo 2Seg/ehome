@@ -1,29 +1,123 @@
 @font-face {
   font-family: "gr-med";
-  src: url(views/ressources/fonts/GothamRnd-Medium.otf);
+  src: url(views\ressources\fonts\GothamRnd-Medium.otf);
 }
 
 @font-face {
   font-family: "gr-book";
-  src: url(views/ressources/fonts/GothamRnd-Book.otf);
+  src: url(views\ressources\fonts\GothamRnd-Book.otf);
 }
 
-body
+
+html
+{
+  height : 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+.corps
 {
   font-family: "gr-book";
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-ul
+#content
+{
+  padding-bottom: 200px;
+  margin: auto;
+  position: relative;
+}
+
+/*****************************************************************MENU***********************************************************************/
+
+.menu
 {
   list-style: none;
   background-color: rgb(210, 0, 0);
   display: flex;
   flex-direction: row;
+  vertical-align: middle;
+  justify-content: flex-start;
+  align-items: center;
+  margin: auto;
+  height: 10%;
 }
 
-a
+.menu_elements
+{
+  list-style: none;
+  text-align: center;
+  margin-right: 2.5%;
+  vertical-align: middle;
+  /*padding: 15px;*/
+}
+
+.text_menu
 {
   text-decoration: none;
   color: white;
   font-family: 'gr-book';
+}
+
+/******************************************************************MENU PRODUITS*************************************************************/
+
+.menu_products
+{
+  list-style: none;
+  background-color: rgb(211,211,211);
+  display: flex;
+  flex-direction: row;
+}
+
+.text_menu_products
+{
+  text-decoration: none;
+  color: black;
+  font-family: 'gr-book';
+}
+
+.menu_products_elements
+{
+  list-style: none;
+  text-align: center;
+  margin-right: 50px;
+}
+
+/******************************************************************FOOTER *******************************************************************/
+.map
+{
+  height: 75% ;
+  width: auto;
+}
+
+.footer
+{
+  background-color: rgb(48,48,48);
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  position:absolute;
+  bottom:0;
+  height:150px;
+  width: 100%;
+  margin: auto;
+}
+
+.footer_elements
+{
+  list-style: none;
+  text-align: center;
+  color: white;
+  margin-right: 2.5%;
 }
