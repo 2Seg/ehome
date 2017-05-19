@@ -12,7 +12,7 @@ if(!isset($_SESSION['type'])){
   $_SESSION['type'] = '';
 }
 if(isset($_GET['cible'])) {
-  if ($_GET['cible'] == 'home') { // bonjour
+  if ($_GET['cible'] == 'home') {
     include 'views/home.php';
   } elseif ($_GET['cible'] == 'about-us') {
     include('views/about-us.php');
@@ -20,12 +20,20 @@ if(isset($_GET['cible'])) {
     include('views/products.php');
   } elseif ($_GET['cible'] == 'join-us_1') {
     include('views/join-us_1.php');
+  } elseif($_GET['cible'] == 'join-us_2') {
+    include('views/join-us_2.php');
+  } elseif($_GET['cible'] == 'join-us_success') {
+    include('views/join-us_success.php');
   } elseif ($_GET['cible'] == 'signin') {
     include("views/signin.php");
   } elseif ($_GET['cible'] == 'connect') {
     include('controlers/signin.php');
   } elseif ($_GET['cible'] == 'disconnect') {
     include('controlers/disconnect.php');
+  } elseif ($_GET['cible'] == 'subscribe') {
+    include('controlers/subscribe.php');
+  } elseif ($_GET['cible'] == 'sensor_choice') {
+    include('controlers/sensor_choice.php');
   } elseif ($_GET['cible'] == 'sensors') {
     include("views/sensors.php");
   } elseif ($_GET['cible'] == 'actuators') {
@@ -33,8 +41,8 @@ if(isset($_GET['cible'])) {
   } elseif ($_GET['cible'] == 'cameras') {
     include("views/cameras.php");
   } else {
-    include ('views/home.php');
+    include ('views/error.php');
   }
 } else {
-  include ('views/home.php');
+  include ('views/error.php');
 }
