@@ -23,7 +23,7 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connect') {
         $_SESSION['id'] = $ligne['id'];
         $_SESSION['identifiant'] = $ligne['identifiant'];
         $_SESSION['type'] = 'user';
-        include('views/home.php');
+        include('views/home_user.php');
       } else {
         $erreur = 'mot de passe est incorrect';
         include('views/signin_error.php');
