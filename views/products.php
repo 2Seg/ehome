@@ -5,11 +5,10 @@ vue gérant l'affichage de la page "Nos produits"
 $titre = 'Nos produits';
 
 $menu = menu($_SESSION['type']);
-$menu .= menu2();
-//$menu_products = menu_products('');
+$menu .= menu_products('');
 
 // début du contenu...
-$contenu = 'Voici la page principale "Produits"';
+$contenu = content_products('');
 // fin du contenu
 
 $footer = footer('');
