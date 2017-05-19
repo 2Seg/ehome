@@ -15,10 +15,10 @@ function menu($type) {
     <?php
     if($type == 'user') {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
-      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
-    } elseif ($type == 'administrator') {
+      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+    } elseif ($type == 'admin') {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
-      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
+      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/m_default_admin.png" alt="avatar"></a></li>');
     } else {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us">NOUS REJOINDRE</a></li>');
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
@@ -35,7 +35,6 @@ function menu($type) {
 function menu2() {
   ob_start();
   ?>
-    </ul>
     <ul class="menu_products">
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=sensors"> Capteurs </a></li>
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=actuators"> Actionneurs </a></li>
@@ -91,7 +90,7 @@ function form_signin($erreur) {
       <p>
         <label for="login">Identifiant</label><br/>
         <input type="text" name="login" id="login" placeholder="Votre identifiant"/>
-        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez l'adresse e-mail de votre compte client ou votre identifiant.">
+        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant client.">
       </p>
       <p>
         <label for="password">Mot de passe</label><br/>
@@ -356,4 +355,30 @@ function form_capteur_piece($nb_pièce) {
   <?php
   $formulaire = ob_get_clean();
   return $formulaire;
+}
+
+function menu_user($type) {
+  ob_start();
+  if($type == 'user') {?>
+    <ul class="menu_products">
+      <li class="menu_products_elements"><a href="index.php?cible=home_user.php" class="text_menu_products">Mon domicile</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=home_management" class="text_menu_products">Gestion du domicile</a></li>
+      <li class="menu_products_elements"><a href="notification" class="text_menu_products">Notifications</a></li>
+      <li class="menu_products_elements"><a href="information" class="text_menu_products">Mes informations</a></li>
+      <li class="menu_products_elements"><a href="subcription" class="text_menu_products">Mon abonnement</a></li>
+      <li class="menu_products_elements"><a href="messaging" class="text_menu_products">Messagerie</a></li>
+    </ul>
+  <?php
+} elseif ($type == 'admin') {?>
+    <ul>
+      <li class="menu_products_elements"><a href="overview" class="text_menu_products">Vue d'ensemble</a></li>
+      <li class="menu_products_elements"><a href="user_management" class="text_menu_products">Gestion des utilisateurs</a></li>
+      <li class="menu_products_elements"><a href="notification" class="text_menu_products">Notifications</a></li>
+      <li class="menu_products_elements"><a href="security" class="text_menu_products">Sécurité</a></li>
+      <li class="menu_products_elements"><a href="messaging" class="text_menu_products">Messagerie</a></li>
+    </ul>
+  <?php
+  }
+  $menu = ob_get_clean();
+  return $menu;
 }
