@@ -8,5 +8,6 @@ $menu = menu($_SESSION['type']);
 
 $contenu = '<h2>Erreur : il semblerait que la page demandée n\'existe pas.</h2>';
 
+$footer = footer();
 include('gabarit.php');
 ?>

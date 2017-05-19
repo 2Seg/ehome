@@ -6,9 +6,9 @@ $titre = 'Déconnexion';
 
 $menu = menu('');
 
-$footer = footer();
-
 $contenu = 'Vous avez été déconnecté.';
+
+$footer = footer();
 
 include('gabarit.php');
 ?>

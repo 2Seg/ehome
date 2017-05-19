@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="views/styles/structure.css">
   </head>
 
-
-
-
-
   <body class="corps">
       <nav>
         <?php echo $menu;?>
@@ -25,7 +21,6 @@
 
       <footer>
         <?php echo($footer); ?>
-
       </footer>
   </body>
 </html>

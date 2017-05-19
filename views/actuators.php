@@ -4,8 +4,9 @@ Page Capteurs de Nos Produits
 */
 $titre = 'Nos capteurs';
 
-$menu = menu2($_SESSION['type']);
-//$menu_products = menu_products('');
+$menu = menu($_SESSION['type']);
+$menu .= menu2();
+
 
 // début du contenu...
 $contenu = 'Voici la page "Actionneurs"';
@@ -53,7 +54,7 @@ $contenu .= '<html>
 </html>';
 // fin du contenu
 
-$footer = footer('');
+$footer = footer();
 include('gabarit.php');
 
 ?>

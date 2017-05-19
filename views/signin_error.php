@@ -8,7 +8,8 @@ $titre = 'Connexion';
 $menu = menu($_SESSION['type']);
 
 $contenu = form_signin($erreur);
-$footer = footer('');
+
+$footer = footer();
 
 include('gabarit.php');
 ?>

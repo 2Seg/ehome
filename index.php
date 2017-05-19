@@ -42,5 +42,5 @@ if(isset($_GET['cible'])) {
     include ('views/error.php');
   }
 } else {
-  include ('views/error.php');
+  include ('views/home.php');
 }

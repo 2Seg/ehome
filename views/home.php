@@ -9,7 +9,7 @@ $menu = menu($_SESSION['type']);
 
 $contenu = 'Voici la page "Accueil"';
 
-$footer = footer('');
+$footer = footer();
 
 include('gabarit.php');
 ?>

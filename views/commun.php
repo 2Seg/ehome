@@ -14,13 +14,13 @@ function menu($type) {
       <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
     if($type == 'user') {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
       echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
     } elseif ($type == 'administrator') {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
       echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
     } else {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_1">NOUS REJOINDRE</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us">NOUS REJOINDRE</a></li>');
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
     ?>
@@ -32,25 +32,9 @@ function menu($type) {
 
 
 // fonction qui gère l'affichage du menu classique + celui des produits
-function menu2($type) {
+function menu2() {
   ob_start();
   ?>
-    <ul class="menu">
-      <li class="menu_elements"><a class="text_menu" href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
-      <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
-      <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
-    <?php
-    if($type == 'user') {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
-      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
-    } elseif ($type == 'administrator') {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
-      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
-    } else {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_1">NOUS REJOINDRE</a></li>');
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
-    }
-    ?>
     </ul>
     <ul class="menu_products">
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=sensors"> Capteurs </a></li>
@@ -64,7 +48,7 @@ function menu2($type) {
 
 
 function footer() {
-
+  ob_start();
 	?>
 	<ul class="footer">
 
@@ -84,6 +68,8 @@ function footer() {
 
 	</ul>
 	<?php
+  $footer = ob_get_clean();
+  return $footer;
 }
 
 
@@ -108,13 +94,14 @@ function form_signin($erreur) {
         <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez l'adresse e-mail de votre compte client ou votre identifiant.">
       </p>
       <p>
-        <label for="password">Mot de passe</label><a href="">Mot de passe oublié ?</a><br/>
+        <label for="password">Mot de passe</label><br/>
         <input type="password" name="password" id="password" placeholder="Votre mot de passe"/>
         <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte.">
       </p>
       <p>
         <input type="submit" value="Se connecter"/>
       </p>
+      <p>Pas encore inscrit ? Rejoignez-nous en cliquant <a href="index.php?cible=join-us">ici</a>.</p>
     </fieldset>
   </form>
   <?php

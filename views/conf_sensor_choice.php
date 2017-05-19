@@ -9,5 +9,6 @@ $menu = menu($_SESSION['type']);
 
 $contenu = '<h2>'.$message.'</h2>';
 
+$footer = footer();
 include('gabarit.php');
 ?>
