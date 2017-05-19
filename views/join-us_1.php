@@ -7,7 +7,10 @@ $titre = 'Nous rejoindre (1/2)';
 $menu = menu($_SESSION['type']);
 
 $contenu = '<h2>Page 1/2</h2>';
+
 $contenu .= form_subscribe_user();
+
+$footer = footer();
 
 include('gabarit.php');
 ?>

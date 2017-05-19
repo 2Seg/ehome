@@ -1,20 +1,21 @@
-<html>
+<?php
+/*
+Page Capteurs de Nos Produits
+*/
+$titre = 'Nos capteurs';
+
+$menu = menu2($_SESSION['type']);
+//$menu_products = menu_products('');
+
+// début du contenu...
+$contenu = 'Voici la page "Actionneurs"';
+$contenu .= '<html>
 
   <head>
 
   </head>
 
   <body>
-
-    <header>
-      <?php
-      $titre = 'Nos produits';
-      $menu = menu($_SESSION['type']);
-      $contenu = 'Nos produits';
-      include('gabarit.php');
-      $menu_products = menu_products('')
-      ?>
-    </header>
 
     <main>
 
@@ -43,12 +44,16 @@
 
 
     <footer>
-      <?php
-      $footer = footer();
-      ?>
+
     </footer>
 
 
   </body>
 
-</html>
+</html>';
+// fin du contenu
+
+$footer = footer('');
+include('gabarit.php');
+
+?>

@@ -1,19 +1,16 @@
-<html>
+<?php
 
-  <head>
+$titre = 'Notre entreprise';
 
-  </head>
+$menu = menu($_SESSION['type']);
 
+
+//debut du contenu...
+$contenu = '<html>
   <body>
+    <head>
 
-    <header>
-      <?php
-      $titre = 'Notre entreprise';
-      $menu = menu($_SESSION['type']);
-      $contenu = 'Notre entreprise';
-      include('gabarit.php');
-      ?>
-    </header>
+    </head>
 
     <main>
       <h1> <strong> Notre entreprise </strong> </h1>
@@ -35,7 +32,7 @@
       <ul>
         <li> Créée en 2016 </li>
         <li> 92% de satisfaction</li>
-        <li> Prix de l'innovation 2016 </li>
+        <li> Prix de l\'innovation 2016 </li>
       </ul>
 
       <h2> Nos objectifs </h2>
@@ -52,17 +49,17 @@
             ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
             humanitatis multiformibus officiis retentabant.</p>
 
+      <p><img src="views\ressources\images\maison_entreprise.jpeg" alt="Maison Entreprise"  title="Cliquez pour agrandir" /></p>
+
     </main>
-
-    <p><img src="ehome/views/ressources/images/maison_entreprise.jpeg" alt="Maison Entreprise"  title="Cliquez pour agrandir" /></p>
-
     <footer>
-      <?php
-      $footer = footer();
-      ?>
+
     </footer>
-
-
   </body>
-
 </html>
+';
+//fin du contenu
+
+$footer = footer();
+include('gabarit.php');
+?>

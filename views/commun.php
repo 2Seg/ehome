@@ -8,20 +8,20 @@ vue répertoriant les fonctions gérant l'affichage des différentes parties des
 function menu($type) {
   ob_start();
   ?>
-    <ul>
-      <li><a href="index.php?cible=home"><img src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
-      <li><a href="index.php?cible=about-us">Notre entreprise</a></li>
-      <li><a href="index.php?cible=products">Nos produits</a></li>
+    <ul class="menu">
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
     if($type == 'user') {
-      echo('<li><a href="index.php?cible=disconnect">Se déconnecter</a></li>');
-      echo ('<li><a href="index.php?cible=signin"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
+      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
     } elseif ($type == 'administrator') {
-      echo('<li><a href="index.php?cible=disconnect">Se déconnecter</a></li>');
-      echo ('<li><a href="index.php?cible=signin"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
+      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
     } else {
-      echo('<li><a href="index.php?cible=join-us_1">Nous rejoindre</a></li>');
-      echo('<li><a href="index.php?cible=signin">Connexion</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_1">NOUS REJOINDRE</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
     ?>
     </ul>
@@ -30,37 +30,63 @@ function menu($type) {
   return $menu;
 }
 
-// fonction qui gère l'affichage du menu pour le menu des produits
-function menu_products() {
 
+// fonction qui gère l'affichage du menu classique + celui des produits
+function menu2($type) {
+  ob_start();
   ?>
-    <ul>
-      <li><a href="index.php?cible=sensors"> Capteurs </a></li>
-      <li><a href="index.php?cible=actuators"> Actionneurs </a></li>
-      <li><a href="index.php?cible=cameras"> Caméras </a></li>
+    <ul class="menu">
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
+    <?php
+    if($type == 'user') {
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
+      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+    } elseif ($type == 'administrator') {
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
+      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
+    } else {
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_1">NOUS REJOINDRE</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+    }
+    ?>
+    </ul>
+    <ul class="menu_products">
+      <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=sensors"> Capteurs </a></li>
+      <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=actuators"> Actionneurs </a></li>
+      <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=cameras"> Caméras </a></li>
     </ul>
     <?php
+  $menu = ob_get_clean();
+  return $menu;
 }
 
-function footer() {
-	?>
-	<ul>
 
-		<li> <em>Localisation</em> </li>
+function footer() {
+
+	?>
+	<ul class="footer">
+
+		<li class="footer_elements"> <em>Localisation</em> </li>
+
 		<ul>
-			<li> <p><img src="ehome/views/ressources/images/map_isep.png" alt="Map rue de Vanves"  title="Cliquez pour agrandir" /></p></li>
+			<li class="footer_elements"> <p><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez pour agrandir" /></p></li>
 		</ul>
 
-		<li> <em>Mentions légales</em> </li>
-		<li> <em>Contact</em> </li>
+		<li class="footer_elements"> <em>Mentions légales</em> </li>
+		<li class="footer_elements"> <em>Contact</em> </li>
+
 		<ul>
-			<li> +33 1 23 45 67 89 </li>
-			<li> accueil@ehome.com </li>
+			<li class="footer_elements"> +33 1 23 45 67 89 </li>
+			<li class="footer_elements">  accueil@ehome.com </li>
 		</ul>
 
 	</ul>
 	<?php
 }
+
+
 
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur
