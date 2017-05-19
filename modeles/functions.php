@@ -98,3 +98,9 @@ function sensor_choice($db, $id_logement, $piece, $capteur_luminosite, $capteur_
                         'actionneur' => $actionneur));
   return $req;
 }
+
+// function récupérant l'adresse du logement et le nombre de pièces d'un utilisateur (en fonction de son id)
+function select_adress_room($db, $id_user) {
+  $req = $db -> prepare('SELECT adresse, nb_piece FROM logement INNER JOIN utilisateur ON logement.id_user = utilisateur');
+  $req -> execute(array($adresse));
+}
