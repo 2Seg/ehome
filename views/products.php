@@ -1,37 +1,17 @@
-
-<html>
-
-  <head>
-
-  </head>
-
-  <body>
-
-    <header>
-      <?php
+<?php
 /*
 vue gérant l'affichage de la page "Nos produits"
 */
-      $titre = 'Nos produits';
-      $menu = menu($_SESSION['type']);
-      $contenu = 'Nos produits';
-      include('gabarit.php');
-      $menu_products = menu_products('')
-      ?>
-    </header>
+$titre = 'Nos produits';
 
-    <main>
+$menu = menu2($_SESSION['type']);
+//$menu_products = menu_products('');
 
-    </main>
+// début du contenu...
+$contenu = 'Voici la page principale "Produits"';
+// fin du contenu
 
+$footer = footer('');
+include('gabarit.php');
 
-    <footer>
-      <?php
-      $footer = footer();
-      ?>
-    </footer>
-
-
-  </body>
-
-</html>
+?>

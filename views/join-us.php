@@ -8,5 +8,7 @@ $menu = menu($_SESSION['type']);
 
 $contenu = form_subscribe_user();
 
+$footer = footer();
+
 include('gabarit.php');
 ?>
