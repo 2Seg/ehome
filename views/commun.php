@@ -15,10 +15,10 @@ function menu($type) {
     <?php
     if($type == 'user') {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
-      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/man-13.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
     } elseif ($type == 'administrator') {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">Se déconnecter</a></li>');
-      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
+      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/businessman.png" alt="avatar"></a></li>');
     } else {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_1">NOUS REJOINDRE</a></li>');
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
@@ -297,7 +297,7 @@ function form_subscribe_user() {
 
     <p>
       <input type="reset" value="Rafraichir">
-      <input type="submit" value="Suivant"/>
+      <input type="submit" value="S'inscrire"/>
     </p>
   </form>
   <?php

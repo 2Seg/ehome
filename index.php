@@ -18,10 +18,8 @@ if(isset($_GET['cible'])) {
     include('views/about-us.php');
   } elseif ($_GET['cible'] == 'products') {
     include('views/products.php');
-  } elseif ($_GET['cible'] == 'join-us_1') {
-    include('views/join-us_1.php');
-  } elseif($_GET['cible'] == 'join-us_2') {
-    include('views/join-us_2.php');
+  } elseif ($_GET['cible'] == 'join-us') {
+    include('views/join-us.php');
   } elseif($_GET['cible'] == 'join-us_success') {
     include('views/join-us_success.php');
   } elseif ($_GET['cible'] == 'signin') {
