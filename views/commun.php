@@ -441,7 +441,7 @@ function current_date() {
 }
 
 // fonction responsable de l'affichage du bloc "Mon domicile"
-function my_home($user /*$nb_notif*/) {
+function my_home($user /*, $nb_notif*/) {
   ob_start();
   ?>
   <article>
@@ -475,10 +475,10 @@ function my_information() {
   <?php
   $info = ob_get_clean();
   return $info;
+}
 
 
-function content_products()
-{
+function content_products() {
   ob_start();
   ?>
   <p> Voici la page principale "Produits" </p>
@@ -489,8 +489,7 @@ function content_products()
 }
 
 
-function content_actuators()
-{
+function content_actuators() {
   ob_start();
   ?>
   <p>Voici la page principale "Actionneurs" </p>
@@ -500,8 +499,7 @@ function content_actuators()
 }
 
 
-function content_cameras()
-{
+function content_cameras() {
   ob_start();
   ?>
   <p>Voici la page principale "Caméras" </p>
@@ -511,8 +509,7 @@ function content_cameras()
 }
 
 
-function content_sensors()
-{
+function content_sensors() {
   ob_start();
   ?>
   <p>Voici la page principale "Capteurs" </p>
@@ -522,8 +519,7 @@ function content_sensors()
 }
 
 
-function content_abouts_us()
-{
+function content_about_us() {
   ob_start();
   ?>
   <main>
@@ -568,5 +564,4 @@ function content_abouts_us()
   <?php
   $contenu = ob_get_clean();
   return $contenu;
-
 }
