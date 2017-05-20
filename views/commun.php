@@ -34,7 +34,7 @@ function menu() {
 
 
 // fonction qui gère l'affichage du menu classique + celui des produits
-function menu2() {
+function menu_products() {
   ob_start();
   ?>
     <ul class="menu_products">
@@ -56,7 +56,7 @@ function footer() {
 		<li class="footer_elements"> <em>Localisation</em> </li>
 
 		<ul>
-			<li class="footer_elements"> <p><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez pour agrandir" /></p></li>
+			<li class="footer_elements"> <p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
 		</ul>
 
 		<li class="footer_elements"> <em>Mentions légales</em> </li>
@@ -475,4 +475,98 @@ function my_information() {
   <?php
   $info = ob_get_clean();
   return $info;
+
+
+function content_products()
+{
+  ob_start();
+  ?>
+  <p> Voici la page principale "Produits" </p>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_actuators()
+{
+  ob_start();
+  ?>
+  <p>Voici la page principale "Actionneurs" </p>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_cameras()
+{
+  ob_start();
+  ?>
+  <p>Voici la page principale "Caméras" </p>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_sensors()
+{
+  ob_start();
+  ?>
+  <p>Voici la page principale "Capteurs" </p>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_abouts_us()
+{
+  ob_start();
+  ?>
+  <main>
+    <h1> <strong> Notre entreprise </strong> </h1>
+
+    <h2> Notre histoire </h2>
+
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant. Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.</p>
+
+    <ul>
+      <li> Créée en 2016 </li>
+      <li> 92% de satisfaction</li>
+      <li> Prix de l\'innovation 2016 </li>
+    </ul>
+
+    <h2> Nos objectifs </h2>
+
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+
+    <p><img src="views\ressources\images\maison_entreprise.jpeg" alt="Maison Entreprise"  title="Cliquez pour agrandir" /></p>
+  </main>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+
 }
