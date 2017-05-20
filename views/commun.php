@@ -394,7 +394,7 @@ function form_subscribe_user() {
 function form_sensor_room() {
   ob_start();
   ?>
-  <form method="post" action='index.php?cible=sensor_choice'>
+  <form method="post" action='index.php?cible=control_sensor_add'>
     <fieldset>
       <legend>Choix des capteurs</legend>
       <table>
@@ -444,12 +444,8 @@ function form_sensor_room() {
       </table>
       <input type="reset" value="Rafraichir">
       <input type="submit" value="Envoyer" />
-  </form>
-
-  <form method="post" action="index.php?cible=join-us_success">
-    <input type="submit" value="Continuer sans sauvegarder" />
-    </fieldset>
-  </form>
+    </form>
+  </fieldset>
 
   <?php
   $formulaire = ob_get_clean();
@@ -602,12 +598,13 @@ function my_home_information() {
 function my_sensor_room() {
   ob_start();
   ?>
+  <article>
   <h3>Dispositifs et pièces du domicile</h3>
   <?php
   if ($_SESSION['data_room'] == 'false') {
     ?>
     <h2>Veuillez ajouter des pièces pour permettre l'affichage des données</h2>
-    <form method="post" action="index.php?cible=sensor_choice">
+    <form method="post" action="index.php?cible=sensor_add">
       <input type="submit" value="Ajouter">
     </form>
     <?php
@@ -624,38 +621,51 @@ function my_sensor_room() {
         <th>Caméra</th>
         <th>Actionneur</th>
       </tr>
-    <?php
-    for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-    ?>
-    <tr>
-      <td>
-        <?php echo($_SESSION['piece_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['luminosite_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['temperature_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['humidite_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['mouvement_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['fumee_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['camera_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['actionneur_'.$i]); ?>
-      </td>
-    </tr>
+      <?php
+      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
+      ?>
+      <tr>
+        <td>
+          <?php echo($_SESSION['piece_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['luminosite_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['temperature_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['humidite_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['mouvement_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['fumee_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['camera_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['actionneur_'.$i]); ?>
+        </td>
+      </tr>
     <?php
     }
+    ?>
+  </table>
+  <form method="post" action="index.php?cible=add_sensor">
+    <input type="submit" value="Ajouter">
+  </form>
+  <form method="post" action="index.php?cible=edit_sensor">
+    <input type="submit" value="Modifier">
+  </form>
+  <form method="post" action="index.php?cible=delete_sensor">
+    <input type="submit" value="Supprimer">
+  </form>
+  </article>
+  <?php
   }
   $sensor = ob_get_clean();
   return $sensor;
-}
+  }

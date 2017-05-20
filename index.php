@@ -44,6 +44,14 @@ if (isset($_SESSION['type'])) {
         include("views/subcription_user.php");
       } elseif ($_GET['cible'] == 'messaging_user') {
         include('views/messaging_user.php');
+      } elseif ($_GET['cible'] == 'sensor_add') {
+        include('views/sensor_add.php');
+      } elseif ($_GET['cible'] == 'control_sensor_add') {
+        include('controlers/sensor_add.php');
+      } elseif ($_GET['cible'] == 'sensor_edit') {
+        include('views/sensor_edit.php');
+      } elseif ($_GET['cible'] == 'sensor_delete') {
+        include('views/sensor_delete.php');
       } else {
         include ('views/error.php');
       }
