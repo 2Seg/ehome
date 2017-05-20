@@ -5,7 +5,7 @@ vue utilisée lorsque l'utilisateur ne saisi pas correctement les informations d
 
 $titre = 'Connexion';
 
-$menu = menu($_SESSION['type']);
+$menu = menu();
 
 $contenu = form_signin($erreur);
 

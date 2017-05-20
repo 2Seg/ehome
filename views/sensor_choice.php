@@ -4,7 +4,10 @@ vue gérant l'affichage de la page "Nous rejoindre (page 2/2)"
 */
 $titre = 'Choix pièces/capteurs';
 
-$menu = menu($_SESSION['type']);
+$menu = menu();
+if (isset($_SESSION['type'])) {
+  $menu .= menu_user($_SESSION['type']);
+}
 
 $contenu = '<h2>Choix des pièces et de leurs capteurs :</h2>';
 

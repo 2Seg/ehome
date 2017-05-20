@@ -4,7 +4,10 @@ vue gérant l'affichage de la page Erreur", qui est la page affichée par défau
 */
 $titre = 'Erreur';
 
-$menu = menu($_SESSION['type']);
+$menu = menu();
+if (isset($_SESSION['type'])) {
+  $menu .= menu_user($_SESSION['type']);
+}
 
 $contenu = '<h2>Erreur : il semblerait que la page demandée n\'existe pas.</h2>';
 

@@ -5,7 +5,7 @@ vue utilisée lorsque l'utilisateur ne saisi pas correctement les informations d
 
 $titre = 'Nous rejoindre';
 
-$menu = menu($_SESSION['type']);
+$menu = menu();
 
 $contenu = '<h2>Erreur dans le formulaire d\'inscription : '.$erreur.'</h2>';
 $contenu .= form_subscribe_user();

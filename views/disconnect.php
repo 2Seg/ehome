@@ -4,7 +4,7 @@ vue gérant l'affichage de la page "Déconnexion"
 */
 $titre = 'Déconnexion';
 
-$menu = menu('');
+$menu = menu();
 
 $contenu = 'Vous avez été déconnecté.';
 

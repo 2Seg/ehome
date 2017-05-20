@@ -2,7 +2,11 @@
 
 $titre = 'Notre entreprise';
 
-$menu = menu($_SESSION['type']);
+$menu = menu();
+if (isset($_SESSION['type'])) {
+  $menu .= menu_user($_SESSION['type']);
+}
+
 
 $contenu = content_abouts_us();
 
