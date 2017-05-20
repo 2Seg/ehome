@@ -9,13 +9,12 @@
   src: url('fonts/GothamRnd-Book.otf');
 }
 
-
-
 html
 {
   height : 100%;
   margin: 0;
   padding: 0;
+  width: 100%;
 
 }
 
@@ -29,7 +28,8 @@ html
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
+  background-image:url("maison_entreprise.jpg");
+  background-repeat: repeat-y;
 }
 
 
@@ -92,7 +92,7 @@ html
 .menu_products
 {
   list-style: none;
-  background-color: rgb(211,211,211);
+  background-color: rgb(69,69,69);
   display: flex;
   margin: 0;
   padding: 13px;
@@ -104,7 +104,7 @@ html
 .text_menu_products
 {
   text-decoration: none;
-  color: black;
+  color: white;
   font-family: 'gr-book';
   /*border: 5px solid blue;
   */
@@ -120,11 +120,6 @@ html
 }
 
 /******************************************************************FOOTER *******************************************************************/
-.map
-{
-  width: 30%;
-}
-
 .footer
 {
   background-color: rgb(48,48,48);
@@ -138,7 +133,7 @@ html
   bottom:0;
   height:150px;
   width: 100%;
-  margin: auto;
+  margin:auto;
 
 }
 
@@ -147,5 +142,149 @@ html
   list-style: none;
   text-align: center;
   color: white;
-  margin: 2.5%;
+  /*margin: 2.5%;*/
+}
+
+.map
+{
+  width: 25%;
+}
+
+/******************************************************************ENCADRE**********************************************************************/
+
+
+article
+{
+  list-style: none;
+  text-align: justify;
+  text-indent: 10px;
+  background-color: rgba(155, 155, 155, 0.85);
+  padding: 25px;
+  margin:25px;
+  border-width: 1px;
+  border-color: rgba(155,155,155,0.85);
+  border-style: solid;
+  border-radius: 15px;
+  /*box-shadow: 1px 1px 1px grey inset;*/
+}
+
+section
+{
+  /*width: 80%;
+  height: 80%;*/
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  margin:25px;
+  border-width: 1px;
+  border-color: rgba(229,229,229,0.75);
+  border-style: solid;
+  border-radius: 15px;
+}
+/************************************************************************ABOUT_US**********************************************************************/
+
+.content_about_us
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.element_about_us
+{
+  list-style: none;
+  margin:auto;
+}
+/************************************************************************PDRODUCTS**********************************************************************/
+.ehome
+{
+  color: rgb(200,0,0);
+}
+
+.element_products
+{
+  list-style-type: disc;
+}
+
+/************************************************************************JOIN**********************************************************************/
+
+/************************************************************************CONNEXION**********************************************************************/
+
+
+/************************************************************FORMULAIRE********************************************************************/
+textarea
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+  border: 1px solid rgba(200,0,0,0.85);
+  border-radius: 4px;
+  padding: 10px 10px;
+}
+
+button
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+  border: 1px solid rgba(200,0,0,0.85);
+  border-radius: 2px;
+  padding: 10px 10px;
+}
+
+input
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+  border: 1px solid rgba(200,0,0,0.85);
+  border-radius: 4px;
+  padding: 10px 10px;
+}
+
+input[type=text] {
+  color: black;
+}
+
+input[type=submit] {
+  background-color: rgba(200, 0, 0, 0.85);
+  color: white;
+}
+input[type=reset] {
+  background-color: rgba(200, 0, 0, 0.85);
+  color: white;
+}
+
+.bouton_connexion
+{
+  text-align: right;
+}
+.bouton
+{
+ text-align: center;
+}
+
+select
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+  border: 1px solid rgba(155,155,155,0.85);
+  border-radius: 4px;
+  padding: 10px 10px;
+}
+
+label
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+}
+
+
+fieldset
+{
+  text-align: justify;
+  text-indent: 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(229,229,229,0.75);
+}
+
+.lien
+{
+  color: rgb(200,0,0);
 }

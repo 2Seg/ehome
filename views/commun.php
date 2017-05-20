@@ -179,6 +179,8 @@ function form_signin($erreur) {
   ?>
 
   <form method="post" action="index.php?cible=connect">
+    <section>
+    <article>
     <fieldset>
       <legend>Connexion</legend>
       <?php
@@ -196,11 +198,13 @@ function form_signin($erreur) {
         <input type="password" name="password" id="password" placeholder="Votre mot de passe"/>
         <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte.">
       </p>
-      <p>
+      <p class="bouton_connexion">
         <input type="submit" value="Se connecter"/>
       </p>
-      <p>Pas encore inscrit ? Rejoignez-nous en cliquant <a href="index.php?cible=join-us">ici</a>.</p>
+      <p>Pas encore inscrit ? Rejoignez-nous en cliquant <a class="lien" href="index.php?cible=join-us">ici</a>.</p>
     </fieldset>
+    </article>
+  </section>
   </form>
   <?php
   $formulaire = ob_get_clean();
@@ -215,6 +219,8 @@ function form_subscribe_user() {
   ob_start();
   ?>
   <form method="post" action="index.php?cible=subscribe">
+    <section>
+    <article>
     <fieldset>
       <legend>Informations de connexion</legend>
         <p>
@@ -230,11 +236,13 @@ function form_subscribe_user() {
           <input type="password" name="conf_password" id="conf_password" placeholder="Confirmation du mot de passe" required/>
         </p>
     </fieldset>
+    </article>
 
+    <article>
     <fieldset>
       <legend>Informations personnelles</legend>
         <p>
-          Civilité<br/>
+          <label for="civilité"> Civilité <br/>
           <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
           <label for="monsieur">Monsieur</label><br/>
           <input type="radio" name="civilite" value="madame" id="madame"/>
@@ -313,7 +321,9 @@ function form_subscribe_user() {
           </select>
         </p>
     </fieldset>
+    </article>
 
+    <article>
     <fieldset>
       <legend>Logement</legend>
         <p>
@@ -379,12 +389,14 @@ function form_subscribe_user() {
           <input type="text" name="superficie" id="superficie" placeholder="Superficie (m²)" required/>
         </p>
     </fieldset>
+    </article>
 
-    <p>
+    <p class="bouton">
       <input type="reset" value="Rafraichir">
       <input type="submit" value="S'inscrire"/>
     </p>
   </form>
+
   <?php
   $formulaire = ob_get_clean();
   return $formulaire;
@@ -444,8 +456,8 @@ function form_sensor_room() {
       </table>
       <input type="reset" value="Rafraichir">
       <input type="submit" value="Envoyer" />
-    </form>
   </fieldset>
+
 
   <?php
   $formulaire = ob_get_clean();
@@ -534,12 +546,14 @@ function current_date() {
 function my_home() {
   ob_start();
   ?>
+  <section>
   <article>
     <h3>Mon domicile</h3>
     <p><strong><?php echo(current_date()); ?></strong></p>
 
     <h2>Aucune notification</h2>
   </article>
+  </section>
 
   <?php
   $home = ob_get_clean();
@@ -550,6 +564,8 @@ function my_home() {
 function my_basic_information() {
   ob_start();
   ?>
+
+  <section>
   <article>
     <h3>Mes informations client</h3>
     <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
@@ -564,10 +580,13 @@ function my_basic_information() {
       <input type="submit" value="Voir les informations complètes">
     </form>
   </article>
+  </section>
+
   <?php
   $info = ob_get_clean();
   return $info;
 }
+
 
 // fonction gérant l'affichage des informations sur le domicile utilisateur
 function my_home_information() {
@@ -589,6 +608,63 @@ function my_home_information() {
   </article>
 
 
+function content_products() {
+  ob_start();
+  ?>
+  <section>
+  <article>
+  <p> <strong class="ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
+    d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
+    compte personnel sur le site internet www.ehome.fr.
+    Quel est l’intérêt de tels dispositifs ?
+    L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
+    chacun d’entre eux.</p>
+
+  <ul>Elle permet d’accommoder les nécessités individuelles :
+    <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
+    <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
+    <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
+  </ul>
+  <ul>Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
+    <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
+    <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
+    <li class = "element_products"> Caméras : pour la surveillance</li>
+  </ul>
+
+  <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
+    contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> 06.06.06.06.06 </a> </p>
+
+  </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_actuators() {
+  ob_start();
+  ?>
+  <section>
+  <article>
+  <p>Voici la page principale "Actionneurs" </p>
+  </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_cameras() {
+  ob_start();
+  ?>
+  <section>
+  <article>
+  <p>Voici la page principale "Caméras" </p>
+  </article>
+  </section>
+
   <?php
   $home = ob_get_clean();
   return $home;
@@ -598,6 +674,7 @@ function my_home_information() {
 function my_sensor_room() {
   ob_start();
   ?>
+
   <article>
   <h3>Dispositifs et pièces du domicile</h3>
   <?php
@@ -664,6 +741,61 @@ function my_sensor_room() {
     <input type="submit" value="Supprimer">
   </form>
   </article>
+  <section>
+  <article>
+  <p>Voici la page principale "Capteurs" </p>
+  </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_about_us() {
+  ob_start();
+  ?>
+  <main class="main_about_us">
+    <section>
+
+    <article>
+    <h2> Notre histoire </h2>
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant. Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.</p>
+    </article>
+
+    <article>
+    <ul class = "content_about_us">
+      <li class = "element_about_us"> Créée en 2016 </li>
+      <li class = "element_about_us"> 92% de satisfaction</li>
+      <li class = "element_about_us"> Prix de l'innovation 2016 </li>
+    </ul>
+    </article>
+
+    <article>
+    <h2> Nos objectifs </h2>
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+    </article>
+
+  </section>
+  </main>
   <?php
   }
   $sensor = ob_get_clean();
