@@ -5,6 +5,8 @@ modèle répertoriant toutes les fonctions accédant à la bdd
 
 require("db_access.php");
 
+/*****************************************************************SELECT***********************************************************************/
+
 // fonction récupérant l'id et le mot de passe d'un utilisateur s'il est présent dans la bdd
 function user_in_db($db, $user) {
   $req = $db -> prepare('SELECT id, identifiant, mot_de_passe FROM utilisateur WHERE identifiant = ?');
@@ -30,6 +32,40 @@ function prepare_id($db) {
   return $req;
 }
 
+// fonction qui sélectionne l'id d'un utilisateur
+function select_id_user($db, $user) {
+  $req = $db -> prepare('SELECT id FROM utilisateur WHERE identifiant = ?');
+  $req -> execute(array($user));
+  return $req;
+}
+
+// fonction qui sélectionne l'id d'un logement
+// en entrée, c'est l'adresse du logement qui permet de récupérer le bonne id ($_POST['adresse_logement'])
+function select_id_house($db, $adresse) {
+  $req = $db -> prepare('SELECT id_user FROM logement WHERE adresse = ?');
+  $req -> execute(array($adresse));
+  return $req;
+}
+
+// function récupérant l'adresse du logement et le nombre de pièces d'un utilisateur (en fonction de son id)
+function select_adress_room($db, $id_user) {
+  $req = $db -> prepare('SELECT adresse, nb_piece FROM logement INNER JOIN utilisateur ON logement.id_user = utilisateur');
+  $req -> execute(array($adresse));
+}
+
+// fonction récupérant les informations générales de l'utilisateur pour affichage sur la page d'accueil utilisateur
+function select_general_info_user($db, $user) {
+  $req = $db -> prepare('SELECT utilisateur.id, utilisateur.civilite, utilisateur.nom, utilisateur.prenom,
+                        utilisateur.identifiant, utilisateur.mot_de_passe, logement.adresse, logement.code_postal,
+                        logement.ville, logement.pays
+                        FROM utilisateur INNER JOIN logement ON utilisateur.id = logement.id_user
+                        WHERE utilisateur.identifiant = ?');
+  $req -> execute(array($user));
+  return $req;
+}
+
+/*****************************************************************INSERT***********************************************************************/
+
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
 // traite les informations personnelles de l'user
 function subscribe_perso($db, $id_admin, $id_logement, $id_abonnement, $civilite, $nom, $prenom, $identifiant, $mot_de_passe, $date_naissance, $nationalite, $pays, $telephone, $mail, $info_paiement) {
@@ -51,14 +87,6 @@ function subscribe_perso($db, $id_admin, $id_logement, $id_abonnement, $civilite
   return $req;
 }
 
-// fonction qui sélectionne l'id d'un utilisateur
-function select_id_user($db, $user) {
-  $req = $db -> prepare('SELECT id FROM utilisateur WHERE identifiant = ?');
-  $req -> execute(array($user));
-  return $req;
-}
-
-
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
 // traite les informations sur le logement de l'user
 function subscribe_house($db, $id_user, $adresse, $code_postal, $ville, $pays, $nb_habitant, $nb_piece, $superficie) {
@@ -72,14 +100,6 @@ function subscribe_house($db, $id_user, $adresse, $code_postal, $ville, $pays, $
                       'nb_habitant' => $nb_habitant,
                       'nb_piece' => $nb_piece,
                       'superficie' => $superficie));
-  return $req;
-}
-
-// fonction qui sélectionne l'id d'un logement
-// en entrée, c'est l'adresse du logement qui permet de récupérer le bonne id ($_POST['adresse_logement'])
-function select_id_house($db, $adresse) {
-  $req = $db -> prepare('SELECT id_user FROM logement WHERE adresse = ?');
-  $req -> execute(array($adresse));
   return $req;
 }
 
@@ -99,8 +119,4 @@ function sensor_choice($db, $id_logement, $piece, $capteur_luminosite, $capteur_
   return $req;
 }
 
-// function récupérant l'adresse du logement et le nombre de pièces d'un utilisateur (en fonction de son id)
-function select_adress_room($db, $id_user) {
-  $req = $db -> prepare('SELECT adresse, nb_piece FROM logement INNER JOIN utilisateur ON logement.id_user = utilisateur');
-  $req -> execute(array($adresse));
-}
+/*****************************************************************UPDATE***********************************************************************/

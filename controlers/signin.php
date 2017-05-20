@@ -19,7 +19,6 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connect') {
       // user trouvé dans la bdd
       $ligne = $donnees->fetch(); // on extrait les données (pour qu'elles soient exploitables)
       if(sha1($_POST['password']) == $ligne['mot_de_passe']) {
-        $erreur = '';
         $_SESSION['id'] = $ligne['id'];
         $_SESSION['identifiant'] = $ligne['identifiant'];
         $_SESSION['type'] = 'user';

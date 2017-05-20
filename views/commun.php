@@ -5,7 +5,7 @@ vue répertoriant les fonctions gérant l'affichage des différentes parties des
 
 
 // fonction qui gère l'affichage du menu et qui redirige l'utilisateur à travers toutes les pages du site grâce aux 'cibles' dans les URL
-function menu($type) {
+function menu() {
   ob_start();
   ?>
     <ul class="menu">
@@ -13,13 +13,15 @@ function menu($type) {
       <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
       <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
-    if($type == 'user') {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
-      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
-    } elseif ($type == 'admin') {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
-      echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/m_default_admin.png" alt="avatar"></a></li>');
-    } else {
+    if (isset($_SESSION['type'])) {
+        if($_SESSION['type'] == 'user') {
+          echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        } elseif ($_SESSION['type'] == 'admin') {
+          echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/m_default_admin.png" alt="avatar"></a></li>');
+        }
+      } else {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us">NOUS REJOINDRE</a></li>');
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
@@ -308,6 +310,7 @@ function form_capteur_piece($nb_pièce) {
           <th>Détecteur de fumée</th>
           <th>Caméra</th>
           <th>Actionneur</th>
+          <th>Pièce principale</th>
         </tr>
       <?php
       for($i = 1; $i <= $nb_pièce; $i++) {
@@ -337,6 +340,9 @@ function form_capteur_piece($nb_pièce) {
         <td>
           <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
         </td>
+        <!-- <td> -->
+          <!-- <input type="radio" name="/*<?php /*echo('actionneur_'.$i);*/ ?>" value="monsieur" id="monsieur"/> -->
+        <!-- </td> -->
       </tr>
 
       <?php
@@ -363,22 +369,110 @@ function menu_user($type) {
     <ul class="menu_products">
       <li class="menu_products_elements"><a href="index.php?cible=home_user.php" class="text_menu_products">Mon domicile</a></li>
       <li class="menu_products_elements"><a href="index.php?cible=home_management" class="text_menu_products">Gestion du domicile</a></li>
-      <li class="menu_products_elements"><a href="notification" class="text_menu_products">Notifications</a></li>
-      <li class="menu_products_elements"><a href="information" class="text_menu_products">Mes informations</a></li>
-      <li class="menu_products_elements"><a href="subcription" class="text_menu_products">Mon abonnement</a></li>
-      <li class="menu_products_elements"><a href="messaging" class="text_menu_products">Messagerie</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=notification" class="text_menu_products">Notifications</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=information" class="text_menu_products">Mes informations</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=subcription" class="text_menu_products">Mon abonnement</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=messaging" class="text_menu_products">Messagerie</a></li>
     </ul>
   <?php
 } elseif ($type == 'admin') {?>
     <ul>
-      <li class="menu_products_elements"><a href="overview" class="text_menu_products">Vue d'ensemble</a></li>
-      <li class="menu_products_elements"><a href="user_management" class="text_menu_products">Gestion des utilisateurs</a></li>
-      <li class="menu_products_elements"><a href="notification" class="text_menu_products">Notifications</a></li>
-      <li class="menu_products_elements"><a href="security" class="text_menu_products">Sécurité</a></li>
-      <li class="menu_products_elements"><a href="messaging" class="text_menu_products">Messagerie</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=overview" class="text_menu_products">Vue d'ensemble</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=user_management" class="text_menu_products">Gestion des utilisateurs</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=notification" class="text_menu_products">Notifications</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=security" class="text_menu_products">Sécurité</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=messaging" class="text_menu_products">Messagerie</a></li>
     </ul>
   <?php
   }
   $menu = ob_get_clean();
   return $menu;
+}
+
+// fonction qui récupère la date et l'heure
+function current_date() {
+  $now = getdate();
+  $day = '';
+  $month = '';
+  if ($now['weekday'] == 'Monday') {
+    $day = 'Lundi';
+  } else if ($now['weekday'] == 'Tuesday') {
+    $day = 'Mardi';
+  } else if ($now['weekday'] == 'Wednesday') {
+    $day = 'Mercredi';
+  } else if ($now['weekday'] == 'Thursday') {
+    $day = 'Jeudi';
+  } else if ($now['weekday'] == 'Friday') {
+    $day = 'Vendredi';
+  } else if ($now['weekday'] == 'Saturday') {
+    $day = 'Samedi';
+  } else {
+    $day = 'Dimanche';
+  }
+
+  if ($now['month'] == 'January') {
+    $month = 'janvier';
+  } elseif ($now['month'] == 'February') {
+    $month = 'février';
+  } elseif ($now['month'] == 'March') {
+    $month = 'mars';
+  } elseif ($now['month'] == 'April') {
+    $month = 'avril';
+  } elseif ($now['month'] == 'May') {
+    $month = 'mai';
+  } elseif ($now['month'] == 'June') {
+    $month = 'juin';
+  } elseif ($now['month'] == 'July') {
+    $month = 'juillet';
+  } elseif ($now['month'] == 'August') {
+    $month = 'août';
+  } elseif ($now['month'] == 'September') {
+    $month = 'septembre';
+  } elseif ($now['month'] == 'October') {
+    $month = 'octobre';
+  } elseif ($now['month'] == 'November') {
+    $month = 'novembre';
+  } else {
+    $month = 'décembre';
+  }
+
+  $date = ''.$day.' '.$now['mday'].' '.$month.'';
+  return $date;
+}
+
+// fonction responsable de l'affichage du bloc "Mon domicile"
+function my_home($user /*$nb_notif*/) {
+  ob_start();
+  ?>
+  <article>
+    <p><strong>Mon domicile</strong></p>
+    <p><strong><?php echo(current_date()); ?></strong></p>
+
+
+  </article>
+
+  <?php
+  $home = ob_get_clean();
+  return $home;
+}
+
+// fonction gérant l'affichage des informations générales de l'utilisateur
+function my_information() {
+  ob_start();
+  $ligne = $data_user->fetch();
+  ?>
+
+  <article>
+    <p><strong>Civilité : </strong><?php echo($ligne['civilite']); ?></p>
+    <p><strong>Nom : </strong><?php echo($ligne['nom']); ?></p>
+    <p><strong>Prénom : </strong><?php echo($ligne['prenom']); ?></p>
+    <p><strong>Adresse : </strong><?php echo($ligne['adresse']); ?></p>
+    <p><strong>Code postal : </strong><?php echo($ligne['code_postal']); ?></p>
+    <p><strong>Ville : </strong><?php echo($ligne['ville']); ?></p>
+    <p><strong>Pays : </strong><?php echo($ligne['pays']); ?></p>
+  </article>
+
+  <?php
+  $info = ob_get_clean();
+  return $info;
 }

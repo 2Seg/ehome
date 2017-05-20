@@ -4,7 +4,10 @@ Page Capteurs de Nos Produits
 */
 $titre = 'Nos capteurs';
 
-$menu = menu($_SESSION['type']);
+$menu = menu();
+if (isset($_SESSION['type'])) {
+  $menu .= menu_user($_SESSION['type']);
+}
 $menu .= menu2();
 
 // début du contenu...

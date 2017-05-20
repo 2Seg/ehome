@@ -2,8 +2,10 @@
 
 $titre = 'Notre entreprise';
 
-$menu = menu($_SESSION['type']);
-
+$menu = menu();
+if (isset($_SESSION['type'])) {
+  $menu .= menu_user($_SESSION['type']);
+}
 
 //debut du contenu...
 $contenu = '<html>
