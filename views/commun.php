@@ -84,93 +84,6 @@ function footer() {
   return $footer;
 }
 
-function content_products() {
-  ob_start();
-  ?>
-  <p> Voici la page principale "Produits" </p>
-
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_actuators() {
-  ob_start();
-  ?>
-  <p>Voici la page principale "Actionneurs" </p>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-
-function content_cameras() {
-  ob_start();
-  ?>
-  <p>Voici la page principale "Caméras" </p>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-
-function content_sensors() {
-  ob_start();
-  ?>
-  <p>Voici la page principale "Capteurs" </p>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-
-function content_about_us() {
-  ob_start();
-  ?>
-  <main>
-    <h1> <strong> Notre entreprise </strong> </h1>
-
-    <h2> Notre histoire </h2>
-
-    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant. Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-          humanitatis multiformibus officiis retentabant.</p>
-
-    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant.</p>
-
-    <ul>
-      <li> Créée en 2016 </li>
-      <li> 92% de satisfaction</li>
-      <li> Prix de l\'innovation 2016 </li>
-    </ul>
-
-    <h2> Nos objectifs </h2>
-
-    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-          humanitatis multiformibus officiis retentabant.</p>
-
-    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-          humanitatis multiformibus officiis retentabant.</p>
-
-    <p><img src="views\ressources\images\maison_entreprise.jpeg" alt="Maison Entreprise"  title="Cliquez pour agrandir" /></p>
-  </main>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
 
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur
@@ -606,7 +519,10 @@ function my_home_information() {
       <input type="submit" value="Modifier les informations">
     </form>
   </article>
-
+  <?php
+  $home = ob_get_clean();
+  return $home;
+}
 
 function content_products() {
   ob_start();
@@ -741,6 +657,15 @@ function my_sensor_room() {
     <input type="submit" value="Supprimer">
   </form>
   </article>
+  <?php
+  }
+  $room = ob_get_clean();
+  return $room;
+}
+
+function content_sensors() {
+  ob_start();
+  ?>
   <section>
   <article>
   <p>Voici la page principale "Capteurs" </p>
@@ -797,7 +722,6 @@ function content_about_us() {
   </section>
   </main>
   <?php
-  }
   $sensor = ob_get_clean();
   return $sensor;
-  }
+}
