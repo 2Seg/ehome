@@ -54,13 +54,44 @@ function select_adress_room($db, $id_user) {
 }
 
 // fonction récupérant les informations générales de l'utilisateur pour affichage sur la page d'accueil utilisateur
-function select_general_info_user($db, $user) {
+function select_general_info_user($db, $id) {
   $req = $db -> prepare('SELECT utilisateur.id, utilisateur.civilite, utilisateur.nom, utilisateur.prenom,
                         utilisateur.identifiant, utilisateur.mot_de_passe, logement.adresse, logement.code_postal,
                         logement.ville, logement.pays
                         FROM utilisateur INNER JOIN logement ON utilisateur.id = logement.id_user
-                        WHERE utilisateur.identifiant = ?');
-  $req -> execute(array($user));
+                        WHERE utilisateur.id = ?');
+  $req -> execute(array($id));
+  return $req;
+}
+
+// fonction récupérant les informations du domicile l'utilisateur pour affichage sur la page "Gestion du domicile"
+function select_info_home($db, $id) {
+  $req = $db -> prepare('SELECT utilisateur.id, logement.adresse, logement.code_postal, logement.ville, logement.pays,
+                        logement.nb_habitant, logement.nb_piece, logement.superficie
+                        FROM utilisateur INNER JOIN logement ON utilisateur.id = logement.id_user
+                        WHERE utilisateur.id = ?');
+  $req -> execute(array($id));
+  return $req;
+}
+
+// fonction récupérant des données de la 1ère pièce d'un logement pour tester si elles existent en conséquence
+function test_data_room($db, $id_logement) {
+  $req = $db -> prepare('SELECT logement.id_user, piece.id_piece
+                        FROM piece INNER JOIN logement ON piece.id_logement = logement.id_user
+                        WHERE piece.id_logement = ? AND piece.id_piece = 1');
+  $req -> execute(array($id_logement));
+  return $req;
+}
+
+
+// fonction récupérant les informations sur les dispositifs présent dans une pièce du logement
+function select_info_room($db, $id_logement, $id_piece) {
+  $req = $db -> prepare('SELECT logement.id_user, piece.id_piece, piece.piece, piece.capteur_luminosite,
+                        piece.capteur_temperature, piece.capteur_humidite, piece.detecteur_mouvement, piece.detecteur_fumee,
+                        piece.camera, piece.actionneur
+                        FROM piece INNER JOIN logement ON piece.id_logement = logement.id_user
+                        WHERE piece.id_logement = :id_logement AND piece.id_piece = :id_piece');
+  $req -> execute(array('id_logement' => $id_logement, 'id_piece' => $id_piece));
   return $req;
 }
 
@@ -104,10 +135,11 @@ function subscribe_house($db, $id_user, $adresse, $code_postal, $ville, $pays, $
 }
 
 // fonction gérant l'écriture des données relatives aux choix des capteurs selon la pièce dans la $bdd
-function sensor_choice($db, $id_logement, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite, $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
-  $req = $db -> prepare('INSERT INTO piece(id_logement, piece, capteur_luminosite, capteur_temperature, capteur_humidite, detecteur_mouvement, detecteur_fumee, camera, actionneur)
-                        VALUES(:id_logement, :piece, :capteur_luminosite, :capteur_temperature, :capteur_humidite, :detecteur_mouvement, :detecteur_fumee, :camera, :actionneur)');
+function insert_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite, $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
+  $req = $db -> prepare('INSERT INTO piece(id_logement, id_piece, piece, capteur_luminosite, capteur_temperature, capteur_humidite, detecteur_mouvement, detecteur_fumee, camera, actionneur)
+                        VALUES(:id_logement, :id_piece, :piece, :capteur_luminosite, :capteur_temperature, :capteur_humidite, :detecteur_mouvement, :detecteur_fumee, :camera, :actionneur)');
   $req -> execute(array('id_logement' => $id_logement,
+                        'id_piece' => $id_piece,
                         'piece' => $piece,
                         'capteur_luminosite' => $capteur_luminosite,
                         'capteur_temperature' => $capteur_temperature,
@@ -120,3 +152,8 @@ function sensor_choice($db, $id_logement, $piece, $capteur_luminosite, $capteur_
 }
 
 /*****************************************************************UPDATE***********************************************************************/
+
+// function qui met à jour les dispositifs présent dans les différentes pièces
+function update_sensor_room() {
+
+}

@@ -22,7 +22,9 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connect') {
         $_SESSION['id'] = $ligne['id'];
         $_SESSION['identifiant'] = $ligne['identifiant'];
         $_SESSION['type'] = 'user';
-        include('views/home_user.php');
+
+        // lien vers un autre controleur pour extraire les infos de la bdd pour affichage de la page "home_user.php"
+        include('controlers/home_user.php');
       } else {
         $erreur = 'mot de passe est incorrect';
         include('views/signin_error.php');

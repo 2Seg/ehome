@@ -28,11 +28,30 @@ if (isset($_SESSION['type'])) {
         include("views/actuators.php");
       } elseif ($_GET['cible'] == 'cameras') {
         include("views/cameras.php");
-      } elseif ($_GET['cible'] == 'information') {
-        // on récupère les infos de l'utilisateur et de son logement
-        include("modeles/functions.php");
-        $data_user = select_general_info_user($bdd, $_SESSION['identifiant']);
+      }  elseif ($_GET['cible'] == 'connect') {
+        include("views/home_user.php");
+      }
+
+      elseif ($_GET['cible'] == 'home_user') {
+        include("views/home_user.php");
+      } elseif ($_GET['cible'] == 'home_management') {
+        include("controlers/home_management.php");
+      } elseif ($_GET['cible'] == 'notif_user') {
+        include("views/notif_user.php");
+      } elseif ($_GET['cible'] == 'info_user') {
         include("views/info_user.php");
+      } elseif ($_GET['cible'] == 'subcription_user') {
+        include("views/subcription_user.php");
+      } elseif ($_GET['cible'] == 'messaging_user') {
+        include('views/messaging_user.php');
+      } elseif ($_GET['cible'] == 'sensor_add') {
+        include('views/sensor_add.php');
+      } elseif ($_GET['cible'] == 'control_sensor_add') {
+        include('controlers/sensor_add.php');
+      } elseif ($_GET['cible'] == 'sensor_edit') {
+        include('views/sensor_edit.php');
+      } elseif ($_GET['cible'] == 'sensor_delete') {
+        include('views/sensor_delete.php');
       } else {
         include ('views/error.php');
       }

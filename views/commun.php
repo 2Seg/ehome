@@ -14,17 +14,25 @@ function menu() {
       <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
     if (isset($_SESSION['type'])) {
-        if($_SESSION['type'] == 'user') {
-          echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+      if($_SESSION['type'] == 'user') {
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        if($_SESSION['civilite'] == 'madame') {
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        } else {
           echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
-        } elseif ($_SESSION['type'] == 'admin') {
-          echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        }
+      } elseif ($_SESSION['type'] == 'admin') {
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        if($_SESSION['civilite'] == 'madame') {
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/w_default_admin.png" alt="avatar"></a></li>');
+        } else {
           echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=profil"><img src="views/ressources/icons/m_default_admin.png" alt="avatar"></a></li>');
-        } /*else {
+        }
+      } else {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us">NOUS REJOINDRE</a></li>');
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');*/
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
       }
-      else {
+    } else {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us">NOUS REJOINDRE</a></li>');
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
@@ -76,6 +84,92 @@ function footer() {
   return $footer;
 }
 
+function content_products() {
+  ob_start();
+  ?>
+  <p> Voici la page principale "Produits" </p>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_actuators() {
+  ob_start();
+  ?>
+  <p>Voici la page principale "Actionneurs" </p>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_cameras() {
+  ob_start();
+  ?>
+  <p>Voici la page principale "Caméras" </p>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_sensors() {
+  ob_start();
+  ?>
+  <p>Voici la page principale "Capteurs" </p>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_about_us() {
+  ob_start();
+  ?>
+  <main>
+    <h1> <strong> Notre entreprise </strong> </h1>
+
+    <h2> Notre histoire </h2>
+
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant. Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.</p>
+
+    <ul>
+      <li> Créée en 2016 </li>
+      <li> 92% de satisfaction</li>
+      <li> Prix de l\'innovation 2016 </li>
+    </ul>
+
+    <h2> Nos objectifs </h2>
+
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+
+    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
+          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
+          humanitatis multiformibus officiis retentabant.</p>
+
+    <p><img src="views\ressources\images\maison_entreprise.jpeg" alt="Maison Entreprise"  title="Cliquez pour agrandir" /></p>
+  </main>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
 
 
 // fonction qui génère l'affichage du formulaire de connexion
@@ -309,10 +403,10 @@ function form_subscribe_user() {
 }
 
 // fonction qui génère un formulaire en fonction du nb de pièces en entrée
-function form_capteur_piece($nb_pièce) {
+function form_sensor_room() {
   ob_start();
   ?>
-  <form method="post" action='index.php?cible=sensor_choice'>
+  <form method="post" action='index.php?cible=control_sensor_add'>
     <fieldset>
       <legend>Choix des capteurs</legend>
       <table>
@@ -325,10 +419,9 @@ function form_capteur_piece($nb_pièce) {
           <th>Détecteur de fumée</th>
           <th>Caméra</th>
           <th>Actionneur</th>
-          <th>Pièce principale</th>
         </tr>
       <?php
-      for($i = 1; $i <= $nb_pièce; $i++) {
+      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
       ?>
       <tr>
         <td>
@@ -355,9 +448,6 @@ function form_capteur_piece($nb_pièce) {
         <td>
           <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
         </td>
-        <!-- <td> -->
-          <!-- <input type="radio" name="/*<?php /*echo('actionneur_'.$i);*/ ?>" value="monsieur" id="monsieur"/> -->
-        <!-- </td> -->
       </tr>
 
       <?php
@@ -366,32 +456,28 @@ function form_capteur_piece($nb_pièce) {
       </table>
       <input type="reset" value="Rafraichir">
       <input type="submit" value="Envoyer" />
-  </form>
+  </fieldset>
 
-  <form method="post" action="index.php?cible=join-us_success">
-    <input type="submit" value="Continuer sans sauvegarder" />
-    </fieldset>
-    <section>
-  </form>
 
   <?php
   $formulaire = ob_get_clean();
   return $formulaire;
 }
 
+// fonction affichant le menu utilisateur (une fois qu'il est connecté)
 function menu_user($type) {
   ob_start();
   if($type == 'user') {?>
     <ul class="menu_products">
-      <li class="menu_products_elements"><a href="index.php?cible=home_user.php" class="text_menu_products">Mon domicile</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=home_user" class="text_menu_products">Mon domicile</a></li>
       <li class="menu_products_elements"><a href="index.php?cible=home_management" class="text_menu_products">Gestion du domicile</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=notification" class="text_menu_products">Notifications</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=information" class="text_menu_products">Mes informations</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=subcription" class="text_menu_products">Mon abonnement</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=messaging" class="text_menu_products">Messagerie</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=notif_user" class="text_menu_products">Notifications</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=info_user" class="text_menu_products">Mes informations</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=subcription_user" class="text_menu_products">Mon abonnement</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=messaging_user" class="text_menu_products">Messagerie</a></li>
     </ul>
   <?php
-} elseif ($type == 'admin') {?>
+  } elseif ($type == 'admin') {?>
     <ul>
       <li class="menu_products_elements"><a href="index.php?cible=overview" class="text_menu_products">Vue d'ensemble</a></li>
       <li class="menu_products_elements"><a href="index.php?cible=user_management" class="text_menu_products">Gestion des utilisateurs</a></li>
@@ -405,7 +491,7 @@ function menu_user($type) {
   return $menu;
 }
 
-// fonction qui récupère la date et l'heure
+// fonction qui récupère la date du jour
 function current_date() {
   $now = getdate();
   $day = '';
@@ -457,15 +543,15 @@ function current_date() {
 }
 
 // fonction responsable de l'affichage du bloc "Mon domicile"
-function my_home($user /*, $nb_notif*/) {
+function my_home() {
   ob_start();
   ?>
   <section>
   <article>
-    <p><strong>Mon domicile</strong></p>
+    <h3>Mon domicile</h3>
     <p><strong><?php echo(current_date()); ?></strong></p>
 
-
+    <h2>Aucune notification</h2>
   </article>
   </section>
 
@@ -475,19 +561,24 @@ function my_home($user /*, $nb_notif*/) {
 }
 
 // fonction gérant l'affichage des informations générales de l'utilisateur
-function my_information() {
+function my_basic_information() {
   ob_start();
-  $ligne = $data_user->fetch();
   ?>
+
   <section>
   <article>
-    <p><strong>Civilité : </strong><?php echo($ligne['civilite']); ?></p>
-    <p><strong>Nom : </strong><?php echo($ligne['nom']); ?></p>
-    <p><strong>Prénom : </strong><?php echo($ligne['prenom']); ?></p>
-    <p><strong>Adresse : </strong><?php echo($ligne['adresse']); ?></p>
-    <p><strong>Code postal : </strong><?php echo($ligne['code_postal']); ?></p>
-    <p><strong>Ville : </strong><?php echo($ligne['ville']); ?></p>
-    <p><strong>Pays : </strong><?php echo($ligne['pays']); ?></p>
+    <h3>Mes informations client</h3>
+    <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
+    <p><strong>Nom : </strong><?php echo($_SESSION['nom']); ?></p>
+    <p><strong>Prénom : </strong><?php echo($_SESSION['prenom']); ?></p>
+    <p><strong>Adresse : </strong><?php echo($_SESSION['adresse']); ?></p>
+    <p><strong>Code postal : </strong><?php echo($_SESSION['code_postal']); ?></p>
+    <p><strong>Ville : </strong><?php echo($_SESSION['ville']); ?></p>
+    <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
+
+    <form method="post" action="index.php?cible=info_user">
+      <input type="submit" value="Voir les informations complètes">
+    </form>
   </article>
   </section>
 
@@ -495,6 +586,26 @@ function my_information() {
   $info = ob_get_clean();
   return $info;
 }
+
+
+// fonction gérant l'affichage des informations sur le domicile utilisateur
+function my_home_information() {
+  ob_start();
+  ?>
+  <article>
+    <h3>Informations du logement</h3>
+    <p><strong>Adresse : </strong><?php echo($_SESSION['adresse']); ?></p>
+    <p><strong>Code postal : </strong><?php echo($_SESSION['code_postal']); ?></p>
+    <p><strong>Ville : </strong><?php echo($_SESSION['ville']); ?></p>
+    <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
+    <p><strong>Nombre d'habitant : </strong><?php echo($_SESSION['nb_habitant']); ?></p>
+    <p><strong>Nombre de pièce : </strong><?php echo($_SESSION['nb_piece']); ?></p>
+    <p><strong>Superficie : </strong><?php echo($_SESSION['superficie']); ?></p>
+
+    <form method="post" action="index.php?cible=edit_info_home">
+      <input type="submit" value="Modifier les informations">
+    </form>
+  </article>
 
 
 function content_products() {
@@ -553,15 +664,83 @@ function content_cameras() {
   <p>Voici la page principale "Caméras" </p>
   </article>
   </section>
+
   <?php
-  $contenu = ob_get_clean();
-  return $contenu;
+  $home = ob_get_clean();
+  return $home;
 }
 
-
-function content_sensors() {
+// fonction gérant l'affichage des informations sur les capteurs présents dans les pièces d'un logement
+function my_sensor_room() {
   ob_start();
   ?>
+
+  <article>
+  <h3>Dispositifs et pièces du domicile</h3>
+  <?php
+  if ($_SESSION['data_room'] == 'false') {
+    ?>
+    <h2>Veuillez ajouter des pièces pour permettre l'affichage des données</h2>
+    <form method="post" action="index.php?cible=sensor_add">
+      <input type="submit" value="Ajouter">
+    </form>
+    <?php
+  } else {
+    ?>
+    <table>
+      <tr>
+        <th>Pièce</th>
+        <th>Capteur de luminosité</th>
+        <th>Capteur de température</th>
+        <th>Capteur d'humidité</th>
+        <th>Détecteur de mouvement</th>
+        <th>Détecteur de fumée</th>
+        <th>Caméra</th>
+        <th>Actionneur</th>
+      </tr>
+      <?php
+      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
+      ?>
+      <tr>
+        <td>
+          <?php echo($_SESSION['piece_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['luminosite_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['temperature_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['humidite_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['mouvement_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['fumee_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['camera_'.$i]); ?>
+        </td>
+        <td>
+          <?php echo($_SESSION['actionneur_'.$i]); ?>
+        </td>
+      </tr>
+    <?php
+    }
+    ?>
+  </table>
+  <form method="post" action="index.php?cible=add_sensor">
+    <input type="submit" value="Ajouter">
+  </form>
+  <form method="post" action="index.php?cible=edit_sensor">
+    <input type="submit" value="Modifier">
+  </form>
+  <form method="post" action="index.php?cible=delete_sensor">
+    <input type="submit" value="Supprimer">
+  </form>
+  </article>
   <section>
   <article>
   <p>Voici la page principale "Capteurs" </p>
@@ -618,6 +797,7 @@ function content_about_us() {
   </section>
   </main>
   <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
+  }
+  $sensor = ob_get_clean();
+  return $sensor;
+  }
