@@ -530,17 +530,17 @@ function content_products() {
   <article>
   <p> <strong class="ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
     d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
-    compte personnel sur le site internet www.ehome.fr.
-    Quel est l’intérêt de tels dispositifs ?
-    L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
+    compte personnel sur le site internet www.ehome.fr.</p>
+    <strong class="ehome">Quel est l’intérêt de tels dispositifs ?</strong></br>
+    <p>L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
     chacun d’entre eux.</p>
 
-  <ul>Elle permet d’accommoder les nécessités individuelles :
+  <p>Elle permet d’accommoder les nécessités individuelles :</p>
     <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
     <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
-    <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
-  </ul>
-  <ul>Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
+    <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent, l’habitation connectée est faite pour vous. </li>
+
+  <p>Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :</p>
     <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
     <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
     <li class = "element_products"> Caméras : pour la surveillance</li>
@@ -561,9 +561,24 @@ function content_actuators() {
   ob_start();
   ?>
   <section>
-  <article>
-  <p>Voici la page principale "Actionneurs" </p>
-  </article>
+    <article class="products">
+      <div>
+        <h2 class="titre">Volets Roulants Electrique</h2>
+        <p>mettre quelque chose</p>
+      </div>
+    </article>
+    <article class="products">
+      <div>
+        <h2 class="titre">Portail</h2>
+        <p>mettre quelque chose</p>
+      </div>
+    </article>
+    <article class="products">
+      <div>
+        <h2 class="titre">Portail Electrique</h2>
+        <p>mettre quelque chose</p>
+      </div>
+    </article>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -575,9 +590,18 @@ function content_cameras() {
   ob_start();
   ?>
   <section>
-  <article>
-  <p>Voici la page principale "Caméras" </p>
-  </article>
+    <article class="products">
+      <div>
+        <h2 class="titre">Caméra de Surveillance</h2>
+        <p>Les caméras de surveillance vont permettront d'apporté une sécurité supplémentataire a votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre appartement.</p>
+      </div>
+    </article>
+    <article class="products">
+      <div>
+        <h2 class="titre">Caméra de porte</h2>
+        <p>Les caméras de porte ou de palier vont permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous.</p>
+      </div>
+    </article>
   </section>
 
   <?php
@@ -666,8 +690,36 @@ function content_sensors() {
   ob_start();
   ?>
   <section>
-  <article>
-  <p>Voici la page principale "Capteurs" </p>
+  <article class="products">
+    <div>
+      <h2 class="titre">Capteur de Luminosité</h2>
+      <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
+    </div>
+  </article>
+  <article class="products">
+    <div>
+      <h2 class="titre">Capteur de de Température</h2>
+      <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
+    </div>
+  </article>
+  <article class="products">
+    <div>
+      <h2 class="titre">Capteur d'Humidité</h2>
+      <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
+    </div>
+  </article>
+  <article class="products">
+    <div>
+      <h2 class="titre">Detecteur de Mouvement</h2>
+      <p>Ce detecteur vous avertira des eventuels mouvement dans la pièce où celui-ci est installé
+         et sera relié au système de sécurité pour prévenir les intrusins.</p>
+    </div>
+  </article>
+  <article class="products">
+    <div>
+  <h2 class="titre">Capteur de Fumée</h2>
+  <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
+    </div>
   </article>
   </section>
   <?php
@@ -725,6 +777,42 @@ function content_about_us() {
   return $sensor;
 }
 
+function content_home() {
+  ob_start();
+  ?>
+  <section>
+
+    <article>
+      <p>Notre société propose des systèmes électroniques de domotique depuis 2016. Nous
+        mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
+        par le suivi de vos équipements. Ces équipements vous permettront d’allier sécurité de
+        votre habitation et économie, dans le respect de l’environnement. Les systèmes sont
+        adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure.</p>
+    </article>
+
+    <h2> Vos avis</h2>
+    <article>
+      <h3>Déploiement de qualité</h3>
+      <p>eHome a effectué l’installation de capteurs de température
+        et de luminosité dans toutes les pièces de notre appartement
+        de 90m2. Ces équipements ont été parfaitement installés. En
+        effet, nous n’avons jamais eu de problèmes techniques, et nous
+        avons même pu effectué des économies sur nos factures.</p>
+      <p>Y.S (Paris 75)<p>
+      </article>
+      <article>
+      <h3>Entreprise très professionnelle</h3>
+      <p>Le SAV est très bon. Il répond vite, le seul petit soucis que nous
+        avons eu avec un capteur a été réglé très rapidement par l’équipe
+        technique. Des professionnels à l’écoute de leur client et
+        très efficaces.</p>
+      <p>M.T (La Garenne 92)</p>
+    </article>
+  </section>
+ <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
 
 function content_legal_information() {
   ob_start();
