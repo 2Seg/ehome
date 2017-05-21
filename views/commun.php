@@ -845,3 +845,114 @@ function content_legal_information() {
   $contenu = ob_get_clean();
   return $contenu;
 }
+
+
+function content_home2(){
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h2> A propos d'eHome </h2>
+      <h3> Les valeurs des eHomers </h3>
+      <ul>
+        <li> Rechercher le confort de chacun de nos clients. </li>
+        <li> Innover pour avancer et faire avancer le monde. </li>
+        <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
+      </ul>
+    </article>
+  </section>
+
+
+  <section>
+    <article>
+      <h2> L’innovation au cœur de l’internet des objets </h2>
+      <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
+        Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
+        Au-delà des volets roulants, de nombreux équipements,
+        comme l'éclairage ou le chauffage, peuvent être automatisés
+        pour gagner du temps et faire des économies !" </p>
+    </article>
+  </section>
+
+  <section class="section_home">
+    <article class="article_home">
+      <h2 class="titre_section_home"> eHome plus en détail </h2>
+    </article>
+
+    <article class="article_home">
+      <h3> Notre histoire </h3>
+      <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
+        dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Espace presse </h3>
+      <p> Découvrez nos dernières annonces </p>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Document de référence </h3>
+      <p> Lire le rapport annuel </p>
+    </article>
+  </section>
+
+
+  <section class="section_home">
+    <article class="article_home">
+      <h2 class="titre_section_home"> Ce que nous vous proposons </h2>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Un gain de temps et de confort au quotidient </h3>
+      <p> Il est 7h00. Vous vous réveillez au son de votre
+        radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
+        L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
+        à la température idéale pour votre douche matinale. Tout est prêt pour démarrer votre journée
+        dans les meilleures conditions... Ceci n'est pas un rêve, mais la réalité.
+        En plus de vous simplifier les gestes de la vie de courante, nos solutions
+        domotiques vous permettent de programmer une multitude de scénarios
+        (éclairage, température...) en fonction de vos habitudes et vos envies.
+        Vous allez vous coucher ? A partir d'une seule commande, vous fermez
+        tous les volets roulants, abaissez le chauffage et éteignez les lumières.
+        Le confort absolu ! </p>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Des économies d'énergie à la clé </h3>
+      <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
+        chauffage en marche. En vous équipant de notre installation domotique,
+        vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
+        éteindre les éclairages inutiles, couper les appareils électriques en veille
+        ou tempérer le chauffage. Mieux encore : un thermostat d’ambiance à gestion
+        programmée vous permettra par exemple de réduire vos consommations d'énergie
+        sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
+        pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
+        en s'adaptant à votre style de vie et votre présence dans la maison. </p>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Pour votre sécurité et celle de votre maison </h3>
+      <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
+        passer toutes les pièces en revue. Comme les équipements domotiques sont
+        désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
+        ou votre tablette. Vous restez donc en contact avec votre maison où que
+        vous soyez, même à l'autre bout du monde ! A tout moment, vous pouvez par
+        exemple vérifier que tout est en ordre, de la lumière des différentes pièces
+        à la mise en route de l’alarme. Mais aussi, grâce à un visiophone ou un portier
+        vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
+        Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
+        recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
+    </article>
+  </section>
+
+  <p><img class="bandeau_info" src="views\ressources\images\bandeau_info.png" alt="bandeau d'information"/></p>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
