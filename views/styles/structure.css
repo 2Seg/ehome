@@ -139,10 +139,14 @@ html
   text-align: center;
 
   color: white;
+  font-style: normal;
+  text-decoration: none;
+  
   margin-left: 20px;
   margin-right: 20px;
   padding-left: 30px;
   padding-right: 30px;
+
 }
 
 .map
