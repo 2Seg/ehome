@@ -195,16 +195,40 @@ section
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  text-align: justify;
 }
-.element_about_us
+
+.section_about_us
 {
-  list-style: none;
-  margin:auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: justify;
+
+  border: 4px solid green;
+
 }
+
+.titre_section_about_us
+{
+  color: rgb(210, 0, 0);
+/*
+  border: 4px solid red;
+  */
+  text-align: left;
+}
+
+.ensemble_articles
+{
+  display: flex;
+}
+
+
 /************************************************************************PRODUCTS**********************************************************************/
 .ehome
 {
-  color: rgb(200,0,0);
+  color: rgb(210,0,0);
 }
 
 .element_products
@@ -214,7 +238,7 @@ section
 
 .titre
 {
-    color: rgb(200,0,0);
+    color: rgb(210,0,0);
 }
 
 .products
@@ -232,47 +256,28 @@ section
 
 /************************************************************************HOME**********************************************************************/
 
-.content_home
+.bandeau_info
 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  text-align: justify;
-}
 
-.section_home
-{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  text-align: justify;
+  display: block
   /*
-  border: 4px solid green;
+  margin-left: auto;
+  margin-right: auto;
+*/
+/*
+  padding-left: 100px;
+  padding-right: 100px;
+  background-color: white;
   */
 }
 
 .titre_section_home
 {
-  /*
+  color: rgb(210, 0, 0);
+/*
   border: 4px solid red;
   */
   text-align: left;
-}
-
-.bandeau_info
-{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  /*
-  border: 4px solid red;
-  */
-  /*
-  padding-left: 500px;
-  padding-right: 500px;
-  */
 }
 
 /*
@@ -293,7 +298,7 @@ textarea
 {
   font-variant: 'gr-book';
   font-size: 100%;
-  border: 1px solid rgba(200,0,0,0.85);
+  border: 1px solid rgba(210,0,0,0.85);
   border-radius: 4px;
   padding: 10px 10px;
 }
@@ -302,7 +307,7 @@ button
 {
   font-variant: 'gr-book';
   font-size: 100%;
-  border: 1px solid rgba(200,0,0,0.85);
+  border: 1px solid rgba(210,0,0,0.85);
   border-radius: 2px;
   padding: 10px 10px;
 }
@@ -311,7 +316,7 @@ input
 {
   font-variant: 'gr-book';
   font-size: 100%;
-  border: 1px solid rgba(200,0,0,0.85);
+  border: 1px solid rgba(210,0,0,0.85);
   border-radius: 4px;
   padding: 10px 10px;
 }
@@ -321,11 +326,11 @@ input[type=text] {
 }
 
 input[type=submit] {
-  background-color: rgba(200, 0, 0, 0.85);
+  background-color: rgba(210, 0, 0, 0.85);
   color: white;
 }
 input[type=reset] {
-  background-color: rgba(200, 0, 0, 0.85);
+  background-color: rgba(210, 0, 0, 0.85);
   color: white;
 }
 
@@ -364,5 +369,5 @@ fieldset
 
 .lien
 {
-  color: rgb(200,0,0);
+  color: rgb(210,0,0);
 }
