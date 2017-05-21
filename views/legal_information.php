@@ -1,18 +1,14 @@
 <?php
-/*
-vue gérant l'affichage de la page "Accueil"
-*/
 
-$titre = 'Accueil';
+$titre = 'Mentions légales';
 
 $menu = menu();
 if (isset($_SESSION['type'])) {
   $menu .= menu_user($_SESSION['type']);
 }
 
-$contenu = content_home2('');
+$contenu = content_legal_information();
 
 $footer = footer();
-
 include('gabarit.php');
 ?>

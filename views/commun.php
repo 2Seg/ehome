@@ -64,19 +64,18 @@ function footer() {
 	?>
 	<ul class="footer">
 
-		<li class="footer_elements"> <em>Localisation</em> </li>
+    <ul>
+		  <li class="footer_elements"> <em>Localisation</em> </li>
+		  <li class="footer_elements"> <p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
+    </ul>
 
-		<ul>
-			<li class="footer_elements"> <p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
-		</ul>
+		<li class="footer_elements"> <p><a href="index.php?cible=legal_information"> <em>Mentions légales</em> </a> </li>
 
-		<li class="footer_elements"> <em>Mentions légales</em> </li>
-		<li class="footer_elements"> <em>Contact</em> </li>
-
-		<ul>
-			<li class="footer_elements"> +33 1 23 45 67 89 </li>
-			<li class="footer_elements">  accueil@ehome.com </li>
-		</ul>
+    <ul>
+		  <li class="footer_elements"> <em>Contact</em> </li>
+		  <li class="footer_elements"> +33 1 23 45 67 89 </li>
+		  <li class="footer_elements">  accueil@ehome.com </li>
+    </ul>
 
 	</ul>
 	<?php
@@ -615,8 +614,96 @@ function my_home_information() {
     <form method="post" action="index.php?cible=edit_info_home">
       <input type="submit" value="Modifier les informations">
     </form>
+
   </section>
   <?php
+  $home = ob_get_clean();
+  return $home;
+}
+
+function content_products() {
+  ob_start();
+  ?>
+  <section>
+  <article>
+  <p> <strong class="ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
+    d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
+    compte personnel sur le site internet www.ehome.fr.</p>
+    <strong class="ehome">Quel est l’intérêt de tels dispositifs ?</strong></br>
+    <p>L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
+    chacun d’entre eux.</p>
+
+  <p>Elle permet d’accommoder les nécessités individuelles :</p>
+    <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
+    <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
+    <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent, l’habitation connectée est faite pour vous. </li>
+
+  <p>Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :</p>
+    <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
+    <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
+    <li class = "element_products"> Caméras : pour la surveillance</li>
+  </ul>
+
+  <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
+    contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> 06.06.06.06.06 </a> </p>
+
+  </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_actuators() {
+  ob_start();
+  ?>
+  <section>
+    <article class="products">
+      <div>
+        <h2 class="titre">Volets Roulants Electrique</h2>
+        <p>mettre quelque chose</p>
+      </div>
+    </article>
+    <article class="products">
+      <div>
+        <h2 class="titre">Portail</h2>
+        <p>mettre quelque chose</p>
+      </div>
+    </article>
+    <article class="products">
+      <div>
+        <h2 class="titre">Portail Electrique</h2>
+        <p>mettre quelque chose</p>
+      </div>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_cameras() {
+  ob_start();
+  ?>
+  <section>
+    <article class="products">
+      <div>
+        <h2 class="titre">Caméra de Surveillance</h2>
+        <p>Les caméras de surveillance vont permettront d'apporté une sécurité supplémentataire a votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre appartement.</p>
+      </div>
+    </article>
+    <article class="products">
+      <div>
+        <h2 class="titre">Caméra de porte</h2>
+        <p>Les caméras de porte ou de palier vont permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous.</p>
+      </div>
+    </article>
+  </section>
+
+  <?php
+
   $home = ob_get_clean();
   return $home;
 }
@@ -772,8 +859,36 @@ function content_sensors() {
   ob_start();
   ?>
   <section>
-  <article>
-  <p>Voici la page principale "Capteurs" </p>
+  <article class="products">
+    <div>
+      <h2 class="titre">Capteur de Luminosité</h2>
+      <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
+    </div>
+  </article>
+  <article class="products">
+    <div>
+      <h2 class="titre">Capteur de de Température</h2>
+      <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
+    </div>
+  </article>
+  <article class="products">
+    <div>
+      <h2 class="titre">Capteur d'Humidité</h2>
+      <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
+    </div>
+  </article>
+  <article class="products">
+    <div>
+      <h2 class="titre">Detecteur de Mouvement</h2>
+      <p>Ce detecteur vous avertira des eventuels mouvement dans la pièce où celui-ci est installé
+         et sera relié au système de sécurité pour prévenir les intrusins.</p>
+    </div>
+  </article>
+  <article class="products">
+    <div>
+  <h2 class="titre">Capteur de Fumée</h2>
+  <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
+    </div>
   </article>
   </section>
   <?php
@@ -829,4 +944,184 @@ function content_about_us() {
   <?php
   $sensor = ob_get_clean();
   return $sensor;
+}
+
+function content_home() {
+  ob_start();
+  ?>
+  <section>
+
+    <article>
+      <p>Notre société propose des systèmes électroniques de domotique depuis 2016. Nous
+        mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
+        par le suivi de vos équipements. Ces équipements vous permettront d’allier sécurité de
+        votre habitation et économie, dans le respect de l’environnement. Les systèmes sont
+        adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure.</p>
+    </article>
+
+    <h2> Vos avis</h2>
+    <article>
+      <h3>Déploiement de qualité</h3>
+      <p>eHome a effectué l’installation de capteurs de température
+        et de luminosité dans toutes les pièces de notre appartement
+        de 90m2. Ces équipements ont été parfaitement installés. En
+        effet, nous n’avons jamais eu de problèmes techniques, et nous
+        avons même pu effectué des économies sur nos factures.</p>
+      <p>Y.S (Paris 75)<p>
+      </article>
+      <article>
+      <h3>Entreprise très professionnelle</h3>
+      <p>Le SAV est très bon. Il répond vite, le seul petit soucis que nous
+        avons eu avec un capteur a été réglé très rapidement par l’équipe
+        technique. Des professionnels à l’écoute de leur client et
+        très efficaces.</p>
+      <p>M.T (La Garenne 92)</p>
+    </article>
+  </section>
+ <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_legal_information() {
+  ob_start();
+  ?>
+  <section>
+  <article>
+    <em>Informations légales : </em><br/>
+
+    <p> eHome (SAS) fabrique, distribue et vend des produits électroniques (les “Équipements”).
+    Les Services sont la propriété de eHome, société par actions simplifiée à associé unique :
+    au capital de 10 000 euros immatriculée au Registre du Commerce et des Sociétés de Paris, sous le numéro xxx xxx xxx
+    VA intracommunautaire : xxx xx xx xxxxxxxxx xxxxxxxxxxxxx
+    et dont le siège social est situé: </p>
+
+    <ul>
+	     <li> 10 rue de Vanves </li>
+	     <li> 92130 Issy-les-Moulineaux </li>
+	     <li> tél : +33 1 23 45 67 89 </li>
+	     <li> courriel : serviceclient@ehome.fr </li>
+    </ul>
+  </article>
+
+  <article>
+    <p> Le directeur de publication des Services eHome est Mme/M xxxxxxxxxx, en qualité de Directrice/Directeur Générale de eHome.
+      Le site www.eHome.fr est hébergé sur les matériels informatiques de la société  eHome, sur le site de Paris, dont le siège social est situé au 10 rue de Vanves, 92130 Issy-les-Moulineaux. </p>
+  </article>
+  </section>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_home2(){
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h2> A propos d'eHome </h2>
+      <h3> Les valeurs des eHomers </h3>
+      <ul>
+        <li> Rechercher le confort de chacun de nos clients. </li>
+        <li> Innover pour avancer et faire avancer le monde. </li>
+        <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
+      </ul>
+    </article>
+  </section>
+
+
+  <section>
+    <article>
+      <h2> L’innovation au cœur de l’internet des objets </h2>
+      <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
+        Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
+        Au-delà des volets roulants, de nombreux équipements,
+        comme l'éclairage ou le chauffage, peuvent être automatisés
+        pour gagner du temps et faire des économies !" </p>
+    </article>
+  </section>
+
+  <section class="section_home">
+    <article class="article_home">
+      <h2 class="titre_section_home"> eHome plus en détail </h2>
+    </article>
+
+    <article class="article_home">
+      <h3> Notre histoire </h3>
+      <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
+        dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Espace presse </h3>
+      <p> Découvrez nos dernières annonces </p>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Document de référence </h3>
+      <p> Lire le rapport annuel </p>
+    </article>
+  </section>
+
+
+  <section class="section_home">
+    <article class="article_home">
+      <h2 class="titre_section_home"> Ce que nous vous proposons </h2>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Un gain de temps et de confort au quotidient </h3>
+      <p> Il est 7h00. Vous vous réveillez au son de votre
+        radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
+        L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
+        à la température idéale pour votre douche matinale. Tout est prêt pour démarrer votre journée
+        dans les meilleures conditions... Ceci n'est pas un rêve, mais la réalité.
+        En plus de vous simplifier les gestes de la vie de courante, nos solutions
+        domotiques vous permettent de programmer une multitude de scénarios
+        (éclairage, température...) en fonction de vos habitudes et vos envies.
+        Vous allez vous coucher ? A partir d'une seule commande, vous fermez
+        tous les volets roulants, abaissez le chauffage et éteignez les lumières.
+        Le confort absolu ! </p>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Des économies d'énergie à la clé </h3>
+      <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
+        chauffage en marche. En vous équipant de notre installation domotique,
+        vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
+        éteindre les éclairages inutiles, couper les appareils électriques en veille
+        ou tempérer le chauffage. Mieux encore : un thermostat d’ambiance à gestion
+        programmée vous permettra par exemple de réduire vos consommations d'énergie
+        sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
+        pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
+        en s'adaptant à votre style de vie et votre présence dans la maison. </p>
+    </article>
+
+
+    <article class="article_home">
+      <h3> Pour votre sécurité et celle de votre maison </h3>
+      <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
+        passer toutes les pièces en revue. Comme les équipements domotiques sont
+        désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
+        ou votre tablette. Vous restez donc en contact avec votre maison où que
+        vous soyez, même à l'autre bout du monde ! A tout moment, vous pouvez par
+        exemple vérifier que tout est en ordre, de la lumière des différentes pièces
+        à la mise en route de l’alarme. Mais aussi, grâce à un visiophone ou un portier
+        vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
+        Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
+        recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
+    </article>
+  </section>
+
+  <p><img class="bandeau_info" src="views\ressources\images\bandeau_info.png" alt="bandeau d'information"/></p>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
 }
