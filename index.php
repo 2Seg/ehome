@@ -20,8 +20,6 @@ if (isset($_SESSION['type'])) {
         include('views/products.php');
       } elseif ($_GET['cible'] == 'disconnect') {
         include('controlers/disconnect.php');
-      } elseif ($_GET['cible'] == 'sensor_choice') {
-        include('controlers/sensor_choice.php');
       } elseif ($_GET['cible'] == 'sensors') {
         include("views/sensors.php");
       } elseif ($_GET['cible'] == 'actuators') {
@@ -44,10 +42,16 @@ if (isset($_SESSION['type'])) {
         include("views/subcription_user.php");
       } elseif ($_GET['cible'] == 'messaging_user') {
         include('views/messaging_user.php');
-      } elseif ($_GET['cible'] == 'sensor_add') {
-        include('views/sensor_add.php');
+      } elseif ($_GET['cible'] == 'room_add') {
+        include('controlers/room_add.php');
       } elseif ($_GET['cible'] == 'control_sensor_add') {
         include('controlers/sensor_add.php');
+      } elseif ($_GET['cible'] == 'control_sensor_edit') {
+        include('controlers/sensor_edit.php');
+      } elseif ($_GET['cible'] == 'control_sensor_delete') {
+        include('controlers/sensor_delete.php');
+      } elseif ($_GET['cible'] == 'sensor_add') {
+        include('views/sensor_add.php');
       } elseif ($_GET['cible'] == 'sensor_edit') {
         include('views/sensor_edit.php');
       } elseif ($_GET['cible'] == 'sensor_delete') {

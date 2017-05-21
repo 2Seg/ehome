@@ -31,7 +31,7 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'subscribe') {
 
 
       // on ajoute les données à la bdd (infos sur le logement)
-      subscribe_house($bdd, $ligne2['id'], $_POST['adresse_logement'], $_POST['code_postal_logement'], $_POST['ville_logement'], $_POST['pays_logement'], $_POST['nb_habitant'], $_POST['nb_piece'], $_POST['superficie']);
+      subscribe_house($bdd, $ligne2['id'], $_POST['adresse_logement'], $_POST['code_postal_logement'], $_POST['ville_logement'], $_POST['pays_logement'], $_POST['nb_habitant'], 0, $_POST['superficie']);
 
       // on annonce à l'user qu'il est inscrit
       include('views/conf_join-us.php');

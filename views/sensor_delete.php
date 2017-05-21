@@ -9,7 +9,7 @@ $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
 
-$contenu = form_capteur_piece();
+$contenu = erase_sensor_room();
 
 $footer = footer();
 
