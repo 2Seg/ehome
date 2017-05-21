@@ -621,40 +621,6 @@ function my_home_information() {
   return $home;
 }
 
-function content_products() {
-  ob_start();
-  ?>
-  <section>
-  <article>
-  <p> <strong class="ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
-    d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
-    compte personnel sur le site internet www.ehome.fr.</p>
-    <strong class="ehome">Quel est l’intérêt de tels dispositifs ?</strong></br>
-    <p>L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
-    chacun d’entre eux.</p>
-
-  <p>Elle permet d’accommoder les nécessités individuelles :</p>
-    <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
-    <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
-    <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent, l’habitation connectée est faite pour vous. </li>
-
-  <p>Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :</p>
-    <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
-    <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
-    <li class = "element_products"> Caméras : pour la surveillance</li>
-  </ul>
-
-  <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
-    contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> 06.06.06.06.06 </a> </p>
-
-  </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-
 function content_actuators() {
   ob_start();
   ?>
@@ -790,7 +756,6 @@ function my_sensor_room() {
   return $room;
 }
 
-// fonction affichant seulement les dispositifs des pièces d'un logement
 
 function content_products() {
   ob_start();
@@ -823,35 +788,6 @@ function content_products() {
   <?php
   $contenu = ob_get_clean();
   return $contenu;
-}
-
-
-function content_actuators() {
-  ob_start();
-  ?>
-  <section>
-  <article>
-  <p>Voici la page principale "Actionneurs" </p>
-  </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-
-function content_cameras() {
-  ob_start();
-  ?>
-  <section>
-  <article>
-  <p>Voici la page principale "Caméras" </p>
-  </article>
-  </section>
-
-  <?php
-  $home = ob_get_clean();
-  return $home;
 }
 
 
