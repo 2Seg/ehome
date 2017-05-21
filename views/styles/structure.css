@@ -28,8 +28,10 @@ html
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background-repeat: no-repeat;
   background-image:url("maison_entreprise.jpg");
-  background-repeat: repeat-y;
+  background-attachment: fixed;
+  overflow:auto;
 }
 
 
@@ -205,9 +207,34 @@ section
   list-style-type: disc;
 }
 
+.titre
+{
+    color: rgb(200,0,0);
+}
+
+.products
+{
+  display: flex;
+  flex-direction: row;
+  /*justify-content: space-around;*/
+  /*align-items: center;*/
+
+}
+
 /************************************************************************JOIN**********************************************************************/
 
 /************************************************************************CONNEXION**********************************************************************/
+
+/************************************************************************HOME**********************************************************************/
+
+.content_home
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: justify;
+}
 
 
 /************************************************************FORMULAIRE********************************************************************/
