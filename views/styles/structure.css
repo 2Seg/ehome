@@ -258,15 +258,16 @@ section
 
 .bandeau_info
 {
-  display: block;
+
+  display: block
+  /*
   margin-left: auto;
   margin-right: auto;
-  /*
-  border: 4px solid red;
-  */
-  /*
-  padding-left: 500px;
-  padding-right: 500px;
+*/
+/*
+  padding-left: 100px;
+  padding-right: 100px;
+  background-color: white;
   */
 }
 
