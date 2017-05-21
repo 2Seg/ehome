@@ -59,6 +59,12 @@ if (isset($_SESSION['type'])) {
         include('views/sensor_edit.php');
       } elseif ($_GET['cible'] == 'sensor_delete') {
         include('views/sensor_delete.php');
+      } elseif ($_GET['cible'] == 'choice_nb_room') {
+        include("views/choice_nb_room.php");
+      } elseif ($_GET['cible'] == 'choice_nb_room2') {
+        include("views/choice_nb_room2.php");
+      } elseif ($_GET['cible'] == 'control_nb_room') {
+        include("controlers/choice_nb_room.php");
       } else {
         include ('views/error.php');
       }

@@ -739,7 +739,7 @@ function my_sensor_room() {
     }
     ?>
   </table>
-  <form method="post" action="index.php?cible=sensor_add">
+  <form method="post" action="index.php?cible=choice_nb_room">
     <input type="submit" value="Ajouter">
   </form>
   <form method="post" action="index.php?cible=sensor_edit">
@@ -756,6 +756,144 @@ function my_sensor_room() {
   return $room;
 }
 
+function my_actual_room() {
+  ob_start();
+  ?>
+  <section>
+  <table>
+    <tr>
+      <th>Pièce</th>
+      <th>Capteur de luminosité</th>
+      <th>Capteur de température</th>
+      <th>Capteur d'humidité</th>
+      <th>Détecteur de mouvement</th>
+      <th>Détecteur de fumée</th>
+      <th>Caméra</th>
+      <th>Actionneur</th>
+    </tr>
+    <?php
+    for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
+    ?>
+    <tr>
+      <td>
+        <?php echo($_SESSION['piece_'.$i]); ?>
+      </td>
+      <td>
+        <?php echo($_SESSION['luminosite_'.$i]); ?>
+      </td>
+      <td>
+        <?php echo($_SESSION['temperature_'.$i]); ?>
+      </td>
+      <td>
+        <?php echo($_SESSION['humidite_'.$i]); ?>
+      </td>
+      <td>
+        <?php echo($_SESSION['mouvement_'.$i]); ?>
+      </td>
+      <td>
+        <?php echo($_SESSION['fumee_'.$i]); ?>
+      </td>
+      <td>
+        <?php echo($_SESSION['camera_'.$i]); ?>
+      </td>
+      <td>
+        <?php echo($_SESSION['actionneur_'.$i]); ?>
+      </td>
+    </tr>
+    <?php
+  }
+  ?>
+  </table>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+// fonction qui affiche un formulaire pour choisir un nombre de pièces
+function form_nb_room() {
+  ob_start();
+  ?>
+  <section>
+  <fieldset>
+  <legend>Sélectionner le nombre de pièces à ajouter</legend>
+  <form method="post" action="index.php?cible=choice_nb_room2">
+    <p>
+      <input type="number" name="nb_piece_ajout" min="1" placeholder="Nombre de pièces">
+    </p>
+    <p>
+      <input type="reset" value="Rafraichir">
+      <input type="submit" value="Suivant">
+    </p>
+  </form>
+  </fieldset>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function form_nb_room2() {
+  ob_start();
+  ?>
+  <section>
+  <form method="post" action='index.php?cible=control_nb_room'>
+    <fieldset>
+      <legend><h3>Zone d'ajout</h3></legend>
+      <table>
+        <tr>
+          <th>Pièce</th>
+          <th>Capteur de luminosité</th>
+          <th>Capteur de température</th>
+          <th>Capteur d'humidité</th>
+          <th>Détecteur de mouvement</th>
+          <th>Détecteur de fumée</th>
+          <th>Caméra</th>
+          <th>Actionneur</th>
+        </tr>
+      <?php
+      for($i = $_SESSION['nb_piece'] + 1; $i <= $_SESSION['nb_piece'] + $_POST['nb_piece_ajout']; $i++) {
+      ?>
+      <tr>
+        <td>
+          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+        <td>
+          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
+        </td>
+      </tr>
+
+      <?php
+    }
+    $_SESSION['nb_piece_ajout'] = $_POST['nb_piece_ajout'];
+    ?>
+    </table>
+    <input type="reset" value="Rafraichir">
+    <input type="submit" value="Envoyer" />
+  </fieldset>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
 
 function content_products() {
   ob_start();
