@@ -228,7 +228,7 @@ section
 /************************************************************************PRODUCTS**********************************************************************/
 .ehome
 {
-  color: rgb(200,0,0);
+  color: rgb(210,0,0);
 }
 
 .element_products
@@ -238,7 +238,7 @@ section
 
 .titre
 {
-    color: rgb(200,0,0);
+    color: rgb(210,0,0);
 }
 
 .products
@@ -298,7 +298,7 @@ textarea
 {
   font-variant: 'gr-book';
   font-size: 100%;
-  border: 1px solid rgba(200,0,0,0.85);
+  border: 1px solid rgba(210,0,0,0.85);
   border-radius: 4px;
   padding: 10px 10px;
 }
@@ -307,7 +307,7 @@ button
 {
   font-variant: 'gr-book';
   font-size: 100%;
-  border: 1px solid rgba(200,0,0,0.85);
+  border: 1px solid rgba(210,0,0,0.85);
   border-radius: 2px;
   padding: 10px 10px;
 }
@@ -316,7 +316,7 @@ input
 {
   font-variant: 'gr-book';
   font-size: 100%;
-  border: 1px solid rgba(200,0,0,0.85);
+  border: 1px solid rgba(210,0,0,0.85);
   border-radius: 4px;
   padding: 10px 10px;
 }
@@ -326,11 +326,11 @@ input[type=text] {
 }
 
 input[type=submit] {
-  background-color: rgba(200, 0, 0, 0.85);
+  background-color: rgba(210, 0, 0, 0.85);
   color: white;
 }
 input[type=reset] {
-  background-color: rgba(200, 0, 0, 0.85);
+  background-color: rgba(210, 0, 0, 0.85);
   color: white;
 }
 
@@ -369,5 +369,5 @@ fieldset
 
 .lien
 {
-  color: rgb(200,0,0);
+  color: rgb(210,0,0);
 }

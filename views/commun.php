@@ -761,29 +761,30 @@ function content_products() {
   ob_start();
   ?>
   <section>
-  <article>
-  <p> <strong class="ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
-    d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
-    compte personnel sur le site internet www.ehome.fr.
-    Quel est l’intérêt de tels dispositifs ?
-    L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
-    chacun d’entre eux.</p>
+    <h2 class="titre"> Nos produits </h2>
+    <article>
+    <p> <strong class="ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
+      d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
+      compte personnel sur le site internet www.ehome.fr.
+      Quel est l’intérêt de tels dispositifs ?
+      L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
+      chacun d’entre eux.</p>
 
-  <ul>Elle permet d’accommoder les nécessités individuelles :
-    <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
-    <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
-    <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
-  </ul>
-  <ul>Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
-    <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
-    <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
-    <li class = "element_products"> Caméras : pour la surveillance</li>
-  </ul>
+    <ul>Elle permet d’accommoder les nécessités individuelles :
+      <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
+      <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
+      <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
+    </ul>
+    <ul>Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
+      <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
+      <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
+      <li class = "element_products"> Caméras : pour la surveillance</li>
+    </ul>
 
-  <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
-    contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> 06.06.06.06.06 </a> </p>
+    <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
+      contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> 06.06.06.06.06 </a> </p>
 
-  </article>
+    </article>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -839,7 +840,7 @@ function content_home() {
   <section>
     <h2 class="titre_section_home"> Accueil eHome </h2>
     <article>
-      <p>"Notre société propose des systèmes électroniques de domotique depuis 2016. Nous
+      <p><a href="index.php?cible=about-us"> "Notre société"</a> propose des systèmes électroniques de domotique depuis 2016. Nous
         mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
         par le suivi de vos équipements. Ces équipements vous permettront d’allier sécurité de
         votre habitation et économie, dans le respect de l’environnement. Les systèmes sont
