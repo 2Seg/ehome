@@ -24,16 +24,16 @@ function menu() {
       } elseif ($_SESSION['type'] == 'admin') {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'madame') {
-          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_admin.png" alt="avatar"></a></li>');
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
-          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_admin.png" alt="avatar"></a></li>');
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } else {
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us">NOUS REJOINDRE</a></li>');
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
       }
     } else {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us">NOUS REJOINDRE</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
     ?>
@@ -43,6 +43,25 @@ function menu() {
   return $menu;
 }
 
+// fonction permettant de choisir le type d'utilisateur
+function type_user() {
+  ob_start();
+  ?>
+  <section>
+  <fieldset>
+    <legend><h2>Vous êtes</h2></legend>
+    <form method="post" action="index.php?cible=join-us_user">
+      <input type="submit" value="Utilisateur">
+    </form>
+    <form method="post" action="index.php?cible=join-us_admin">
+      <input type="submit" value="Administrateur">
+    </form>
+  </fieldset>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
 
 // fonction qui gère l'affichage du menu classique + celui des produits
 function menu_products() {
@@ -103,7 +122,7 @@ function form_signin($erreur) {
       <p>
         <label for="login">Identifiant</label><br/>
         <input type="text" name="login" id="login" placeholder="Votre identifiant"/>
-        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant client">
+        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant">
       </p>
       <p>
         <label for="password">Mot de passe</label><br/>
@@ -244,7 +263,7 @@ function form_subscribe_user() {
         </p>
         <p>
           <label for="code_postal_logement">Code postal</label><br/>
-          <input type="text" name="code_postal_logement" id="code_postal_logement" placeholder="Code postal" required/>
+          <input type="number" name="code_postal_logement" id="code_postal_logement" placeholder="Code postal" required/>
         </p>
         <p>
           <label for="ville_logement">Ville</label><br/>
@@ -308,6 +327,115 @@ function form_subscribe_user() {
   <?php
   $formulaire = ob_get_clean();
   return $formulaire;
+}
+
+
+function form_subscribe_admin() {
+  ob_start();
+  ?>
+  <form method="post" action="index.php?cible=subscribe_admin">
+    <section>
+    <article>
+    <fieldset>
+      <legend>Informations de connexion</legend>
+        <p>
+          <label for="login">Identifiant</label><br/>
+          <input type="text" name="login" id="login" placeholder="Identifiant de connexion" required/>
+        </p>
+        <p>
+          <label for="password">Mot de passe</label><br/>
+          <input type="password" name="password" id="password" placeholder="Mot de passe" required/>
+        </p>
+        <p>
+          <label for="conf_password">Confirmez le mot de passe</label><br/>
+          <input type="password" name="conf_password" id="conf_password" placeholder="Confirmation du mot de passe" required/>
+        </p>
+    </fieldset>
+    </article>
+
+    <article>
+    <fieldset>
+      <legend>Informations personnelles</legend>
+        <p>
+          <label for="civilité"> Civilité <br/>
+          <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
+          <label for="monsieur">Monsieur</label><br/>
+          <input type="radio" name="civilite" value="madame" id="madame"/>
+          <label for="madame">Madame</label>
+        </p>
+        <p>
+          <label for="nom">Nom</label><br/>
+          <input type="text" name="nom" id="nom" placeholder="Votre nom" required/>
+        </p>
+        <p>
+          <label for="prenom">Prénom</label><br/>
+          <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required/>
+        </p>
+        <p>
+          <label for="date_naissance">Date de naissance</label><br/>
+          <input type="date" name="date_naissance" id="date_naissance" placeholder="Votre date de naissance" required/>
+        </p>
+        <p>
+          <label for="nationalite">Nationalité</label><br/>
+          <input type="text" name="nationalite" id="nationalite" placeholder="Votre nationalité" />
+        </p>
+        <p>
+          <label for="pays_admin">Pays</label><br/>
+          <select name="pays_admin" id="pays_admin" required>
+            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
+            <optgroup label="Europe">
+              <option value="allemagne">Allemagne</option>
+              <option value="autriche">Autriche</option>
+              <option value="belgique">Belgique</option>
+              <option value="bulgarie">Bulgarie</option>
+              <option value="chypre">Chypre</option>
+              <option value="croatie">Croatie</option>
+              <option value="danemark">Danemark</option>
+              <option value="espagne">Espagne</option>
+              <option value="estonie">Estonie</option>
+              <option value="finlande">Finlande</option>
+              <option value="france">France</option>
+              <option value="grece">Grèce</option>
+              <option value="hongrie">Hongrie</option>
+              <option value="irlande">Irlande</option>
+              <option value="italie">Italie</option>
+              <option value="lettonie">Lettonie</option>
+              <option value="lituanie">Lituanie</option>
+              <option value="luxembourg">Luxembourg</option>
+              <option value="malte">Malte</option>
+              <option value="norvege">Norvège</option>
+              <option value="paysBas">Pays-Bas</option>
+              <option value="pologne">Pologne</option>
+              <option value="portugal">Portugal</option>
+              <option value="république_tchèque">République tchèque</option>
+              <option value="roumanie">Roumanie</option>
+              <option value="royaume_uni">Royaume-Uni</option>
+              <option value="slovaquie">Slovaquie</option>
+              <option value="slovenie">Slovénie</option>
+              <option value="suede">Suède</option>
+              <option value="suisse">Suisse</option>
+            </optgroup>
+          </select>
+        </p>
+        <p>
+          <label for="telephone">Téléphone</label><br/>
+          <input type="tel" name="telephone" id="telephone" maxlength="12" placeholder="Votre téléphone" required/>
+        </p>
+        <p>
+          <label for="email">E-mail</label><br/>
+          <input type="email" name="email" id="email" placeholder="Votre e-mail" required/>
+        </p>
+    </fieldset>
+    </article>
+
+    <p class="bouton">
+      <input type="reset" value="Rafraichir">
+      <input type="submit" value="S'inscrire"/>
+    </p>
+  </form>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
 }
 
 // fonction qui génère un formulaire en fonction du nb de pièces en entrée
@@ -488,8 +616,8 @@ function menu_user($type) {
     </ul>
   <?php
   } elseif ($type == 'admin') {?>
-    <ul>
-      <li class="menu_products_elements"><a href="index.php?cible=overview" class="text_menu_products">Vue d'ensemble</a></li>
+    <ul class="menu_products">
+      <li class="menu_products_elements"><a href="index.php?cible=home_admin" class="text_menu_products">Vue d'ensemble</a></li>
       <li class="menu_products_elements"><a href="index.php?cible=user_management" class="text_menu_products">Gestion des utilisateurs</a></li>
       <li class="menu_products_elements"><a href="index.php?cible=notification" class="text_menu_products">Notifications</a></li>
       <li class="menu_products_elements"><a href="index.php?cible=security" class="text_menu_products">Sécurité</a></li>
@@ -573,26 +701,43 @@ function my_home() {
 // fonction gérant l'affichage des informations générales de l'utilisateur
 function my_basic_information() {
   ob_start();
-  ?>
 
-  <section>
-  <article>
-    <h3>Mes informations client</h3>
-    <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
-    <p><strong>Nom : </strong><?php echo($_SESSION['nom']); ?></p>
-    <p><strong>Prénom : </strong><?php echo($_SESSION['prenom']); ?></p>
-    <p><strong>Adresse : </strong><?php echo($_SESSION['adresse']); ?></p>
-    <p><strong>Code postal : </strong><?php echo($_SESSION['code_postal']); ?></p>
-    <p><strong>Ville : </strong><?php echo($_SESSION['ville']); ?></p>
-    <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
+  if ($_SESSION['type'] == 'user') {
+    ?>
+    <section>
+    <article>
+      <h3>Mes informations client</h3>
+      <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($_SESSION['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($_SESSION['prenom']); ?></p>
+      <p><strong>Adresse : </strong><?php echo($_SESSION['adresse']); ?></p>
+      <p><strong>Code postal : </strong><?php echo($_SESSION['code_postal']); ?></p>
+      <p><strong>Ville : </strong><?php echo($_SESSION['ville']); ?></p>
+      <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
 
-    <form method="post" action="index.php?cible=info_user">
-      <input type="submit" value="Voir les informations complètes">
-    </form>
-  </article>
-  </section>
+      <form method="post" action="index.php?cible=info_user">
+        <input type="submit" value="Voir les informations complètes">
+      </form>
+    </article>
+    </section>
+    <?php
+  } else{
+    ?>
+    <section>
+    <article>
+      <h3>Mes informations administrateur</h3>
+      <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($_SESSION['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($_SESSION['prenom']); ?></p>
+      <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
 
-  <?php
+      <form method="post" action="index.php?cible=info_admin">
+        <input type="submit" value="Voir les informations complètes">
+      </form>
+    </article>
+    </section>
+    <?php
+  }
   $info = ob_get_clean();
   return $info;
 }
@@ -645,6 +790,7 @@ function content_actuators() {
   $contenu = ob_get_clean();
   return $contenu;
 }
+
 
 
 function content_cameras() {

@@ -6,8 +6,8 @@ $titre = 'Confirmation de l\'inscription';
 
 $menu = menu();
 
-$contenu = '<h2>Vous êtes dorénavant inscrit.</h2>';
-$contenu .= '<p>Veuillez vous connecter pour continuer.</p>';
+$contenu = '<section><h2>Vous êtes dorénavant inscrit</h2>';
+$contenu .= '<p>Veuillez vous <a class="lien" href="index.php?cible=signin">connecter</a> pour continuer</p></section>';
 
 $footer = footer();
 include('gabarit.php');

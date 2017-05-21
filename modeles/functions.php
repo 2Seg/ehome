@@ -14,10 +14,28 @@ function user_in_db($db, $user) {
   return $req;
 }
 
+// fonction récupérant l'id et le mot de passe d'un administrateur s'il est présent dans la bdd
+function admin_in_db($db, $admin) {
+  $req = $db -> prepare('SELECT id, identifiant, mot_de_passe FROM administrateur WHERE identifiant = ?');
+  $req -> execute(array($admin));
+  return $req;
+}
+
 // fonction qui renvoie un booléen en fontion de la présence d'un user dans la bdd
 function presence_user($db, $user) {
   $req = $db -> prepare('SELECT identifiant FROM utilisateur WHERE identifiant = ?');
   $req -> execute(array($user));
+
+  if ($req -> rowcount() == 0) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function presence_admin($db, $admin) {
+  $req = $db -> prepare('SELECT identifiant FROM administrateur WHERE identifiant = ?');
+  $req -> execute(array($admin));
 
   if ($req -> rowcount() == 0) {
     return false;
@@ -60,6 +78,13 @@ function select_general_info_user($db, $id) {
                         logement.ville, logement.pays
                         FROM utilisateur INNER JOIN logement ON utilisateur.id = logement.id_user
                         WHERE utilisateur.id = ?');
+  $req -> execute(array($id));
+  return $req;
+}
+
+// fonction récupérant les informations générales de l'utilisateur pour affichage sur la page d'accueil utilisateur
+function select_info_admin($db, $id) {
+  $req = $db -> prepare('SELECT civilite, nom, prenom, pays FROM administrateur WHERE identifiant = ?');
   $req -> execute(array($id));
   return $req;
 }
@@ -115,6 +140,25 @@ function subscribe_perso($db, $id_admin, $id_logement, $id_abonnement, $civilite
                       'mail' => $mail,
                       'telephone' => $telephone,
                       'info_paiement' => $info_paiement));
+  return $req;
+}
+
+function subscribe_admin($db, $civilite, $nom, $prenom, $identifiant, $mot_de_passe, $date_naissance, $nationalite, $pays, $telephone, $mail, $nb_user) {
+  $req = $db -> prepare('INSERT INTO administrateur(civilite, nom, prenom, identifiant, mot_de_passe, date_naissance, nationalite,
+                        pays, mail, telephone, nb_user)
+                        VALUES(:civilite, :nom, :prenom, :identifiant, :mot_de_passe, :date_naissance, :nationalite, :pays, :mail,
+                        :telephone, :nb_user)');
+  $req -> execute(array('civilite' => $civilite,
+                      'nom' => $nom,
+                      'prenom' => $prenom,
+                      'identifiant' => $identifiant,
+                      'mot_de_passe' => $mot_de_passe,
+                      'date_naissance' => $date_naissance,
+                      'nationalite' => $nationalite,
+                      'pays' => $pays,
+                      'mail' => $mail,
+                      'telephone' => $telephone,
+                      'nb_user' => $nb_user));
   return $req;
 }
 
