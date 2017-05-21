@@ -10,7 +10,7 @@ if (isset($_SESSION['type'])) {
   $menu .= menu_user($_SESSION['type']);
 }
 
-$contenu = content_home2('');
+$contenu = content_home('');
 
 $footer = footer();
 

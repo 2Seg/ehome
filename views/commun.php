@@ -833,87 +833,41 @@ function content_sensors() {
 }
 
 
-function content_about_us() {
-  ob_start();
-  ?>
-  <main class="main_about_us">
-    <section>
-
-    <article>
-    <h2> Notre histoire </h2>
-    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant. Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-          humanitatis multiformibus officiis retentabant.</p>
-    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant.</p>
-    </article>
-
-    <article>
-    <ul class = "content_about_us">
-      <li class = "element_about_us"> Créée en 2016 </li>
-      <li class = "element_about_us"> 92% de satisfaction</li>
-      <li class = "element_about_us"> Prix de l'innovation 2016 </li>
-    </ul>
-    </article>
-
-    <article>
-    <h2> Nos objectifs </h2>
-    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-          humanitatis multiformibus officiis retentabant.</p>
-    <p> Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-        ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-        humanitatis multiformibus officiis retentabant.Illud autem non dubitatur quod cum esset aliquando virtutum omnium domicilium Roma,
-          ingenuos advenas plerique nobilium, ut Homerici bacarum suavitate Lotophagi,
-          humanitatis multiformibus officiis retentabant.</p>
-    </article>
-
-  </section>
-  </main>
-  <?php
-  $sensor = ob_get_clean();
-  return $sensor;
-}
-
 function content_home() {
   ob_start();
   ?>
   <section>
-
+    <h2 class="titre_section_home"> Accueil eHome </h2>
     <article>
-      <p>Notre société propose des systèmes électroniques de domotique depuis 2016. Nous
+      <p>"Notre société propose des systèmes électroniques de domotique depuis 2016. Nous
         mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
         par le suivi de vos équipements. Ces équipements vous permettront d’allier sécurité de
         votre habitation et économie, dans le respect de l’environnement. Les systèmes sont
-        adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure.</p>
+        adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure."</p>
     </article>
 
-    <h2> Vos avis</h2>
+    <h2 class="titre_section_home"> Vos avis</h2>
     <article>
       <h3>Déploiement de qualité</h3>
-      <p>eHome a effectué l’installation de capteurs de température
+      <p>"eHome a effectué l’installation de capteurs de température
         et de luminosité dans toutes les pièces de notre appartement
         de 90m2. Ces équipements ont été parfaitement installés. En
         effet, nous n’avons jamais eu de problèmes techniques, et nous
-        avons même pu effectué des économies sur nos factures.</p>
+        avons même pu effectué des économies sur nos factures."</p>
       <p>Y.S (Paris 75)<p>
       </article>
       <article>
       <h3>Entreprise très professionnelle</h3>
-      <p>Le SAV est très bon. Il répond vite, le seul petit soucis que nous
+      <p>"Le SAV est très bon. Il répond vite, le seul petit soucis que nous
         avons eu avec un capteur a été réglé très rapidement par l’équipe
         technique. Des professionnels à l’écoute de leur client et
-        très efficaces.</p>
+        très efficaces."</p>
       <p>M.T (La Garenne 92)</p>
     </article>
   </section>
+
+  <p><img class="bandeau_info" src="views\ressources\images\bandeau_info.png" alt="bandeau d'information"/></p>
+
  <?php
   $contenu = ob_get_clean();
   return $contenu;
@@ -952,12 +906,12 @@ function content_legal_information() {
 }
 
 
-function content_home2(){
+function content_about_us(){
   ob_start();
   ?>
   <section>
+    <h2 class="titre_section_about_us"> A propos d'eHome </h2>
     <article>
-      <h2> A propos d'eHome </h2>
       <h3> Les valeurs des eHomers </h3>
       <ul>
         <li> Rechercher le confort de chacun de nos clients. </li>
@@ -969,8 +923,8 @@ function content_home2(){
 
 
   <section>
+    <h2 class="titre_section_about_us"> L’innovation au cœur de l’internet des objets </h2>
     <article>
-      <h2> L’innovation au cœur de l’internet des objets </h2>
       <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
         Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
         Au-delà des volets roulants, de nombreux équipements,
@@ -979,38 +933,33 @@ function content_home2(){
     </article>
   </section>
 
-  <section class="section_home">
-    <article class="article_home">
-      <h2 class="titre_section_home"> eHome plus en détail </h2>
-    </article>
-
-    <article class="article_home">
-      <h3> Notre histoire </h3>
-      <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
-        dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
-    </article>
+  <section>
+    <h2 class="titre_section_about_us"> eHome plus en détail </h2>
+    <div class="ensemble_articles">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
+      <article class="article_about_us">
+        <h3> Notre histoire </h3>
+        <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
+          dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
+      </article>
 
 
-    <article class="article_home">
-      <h3> Espace presse </h3>
-      <p> Découvrez nos dernières annonces </p>
-    </article>
+      <article class="article_about_us">
+        <h3> Espace presse </h3>
+        <p> Découvrez nos dernières annonces </p>
+      </article>
 
 
-    <article class="article_home">
-      <h3> Document de référence </h3>
-      <p> Lire le rapport annuel </p>
-    </article>
+      <article class="article_about_us">
+        <h3> Document de référence </h3>
+        <p> Lire le rapport annuel </p>
+      </article>
+    </div>
   </section>
 
 
-  <section class="section_home">
-    <article class="article_home">
-      <h2 class="titre_section_home"> Ce que nous vous proposons </h2>
-    </article>
-
-
-    <article class="article_home">
+  <section>
+    <h2 class="titre_section_about_us"> Ce que nous vous proposons </h2>
+    <article class="article_about_us">
       <h3> Un gain de temps et de confort au quotidient </h3>
       <p> Il est 7h00. Vous vous réveillez au son de votre
         radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
@@ -1026,7 +975,7 @@ function content_home2(){
     </article>
 
 
-    <article class="article_home">
+    <article class="article_about_us">
       <h3> Des économies d'énergie à la clé </h3>
       <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
         chauffage en marche. En vous équipant de notre installation domotique,
@@ -1040,7 +989,7 @@ function content_home2(){
     </article>
 
 
-    <article class="article_home">
+    <article class="article_about_us">
       <h3> Pour votre sécurité et celle de votre maison </h3>
       <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
         passer toutes les pièces en revue. Comme les équipements domotiques sont
@@ -1054,8 +1003,6 @@ function content_home2(){
         recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
     </article>
   </section>
-
-  <p><img class="bandeau_info" src="views\ressources\images\bandeau_info.png" alt="bandeau d'information"/></p>
 
   <?php
   $contenu = ob_get_clean();

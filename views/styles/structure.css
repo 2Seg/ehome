@@ -195,12 +195,36 @@ section
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  text-align: justify;
 }
-.element_about_us
+
+.section_about_us
 {
-  list-style: none;
-  margin:auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: justify;
+
+  border: 4px solid green;
+
 }
+
+.titre_section_about_us
+{
+  color: rgb(210, 0, 0);
+/*
+  border: 4px solid red;
+  */
+  text-align: left;
+}
+
+.ensemble_articles
+{
+  display: flex;
+}
+
+
 /************************************************************************PRODUCTS**********************************************************************/
 .ehome
 {
@@ -232,35 +256,6 @@ section
 
 /************************************************************************HOME**********************************************************************/
 
-.content_home
-{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  text-align: justify;
-}
-
-.section_home
-{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  text-align: justify;
-  /*
-  border: 4px solid green;
-  */
-}
-
-.titre_section_home
-{
-  /*
-  border: 4px solid red;
-  */
-  text-align: left;
-}
-
 .bandeau_info
 {
   display: block;
@@ -273,6 +268,15 @@ section
   padding-left: 500px;
   padding-right: 500px;
   */
+}
+
+.titre_section_home
+{
+  color: rgb(210, 0, 0);
+/*
+  border: 4px solid red;
+  */
+  text-align: left;
 }
 
 /*
