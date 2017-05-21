@@ -78,7 +78,7 @@ function select_info_home($db, $id) {
 function test_data_room($db, $id_logement) {
   $req = $db -> prepare('SELECT logement.id_user, piece.id_piece
                         FROM piece INNER JOIN logement ON piece.id_logement = logement.id_user
-                        WHERE piece.id_logement = ? AND piece.id_piece = 1');
+                        WHERE piece.id_logement = ?');
   $req -> execute(array($id_logement));
   return $req;
 }
@@ -154,6 +154,37 @@ function insert_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_lumin
 /*****************************************************************UPDATE***********************************************************************/
 
 // function qui met à jour les dispositifs présent dans les différentes pièces
-function update_sensor_room() {
+function update_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite, $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
+  $req = $db -> prepare('UPDATE piece SET piece = :piece,
+                        capteur_luminosite = :capteur_luminosite, capteur_temperature = :capteur_temperature,
+                        capteur_humidite = :capteur_humidite, detecteur_mouvement = :detecteur_mouvement,
+                        detecteur_fumee = :detecteur_fumee, camera = :camera, actionneur = :actionneur
+                        WHERE id_logement = :id_logement AND id_piece = :id_piece');
+  $req -> execute(array('id_logement' => $id_logement,
+                        'id_piece' => $id_piece,
+                        'piece' => $piece,
+                        'capteur_luminosite' => $capteur_luminosite,
+                        'capteur_temperature' => $capteur_temperature,
+                        'capteur_humidite' => $capteur_humidite,
+                        'detecteur_mouvement' => $detecteur_mouvement,
+                        'detecteur_fumee' => $detecteur_fumee,
+                        'camera' => $camera,
+                        'actionneur' => $actionneur));
+  return $req;
+}
 
+// fonction modifiant le nb de piece d'un logement
+function update_nb_piece($db, $id_logement, $nb_piece) {
+  $req = $db -> prepare('UPDATE logement SET nb_piece = :nb_piece WHERE id_user = :id_logement');
+  $req -> execute(array('id_logement' => $id_logement, 'nb_piece' => $nb_piece));
+  return $req;
+}
+
+/*****************************************************************INSERT***********************************************************************/
+
+// function qui supprime une pièce d'un logement
+function delete_sensor_room($db, $id_logement, $id_piece) {
+  $req = $db -> prepare('DELETE FROM piece WHERE id_logement = :id_logement AND id_piece = :id_piece');
+  $req -> execute(array('id_logement' => $id_logement, 'id_piece' => $id_piece));
+  return $req;
 }

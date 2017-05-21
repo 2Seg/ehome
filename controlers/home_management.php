@@ -5,6 +5,7 @@ controleur gérant l'extraction des données néccessaires pour l'affichage de l
 
 include('modeles/functions.php');
 
+
 // on récupère les données du logement
 $data_home = select_info_home($bdd, $_SESSION['id']);
 $line_home = $data_home -> fetch();
@@ -17,7 +18,6 @@ $_SESSION['pays'] = htmlspecialchars($line_home['pays']);
 $_SESSION['nb_habitant'] = htmlspecialchars($line_home['nb_habitant']);
 $_SESSION['nb_piece'] = htmlspecialchars($line_home['nb_piece']);
 $_SESSION['superficie'] = htmlspecialchars($line_home['superficie']);
-
 // on test si les $donnees des pièces du logement existent
 $test = test_data_room($bdd, $_SESSION['id_logement']);
 
