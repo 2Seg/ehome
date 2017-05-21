@@ -12,8 +12,16 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connect') {
 
     if ($donnees -> rowcount() == 0) {
       // user non trouvé dans la bdd
-      $erreur = 'utilisateur inconnu.';
-      include('views/signin_error.php');
+      $donnees_admin = admin_in_db($bdd, $_POST['login']);
+
+      // on test si c'est un admin
+      if($donnees_admin -> rowcount() == 0) {
+        // admin non trouvé
+        $erreur = 'utilisateur inconnu.';
+        include('views/signin_error.php');
+      } else {
+        include('controlers/signin_admin.php');
+      }
 
     } else {
       // user trouvé dans la bdd

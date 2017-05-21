@@ -1,12 +1,13 @@
 <?php
 /*
-vue gérant l'affichage de la page "Nous rejoindre (page 1/2)"
+vue demandant à l'user quel type de personne il est (utilisateur ou admin)
 */
+
 $titre = 'Nous rejoindre';
 
 $menu = menu();
 
-$contenu = form_subscribe_user();
+$contenu = type_user();
 
 $footer = footer();
 

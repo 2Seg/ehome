@@ -4,10 +4,10 @@ controleur gérant l'inscription utilisateur au site
 */
 
 // On vérifie que l'utilisateur a validé le formulaire de connexion
-if(isset($_GET['cible']) && $_GET['cible'] == 'subscribe') {
+if(isset($_GET['cible']) && $_GET['cible'] == 'subscribe_user') {
   include ('modeles/functions.php');
   // on vérifie que le pseudo n'est pas déjà utilisé
-  /*if(presence_user($bdd, $_POST['login']) == false) {*/
+  if(presence_user($bdd, $_POST['login']) == false) {
     // -> le pseudo n'est pas présent dans la bdd
     // on vérifie que le mot de passe et sa confirmation son identiques
     if($_POST['password'] == $_POST['conf_password']) {
@@ -39,10 +39,10 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'subscribe') {
       $erreur = 'le mot de passe et sa confirmation ne sont pas les mêmes.';
       include('views/join-us_error.php');
     }
-  /*} else {
+  } else {
     $erreur = 'l\'identifiant choisi est déjà utilisé.';
     include('views/join-us_error.php');
-  }*/
+  }
 } else {
-  include('views/join-us_1.php');
+  include('views/join-us_type.php');
 }
