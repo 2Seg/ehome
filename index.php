@@ -28,9 +28,12 @@ if (isset($_SESSION['type'])) {
         include("views/actuators.php");
       } elseif ($_GET['cible'] == 'cameras') {
         include("views/cameras.php");
-      }  elseif ($_GET['cible'] == 'connect') {
+      } elseif ($_GET['cible'] == 'connect') {
         include("views/home_user.php");
+      } elseif ($_GET['cible'] == 'legal_information') {
+        include("views/legal_information.php");
       }
+
 
       elseif ($_GET['cible'] == 'home_user') {
         include("views/home_user.php");
@@ -87,7 +90,10 @@ if (isset($_SESSION['type'])) {
         include("views/actuators.php");
       } elseif ($_GET['cible'] == 'cameras') {
         include("views/cameras.php");
-      } else {
+      } elseif ($_GET['cible'] == 'legal_information') {
+        include("views/legal_information.php");
+      }
+      else {
         include ('views/error.php');
       }
     } else {
@@ -120,6 +126,8 @@ if (isset($_SESSION['type'])) {
       include("views/actuators.php");
     } elseif ($_GET['cible'] == 'cameras') {
       include("views/cameras.php");
+    } elseif ($_GET['cible'] == 'legal_information') {
+      include("views/legal_information.php");
     } else {
       include ('views/error.php');
     }

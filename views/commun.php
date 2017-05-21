@@ -64,19 +64,18 @@ function footer() {
 	?>
 	<ul class="footer">
 
-		<li class="footer_elements"> <em>Localisation</em> </li>
+    <ul>
+		  <li class="footer_elements"> <em>Localisation</em> </li>
+		  <li class="footer_elements"> <p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
+    </ul>
 
-		<ul>
-			<li class="footer_elements"> <p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
-		</ul>
+		<li class="footer_elements"> <p><a href="index.php?cible=legal_information"> <em>Mentions légales</em> </a> </li>
 
-		<li class="footer_elements"> <em>Mentions légales</em> </li>
-		<li class="footer_elements"> <em>Contact</em> </li>
-
-		<ul>
-			<li class="footer_elements"> +33 1 23 45 67 89 </li>
-			<li class="footer_elements">  accueil@ehome.com </li>
-		</ul>
+    <ul>
+		  <li class="footer_elements"> <em>Contact</em> </li>
+		  <li class="footer_elements"> +33 1 23 45 67 89 </li>
+		  <li class="footer_elements">  accueil@ehome.com </li>
+    </ul>
 
 	</ul>
 	<?php
@@ -724,4 +723,37 @@ function content_about_us() {
   <?php
   $sensor = ob_get_clean();
   return $sensor;
+}
+
+
+function content_legal_information() {
+  ob_start();
+  ?>
+  <section>
+  <article>
+    <em>Informations légales : </em><br/>
+
+    <p> eHome (SAS) fabrique, distribue et vend des produits électroniques (les “Équipements”).
+    Les Services sont la propriété de eHome, société par actions simplifiée à associé unique :
+    au capital de 10 000 euros immatriculée au Registre du Commerce et des Sociétés de Paris, sous le numéro xxx xxx xxx
+    VA intracommunautaire : xxx xx xx xxxxxxxxx xxxxxxxxxxxxx
+    et dont le siège social est situé: </p>
+
+    <ul>
+	     <li> 10 rue de Vanves </li>
+	     <li> 92130 Issy-les-Moulineaux </li>
+	     <li> tél : +33 1 23 45 67 89 </li>
+	     <li> courriel : serviceclient@ehome.fr </li>
+    </ul>
+  </article>
+
+  <article>
+    <p> Le directeur de publication des Services eHome est Mme/M xxxxxxxxxx, en qualité de Directrice/Directeur Générale de eHome.
+      Le site www.eHome.fr est hébergé sur les matériels informatiques de la société  eHome, sur le site de Paris, dont le siège social est situé au 10 rue de Vanves, 92130 Issy-les-Moulineaux. </p>
+  </article>
+  </section>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
 }
