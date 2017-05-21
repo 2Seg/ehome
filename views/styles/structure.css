@@ -11,7 +11,7 @@
 
 html
 {
-  height : 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -143,7 +143,7 @@ html
   color: white;
   font-style: normal;
   text-decoration: none;
-  
+
   margin-left: 20px;
   margin-right: 20px;
   padding-left: 30px;
@@ -201,7 +201,7 @@ section
   list-style: none;
   margin:auto;
 }
-/************************************************************************PDRODUCTS**********************************************************************/
+/************************************************************************PRODUCTS**********************************************************************/
 .ehome
 {
   color: rgb(200,0,0);
@@ -240,6 +240,52 @@ section
   align-items: center;
   text-align: justify;
 }
+
+.section_home
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: justify;
+  /*
+  border: 4px solid green;
+  */
+}
+
+.titre_section_home
+{
+  /*
+  border: 4px solid red;
+  */
+  text-align: left;
+}
+
+.bandeau_info
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /*
+  border: 4px solid red;
+  */
+  /*
+  padding-left: 500px;
+  padding-right: 500px;
+  */
+}
+
+/*
+.article_home
+{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: justify;
+  border: 4px solid green;
+}
+*/
+
 
 
 /************************************************************FORMULAIRE********************************************************************/
