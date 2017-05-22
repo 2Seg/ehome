@@ -82,20 +82,20 @@ function footer() {
   ob_start();
 	?>
 	<ul class="footer">
-
     <ul>
-		  <li class="footer_elements"> <em>Localisation</em> </li>
-		  <li class="footer_elements"> <p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
+		  <li class="footer_elements">Localisation</li>
+		  <li class="footer_elements"><p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
     </ul>
 
-		<li class="footer_elements"> <p><a href="index.php?cible=legal_information"> <em>Mentions légales</em> </a> </li>
-
     <ul>
-		  <li class="footer_elements"> <em>Contact</em> </li>
-		  <li class="footer_elements"> +33 1 23 45 67 89 </li>
-		  <li class="footer_elements">  accueil@ehome.com </li>
+		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
     </ul>
 
+    <ul>
+		  <li class="footer_elements">Contact</li>
+		  <li class="footer_elements">+33 1 23 45 67 89</li>
+		  <li class="footer_elements"> accueil@ehome.com</li>
+    </ul>
 	</ul>
 	<?php
   $footer = ob_get_clean();
@@ -113,7 +113,7 @@ function form_signin($erreur) {
     <section>
     <article>
     <fieldset>
-      <legend>Connexion</legend>
+      <legend><h3>Connexion</h3></legend>
       <?php
       if ($erreur != '') {
         echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
@@ -153,7 +153,7 @@ function form_subscribe_user() {
     <section>
     <article>
     <fieldset>
-      <legend>Informations de connexion</legend>
+      <legend><h3>Informations de connexion</h3></legend>
         <p>
           <label for="login">Identifiant</label><br/>
           <input type="text" name="login" id="login" placeholder="Identifiant de connexion" required/>
@@ -171,7 +171,7 @@ function form_subscribe_user() {
 
     <article>
     <fieldset>
-      <legend>Informations personnelles</legend>
+      <legend><h3>Informations personnelles</h3></legend>
         <p>
           <label for="civilité"> Civilité <br/>
           <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
@@ -256,7 +256,7 @@ function form_subscribe_user() {
 
     <article>
     <fieldset>
-      <legend>Logement</legend>
+      <legend><h3>Logement</h3></legend>
         <p>
           <label for="adresse_logement">Adresse</label><br/>
           <input type="text" name="adresse_logement" id="adresse_logement" placeholder="Adresse du domicile" required/>
@@ -770,17 +770,17 @@ function content_actuators() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos Actionneurs </h2>
+    <h2 class="titre"> Nos actionneurs </h2>
     <article class="products">
       <div>
-        <h2 class="titre"> Actionneur Volet Roulant Electrique </h2>
+        <h2 class="titre"> Actionneur volet roulant électrique </h2>
         <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
         <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre"> Actionneur Portail Electrique </h2>
+        <h2 class="titre"> Actionneur portail électrique </h2>
         <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
         <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
       </div>
@@ -792,22 +792,21 @@ function content_actuators() {
 }
 
 
-
 function content_cameras() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos Caméras </h2>
+    <h2 class="titre"> Nos caméras </h2>
     <article class="products">
       <div>
-        <h2 class="titre">Caméra de Surveillance</h2>
+        <h2 class="titre">Caméra de surveillance</h2>
         <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
         <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Caméra de Palier </h2>
+        <h2 class="titre">Caméra de palier </h2>
         <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
         <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
       </div>
@@ -1053,20 +1052,21 @@ function content_products() {
       Quel est l’intérêt de tels dispositifs ?
       L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
       chacun d’entre eux.</p>
-
-    <ul>Elle permet d’accommoder les nécessités individuelles :
+      Elle permet d’accommoder les nécessités individuelles :
+    <ul>
       <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
       <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
       <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
     </ul>
-    <ul>Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
+    Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
+    <ul>
       <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
       <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
       <li class = "element_products"> Caméras : pour la surveillance</li>
     </ul>
 
     <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
-      contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> 06.06.06.06.06 </a> </p>
+      contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> +33 1 23 45 67 89 </a> </p>
 
     </article>
   </section>
@@ -1080,31 +1080,31 @@ function content_sensors() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos Capteurs </h2>
+    <h2 class="titre"> Nos capteurs </h2>
     <article class="products">
       <div>
-        <h2 class="titre">Capteur de Luminosité</h2>
+        <h2 class="titre">Capteur de luminosité</h2>
         <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
         <img class="image_products" src="views/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Capteur de Température</h2>
+        <h2 class="titre">Capteur de température</h2>
         <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
         <img class="image_products" src="views/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Capteur d'Humidité</h2>
+        <h2 class="titre">Capteur d'humidité</h2>
         <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
         <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Detecteur de Mouvement</h2>
+        <h2 class="titre">Detecteur de mouvement</h2>
         <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
            et sera relié au système de sécurité pour prévenir les intrusions.</p>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_mouv.jpg" alt="detecteur mouv" title="detecteur mouv">
@@ -1112,7 +1112,7 @@ function content_sensors() {
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Détecteur de Fumée</h2>
+        <h2 class="titre">Détecteur de fumée</h2>
         <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
       </div>
@@ -1130,7 +1130,7 @@ function content_home() {
   <section>
     <h2 class="titre_section_home"> Accueil eHome </h2>
     <article>
-      <p><a href="index.php?cible=about-us"> "Notre société"</a> propose des systèmes électroniques de domotique depuis 2016. Nous
+      <p>Notre <a class="lien" href="index.php?cible=about-us">société</a> propose des systèmes électroniques de domotique depuis 2016. Nous
         mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
         par le suivi de vos équipements. Ces équipements vous permettront d’allier sécurité de
         votre habitation et économie, dans le respect de l’environnement. Les systèmes sont

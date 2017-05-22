@@ -125,7 +125,7 @@ if (isset($_SESSION['type'])) {
       } elseif ($_GET['cible'] == 'connect') {
         include('controlers/signin.php');
       } elseif ($_GET['cible'] == 'subscribe') {
-        include('controlers/subscribe.php');
+        include('controlers/subscribe_user.php');
       } elseif ($_GET['cible'] == 'sensor_choice') {
         include('controlers/sensor_choice.php');
       } elseif ($_GET['cible'] == 'sensors') {
@@ -164,7 +164,7 @@ if (isset($_SESSION['type'])) {
       include("views/signin.php");
     } elseif ($_GET['cible'] == 'connect') {
       include('controlers/signin.php');
-    } elseif ($_GET['cible'] == 'subscribe_user') {
+    } elseif ($_GET['cible'] == 'subscribe') {
       include('controlers/subscribe_user.php');
     } elseif ($_GET['cible'] == 'subscribe_admin') {
       include('controlers/subscribe_admin.php');
