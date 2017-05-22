@@ -127,7 +127,7 @@ html
   align-items: center;
   position:absolute;
   bottom:0;
-  height:150px;
+  height:130px;
   width: 100%;
   margin:0px;
   margin-bottom:0px;
@@ -171,8 +171,8 @@ article
   border-width: 1px;
   border-color: rgba(155,155,155,0.85);
   border-style: solid;
-  border-radius: 15px;
-  /*box-shadow: 1px 1px 1px grey inset;*/
+  border-radius: 7px;
+  box-shadow: 2px 2px 6px grey;
 }
 
 section
@@ -185,7 +185,7 @@ section
   border-width: 1px;
   border-color: rgba(229,229,229,0.75);
   border-style: solid;
-  border-radius: 15px;
+  border-radius: 7px;
 }
 /************************************************************************ABOUT_US**********************************************************************/
 
@@ -258,17 +258,16 @@ section
 
 .bandeau_info
 {
-
-  display: block
-  /*
+/*
   margin-left: auto;
   margin-right: auto;
-*/
-/*
+
+
   padding-left: 100px;
   padding-right: 100px;
   background-color: white;
-  */
+*/
+  display: none;
 }
 
 .titre_section_home

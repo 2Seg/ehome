@@ -4,7 +4,7 @@ controleur gérant l'inscription utilisateur au site
 */
 
 // On vérifie que l'utilisateur a validé le formulaire de connexion
-if(isset($_GET['cible']) && $_GET['cible'] == 'subscribe_user') {
+if(isset($_GET['cible']) && $_GET['cible'] == 'subscribe') {
   include ('modeles/functions.php');
   // on vérifie que le pseudo n'est pas déjà utilisé
   if(presence_user($bdd, $_POST['login']) == false) {
