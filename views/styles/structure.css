@@ -29,7 +29,7 @@ html
   flex-direction: column;
   justify-content: flex-start;
   background-repeat: no-repeat;
-  background-image:url("maison_entreprise.jpg");
+  background-image:url("2.jpg");
   background-attachment: fixed;
   overflow:auto;
 }
@@ -55,6 +55,7 @@ html
   align-items: center;
   margin: auto;
   height: 10%;
+  box-shadow: 0px 3px 12px rgb(60,60,60);
   /*border: 5px solid green;
   */
 }
@@ -99,6 +100,7 @@ html
   margin: 0;
   padding: 13px;
   padding-left: 60px;
+  box-shadow: 0px 3px 12px rgb(20,20,20) inset;
 }
 
 .text_menu_products
@@ -118,7 +120,9 @@ html
 /******************************************************************FOOTER********************************************************************/
 .footer
 {
-  background-color: rgb(48,48,48);
+  /*background-color: rgb(50,50,50);*/
+  background-image: url("footer.jpg");
+  background-repeat: no-repeat;
   list-style: none;
   display: flex;
   flex-direction: row;
@@ -127,12 +131,15 @@ html
   align-items: center;
   position:absolute;
   bottom:0;
-  height:130px;
+  height:140px;
+
+
   width: 100%;
   margin:0px;
   margin-bottom:0px;
   padding-left: 0px;
   padding-top: 10px;
+  box-shadow: 0px 4px 12px rgb(12,12,12) inset;
 }
 
 .footer_elements
@@ -154,7 +161,8 @@ html
 .map
 {
   width: 110px;
-  height: 80px;
+  height: 70px;
+  box-shadow: 4px 4px 12px rgb(12,12,12);
 }
 
 /******************************************************************ENCADRE**********************************************************************/
@@ -172,7 +180,7 @@ article
   border-color: rgba(155,155,155,0.85);
   border-style: solid;
   border-radius: 7px;
-  box-shadow: 2px 2px 6px grey;
+  box-shadow: 3px 3px 10px rgb(80,80,80);
 }
 
 section
