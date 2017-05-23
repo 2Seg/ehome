@@ -6,7 +6,7 @@ $titre = 'Déconnexion';
 
 $menu = menu();
 
-$contenu = '<section><h3>Vous avez été déconnecté</h3></section>';
+$contenu = '<section><article><h2>Vous avez été déconnecté</h2></article></section>';
 
 $footer = footer();
 

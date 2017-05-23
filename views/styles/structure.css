@@ -125,8 +125,6 @@ html
   background-repeat: no-repeat;
   list-style: none;
   display: flex;
-  flex-direction: row;
-  vertical-align: middle;
   justify-content: center;
   align-items: center;
   position:absolute;
@@ -323,7 +321,7 @@ input
 {
   font-variant: 'gr-book';
   font-size: 100%;
-  border: 1px solid rgba(210,0,0,0.85);
+  border: 1px solid rgb(210,0,0);
   border-radius: 4px;
   padding: 10px 10px;
 }

@@ -132,7 +132,7 @@ function form_signin($erreur) {
       <p class="bouton_connexion">
         <input type="submit" value="Se connecter"/>
       </p>
-      <p>Pas encore inscrit ? Rejoignez-nous en cliquant <a class="lien" href="index.php?cible=join-us">ici</a>.</p>
+      <p>Pas encore inscrit ? Rejoignez-nous en cliquant <a class="lien" href="index.php?cible=join-us_type">ici</a>.</p>
     </fieldset>
     </article>
   </section>
@@ -263,7 +263,7 @@ function form_subscribe_user() {
         </p>
         <p>
           <label for="code_postal_logement">Code postal</label><br/>
-          <input type="number" name="code_postal_logement" id="code_postal_logement" placeholder="Code postal" required/>
+          <input type="number" name="code_postal_logement" id="code_postal_logement" min="0" placeholder="Code postal" required/>
         </p>
         <p>
           <label for="ville_logement">Ville</label><br/>
@@ -309,11 +309,11 @@ function form_subscribe_user() {
         </p>
         <p>
           <label for="nb_habitant">Nombre d'habitants</label><br/>
-          <input type="number" name="nb_habitant" id="nb_habitant" placeholder="Nombre d'habitants" required/>
+          <input type="number" name="nb_habitant" id="nb_habitant" min="0" placeholder="Nombre d'habitants" required/>
         </p>
         <p>
           <label for="superficie">Superficie (m²)</label><br/>
-          <input type="text" name="superficie" id="superficie" placeholder="Superficie (m²)" required/>
+          <input type="text" name="superficie" id="superficie" min="0" placeholder="Superficie (m²)" required/>
         </p>
     </fieldset>
     </article>
