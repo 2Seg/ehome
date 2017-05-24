@@ -48,15 +48,9 @@ function type_user() {
   ob_start();
   ?>
   <section>
-  <fieldset>
-    <legend><h2>Vous êtes</h2></legend>
-    <form method="post" action="index.php?cible=join-us_user">
-      <input type="submit" value="Utilisateur">
-    </form>
-    <form method="post" action="index.php?cible=join-us_admin">
-      <input type="submit" value="Administrateur">
-    </form>
-  </fieldset>
+    <h3>Vous êtes : </h3>
+    <a href="index.php?cible=join-us_user">Utilisateur</a>
+    <a href="index.php?cible=join-us_admin">Administrateur</a>
   </section>
   <?php
   $contenu = ob_get_clean();
