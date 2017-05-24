@@ -73,6 +73,41 @@ function menu_products() {
   return $menu;
 }
 
+// fonction affichant le menu utilisateur (une fois qu'il est connecté)
+function menu_user($type) {
+  ob_start();
+  if($type == 'user') {?>
+    <ul class="menu_user">
+      <li class="menu_user_elements"><a href="index.php?cible=home_user" class="text_menu_user">Mon domicile</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=home_management" class="text_menu_user">Gestion du domicile</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=notif_user" class="text_menu_user">Notifications</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=info_user" class="text_menu_user">Mes informations</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=subcription_user" class="text_menu_user">Mon abonnement</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=messaging_user" class="text_menu_user">Messagerie</a></li>
+    </ul>
+  <?php
+  } elseif ($type == 'admin') {?>
+    <ul class="menu_user">
+      <li class="menu_user_elements"><a href="index.php?cible=home_admin" class="text_menu_user">Vue d'ensemble</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=notification" class="text_menu_user">Notifications</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
+      <div class="trait_u"></div>
+      <li class="menu_user_elements"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
+    </ul>
+  <?php
+  }
+  $menu = ob_get_clean();
+  return $menu;
+}
 
 function footer() {
   ob_start();
@@ -97,7 +132,6 @@ function footer() {
   $footer = ob_get_clean();
   return $footer;
 }
-
 
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur
@@ -137,7 +171,6 @@ function form_signin($erreur) {
   $formulaire = ob_get_clean();
   return $formulaire;
 }
-
 
 // fonction qui génère l'affichage du formulaire d'inscription en fonction du type de personne qui s'inscrit (admnistrateur ou utilisateur)
 // génère par défaut l'affichage du formulaire utilisateur
@@ -324,7 +357,6 @@ function form_subscribe_user() {
   $formulaire = ob_get_clean();
   return $formulaire;
 }
-
 
 function form_subscribe_admin() {
   ob_start();
@@ -598,33 +630,6 @@ function erase_sensor_room() {
   return $formulaire;
 }
 
-// fonction affichant le menu utilisateur (une fois qu'il est connecté)
-function menu_user($type) {
-  ob_start();
-  if($type == 'user') {?>
-    <ul class="menu_products">
-      <li class="menu_products_elements"><a href="index.php?cible=home_user" class="text_menu_products">Mon domicile</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=home_management" class="text_menu_products">Gestion du domicile</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=notif_user" class="text_menu_products">Notifications</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=info_user" class="text_menu_products">Mes informations</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=subcription_user" class="text_menu_products">Mon abonnement</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=messaging_user" class="text_menu_products">Messagerie</a></li>
-    </ul>
-  <?php
-  } elseif ($type == 'admin') {?>
-    <ul class="menu_products">
-      <li class="menu_products_elements"><a href="index.php?cible=home_admin" class="text_menu_products">Vue d'ensemble</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=user_management" class="text_menu_products">Gestion des utilisateurs</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=notification" class="text_menu_products">Notifications</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=security" class="text_menu_products">Sécurité</a></li>
-      <li class="menu_products_elements"><a href="index.php?cible=messaging" class="text_menu_products">Messagerie</a></li>
-    </ul>
-  <?php
-  }
-  $menu = ob_get_clean();
-  return $menu;
-}
-
 // fonction qui récupère la date du jour
 function current_date() {
   $now = getdate();
@@ -786,7 +791,6 @@ function content_actuators() {
   $contenu = ob_get_clean();
   return $contenu;
 }
-
 
 function content_cameras() {
   ob_start();
@@ -1071,7 +1075,6 @@ function content_products() {
   return $contenu;
 }
 
-
 function content_sensors() {
   ob_start();
   ?>
@@ -1118,7 +1121,6 @@ function content_sensors() {
   $contenu = ob_get_clean();
   return $contenu;
 }
-
 
 function content_home() {
   ob_start();
@@ -1191,7 +1193,6 @@ function content_legal_information() {
   $contenu = ob_get_clean();
   return $contenu;
 }
-
 
 function content_about_us(){
   ob_start();
