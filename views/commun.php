@@ -69,7 +69,9 @@ function menu_products() {
   ?>
     <ul class="menu_products">
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=sensors"> Capteurs </a></li>
+      <div class="trait"></div>
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=actuators"> Actionneurs </a></li>
+      <div class="trait"></div>
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=cameras"> Caméras </a></li>
     </ul>
     <?php
