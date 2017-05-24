@@ -3,20 +3,15 @@
 controleur gérant la connexion utilisateur au site, notamment les cas d'erreur
 */
 
-// on vérifie que l'user a validé le formulaire de connexion
-if(isset($_GET['cible']) && $_GET['cible'] == 'connect') {
-  // on vérifie que l'utilisateur a rempli tous les champs
+if(isset($_GET['cible']) && $_GET['cible'] == 'connexion_request') {
   if(!empty($_POST['login']) && !empty($_POST['password'])) {
     include ('modeles/functions.php');
-    $donnees = user_in_db($bdd, $_POST['login']); // on récupère les données de la bdd
+    $user_data = user_in_db($bdd, $_POST['login']);
 
-    if ($donnees -> rowcount() == 0) {
-      // user non trouvé dans la bdd
-      $donnees_admin = admin_in_db($bdd, $_POST['login']);
+    if ($user_data -> rowcount() == 0) {
+      $admin_data = admin_in_db($bdd, $_POST['login']);
 
-      // on test si c'est un admin
-      if($donnees_admin -> rowcount() == 0) {
-        // admin non trouvé
+      if($admin_data -> rowcount() == 0) {
         $erreur = 'utilisateur inconnu.';
         include('views/signin_error.php');
       } else {
@@ -24,15 +19,15 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connect') {
       }
 
     } else {
-      // user trouvé dans la bdd
-      $ligne = $donnees->fetch(); // on extrait les données (pour qu'elles soient exploitables)
-      if(sha1($_POST['password']) == $ligne['mot_de_passe']) {
-        $_SESSION['id'] = $ligne['id'];
-        $_SESSION['identifiant'] = $ligne['identifiant'];
+      $user_line = $user_data -> fetch();
+
+      if(sha1($_POST['password']) == $user_line['mot_de_passe']) {
+        $_SESSION['id'] = $user_line['id'];
+        $_SESSION['identifiant'] = $user_line['identifiant'];
         $_SESSION['type'] = 'user';
 
-        // lien vers un autre controleur pour extraire les infos de la bdd pour affichage de la page "home_user.php"
-        include('controlers/home_user.php');
+        include('controlers/home_user.php'); // lien vers un autre controleur pour extraire les infos de la bdd pour affichage de la page "home_user.php"
+
       } else {
         $erreur = 'mot de passe est incorrect';
         include('views/signin_error.php');

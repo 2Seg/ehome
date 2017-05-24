@@ -141,7 +141,7 @@ function form_signin($erreur) {
   ob_start();
   ?>
 
-  <form method="post" action="index.php?cible=connect">
+  <form method="post" action="index.php?cible=connexion_request">
     <section>
     <article>
     <fieldset>
@@ -180,7 +180,7 @@ function form_signin($erreur) {
 function form_subscribe_user() {
   ob_start();
   ?>
-  <form method="post" action="index.php?cible=subscribe">
+  <form method="post" action="index.php?cible=form_subscribe_user">
     <section>
     <article>
     <fieldset>
@@ -702,28 +702,30 @@ function my_home() {
 }
 
 // fonction gérant l'affichage des informations générales de l'utilisateur
-function my_basic_information() {
+function my_basic_info($info_user) {
   ob_start();
 
   if ($_SESSION['type'] == 'user') {
+    foreach ($info_user as $info) {
     ?>
-    <section>
-    <article>
-      <h3>Mes informations client</h3>
-      <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
-      <p><strong>Nom : </strong><?php echo($_SESSION['nom']); ?></p>
-      <p><strong>Prénom : </strong><?php echo($_SESSION['prenom']); ?></p>
-      <p><strong>Adresse : </strong><?php echo($_SESSION['adresse']); ?></p>
-      <p><strong>Code postal : </strong><?php echo($_SESSION['code_postal']); ?></p>
-      <p><strong>Ville : </strong><?php echo($_SESSION['ville']); ?></p>
-      <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
+      <section>
+      <article>
+        <h3>Mes informations client</h3>
+        <p><strong>Civilité : </strong><?php echo($info['civilite']); ?></p>
+        <p><strong>Nom : </strong><?php echo($info['nom']); ?></p>
+        <p><strong>Prénom : </strong><?php echo($info['prenom']); ?></p>
+        <p><strong>Adresse : </strong><?php echo($info['adresse']); ?></p>
+        <p><strong>Code postal : </strong><?php echo($info['code_postal']); ?></p>
+        <p><strong>Ville : </strong><?php echo($info['ville']); ?></p>
+        <p><strong>Pays : </strong><?php echo($info['pays']); ?></p>
 
-      <form method="post" action="index.php?cible=info_user">
-        <input type="submit" value="Voir les informations complètes">
-      </form>
-    </article>
-    </section>
+        <form method="post" action="index.php?cible=info_user">
+          <input type="submit" value="Voir les informations complètes">
+        </form>
+      </article>
+      </section>
     <?php
+    }
   } else{
     ?>
     <section>

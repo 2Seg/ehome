@@ -8,16 +8,12 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'subscribe_admin') {
   include ('modeles/functions.php');
   // on vérifie que le pseudo n'est pas déjà utilisé
   if(presence_admin($bdd, $_POST['login']) == false) {
-    // -> le pseudo n'est pas présent dans la bdd
-    // on vérifie que le mot de passe et sa confirmation son identiques
     if($_POST['password'] == $_POST['conf_password']) {
-      // on hache le mot de passe (sécurité)
       $mot_de_passe = sha1($_POST['password']);
 
-      // on ajoute les données à la bdd
-      subscribe_admin($bdd, $_POST['civilite'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $mot_de_passe, $_POST['date_naissance'], $_POST['nationalite'], $_POST['pays_admin'], $_POST['telephone'], $_POST['email'], 0);
+      insert_info_admin($bdd, $_POST['civilite'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $mot_de_passe, $_POST['date_naissance'],
+                       $_POST['nationalite'], $_POST['pays_admin'], $_POST['telephone'], $_POST['email'], 0);
 
-      // on annonce à l'admin qu'il est inscrit
       include('views/conf_join-us.php');
     } else {
       $erreur = 'le mot de passe et sa confirmation ne sont pas les mêmes.';

@@ -7,10 +7,10 @@ require("db_access.php");
 
 /*****************************************************************SELECT***********************************************************************/
 
-// fonction récupérant l'id et le mot de passe d'un utilisateur s'il est présent dans la bdd
-function user_in_db($db, $user) {
-  $req = $db -> prepare('SELECT id, identifiant, mot_de_passe FROM utilisateur WHERE identifiant = ?');
-  $req -> execute(array($user));
+// fonction récupérant l'id et le mot de passe d'un utilisateur en fonction du login passé en entrée
+function user_in_db($db, $login) {
+  $req = $db -> prepare('SELECT id, identifiant,mot_de_passe FROM utilisateur WHERE identifiant = ?');
+  $req -> execute(array($login));
   return $req;
 }
 
@@ -22,9 +22,9 @@ function admin_in_db($db, $admin) {
 }
 
 // fonction qui renvoie un booléen en fontion de la présence d'un user dans la bdd
-function presence_user($db, $user) {
+function user_existe_deja($db, $login) {
   $req = $db -> prepare('SELECT identifiant FROM utilisateur WHERE identifiant = ?');
-  $req -> execute(array($user));
+  $req -> execute(array($login));
 
   if ($req -> rowcount() == 0) {
     return false;
@@ -44,17 +44,12 @@ function presence_admin($db, $admin) {
   }
 }
 
-// fonction incrémentant id_admin, id_logement et id_abonnement afin que les valeurs changent en fonction des utilisateurs
-function prepare_id($db) {
-  $req = $db -> query('SELECT MAX(id_admin) AS admin, MAX(id_logement) AS logement, MAX(id_abonnement) AS abonnement FROM utilisateur');
-  return $req;
-}
-
 // fonction qui sélectionne l'id d'un utilisateur
-function select_id_user($db, $user) {
+function select_id_user($db, $login) {
   $req = $db -> prepare('SELECT id FROM utilisateur WHERE identifiant = ?');
-  $req -> execute(array($user));
-  return $req;
+  $req -> execute(array($login));
+  $data = $req -> fetch();
+  return $data['id'];
 }
 
 // fonction qui sélectionne l'id d'un logement
@@ -73,13 +68,17 @@ function select_adress_room($db, $id_user) {
 
 // fonction récupérant les informations générales de l'utilisateur pour affichage sur la page d'accueil utilisateur
 function select_general_info_user($db, $id) {
+  $info = array();
   $req = $db -> prepare('SELECT utilisateur.id, utilisateur.civilite, utilisateur.nom, utilisateur.prenom,
                         utilisateur.identifiant, utilisateur.mot_de_passe, logement.adresse, logement.code_postal,
                         logement.ville, logement.pays
                         FROM utilisateur INNER JOIN logement ON utilisateur.id = logement.id_user
                         WHERE utilisateur.id = ?');
   $req -> execute(array($id));
-  return $req;
+  while($data = $req -> fetch()) {
+    $info[] = $data;
+  }
+  return $info;
 }
 
 // fonction récupérant les informations générales de l'utilisateur pour affichage sur la page d'accueil utilisateur
@@ -124,11 +123,13 @@ function select_info_room($db, $id_logement, $id_piece) {
 
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
 // traite les informations personnelles de l'user
-function subscribe_perso($db, $id_admin, $id_logement, $id_abonnement, $civilite, $nom, $prenom, $identifiant, $mot_de_passe, $date_naissance, $nationalite, $pays, $telephone, $mail, $info_paiement) {
-  $req = $db -> prepare('INSERT INTO utilisateur(id_admin, id_logement, id_abonnement, civilite, nom, prenom, identifiant, mot_de_passe, date_naissance, nationalite, pays, mail, telephone, info_paiement, date_connexion, date_inscription) VALUES(:id_admin, :id_logement, :id_abonnement, :civilite, :nom, :prenom, :identifiant, :mot_de_passe, :date_naissance, :nationalite, :pays, :mail, :telephone, :info_paiement, NOW(), CURDATE())');
+function insert_info_user($db, $id_admin, $civilite, $nom, $prenom, $identifiant, $mot_de_passe, $date_naissance, $nationalite, $pays,
+                          $telephone, $mail, $info_paiement) {
+  $req = $db -> prepare('INSERT INTO utilisateur(id_admin, civilite, nom, prenom, identifiant, mot_de_passe, date_naissance, nationalite,
+                        pays, mail, telephone, info_paiement, date_connexion, date_inscription) VALUES(:id_admin, :civilite, :nom, :prenom,
+                        :identifiant, :mot_de_passe, :date_naissance, :nationalite, :pays, :mail, :telephone, :info_paiement, NOW(),
+                        CURDATE())');
   $req -> execute(array('id_admin' => $id_admin,
-                      'id_logement' => $id_logement,
-                      'id_abonnement' => $id_abonnement,
                       'civilite' => $civilite,
                       'nom' => $nom,
                       'prenom' => $prenom,
@@ -143,7 +144,8 @@ function subscribe_perso($db, $id_admin, $id_logement, $id_abonnement, $civilite
   return $req;
 }
 
-function subscribe_admin($db, $civilite, $nom, $prenom, $identifiant, $mot_de_passe, $date_naissance, $nationalite, $pays, $telephone, $mail, $nb_user) {
+function insert_info_admin($db, $civilite, $nom, $prenom, $identifiant, $mot_de_passe, $date_naissance, $nationalite, $pays, $telephone,
+                          $mail, $nb_user) {
   $req = $db -> prepare('INSERT INTO administrateur(civilite, nom, prenom, identifiant, mot_de_passe, date_naissance, nationalite,
                         pays, mail, telephone, nb_user)
                         VALUES(:civilite, :nom, :prenom, :identifiant, :mot_de_passe, :date_naissance, :nationalite, :pays, :mail,
@@ -164,7 +166,7 @@ function subscribe_admin($db, $civilite, $nom, $prenom, $identifiant, $mot_de_pa
 
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
 // traite les informations sur le logement de l'user
-function subscribe_house($db, $id_user, $adresse, $code_postal, $ville, $pays, $nb_habitant, $nb_piece, $superficie) {
+function insert_info_home($db, $id_user, $adresse, $code_postal, $ville, $pays, $nb_habitant, $nb_piece, $superficie) {
   $req = $db -> prepare('INSERT INTO logement(id_user, adresse, code_postal, ville, pays, nb_habitant, nb_piece, superficie)
                         VALUES(:id_user, :adresse, :code_postal, :ville, :pays, :nb_habitant, :nb_piece, :superficie)');
   $req -> execute(array('id_user' => $id_user,
@@ -179,7 +181,8 @@ function subscribe_house($db, $id_user, $adresse, $code_postal, $ville, $pays, $
 }
 
 // fonction gérant l'écriture des données relatives aux choix des capteurs selon la pièce dans la $bdd
-function insert_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite, $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
+function insert_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite,
+                          $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
   $req = $db -> prepare('INSERT INTO piece(id_logement, id_piece, piece, capteur_luminosite, capteur_temperature, capteur_humidite, detecteur_mouvement, detecteur_fumee, camera, actionneur)
                         VALUES(:id_logement, :id_piece, :piece, :capteur_luminosite, :capteur_temperature, :capteur_humidite, :detecteur_mouvement, :detecteur_fumee, :camera, :actionneur)');
   $req -> execute(array('id_logement' => $id_logement,
@@ -198,7 +201,8 @@ function insert_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_lumin
 /*****************************************************************UPDATE***********************************************************************/
 
 // function qui met à jour les dispositifs présent dans les différentes pièces
-function update_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite, $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
+function update_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite,
+                          $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
   $req = $db -> prepare('UPDATE piece SET piece = :piece,
                         capteur_luminosite = :capteur_luminosite, capteur_temperature = :capteur_temperature,
                         capteur_humidite = :capteur_humidite, detecteur_mouvement = :detecteur_mouvement,
@@ -224,7 +228,7 @@ function update_nb_piece($db, $id_logement, $nb_piece) {
   return $req;
 }
 
-/*****************************************************************INSERT***********************************************************************/
+/*****************************************************************DELETE***********************************************************************/
 
 // function qui supprime une pièce d'un logement
 function delete_sensor_room($db, $id_logement, $id_piece) {
