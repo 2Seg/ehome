@@ -8,9 +8,9 @@ require("views/commun.php");
 require("modeles/db_access.php");
 
 if (isset($_SESSION['type'])) {
-  // visiteur connecté
+
+/*********************************************************PARTIE USER*********************************************************************/
   if ($_SESSION['type'] == 'user') {
-    // user connecté
     if(isset($_GET['cible'])) {
       if ($_GET['cible'] == 'home') {
         include 'views/home.php';
@@ -18,6 +18,8 @@ if (isset($_SESSION['type'])) {
         include('views/about-us.php');
       } elseif ($_GET['cible'] == 'products') {
         include('views/products.php');
+      } elseif ($_GET['cible'] == 'connect') {
+        include("views/home_user.php");
       } elseif ($_GET['cible'] == 'disconnect') {
         include('controlers/disconnect.php');
       } elseif ($_GET['cible'] == 'sensors') {
@@ -26,8 +28,6 @@ if (isset($_SESSION['type'])) {
         include("views/actuators.php");
       } elseif ($_GET['cible'] == 'cameras') {
         include("views/cameras.php");
-      } elseif ($_GET['cible'] == 'connect') {
-        include("views/home_user.php");
       } elseif ($_GET['cible'] == 'legal_information') {
         include("views/legal_information.php");
       }
@@ -69,10 +69,12 @@ if (isset($_SESSION['type'])) {
         include ('views/error.php');
       }
     } else {
-      include ('views/home_user.php');
+      include ('views/error.php');
     }
-  } elseif ($_SESSION['type'] == 'admin') {
-    // admin connecté
+  }
+
+/*********************************************************PARTIE ADMIN*********************************************************************/
+  elseif ($_SESSION['type'] == 'admin') {
     if(isset($_GET['cible'])) {
       if ($_GET['cible'] == 'home') {
         include 'views/home.php';
@@ -80,6 +82,8 @@ if (isset($_SESSION['type'])) {
         include('views/about-us.php');
       } elseif ($_GET['cible'] == 'products') {
         include('views/products.php');
+      } elseif ($_GET['cible'] == 'connect') {
+        include("views/home_admin.php");
       } elseif ($_GET['cible'] == 'disconnect') {
         include('controlers/disconnect.php');
       } elseif ($_GET['cible'] == 'sensors') {
@@ -88,8 +92,6 @@ if (isset($_SESSION['type'])) {
         include("views/actuators.php");
       } elseif ($_GET['cible'] == 'cameras') {
         include("views/cameras.php");
-      } elseif ($_GET['cible'] == 'connect') {
-        include("views/home_admin.php");
       } elseif ($_GET['cible'] == 'legal_information') {
         include("views/legal_information.php");
       }
@@ -100,51 +102,13 @@ if (isset($_SESSION['type'])) {
         include ('views/error.php');
       }
     } else {
-      include ('views/home.php');
-    }
-  } else {
-    if(isset($_GET['cible'])) {
-      if ($_GET['cible'] == 'home') {
-        include 'views/home.php';
-      } elseif ($_GET['cible'] == 'about-us') {
-        include('views/about-us.php');
-      } elseif ($_GET['cible'] == 'products') {
-        include('views/products.php');
-      } elseif ($_GET['cible'] == 'join-us') {
-        include('views/join-us_type.php');
-      } elseif ($_GET['cible'] == 'join-us_type') {
-        include('views/join-us_type.php');
-      } elseif ($_GET['cible'] == 'join-us_user') {
-        include('views/join-us_user.php');
-      } elseif ($_GET['cible'] == 'join-us_admin') {
-        include('views/join-us_admin.php');
-      } elseif($_GET['cible'] == 'join-us_success') {
-        include('views/join-us_success.php');
-      } elseif ($_GET['cible'] == 'signin') {
-        include("views/signin.php");
-      } elseif ($_GET['cible'] == 'connect') {
-        include('controlers/signin.php');
-      } elseif ($_GET['cible'] == 'subscribe') {
-        include('controlers/subscribe_user.php');
-      } elseif ($_GET['cible'] == 'sensor_choice') {
-        include('controlers/sensor_choice.php');
-      } elseif ($_GET['cible'] == 'sensors') {
-        include("views/sensors.php");
-      } elseif ($_GET['cible'] == 'actuators') {
-        include("views/actuators.php");
-      } elseif ($_GET['cible'] == 'cameras') {
-        include("views/cameras.php");
-      } elseif ($_GET['cible'] == 'legal_information') {
-        include("views/legal_information.php");
-      }
-      else {
-        include ('views/error.php');
-      }
-    } else {
-      include ('views/home.php');
+      include ('views/error.php');
     }
   }
-} else {
+}
+
+/*********************************************************PARTIE VISITEUR*********************************************************************/
+else {
   if(isset($_GET['cible'])) {
     if ($_GET['cible'] == 'home') {
       include 'views/home.php';
