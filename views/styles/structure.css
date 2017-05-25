@@ -25,9 +25,9 @@ body
 
 #content
 {
-  padding-bottom: 200px;
-  margin: auto;
   position: relative;
+  margin-top: 70px;
+  margin-bottom: 70px;
 }
 
 /*****************************************************************MENU***********************************************************************/
@@ -48,7 +48,8 @@ body
   /*border: 5px solid green;*/
 }
 
-.menu_profil {
+.menu_profil
+{
   position: absolute;
   right: 1.5%;
 }
@@ -220,6 +221,8 @@ margin-right: 0px;
   margin-right: 20px;
   padding-left: 30px;
   padding-right: 30px;
+  /*
+  border: 4px solid yellow;*/
 }
 
 .map
@@ -227,6 +230,9 @@ margin-right: 0px;
   width: 90px;
   height: 60px;
   box-shadow: 4px 4px 12px rgb(12,12,12);
+  /*
+  border: 4px solid yellow;*/
+
 }
 
 
@@ -258,7 +264,7 @@ section
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
-  margin-bottom: 0px;
+
   width: 80%;
   border-width: 1px;
   border-color: rgba(155,155,155,0.75);
