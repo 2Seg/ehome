@@ -48,9 +48,11 @@ function type_user() {
   ob_start();
   ?>
   <section>
-    <h3>Vous êtes : </h3>
-    <a href="index.php?cible=join-us_user">Utilisateur</a>
-    <a href="index.php?cible=join-us_admin">Administrateur</a>
+    <article>
+      <h3>Vous êtes ?</h3>
+      <a href="index.php?cible=join-us_user">Utilisateur</a>
+      <a href="index.php?cible=join-us_admin">Administrateur</a>
+  </article>
   </section>
   <?php
   $contenu = ob_get_clean();
