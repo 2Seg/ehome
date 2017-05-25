@@ -11,27 +11,15 @@
 
 body
 {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-
-}
-
-.corps
-{
   font-family: 'gr-book';
   margin: 0;
   padding: 0;
-  min-height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+
   background-repeat: no-repeat;
-  background-image:url("2.jpg");
+  background-image:url("3.jpg");
   background-attachment: fixed;
-  overflow:auto;
+/*
+  border: 4px solid pink;*/
 }
 
 
@@ -55,6 +43,7 @@ body
   align-items: center;
   margin: auto;
   height: 10%;
+  padding-bottom: 5px;
   box-shadow: 0px 3px 12px rgb(60,60,60);
   /*border: 5px solid green;*/
 }
@@ -118,6 +107,7 @@ body
   margin: 0;
   padding: 13px;
 
+
   box-shadow: 0px 3px 12px rgb(20,20,20) inset;
 }
 
@@ -162,7 +152,6 @@ margin-right: 30px;
   justify-content: center;
   margin: 0;
   padding: 13px;
-
   box-shadow: 0px 3px 12px rgb(20,20,20) inset;
 }
 
@@ -184,8 +173,8 @@ margin-right: 0px;
 .menu_user_elements
 {
   list-style: none;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
   padding: 8px;
 }
 
@@ -208,12 +197,14 @@ margin-right: 0px;
   justify-content: center;
   align-items: center;
   height: 120px;
-  width: 100%;
 
-  margin-bottom:0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
   padding-left: 0px;
 
   box-shadow: 0px 4px 12px rgb(12,12,12) inset;
+/*
+  border: 4px solid yellow;*/
 }
 
 .footer_elements
@@ -256,13 +247,16 @@ article
   border-style: solid;
   border-radius: 7px;
   box-shadow: 3px 3px 10px rgb(80,80,80);
+  /*
+  border: 4px solid blue;*/
 }
 
 section
 {
   background-color: rgba(229,229, 229, 0.75);
   padding: 15px;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 50px;
   margin-bottom: 0px;
   width: 80%;
@@ -270,6 +264,8 @@ section
   border-color: rgba(155,155,155,0.75);
   border-style: solid;
   border-radius: 7px;
+/*
+  border: 4px solid violet;*/
 }
 /************************************************************************ABOUT_US**********************************************************************/
 
@@ -340,41 +336,11 @@ section
 
 /************************************************************************HOME**********************************************************************/
 
-.bandeau_info
-{
-/*
-  margin-left: auto;
-  margin-right: auto;
-
-
-  padding-left: 100px;
-  padding-right: 100px;
-  background-color: white;
-*/
-  display: none;
-}
-
 .titre_section_home
 {
   color: rgb(210, 0, 0);
-/*
-  border: 4px solid red;
-  */
   text-align: left;
 }
-
-/*
-.article_home
-{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  text-align: justify;
-  border: 4px solid green;
-}
-*/
-
-
 
 /************************************************************FORMULAIRE********************************************************************/
 textarea
