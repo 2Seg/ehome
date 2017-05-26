@@ -9,7 +9,7 @@ function menu() {
   ob_start();
   ?>
     <ul class="menu">
-      <li class="li_logo_menu"><a  href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
       <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
       <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
@@ -17,16 +17,16 @@ function menu() {
       if($_SESSION['type'] == 'user') {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'madame') {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } elseif ($_SESSION['type'] == 'admin') {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'madame') {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_elements"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } else {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
@@ -48,11 +48,15 @@ function type_user() {
   ob_start();
   ?>
   <section>
-    <article>
-      <h3>Vous êtes ?</h3>
-      <a href="index.php?cible=join-us_user">Utilisateur</a>
-      <a href="index.php?cible=join-us_admin">Administrateur</a>
-  </article>
+  <fieldset>
+    <legend><h2>Vous êtes</h2></legend>
+    <form method="post" action="index.php?cible=join-us_user">
+      <input type="submit" value="Utilisateur">
+    </form>
+    <form method="post" action="index.php?cible=join-us_admin">
+      <input type="submit" value="Administrateur">
+    </form>
+  </fieldset>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -65,9 +69,7 @@ function menu_products() {
   ?>
     <ul class="menu_products">
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=sensors"> Capteurs </a></li>
-      <div class="trait"></div>
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=actuators"> Actionneurs </a></li>
-      <div class="trait"></div>
       <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=cameras"> Caméras </a></li>
     </ul>
     <?php
@@ -75,41 +77,6 @@ function menu_products() {
   return $menu;
 }
 
-// fonction affichant le menu utilisateur (une fois qu'il est connecté)
-function menu_user($type) {
-  ob_start();
-  if($type == 'user') {?>
-    <ul class="menu_user">
-      <li class="menu_user_elements"><a href="index.php?cible=home_user" class="text_menu_user">Mon domicile</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=home_management" class="text_menu_user">Gestion du domicile</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=notif_user" class="text_menu_user">Notifications</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=info_user" class="text_menu_user">Mes informations</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=subcription_user" class="text_menu_user">Mon abonnement</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=messaging_user" class="text_menu_user">Messagerie</a></li>
-    </ul>
-  <?php
-  } elseif ($type == 'admin') {?>
-    <ul class="menu_user">
-      <li class="menu_user_elements"><a href="index.php?cible=home_admin" class="text_menu_user">Vue d'ensemble</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=notification" class="text_menu_user">Notifications</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
-    </ul>
-  <?php
-  }
-  $menu = ob_get_clean();
-  return $menu;
-}
 
 function footer() {
   ob_start();
@@ -117,7 +84,7 @@ function footer() {
 	<ul class="footer">
     <ul>
 		  <li class="footer_elements">Localisation</li>
-		  <li class="footer_elements"><p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
+		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
     </ul>
 
     <ul>
@@ -134,6 +101,7 @@ function footer() {
   $footer = ob_get_clean();
   return $footer;
 }
+
 
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur
@@ -173,6 +141,7 @@ function form_signin($erreur) {
   $formulaire = ob_get_clean();
   return $formulaire;
 }
+
 
 // fonction qui génère l'affichage du formulaire d'inscription en fonction du type de personne qui s'inscrit (admnistrateur ou utilisateur)
 // génère par défaut l'affichage du formulaire utilisateur
@@ -359,6 +328,7 @@ function form_subscribe_user() {
   $formulaire = ob_get_clean();
   return $formulaire;
 }
+
 
 function form_subscribe_admin() {
   ob_start();
@@ -632,6 +602,33 @@ function erase_sensor_room() {
   return $formulaire;
 }
 
+// fonction affichant le menu utilisateur (une fois qu'il est connecté)
+function menu_user($type) {
+  ob_start();
+  if($type == 'user') {?>
+    <ul class="menu_products">
+      <li class="menu_products_elements"><a href="index.php?cible=home_user" class="text_menu_products">Mon domicile</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=home_management" class="text_menu_products">Gestion du domicile</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=notif_user" class="text_menu_products">Notifications</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=info_user" class="text_menu_products">Mes informations</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=subcription_user" class="text_menu_products">Mon abonnement</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=messaging_user" class="text_menu_products">Messagerie</a></li>
+    </ul>
+  <?php
+  } elseif ($type == 'admin') {?>
+    <ul class="menu_products">
+      <li class="menu_products_elements"><a href="index.php?cible=home_admin" class="text_menu_products">Vue d'ensemble</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=user_management" class="text_menu_products">Gestion des utilisateurs</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=notification" class="text_menu_products">Notifications</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=security" class="text_menu_products">Sécurité</a></li>
+      <li class="menu_products_elements"><a href="index.php?cible=messaging" class="text_menu_products">Messagerie</a></li>
+    </ul>
+  <?php
+  }
+  $menu = ob_get_clean();
+  return $menu;
+}
+
 // fonction qui récupère la date du jour
 function current_date() {
   $now = getdate();
@@ -793,6 +790,7 @@ function content_actuators() {
   $contenu = ob_get_clean();
   return $contenu;
 }
+
 
 function content_cameras() {
   ob_start();
@@ -1077,6 +1075,7 @@ function content_products() {
   return $contenu;
 }
 
+
 function content_sensors() {
   ob_start();
   ?>
@@ -1123,6 +1122,7 @@ function content_sensors() {
   $contenu = ob_get_clean();
   return $contenu;
 }
+
 
 function content_home() {
   ob_start();
@@ -1195,6 +1195,7 @@ function content_legal_information() {
   $contenu = ob_get_clean();
   return $contenu;
 }
+
 
 function content_about_us(){
   ob_start();
