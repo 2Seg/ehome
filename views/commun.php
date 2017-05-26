@@ -117,7 +117,7 @@ function footer() {
 	<ul class="footer">
     <ul>
 		  <li class="footer_elements">Localisation</li>
-		  <li class="footer_elements"><p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
+		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
     </ul>
 
     <ul>
@@ -1158,8 +1158,6 @@ function content_home() {
       <p>M.T (La Garenne 92)</p>
     </article>
   </section>
-
-  <p><img class="bandeau_info" src="views\ressources\images\bandeau_info.png" alt="bandeau d'information"/></p>
 
  <?php
   $contenu = ob_get_clean();
