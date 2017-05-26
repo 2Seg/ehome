@@ -76,46 +76,56 @@ function select_general_info_user($db, $id) {
                         WHERE utilisateur.id = ?');
   $req -> execute(array($id));
   while($data = $req -> fetch()) {
-    $info[] = $data;
+    $info = $data;
   }
   return $info;
 }
 
-// fonction récupérant les informations générales de l'utilisateur pour affichage sur la page d'accueil utilisateur
-function select_info_admin($db, $id) {
-  $req = $db -> prepare('SELECT civilite, nom, prenom, pays FROM administrateur WHERE identifiant = ?');
+// fonction récupérant les informations générales de l'utilisateur pour affichage sur la page d'accueil administrateur
+function select_general_info_admin($db, $id) {
+  $info = array();
+  $req = $db -> prepare('SELECT id, civilite, nom, prenom, pays, identifiant, mot_de_passe FROM administrateur WHERE id = ?');
   $req -> execute(array($id));
-  return $req;
+  while($data = $req -> fetch()) {
+    $info = $data;
+  }
+  return $info;
 }
 
 // fonction récupérant les informations du domicile l'utilisateur pour affichage sur la page "Gestion du domicile"
 function select_info_home($db, $id) {
+  $info = array();
   $req = $db -> prepare('SELECT utilisateur.id, logement.adresse, logement.code_postal, logement.ville, logement.pays,
                         logement.nb_habitant, logement.nb_piece, logement.superficie
                         FROM utilisateur INNER JOIN logement ON utilisateur.id = logement.id_user
                         WHERE utilisateur.id = ?');
   $req -> execute(array($id));
-  return $req;
+  while($data = $req -> fetch()) {
+    $info = $data;
+  }
+  return $info;
 }
 
-// fonction récupérant des données de la 1ère pièce d'un logement pour tester si elles existent en conséquence
-function test_data_room($db, $id_logement) {
-  $req = $db -> prepare('SELECT logement.id_user, piece.id_piece
-                        FROM piece INNER JOIN logement ON piece.id_logement = logement.id_user
-                        WHERE piece.id_logement = ?');
+// fonction récupérant les informations NON INTERPRETEES sur les pièces du logement
+function select_info_room($db, $id_logement) {
+  $info = array();
+  $req = $db -> prepare('SELECT * FROM piece WHERE piece.id_logement = ?');
   $req -> execute(array($id_logement));
   return $req;
 }
 
+function count_piece($db, $id_logement) {
+  $info = array();
+  $req = $db -> prepare('SELECT COUNT(piece) AS nb_piece FROM piece WHERE id_logement = ?');
+  $req -> execute(array($id_logement));
+  $nb_piece = $req -> fetch();
+  return $nb_piece;
+}
 
-// fonction récupérant les informations sur les dispositifs présent dans une pièce du logement
-function select_info_room($db, $id_logement, $id_piece) {
-  $req = $db -> prepare('SELECT logement.id_user, piece.id_piece, piece.piece, piece.capteur_luminosite,
-                        piece.capteur_temperature, piece.capteur_humidite, piece.detecteur_mouvement, piece.detecteur_fumee,
-                        piece.camera, piece.actionneur
-                        FROM piece INNER JOIN logement ON piece.id_logement = logement.id_user
-                        WHERE piece.id_logement = :id_logement AND piece.id_piece = :id_piece');
-  $req -> execute(array('id_logement' => $id_logement, 'id_piece' => $id_piece));
+function select_info_device($db, $id_piece) {
+  $info = array();
+  $req = $db -> prepare('SELECT * FROM dispositif WHERE id_piece = ?');
+  $req -> execute(array($id_piece));
   return $req;
 }
 

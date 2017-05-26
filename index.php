@@ -97,7 +97,7 @@ if (isset($_SESSION['type'])) {
       }
 
       elseif ($_GET['cible'] == 'home_admin') {
-        include("views/home_admin.php");
+        include("controlers/home_admin.php");
       } else {
         include ('views/error.php');
       }

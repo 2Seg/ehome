@@ -8,7 +8,7 @@ $titre = 'Domicile de '.$_SESSION['identifiant'];
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
-$contenu = my_home();
+$contenu = my_notif();
 $contenu .= my_basic_info($general_info_user);
 
 $footer = footer();

@@ -3,18 +3,10 @@
 controleur gérant l'extraction des données néccessaires pour l'affichage de la page "home_admin.php"
 */
 
-$donnees2 = select_info_admin($bdd, $_SESSION['id']);
+include_once('modeles/functions.php');
 
-$ligne = $donnees2 -> fetch();
+$general_info_admin = select_general_info_admin($bdd, $_SESSION['id']);
 
-$_SESSION['civilite'] = htmlspecialchars($ligne['civilite']);
-$_SESSION['nom'] = htmlspecialchars($ligne['nom']);
-$_SESSION['prenom'] = htmlspecialchars($ligne['prenom']);
-$_SESSION['identifiant'] = htmlspecialchars($ligne['identifiant']);
-$_SESSION['date_naissance'] = htmlspecialchars($ligne['date_naissance']);
-$_SESSION['nationalite'] = htmlspecialchars($ligne['nationalite']);
-$_SESSION['pays'] = htmlspecialchars($ligne['pays']);
-$_SESSION['mail'] = htmlspecialchars($ligne['mail']);
-$_SESSION['telephone'] = htmlspecialchars($ligne['telephone']);
+$_SESSION['civilite'] = $general_info_admin['civilite'];
 
 include('views/home_admin.php');

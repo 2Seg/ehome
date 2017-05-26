@@ -205,9 +205,9 @@ function form_subscribe_user() {
       <legend><h3>Informations personnelles</h3></legend>
         <p>
           <label for="civilité"> Civilité <br/>
-          <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
+          <input type="radio" name="civilite" value="Monsieur" id="monsieur"/>
           <label for="monsieur">Monsieur</label><br/>
-          <input type="radio" name="civilite" value="madame" id="madame"/>
+          <input type="radio" name="civilite" value="Madame" id="madame"/>
           <label for="madame">Madame</label>
         </p>
         <p>
@@ -231,36 +231,36 @@ function form_subscribe_user() {
           <select name="pays_user" id="pays_user" required>
             <option value="placeholder" selected>-- Sélectionnez un pays --</option>
             <optgroup label="Europe">
-              <option value="allemagne">Allemagne</option>
-              <option value="autriche">Autriche</option>
-              <option value="belgique">Belgique</option>
-              <option value="bulgarie">Bulgarie</option>
-              <option value="chypre">Chypre</option>
-              <option value="croatie">Croatie</option>
-              <option value="danemark">Danemark</option>
-              <option value="espagne">Espagne</option>
-              <option value="estonie">Estonie</option>
-              <option value="finlande">Finlande</option>
-              <option value="france">France</option>
-              <option value="grece">Grèce</option>
-              <option value="hongrie">Hongrie</option>
-              <option value="irlande">Irlande</option>
-              <option value="italie">Italie</option>
-              <option value="lettonie">Lettonie</option>
-              <option value="lituanie">Lituanie</option>
-              <option value="luxembourg">Luxembourg</option>
-              <option value="malte">Malte</option>
-              <option value="norvege">Norvège</option>
-              <option value="paysBas">Pays-Bas</option>
-              <option value="pologne">Pologne</option>
-              <option value="portugal">Portugal</option>
-              <option value="république_tchèque">République tchèque</option>
-              <option value="roumanie">Roumanie</option>
-              <option value="royaume_uni">Royaume-Uni</option>
-              <option value="slovaquie">Slovaquie</option>
-              <option value="slovenie">Slovénie</option>
-              <option value="suede">Suède</option>
-              <option value="suisse">Suisse</option>
+              <option value="Allemagne">Allemagne</option>
+              <option value="Autriche">Autriche</option>
+              <option value="Belgique">Belgique</option>
+              <option value="Bulgarie">Bulgarie</option>
+              <option value="Chypre">Chypre</option>
+              <option value="Croatie">Croatie</option>
+              <option value="Danemark">Danemark</option>
+              <option value="Espagne">Espagne</option>
+              <option value="Estonie">Estonie</option>
+              <option value="Finlande">Finlande</option>
+              <option value="France">France</option>
+              <option value="Grece">Grèce</option>
+              <option value="Hongrie">Hongrie</option>
+              <option value="Irlande">Irlande</option>
+              <option value="Italie">Italie</option>
+              <option value="Lettonie">Lettonie</option>
+              <option value="Lituanie">Lituanie</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malte">Malte</option>
+              <option value="Norvege">Norvège</option>
+              <option value="Pays-Bas">Pays-Bas</option>
+              <option value="Pologne">Pologne</option>
+              <option value="Portugal">Portugal</option>
+              <option value="République-Tchèque">République tchèque</option>
+              <option value="Roumanie">Roumanie</option>
+              <option value="Royaume-Uni">Royaume-Uni</option>
+              <option value="Slovaquie">Slovaquie</option>
+              <option value="Slovenie">Slovénie</option>
+              <option value="Suede">Suède</option>
+              <option value="Suisse">Suisse</option>
             </optgroup>
           </select>
         </p>
@@ -305,36 +305,36 @@ function form_subscribe_user() {
           <select name="pays_logement" id="pays_logement" required>
             <option value="placeholder" selected>-- Sélectionnez un pays --</option>
             <optgroup label="Europe">
-              <option value="allemagne">Allemagne</option>
-              <option value="autriche">Autriche</option>
-              <option value="belgique">Belgique</option>
-              <option value="bulgarie">Bulgarie</option>
-              <option value="chypre">Chypre</option>
-              <option value="croatie">Croatie</option>
-              <option value="danemark">Danemark</option>
-              <option value="espagne">Espagne</option>
-              <option value="estonie">Estonie</option>
-              <option value="finlande">Finlande</option>
-              <option value="france">France</option>
-              <option value="grece">Grèce</option>
-              <option value="hongrie">Hongrie</option>
-              <option value="irlande">Irlande</option>
-              <option value="italie">Italie</option>
-              <option value="lettonie">Lettonie</option>
-              <option value="lituanie">Lituanie</option>
-              <option value="luxembourg">Luxembourg</option>
-              <option value="malte">Malte</option>
-              <option value="norvege">Norvège</option>
-              <option value="paysBas">Pays-Bas</option>
-              <option value="pologne">Pologne</option>
-              <option value="portugal">Portugal</option>
-              <option value="république_tchèque">République tchèque</option>
-              <option value="roumanie">Roumanie</option>
-              <option value="royaume_uni">Royaume-Uni</option>
-              <option value="slovaquie">Slovaquie</option>
-              <option value="slovenie">Slovénie</option>
-              <option value="suede">Suède</option>
-              <option value="suisse">Suisse</option>
+              <option value="Allemagne">Allemagne</option>
+              <option value="Autriche">Autriche</option>
+              <option value="Belgique">Belgique</option>
+              <option value="Bulgarie">Bulgarie</option>
+              <option value="Chypre">Chypre</option>
+              <option value="Croatie">Croatie</option>
+              <option value="Danemark">Danemark</option>
+              <option value="Espagne">Espagne</option>
+              <option value="Estonie">Estonie</option>
+              <option value="Finlande">Finlande</option>
+              <option value="France">France</option>
+              <option value="Grece">Grèce</option>
+              <option value="Hongrie">Hongrie</option>
+              <option value="Irlande">Irlande</option>
+              <option value="Italie">Italie</option>
+              <option value="Lettonie">Lettonie</option>
+              <option value="Lituanie">Lituanie</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malte">Malte</option>
+              <option value="Norvege">Norvège</option>
+              <option value="Pays-Bas">Pays-Bas</option>
+              <option value="Pologne">Pologne</option>
+              <option value="Portugal">Portugal</option>
+              <option value="République-Tchèque">République tchèque</option>
+              <option value="Roumanie">Roumanie</option>
+              <option value="Royaume-Uni">Royaume-Uni</option>
+              <option value="Slovaquie">Slovaquie</option>
+              <option value="Slovenie">Slovénie</option>
+              <option value="Suede">Suède</option>
+              <option value="Suisse">Suisse</option>
             </optgroup>
           </select>
         </p>
@@ -388,9 +388,9 @@ function form_subscribe_admin() {
       <legend>Informations personnelles</legend>
         <p>
           <label for="civilité"> Civilité <br/>
-          <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
+          <input type="radio" name="civilite" value="Monsieur" id="monsieur"/>
           <label for="monsieur">Monsieur</label><br/>
-          <input type="radio" name="civilite" value="madame" id="madame"/>
+          <input type="radio" name="civilite" value="Madame" id="madame"/>
           <label for="madame">Madame</label>
         </p>
         <p>
@@ -468,67 +468,50 @@ function form_subscribe_admin() {
   return $contenu;
 }
 
-// fonction qui génère un formulaire en fonction du nb de pièces en entrée
-function form_sensor_room() {
+// fonction responsable de l'affichage du bloc "Pièce(s)" dans home_management.php
+function my_piece($info_home, $data_room, $info_device) {
   ob_start();
   ?>
   <section>
-  <form method="post" action='index.php?cible=control_sensor_add'>
-    <fieldset>
-      <legend><h3>Zone d'ajout</h3></legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
+    <h3><?php if($info_home['nb_piece'] == 1) {
+                echo('Pièce');
+                } else {
+                  echo('Pièces');
+                }?>
+    </h3>
+    <?php
+    if ($info_home['nb_piece'] == 0) {
       ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-      </tr>
+      <h2>Veuillez ajouter des pièces pour affichage des données</h2>
+      <p><a class="button" href="index.php?cible=room_add">Ajouter</a></p>
+      <?php
+    } else {
+      while($info_room = $data_room -> fetch()) {
+        ?>
+        <article>
+          <strong><?php echo($info_room['piece'].'<br/>'); ?></strong>
+          <?php
+          if(count($info_device) == 0) {
+            echo('<h3>Aucun dispositif</h3>');
+          } else {
+            for($i = 0; $i <= count($info_device); $i++) {
 
-      <?php
+            }
+          }
+
+
+
+          ?>
+        </article>
+        <?php
       }
-      ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
+    }
+     ?>
   <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
+  $content = ob_get_clean();
+  return $content;
 }
+
 
 // function qui génère un formulaire de mise à jour des dispositifs dans les pièces
 function edit_sensor_room() {
@@ -683,8 +666,8 @@ function current_date() {
   return $date;
 }
 
-// fonction responsable de l'affichage du bloc "Mon domicile"
-function my_home() {
+// fonction responsable de l'affichage du bloc "Mon domicile" dans home_user.php
+function my_notif() {
   ob_start();
   ?>
   <section>
@@ -706,39 +689,33 @@ function my_basic_info($info_user) {
   ob_start();
 
   if ($_SESSION['type'] == 'user') {
-    foreach ($info_user as $info) {
     ?>
       <section>
       <article>
         <h3>Mes informations client</h3>
-        <p><strong>Civilité : </strong><?php echo($info['civilite']); ?></p>
-        <p><strong>Nom : </strong><?php echo($info['nom']); ?></p>
-        <p><strong>Prénom : </strong><?php echo($info['prenom']); ?></p>
-        <p><strong>Adresse : </strong><?php echo($info['adresse']); ?></p>
-        <p><strong>Code postal : </strong><?php echo($info['code_postal']); ?></p>
-        <p><strong>Ville : </strong><?php echo($info['ville']); ?></p>
-        <p><strong>Pays : </strong><?php echo($info['pays']); ?></p>
+        <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+        <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+        <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+        <p><strong>Adresse : </strong><?php echo($info_user['adresse']); ?></p>
+        <p><strong>Code postal : </strong><?php echo($info_user['code_postal']); ?></p>
+        <p><strong>Ville : </strong><?php echo($info_user['ville']); ?></p>
+        <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
 
-        <form method="post" action="index.php?cible=info_user">
-          <input type="submit" value="Voir les informations complètes">
-        </form>
+        <p><a href="index.php?cible=info_user">Voir les informations complètes</a></p>
       </article>
       </section>
     <?php
-    }
-  } else{
+  } else {
     ?>
     <section>
     <article>
       <h3>Mes informations administrateur</h3>
-      <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
-      <p><strong>Nom : </strong><?php echo($_SESSION['nom']); ?></p>
-      <p><strong>Prénom : </strong><?php echo($_SESSION['prenom']); ?></p>
-      <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
+      <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+      <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
 
-      <form method="post" action="index.php?cible=info_admin">
-        <input type="submit" value="Voir les informations complètes">
-      </form>
+      <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
     </article>
     </section>
     <?php
@@ -748,24 +725,21 @@ function my_basic_info($info_user) {
 }
 
 // fonction gérant l'affichage des informations sur le domicile utilisateur
-function my_home_information() {
+function my_home_info($info_home) {
   ob_start();
   ?>
   <section>
     <h3>Informations du logement</h3>
-    <p><strong>Adresse : </strong><?php echo($_SESSION['adresse']); ?></p>
-    <p><strong>Code postal : </strong><?php echo($_SESSION['code_postal']); ?></p>
-    <p><strong>Ville : </strong><?php echo($_SESSION['ville']); ?></p>
-    <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
-    <p><strong>Nombre d'habitant : </strong><?php echo($_SESSION['nb_habitant']); ?></p>
-    <p><strong>Nombre de pièce : </strong><?php echo($_SESSION['nb_piece']); ?></p>
-    <p><strong>Superficie : </strong><?php echo($_SESSION['superficie'].' m²'); ?></p>
+    <p><strong>Adresse : </strong><?php echo($info_home['adresse']); ?></p>
+    <p><strong>Code postal : </strong><?php echo($info_home['code_postal']); ?></p>
+    <p><strong>Ville : </strong><?php echo($info_home['ville']); ?></p>
+    <p><strong>Pays : </strong><?php echo($info_home['pays']); ?></p>
+    <p><strong>Nombre d'habitant : </strong><?php echo($info_home['nb_habitant']); ?></p>
+    <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
+    <p><strong>Nombre de pièce : </strong><?php echo($info_home['nb_piece']); ?></p>
 
-    <form method="post" action="index.php?cible=edit_info_home">
-      <input type="submit" value="Modifier les informations">
-    </form>
-
-  </section>
+    <p><a href="index.php?cible=edit_info_home">Modifier les informations</a></p>
+    </section>
   <?php
   $home = ob_get_clean();
   return $home;
