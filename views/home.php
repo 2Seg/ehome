@@ -12,7 +12,9 @@ if (isset($_SESSION['type'])) {
 
 $contenu = content_home('');
 
-$footer = footer();
+$footer = footer_s();
+$footer .= footer();
+
 
 include('gabarit.php');
 ?>

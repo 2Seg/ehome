@@ -135,6 +135,27 @@ function footer() {
   return $footer;
 }
 
+
+function footer_s() {
+  ob_start();
+	?>
+
+	<ul class="footer_s">
+    <h3 class="footer_s_text"> Suivez-nous sur les réseaux sociaux ! </h3>
+    <div class="flex_footer_s">
+      <li><a href="https://www.facebook.com/" target="_blank"><img class="facebook" src="views\ressources\icons\facebook.png" alt="Icon Facebook"  title="Cliquez ici pour accéder à notre page Facebook" /></a></li>
+      <li><a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="views\ressources\icons\Instagram.png" alt="Icon Instagram"  title="Cliquez ici pour accéder à notre page Instagram" /></a></li>
+      <li><a href="https://twitter.com/?lang=fr" target="_blank"><img class="twitter" src="views\ressources\icons\twitter.png" alt="Icon Twitter"  title="Cliquez ici pour accéder à notre page Twitter" /></a></li>
+      <li><a href="https://fr.linkedin.com/" target="_blank"><img class="linkedin" src="views\ressources\icons\linkedin.png" alt="Icon Linkedin"  title="Cliquez ici pour accéder à notre page Linkedin" /></a></li>
+      <li><a href="https://www.youtube.com/" target="_blank"><img class="youtube" src="views\ressources\icons\youtube.png" alt="Icon Youtube"  title="Cliquez ici pour accéder à notre chaîne Youtube" /></a></li>
+    </div>
+	</ul>
+	<?php
+  $footer = ob_get_clean();
+  return $footer;
+}
+
+
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur
 function form_signin($erreur) {
