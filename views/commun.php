@@ -469,11 +469,11 @@ function form_subscribe_admin() {
 }
 
 // fonction responsable de l'affichage du bloc "Pièce(s)" dans home_management.php
-function my_piece($info_home, $data_room, $info_device) {
+function my_room($my_home) {
   ob_start();
   ?>
   <section>
-    <h3><?php if($info_home['nb_piece'] == 1) {
+    <h3><?php if(count($my_home) == 1) {
                 echo('Pièce');
                 } else {
                   echo('Pièces');
@@ -482,17 +482,36 @@ function my_piece($info_home, $data_room, $info_device) {
     <?php
     if ($my_home == array()) {
       ?>
-      <h2>Veuillez ajouter des pièces pour affichage des données</h2>
-      <p><a class="button" href="index.php?cible=room_add">Ajouter</a></p>
+      <h2>Veuillez ajouter des pièces pour permettre d'afficher les données</h2>
+      <p><a class="button" href="index.php?cible=room_add">Ajouter</a></p></section>
       <?php
     } else {
-
-
-
-
-
+      for($i = 0; $i < count($my_home); $i++) {
+        if($i % 2 == 0) {
+          echo('<article><h3>'.$my_home[$i].'</h3>');
+        } else {
+          if($my_home[$i] == array()) {
+            echo('<h2>Aucun dispositif</h2>');
+            echo('<p><a class="button" href="index.php?cible=device_add">Ajouter</a></p></article>');
+          } else {
+            for($j = 0; $j < count($my_home[$i]); $j++) {
+              if($j % 2 == 0) {
+                echo('<p>'.$my_home[$i][$j].' x ');
+              } else {
+                echo($my_home[$i][$j].'</p>');
+              }
+            }
+            echo('<p><a class="button" href="index.php?cible=device_add">Ajouter</a></p>
+                  <p><a class="button" href="index.php?cible=device_edit">Modifier</a></p>
+                  <p><a class="button" href="index.php?cible=device_delete">Supprimer</a></p></article>');
+          }
+        }
+      }
+      echo('<p><a class="button" href="index.php?cible=room_add">Ajouter</a></p>
+            <p><a class="button" href="index.php?cible=room_edit">Modifier</a></p>
+            <p><a class="button" href="index.php?cible=room_delete">Supprimer</a></p></section>');
     }
-     
+
   $content = ob_get_clean();
   return $content;
 }

@@ -109,7 +109,7 @@ function select_info_home($db, $id) {
 // fonction récupérant les informations NON INTERPRETEES sur les pièces du logement
 function select_info_room($db, $id_logement) {
   $info = array();
-  $req = $db -> prepare('SELECT * FROM piece WHERE piece.id_logement = ?');
+  $req = $db -> prepare('SELECT * FROM piece WHERE piece.id_logement = ? ORDER BY id');
   $req -> execute(array($id_logement));
   return $req;
 }
@@ -124,7 +124,8 @@ function count_piece($db, $id_logement) {
 
 function select_info_device($db, $id_piece) {
   $info = array();
-  $req = $db -> prepare('SELECT * FROM dispositif WHERE id_piece = ?');
+  $req = $db -> prepare('SELECT COUNT(type_dispositif) AS nb, type_dispositif AS type FROM dispositif WHERE id_piece = ?
+                        GROUP BY type_dispositif ORDER BY type');
   $req -> execute(array($id_piece));
   return $req;
 }
