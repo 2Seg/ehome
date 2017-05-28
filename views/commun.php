@@ -50,9 +50,9 @@ function type_user() {
   <section>
     <article>
       <h3>Vous êtes ?</h3>
-      <a href="index.php?cible=join-us_user">Utilisateur</a>
+      <a href="index.php?cible=join-us_user">Utilisateur</a><br/>
       <a href="index.php?cible=join-us_admin">Administrateur</a>
-  </article>
+    </article>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -792,58 +792,6 @@ function my_home_information() {
   return $home;
 }
 
-function content_actuators() {
-  ob_start();
-  ?>
-  <section>
-    <h2 class="titre"> Nos actionneurs </h2>
-    <article class="products">
-      <div>
-        <h2 class="titre"> Actionneur volet roulant électrique </h2>
-        <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
-        <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
-      </div>
-    </article>
-    <article class="products">
-      <div>
-        <h2 class="titre"> Actionneur portail électrique </h2>
-        <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
-        <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
-      </div>
-    </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_cameras() {
-  ob_start();
-  ?>
-  <section>
-    <h2 class="titre"> Nos caméras </h2>
-    <article class="products">
-      <div>
-        <h2 class="titre">Caméra de surveillance</h2>
-        <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
-        <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
-      </div>
-    </article>
-    <article class="products">
-      <div>
-        <h2 class="titre">Caméra de palier </h2>
-        <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
-        <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
-      </div>
-    </article>
-  </section>
-
-  <?php
-
-  $home = ob_get_clean();
-  return $home;
-}
-
 // fonction gérant l'affichage des informations sur les capteurs présents dans les pièces d'un logement
 function my_sensor_room() {
   ob_start();
@@ -1079,15 +1027,15 @@ function content_products() {
       chacun d’entre eux.</p>
       Elle permet d’accommoder les nécessités individuelles :
     <ul>
-      <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
-      <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
-      <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
+      <li> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
+      <li> Vous êtes une personne à mobilité réduite </li>
+      <li> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
     </ul>
     Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
     <ul>
-      <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
-      <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
-      <li class = "element_products"> Caméras : pour la surveillance</li>
+      <li> Capteurs : de luminosité, de température, de mouvement.</li>
+      <li> Actionneurs : volets, portail, garage.</li>
+      <li> Caméras : pour la surveillance</li>
     </ul>
 
     <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
@@ -1105,39 +1053,49 @@ function content_sensors() {
   ?>
   <section>
     <h2 class="titre"> Nos capteurs </h2>
-    <article class="products">
-      <div>
-        <h2 class="titre">Capteur de luminosité</h2>
-        <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre">Capteur de luminosité</h2>
+          <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
+        </div>
         <img class="image_products" src="views/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
       </div>
     </article>
-    <article class="products">
-      <div>
-        <h2 class="titre">Capteur de température</h2>
-        <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre">Capteur de température</h2>
+          <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
+        </div>
         <img class="image_products" src="views/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
       </div>
     </article>
-    <article class="products">
-      <div>
-        <h2 class="titre">Capteur d'humidité</h2>
-        <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
-        <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre">Capteur d'humidité</h2>
+          <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
+        </div>
+      <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
       </div>
     </article>
-    <article class="products">
-      <div>
-        <h2 class="titre">Detecteur de mouvement</h2>
-        <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre">Detecteur de mouvement</h2>
+          <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
            et sera relié au système de sécurité pour prévenir les intrusions.</p>
+        </div>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_mouv.jpg" alt="detecteur mouv" title="detecteur mouv">
       </div>
     </article>
-    <article class="products">
-      <div>
-        <h2 class="titre">Détecteur de fumée</h2>
-        <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre">Détecteur de fumée</h2>
+          <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
+        </div>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
       </div>
     </article>
@@ -1145,6 +1103,64 @@ function content_sensors() {
   <?php
   $contenu = ob_get_clean();
   return $contenu;
+}
+
+function content_actuators() {
+  ob_start();
+  ?>
+  <section>
+    <h2 class="titre"> Nos actionneurs </h2>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre"> Actionneur volet roulant électrique </h2>
+          <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre"> Actionneur portail électrique </h2>
+          <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
+      </div>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_cameras() {
+  ob_start();
+  ?>
+  <section>
+    <h2 class="titre"> Nos caméras </h2>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre">Caméra de surveillance</h2>
+          <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2 class="titre">Caméra de palier </h2>
+          <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
+      </div>
+    </article>
+  </section>
+  <?php
+  $home = ob_get_clean();
+  return $home;
 }
 
 function content_home() {
