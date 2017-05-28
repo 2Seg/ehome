@@ -480,34 +480,19 @@ function my_piece($info_home, $data_room, $info_device) {
                 }?>
     </h3>
     <?php
-    if ($info_home['nb_piece'] == 0) {
+    if ($my_home == array()) {
       ?>
       <h2>Veuillez ajouter des pièces pour affichage des données</h2>
       <p><a class="button" href="index.php?cible=room_add">Ajouter</a></p>
       <?php
     } else {
-      while($info_room = $data_room -> fetch()) {
-        ?>
-        <article>
-          <strong><?php echo($info_room['piece'].'<br/>'); ?></strong>
-          <?php
-          if(count($info_device) == 0) {
-            echo('<h3>Aucun dispositif</h3>');
-          } else {
-            for($i = 0; $i <= count($info_device); $i++) {
-
-            }
-          }
 
 
 
-          ?>
-        </article>
-        <?php
-      }
+
+
     }
-     ?>
-  <?php
+     
   $content = ob_get_clean();
   return $content;
 }
