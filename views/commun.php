@@ -483,7 +483,7 @@ function my_room($my_home) {
     if ($my_home == array()) {
       ?>
       <h2>Veuillez ajouter des pièces pour permettre d'afficher les données</h2>
-      <p><a class="button" href="index.php?cible=room_add">Ajouter</a></p></section>
+      <p><a href="index.php?cible=room_add"><button>Ajouter</button></p></section>
       <?php
     } else {
       for($i = 0; $i < count($my_home); $i++) {
@@ -491,8 +491,10 @@ function my_room($my_home) {
           echo('<article><h3>'.$my_home[$i].'</h3>');
         } else {
           if($my_home[$i] == array()) {
-            echo('<h2>Aucun dispositif</h2>');
-            echo('<p><a class="button" href="index.php?cible=device_add">Ajouter</a></p></article>');
+            ?>
+            <h2>Aucun dispositif</h2>
+            <p><a href='index.php?cible=device_add&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Ajouter</button></a></p></article>
+            <?php
           } else {
             for($j = 0; $j < count($my_home[$i]); $j++) {
               if($j % 2 == 0) {
@@ -501,15 +503,19 @@ function my_room($my_home) {
                 echo($my_home[$i][$j].'</p>');
               }
             }
-            echo('<p><a class="button" href="index.php?cible=device_add">Ajouter</a></p>
-                  <p><a class="button" href="index.php?cible=device_edit">Modifier</a></p>
-                  <p><a class="button" href="index.php?cible=device_delete">Supprimer</a></p></article>');
+            ?>
+            <p><a href='index.php?cible=device_add&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Ajouter</button></a></p>
+            <p><a href='index.php?cible=device_edit&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Modifier</button></a></p>
+            <p><a href='index.php?cible=device_delete&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Supprimer</button></a></p></article>
+            <?php
           }
         }
       }
-      echo('<p><a class="button" href="index.php?cible=room_add">Ajouter</a></p>
-            <p><a class="button" href="index.php?cible=room_edit">Modifier</a></p>
-            <p><a class="button" href="index.php?cible=room_delete">Supprimer</a></p></section>');
+      ?>
+      <p><a href='index.php?cible=room_add'><button>Ajouter</button></a></p>
+      <p><a href='index.php?cible=room_edit'><button>Modifier</button></a></p>
+      <p><a href='index.php?cible=room_delete'><button>Supprimer</button></a></p></section>
+    <?php
     }
 
   $content = ob_get_clean();
