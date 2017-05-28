@@ -28,6 +28,8 @@ body
   position: relative;
   margin-top: 70px;
   margin-bottom: 70px;
+/*
+  border: 4px solid green;*/
 }
 
 /*****************************************************************MENU***********************************************************************/
@@ -400,23 +402,29 @@ section
   color: rgb(210,0,0);
 }
 
-.element_products
-{
-  list-style-type: disc;
-}
-
 .titre
 {
-    color: rgb(210,0,0);
+  color: rgb(210,0,0);
+  text-align: left;
 }
 
-.products
+.flex_products
 {
   display: flex;
-  flex-direction: row;
-  /*justify-content: space-around;*/
-  /*align-items: center;*/
+  justify-content: space-between;
+}
 
+.flex_products2
+{
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.image_products
+{
+  width: 200px;
+  height: 200px;
 }
 
 /************************************************************************JOIN**********************************************************************/
