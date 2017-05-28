@@ -32,7 +32,7 @@ body
   border: 4px solid green;*/
 }
 
-/*****************************************************************MENU***********************************************************************/
+/*********************************************************MENU***********************************************************************/
 
 .menu
 {
@@ -99,7 +99,7 @@ body
   padding: 10px;
 }
 
-/******************************************************************MENU PRODUITS*************************************************************/
+/*******************************************************MENU PRODUITS*************************************************************/
 
 .menu_products
 {
@@ -145,7 +145,7 @@ margin-right: 30px;
   padding: 7px;
 }
 
-/******************************************************************MENU USER*****************************************************************/
+/*********************************************************MENU USER*****************************************************************/
 
 .menu_user
 {
@@ -190,7 +190,7 @@ margin-right: 0px;
 }
 
 
-/******************************************************************FOOTER********************************************************************/
+/**********************************************************FOOTER********************************************************************/
 .footer
 {
   background-image: url("footer.jpg");
@@ -239,7 +239,7 @@ margin-right: 0px;
 
 
 
-/******************************************************************FOOTER_S********************************************************************/
+/***********************************************************FOOTER_S********************************************************************/
 
 
 .footer_s
@@ -322,7 +322,7 @@ margin-right: 0px;
 
 
 
-/******************************************************************ENCADRE**********************************************************************/
+/************************************************************ENCADRE**********************************************************************/
 
 
 article
@@ -358,7 +358,7 @@ section
 /*
   border: 4px solid violet;*/
 }
-/************************************************************************ABOUT_US**********************************************************************/
+/*************************************************************ABOUT_US**********************************************************************/
 
 .content_about_us
 {
@@ -396,7 +396,7 @@ section
 }
 
 
-/************************************************************************PRODUCTS**********************************************************************/
+/************************************************************PRODUCTS**********************************************************************/
 .ehome
 {
   color: rgb(210,0,0);
@@ -427,11 +427,11 @@ section
   height: 200px;
 }
 
-/************************************************************************JOIN**********************************************************************/
+/**************************************************************JOIN**********************************************************************/
 
-/************************************************************************CONNEXION**********************************************************************/
+/*************************************************************CONNEXION**********************************************************************/
 
-/************************************************************************HOME**********************************************************************/
+/**************************************************************HOME**********************************************************************/
 
 .titre_section_home
 {
@@ -516,4 +516,168 @@ fieldset
 .lien
 {
   color: rgb(210,0,0);
+}
+
+
+/**********************************************************CAROUSSEL********************************************************************/
+
+#imgs img
+{
+    /*overlays all the imgs */
+    /*You see only the first img, for now*/
+    width:95%;
+    height:300px;
+    position: absolute;
+    margin-left: 2.5%;
+    border: 1px solid rgba(0, 0, 0, 0);
+
+    transition: 1s; /* durée de transition entre chaque image */
+    visibility:hidden;
+    border-radius: 15px;
+    /*we want to show only 1 img at the time*/
+}
+
+/*the container, pousse le reste de la page en bas */
+#Snav
+{
+    display:block;
+    width:95%;
+    height:300px;
+    margin-left: 2.5%;
+    position: relative;
+    top:0;
+
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+/* where the circles are going to be*/
+#SnavUp
+{
+    display:block;
+    /*
+    border: 2px solid green;*/
+}
+
+
+#Scircles /* position du block de cercles qui indiquent à quelle image on est*/
+{
+    display:block;
+    position: relative;
+    /*
+    width:50px;
+    height:50px;
+    */
+    margin-right: 0px; /* par rapport à #SnavUp */
+    margin-top: 15px; /* par rapport à #SnavUp */
+    padding: 0px;
+    float:right; /* les boutons sont à droite de l'image */
+/*
+    border: 2px solid blue;*/
+}
+
+#Scircles ul /* les carés qui entourent les boutons noirs et blancs */
+{
+    margin:0;
+
+    float:left;
+    display:block;
+    width:150px;
+    height:30px;
+    padding: 0px;
+    margin: 0px;
+/*
+    border: 2px solid green;*/
+}
+
+#Scircles li /* ce sont les 3 boutons noirs ou blancs */
+{
+    /*we don't need the dots*/
+    list-style:none;
+    display:block;
+    background-color:rgba(0, 0, 0, 1);
+    width:25px;
+    height:10px;
+    margin-right: 5px;
+
+
+    float:left; /* pour mettre les boutons sur une ligne et pas en colonne */
+    visibility:hidden;
+
+    /* pour faires des boutons ronds */
+    border-bottom-left-radius:12px;
+    border-top-left-radius:12px;
+    border-bottom-right-radius:12px;
+    border-top-right-radius:12px;
+/*
+    border: 2px solid pink;*/
+}
+
+#SnavMiddle
+{
+    display:block;
+    position: relative;
+    width:100%;
+    height:35px;
+    margin-top: 130px;  /*this is up to you , where you want the buttons*/
+/*
+    border: 2px solid pink;*/
+}
+
+/*left button*/
+#Sleft
+{
+    height:100%;
+    float:left;
+    margin-left:20px;
+    opacity:0.8;
+
+}
+
+/*button effect*/
+#Sleft:hover
+{
+    opacity:1;
+
+}
+
+#Sright
+{
+    height:100%;
+    float:right;
+    margin-right:20px;
+    opacity:0.8;
+
+}
+
+#Sright:hover
+{
+    opacity:1;
+}
+
+/*now we have to add the info at the bottom of the slider*/
+#SnavBottom
+
+{
+    display:block;
+    background-color:rgba(0, 0, 0, 0.8);
+    width:100%;
+    height:20%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    /*
+    border: 2px solid pink;*/
+}
+
+#SnavBottom p
+{
+    color: white;
+    position:absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    visibility:hidden;
+    /*
+    border: 2px solid blue;*/
 }
