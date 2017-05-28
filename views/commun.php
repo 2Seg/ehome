@@ -1335,3 +1335,46 @@ function content_about_us(){
   $contenu = ob_get_clean();
   return $contenu;
 }
+
+function caroussel_home() {
+  ob_start();
+  ?>
+  <div id="slider">
+      <div id="imgs">
+          <!-- here you have to add the img tag -->
+          <img id="Img3" src="views/ressources/images/c3.jpg"/>
+          <img id="Img2" src="views/ressources/images/c2.jpg"/>
+          <img id="Img1" src="views/ressources/images/c1.jpg"/>
+      </div>
+      <!--Here is going to be the left right buttons, the info and the imgs shown-->
+      <div id="Snav">
+          <!-- here is the circles , showes the current img -->
+          <div id="SnavUp">
+              <div id="Scircles">
+                  <ul>
+                      <!-- here you have to add the li tag-->
+                      <li id="S0"></li>
+                      <li id="S1"></li>
+                      <li id="S2"></li>
+                  </ul>
+              </div>
+          </div>
+          <!-- the left and right button -->
+          <div id="SnavMiddle">
+              <img id="Sleft" src="views/ressources/images/left.png" onclick="prev()"/>
+              <img id="Sright" src="views/ressources/images/right.png" onclick="next()"/>
+          </div>
+          <!-- the info -->
+          <div id="SnavBottom">
+              <!-- here you have to add the p tag-->
+              <p id="SP0">Nature</p>
+              <p id="SP1">Lake</p>
+              <p id="SP2">Game of Thrones</p>
+          </div>
+      </div>
+  </div>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
