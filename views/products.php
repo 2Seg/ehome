@@ -14,6 +14,7 @@ $menu .= menu_products('');
 
 $contenu = content_products();
 
+
 $footer = footer();
 include('gabarit.php');
 

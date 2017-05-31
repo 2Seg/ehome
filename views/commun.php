@@ -43,13 +43,54 @@ function menu() {
   return $menu;
 }
 
+function menu_home() {
+  ob_start();
+  ?>
+  <div class="conteneur_menu_home">
+    <ul class="menu_home">
+      <li class="li_logo_menu"><a  href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
+    <?php
+    if (isset($_SESSION['type'])) {
+      if($_SESSION['type'] == 'user') {
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        if($_SESSION['civilite'] == 'madame') {
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        } else {
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        }
+      } elseif ($_SESSION['type'] == 'admin') {
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        if($_SESSION['civilite'] == 'madame') {
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        } else {
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        }
+      } else {
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+      }
+    } else {
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+    }
+    ?>
+    </ul>
+  </div>
+    <?php
+  $menu = ob_get_clean();
+  return $menu;
+}
+
+
 // fonction permettant de choisir le type d'utilisateur
 function type_user() {
   ob_start();
   ?>
   <section>
     <article>
-      <h3>Vous êtes ?</h3>
+      <h3 class="titre">Vous êtes ?</h3>
       <a href="index.php?cible=join-us_user">Utilisateur</a><br/>
       <a href="index.php?cible=join-us_admin">Administrateur</a>
     </article>
@@ -166,7 +207,7 @@ function form_signin($erreur) {
     <section>
     <article>
     <fieldset>
-      <legend><h3>Connexion</h3></legend>
+      <legend><h3 class="titre">Connexion</h3></legend>
       <?php
       if ($erreur != '') {
         echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
@@ -1017,9 +1058,9 @@ function content_products() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos produits </h2>
+    <h2> Nos produits </h2>
     <article>
-    <p> <strong class="ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
+    <p> <strong class="text_ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
       d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
       compte personnel sur le site internet www.ehome.fr.
       Quel est l’intérêt de tels dispositifs ?
@@ -1052,11 +1093,11 @@ function content_sensors() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos capteurs </h2>
+    <h2> Nos capteurs </h2>
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre">Capteur de luminosité</h2>
+          <h2>Capteur de luminosité</h2>
           <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
         </div>
         <img class="image_products" src="views/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
@@ -1065,7 +1106,7 @@ function content_sensors() {
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre">Capteur de température</h2>
+          <h2>Capteur de température</h2>
           <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
         </div>
         <img class="image_products" src="views/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
@@ -1074,7 +1115,7 @@ function content_sensors() {
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre">Capteur d'humidité</h2>
+          <h2>Capteur d'humidité</h2>
           <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
         </div>
       <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
@@ -1083,7 +1124,7 @@ function content_sensors() {
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre">Detecteur de mouvement</h2>
+          <h2>Detecteur de mouvement</h2>
           <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
            et sera relié au système de sécurité pour prévenir les intrusions.</p>
         </div>
@@ -1093,7 +1134,7 @@ function content_sensors() {
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre">Détecteur de fumée</h2>
+          <h2>Détecteur de fumée</h2>
           <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
         </div>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
@@ -1109,11 +1150,11 @@ function content_actuators() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos actionneurs </h2>
+    <h2> Nos actionneurs </h2>
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre"> Actionneur volet roulant électrique </h2>
+          <h2> Actionneur volet roulant électrique </h2>
           <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
         </div>
         <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
@@ -1122,7 +1163,7 @@ function content_actuators() {
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre"> Actionneur portail électrique </h2>
+          <h2> Actionneur portail électrique </h2>
           <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
         </div>
         <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
@@ -1138,11 +1179,11 @@ function content_cameras() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos caméras </h2>
+    <h2> Nos caméras </h2>
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre">Caméra de surveillance</h2>
+          <h2>Caméra de surveillance</h2>
           <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
         </div>
         <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
@@ -1151,7 +1192,7 @@ function content_cameras() {
     <article>
       <div class="flex_products">
         <div class="flex_products2">
-          <h2 class="titre">Caméra de palier </h2>
+          <h2>Caméra de palier </h2>
           <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
         </div>
         <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
@@ -1167,7 +1208,7 @@ function content_home() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre_section_home"> Accueil eHome </h2>
+    <h2> Accueil eHome </h2>
     <article>
       <p>Notre <a class="lien" href="index.php?cible=about-us">société</a> propose des systèmes électroniques de domotique depuis 2016. Nous
         mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
@@ -1176,7 +1217,7 @@ function content_home() {
         adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure."</p>
     </article>
 
-    <h2 class="titre_section_home"> Vos avis</h2>
+    <h2> Vos avis</h2>
     <article>
       <h3>Déploiement de qualité</h3>
       <p>"eHome a effectué l’installation de capteurs de température
@@ -1237,7 +1278,7 @@ function content_about_us(){
   ob_start();
   ?>
   <section>
-    <h2 class="titre_section_about_us"> A propos d'eHome </h2>
+    <h2> A propos d'eHome </h2>
     <article>
       <h3> Les valeurs des eHomers </h3>
       <ul>
@@ -1246,11 +1287,11 @@ function content_about_us(){
         <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
       </ul>
     </article>
-  </section>
 
 
-  <section>
-    <h2 class="titre_section_about_us"> L’innovation au cœur de l’internet des objets </h2>
+
+
+    <h2> L’innovation au cœur de l’internet des objets </h2>
     <article>
       <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
         Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
@@ -1258,35 +1299,35 @@ function content_about_us(){
         comme l'éclairage ou le chauffage, peuvent être automatisés
         pour gagner du temps et faire des économies !" </p>
     </article>
-  </section>
 
-  <section>
-    <h2 class="titre_section_about_us"> eHome plus en détail </h2>
-    <div class="ensemble_articles">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
-      <article class="article_about_us">
+
+
+    <h2> eHome plus en détail </h2>
+    <div class="flex_art_about_us">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
+      <article>
         <h3> Notre histoire </h3>
         <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
           dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
       </article>
 
 
-      <article class="article_about_us">
+      <article>
         <h3> Espace presse </h3>
         <p> Découvrez nos dernières annonces </p>
       </article>
 
 
-      <article class="article_about_us">
+      <article>
         <h3> Document de référence </h3>
         <p> Lire le rapport annuel </p>
       </article>
     </div>
-  </section>
 
 
-  <section>
-    <h2 class="titre_section_about_us"> Ce que nous vous proposons </h2>
-    <article class="article_about_us">
+
+
+    <h2> Ce que nous vous proposons </h2>
+    <article>
       <h3> Un gain de temps et de confort au quotidient </h3>
       <p> Il est 7h00. Vous vous réveillez au son de votre
         radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
@@ -1302,7 +1343,7 @@ function content_about_us(){
     </article>
 
 
-    <article class="article_about_us">
+    <article>
       <h3> Des économies d'énergie à la clé </h3>
       <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
         chauffage en marche. En vous équipant de notre installation domotique,
@@ -1316,7 +1357,7 @@ function content_about_us(){
     </article>
 
 
-    <article class="article_about_us">
+    <article>
       <h3> Pour votre sécurité et celle de votre maison </h3>
       <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
         passer toutes les pièces en revue. Comme les équipements domotiques sont
@@ -1336,7 +1377,7 @@ function content_about_us(){
   return $contenu;
 }
 
-function caroussel_home() {
+function carroussel_home() {
   ob_start();
   ?>
   <div id="slider">
