@@ -3,7 +3,7 @@
 controleur gérant l'extraction des données néccessaires pour l'affichage de la page "home_management.php"
 */
 
-include('modeles/functions.php');
+include_once('modeles/functions.php');
 
 $info_home = select_info_home($bdd, $_SESSION['id']);
 $nb_piece = count_piece($bdd, $_SESSION['id']);

@@ -45,9 +45,7 @@ if (isset($_SESSION['type'])) {
         include("views/subcription_user.php");
       } elseif ($_GET['cible'] == 'messaging_user') {
         include('views/messaging_user.php');
-      } */elseif ($_GET['cible'] == 'form_room_add') {
-        include('views/form_room_add.php');
-      } elseif ($_GET['cible'] == 'contr_room_add') {
+      } */elseif ($_GET['cible'] == 'room_add') {
         include('controlers/room_add.php');
       } else {
         include ('views/error.php');

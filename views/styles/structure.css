@@ -61,9 +61,7 @@ body
   margin: 6px 2.5% 0 0;
   vertical-align: middle;
   padding: 11px;
-  /*
-  border: 5px solid green;*/
-
+  transition-duration: 0.2s;
 }
 
 .text_menu
@@ -358,7 +356,7 @@ textarea
   padding: 10px 10px;
 }
 
-button
+button,input[type=submit]
 {
   font-family: 'gr-book';
   font-size: 100%;
@@ -369,7 +367,7 @@ button
   padding: 10px 10px;
 }
 
-button:hover
+button:hover,input[type=submit]:hover
 {
   background-color: rgba(210, 30, 30, 0.85);
   cursor: pointer;
@@ -378,6 +376,11 @@ button:hover
 button:focus
 {
   background-color: rgba(210, 60, 60, 0.85);
+  cursor: pointer;
+}
+
+#trash:hover
+{
   cursor: pointer;
 }
 

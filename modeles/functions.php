@@ -152,7 +152,6 @@ function insert_info_user($db, $id_admin, $civilite, $nom, $prenom, $identifiant
                       'mail' => $mail,
                       'telephone' => $telephone,
                       'info_paiement' => $info_paiement));
-  return $req;
 }
 
 function insert_info_admin($db, $civilite, $nom, $prenom, $identifiant, $mot_de_passe, $date_naissance, $nationalite, $pays, $telephone,
@@ -172,7 +171,6 @@ function insert_info_admin($db, $civilite, $nom, $prenom, $identifiant, $mot_de_
                       'mail' => $mail,
                       'telephone' => $telephone,
                       'nb_user' => $nb_user));
-  return $req;
 }
 
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
@@ -188,25 +186,12 @@ function insert_info_home($db, $id_user, $adresse, $code_postal, $ville, $pays, 
                       'nb_habitant' => $nb_habitant,
                       'nb_piece' => $nb_piece,
                       'superficie' => $superficie));
-  return $req;
 }
 
 // fonction gérant l'écriture des données relatives aux choix des capteurs selon la pièce dans la $bdd
-function insert_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite,
-                          $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
-  $req = $db -> prepare('INSERT INTO piece(id_logement, id_piece, piece, capteur_luminosite, capteur_temperature, capteur_humidite, detecteur_mouvement, detecteur_fumee, camera, actionneur)
-                        VALUES(:id_logement, :id_piece, :piece, :capteur_luminosite, :capteur_temperature, :capteur_humidite, :detecteur_mouvement, :detecteur_fumee, :camera, :actionneur)');
-  $req -> execute(array('id_logement' => $id_logement,
-                        'id_piece' => $id_piece,
-                        'piece' => $piece,
-                        'capteur_luminosite' => $capteur_luminosite,
-                        'capteur_temperature' => $capteur_temperature,
-                        'capteur_humidite' => $capteur_humidite,
-                        'detecteur_mouvement' => $detecteur_mouvement,
-                        'detecteur_fumee' => $detecteur_fumee,
-                        'camera' => $camera,
-                        'actionneur' => $actionneur));
-  return $req;
+function insert_room($db, $id_logement, $piece) {
+  $req = $db -> prepare('INSERT INTO piece(id_logement, piece) VALUES(:id_logement, :piece)');
+  $req -> execute(array('id_logement' => $id_logement, 'piece' => $piece));
 }
 
 /*****************************************************************UPDATE***********************************************************************/

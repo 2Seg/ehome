@@ -3,7 +3,6 @@
 vue répertoriant les fonctions gérant l'affichage des différentes parties des pages
 */
 
-
 // fonction qui gère l'affichage du menu et qui redirige l'utilisateur à travers toutes les pages du site grâce aux 'cibles' dans les URL
 function menu() {
   ob_start();
@@ -175,8 +174,6 @@ function form_signin($erreur) {
 }
 
 // fonction qui génère l'affichage du formulaire d'inscription en fonction du type de personne qui s'inscrit (admnistrateur ou utilisateur)
-// génère par défaut l'affichage du formulaire utilisateur
-// génère l'affichage du formulaire administrateur si on lui passe 'administrateur' en argument
 function form_subscribe_user() {
   ob_start();
   ?>
@@ -472,7 +469,7 @@ function form_subscribe_admin() {
 function my_room($my_home) {
   ob_start();
   ?>
-  <section>
+  <section id="room">
     <h3><?php if(count($my_home) == 1) {
                 echo('Pièce');
                 } else {
@@ -482,17 +479,21 @@ function my_room($my_home) {
     <?php
     if ($my_home == array()) {
       ?>
-      <h2>Veuillez ajouter des pièces pour permettre d'afficher les données</h2>
+      <h2 class="except_h2">Veuillez ajouter des pièces pour permettre d'afficher les données</h2>
       <p><a href="index.php?cible=room_add"><button>Ajouter</button></p></section>
       <?php
     } else {
       for($i = 0; $i < count($my_home); $i++) {
         if($i % 2 == 0) {
           echo('<article><h3>'.$my_home[$i].'</h3>');
+          ?>
+          <img id="trash" src="views/ressources/icons/trash1.png" title="Supprimer la pièce"
+          onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'">
+          <?php
         } else {
           if($my_home[$i] == array()) {
             ?>
-            <h2>Aucun dispositif</h2>
+            <h2 class="except_h2">Aucun dispositif</h2>
             <p><a href='index.php?cible=device_add&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Ajouter</button></a></p></article>
             <?php
           } else {
@@ -512,117 +513,49 @@ function my_room($my_home) {
         }
       }
       ?>
-      <p><a href='index.php?cible=room_add'><button>Ajouter</button></a></p>
-      <p><a href='index.php?cible=room_edit'><button>Modifier</button></a></p>
-      <p><a href='index.php?cible=room_delete'><button>Supprimer</button></a></p></section>
+      <form id="form" method="post" action="index.php?cible=room_add">
+        <script type="text/javascript">
+          var i = 0;
+          var div = document.createElement("div");
+          div.id = "zoneAjout";
+          document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+
+          function addRoom() {
+            if(!document.getElementById("zoneAjout")) {
+              i = 0;
+              div = document.createElement("div");
+              div.id = "zoneAjout";
+              document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+            }
+            var article = document.createElement("article");
+            var input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("placeholder", "Nom de la pièce à ajouter");
+            input.name = "piece[]";
+            input.setAttribute("required", "");
+            article.id = "newArticle" + i;
+            document.getElementById("zoneAjout").appendChild(article);
+            document.getElementById("newArticle" + i).appendChild(input);
+            i++;
+          }
+
+          function annuler() {
+            document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
+            i = 0;
+            div = document.createElement("div");
+            div.id = "zoneAjout";
+            document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+          }
+        </script>
+        <input id="submit" type="submit" value="Confirmer les modifications">
+      </form>
+      <button onclick="addRoom()">Ajouter une pièce</button>
+      <button onclick="annuler()">Annuler</button>
     <?php
     }
 
   $content = ob_get_clean();
   return $content;
-}
-
-
-// function qui génère un formulaire de mise à jour des dispositifs dans les pièces
-function edit_sensor_room() {
-  ob_start();
-  ?>
-  <section>
-  <form method="post" action='index.php?cible=control_sensor_edit'>
-    <fieldset>
-      <legend>Mise à jour des capteurs</legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" value="<?php echo($_SESSION['piece_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" value="<?php echo($_SESSION['luminosite_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" value="<?php echo($_SESSION['temperature_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" value="<?php echo($_SESSION['humidite_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" value="<?php echo($_SESSION['mouvement_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" value="<?php echo($_SESSION['fumee_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" value="<?php echo($_SESSION['camera_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" value="<?php echo($_SESSION['actionneur_'.$i]); ?>" required/>
-        </td>
-      </tr>
-
-      <?php
-      }
-      ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
-}
-
-function erase_sensor_room() {
-  ob_start();
-  ?>
-  <section>
-  <!-- <article> -->
-  <form method="post" action='index.php?cible=control_sensor_delete'>
-    <fieldset>
-      <legend>Suppression de pièce</legend>
-      <table>
-        <tr>
-          <th>Sélection</th>
-          <th>Pièce</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="checkbox" name="<?php echo('piece_'.$i); ?>" />
-        </td>
-        <td>
-          <?php echo($_SESSION['piece_'.$i]); ?>
-        </td>
-
-      </tr>
-
-      <?php
-      }
-      ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Confirmer la suppression" />
-  </fieldset>
-  <!-- </article> -->
-  </section>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
 }
 
 // fonction qui récupère la date du jour
@@ -805,227 +738,6 @@ function content_cameras() {
 
   $home = ob_get_clean();
   return $home;
-}
-
-// fonction gérant l'affichage des informations sur les capteurs présents dans les pièces d'un logement
-function my_sensor_room() {
-  ob_start();
-  ?>
-
-  <section>
-  <h3>Dispositifs et pièces du domicile</h3>
-  <?php
-  if ($_SESSION['data_room'] == 'false') {
-    ?>
-    <h2>Veuillez ajouter des pièces pour permettre l'affichage des données</h2>
-    <form method="post" action="index.php?cible=room_add">
-      <p>
-        <label for="nb_piece">Nombre de pièces à ajouter</label><br/>
-        <input type="number" name="nb_piece" min="0" placeholder="Nombre de pièces"/>
-      </p>
-      <input type="submit" value="Ajouter">
-    </form>
-    <?php
-  } else {
-    ?>
-    <table>
-      <tr>
-        <th>Pièce</th>
-        <th>Capteur de luminosité</th>
-        <th>Capteur de température</th>
-        <th>Capteur d'humidité</th>
-        <th>Détecteur de mouvement</th>
-        <th>Détecteur de fumée</th>
-        <th>Caméra</th>
-        <th>Actionneur</th>
-      </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <?php echo($_SESSION['piece_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['luminosite_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['temperature_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['humidite_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['mouvement_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['fumee_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['camera_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['actionneur_'.$i]); ?>
-        </td>
-      </tr>
-    <?php
-    }
-    ?>
-  </table>
-  <form method="post" action="index.php?cible=choice_nb_room">
-    <input type="submit" value="Ajouter">
-  </form>
-  <form method="post" action="index.php?cible=sensor_edit">
-    <input type="submit" value="Modifier">
-  </form>
-  <form method="post" action="index.php?cible=sensor_delete">
-    <input type="submit" value="Supprimer">
-  </form>
-
-  </section>
-  <?php
-  }
-  $room = ob_get_clean();
-  return $room;
-}
-
-function my_actual_room() {
-  ob_start();
-  ?>
-  <section>
-  <table>
-    <tr>
-      <th>Pièce</th>
-      <th>Capteur de luminosité</th>
-      <th>Capteur de température</th>
-      <th>Capteur d'humidité</th>
-      <th>Détecteur de mouvement</th>
-      <th>Détecteur de fumée</th>
-      <th>Caméra</th>
-      <th>Actionneur</th>
-    </tr>
-    <?php
-    for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-    ?>
-    <tr>
-      <td>
-        <?php echo($_SESSION['piece_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['luminosite_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['temperature_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['humidite_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['mouvement_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['fumee_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['camera_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['actionneur_'.$i]); ?>
-      </td>
-    </tr>
-    <?php
-  }
-  ?>
-  </table>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-// fonction qui affiche un formulaire pour choisir un nombre de pièces
-function form_nb_room() {
-  ob_start();
-  ?>
-  <section>
-  <fieldset>
-  <legend>Sélectionner le nombre de pièces à ajouter</legend>
-  <form method="post" action="index.php?cible=choice_nb_room2">
-    <p>
-      <input type="number" name="nb_piece_ajout" min="1" placeholder="Nombre de pièces">
-    </p>
-    <p>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Suivant">
-    </p>
-  </form>
-  </fieldset>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function form_nb_room2() {
-  ob_start();
-  ?>
-  <section>
-  <form method="post" action='index.php?cible=control_nb_room'>
-    <fieldset>
-      <legend><h3>Zone d'ajout</h3></legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = $_SESSION['nb_piece'] + 1; $i <= $_SESSION['nb_piece'] + $_POST['nb_piece_ajout']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-      </tr>
-
-      <?php
-    }
-    $_SESSION['nb_piece_ajout'] = $_POST['nb_piece_ajout'];
-    ?>
-    </table>
-    <input type="reset" value="Rafraichir">
-    <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
 }
 
 function content_products() {
