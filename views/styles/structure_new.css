@@ -1,0 +1,687 @@
+@font-face {
+  font-family: 'gr-med';
+  src: url('fonts/GothamRnd-Medium.otf');
+}
+
+
+@font-face {
+  font-family: 'gr-book';
+  src: url('fonts/GothamRnd-Book.otf');
+}
+
+html
+{
+  /*border: 3px solid pink;*/
+}
+
+body
+{
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  background-repeat: no-repeat;
+  background-image:url("1.jpg");
+  background-attachment: fixed;
+  font-family: 'gr-book';
+
+/*border: 3px solid pink;*/
+}
+
+nav
+{
+  /*border: 3px solid yellow;*/
+  /*padding: 200px;*/
+}
+
+aside
+{
+  /*border: 3px solid blue;*/
+}
+
+article
+{
+  background-color: rgba(155, 155, 155, 0.85);
+  padding: 25px;
+  margin : 25px;
+  border: 1px solid rgba(155,155,155,0.85);
+  border-radius: 7px;
+  box-shadow: 3px 3px 10px rgb(80,80,80);
+  /*
+  border: 4px solid blue;*/
+}
+
+section
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 5px 15px 15px 15px;
+  width: 80%;
+  margin: 40px auto 40px auto ;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+
+/*
+  border: 4px solid violet;*/
+}
+
+h2
+{
+  color: rgb(210,0,0);
+}
+
+h3
+{
+  color: rgb(210,0,0);
+}
+
+/*footer
+{
+  border: 2px solid violet;
+}*/
+
+/*********************************************************MENU***********************************************************************/
+
+.menu
+{
+  list-style: none;
+  background-color: rgb(210, 0, 0);
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  box-shadow: 0px 3px 12px rgb(60,60,60);
+  margin: 0px;
+
+
+
+  /*border: 1px solid green;*/
+}
+
+
+.conteneur_menu_home
+{
+  position: absolute;
+  top:0px;
+  width: 100%;
+  /*border: 2px solid purple;*/
+}
+
+.menu_home
+{
+
+  list-style: none;
+  background-color: rgba(200, 200, 200, 0.2);
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  box-shadow: 0px 4px 25px rgba(200, 200, 200, 0.28);
+  margin: 0px;
+
+
+  /*background-color: rgba(200, 200, 200, 0.2);
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0px;
+  padding: 3px 0 0 20px;*/
+}
+
+.menu_profil
+{
+  position: absolute;
+  right: 1.5%;
+
+}
+
+.menu_elements
+{
+
+  text-align: center;
+  margin: 6px 2.5% 0 0;
+  padding: 11px;
+
+
+  /*border: 5px solid green;*/
+
+}
+
+.text_menu
+{
+  text-decoration: none;
+  color: white;
+  font-family: 'gr-med';
+
+  /*border: 5px solid green;
+  */
+}
+
+.li_logo_menu
+{
+  margin: 25px 10px 15px 10px;
+  position: relative;
+  right: 24px;
+
+}
+
+.logo_menu
+{
+  width: 150px;
+
+}
+
+
+.menu_elements:not(.menu_profil):hover
+{
+  border: 1px solid rgb(210,0,0);
+  border-radius: 10px;
+  box-shadow: 0px 2px 20px rgb(100,0,0) inset;
+  padding: 10px;
+}
+
+
+/*********************************************************MENU USER*****************************************************************/
+
+.menu_user
+{
+  list-style: none;
+  background-color: rgb(69,69,69);
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 13px;
+  box-shadow: 0px 3px 12px rgb(20,20,20) inset;
+}
+
+.trait_u
+{
+  border-left: 1.5px solid;
+  border-color: rgba(255, 255, 255, 0.6);
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.text_menu_user
+{
+  text-decoration: none;
+  color: white;
+  font-family: 'gr-book';
+}
+
+.menu_user_elements
+{
+  list-style: none;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 8px;
+}
+
+.menu_user_elements:hover
+{
+  border: 1px solid rgb(100,100,100);
+  border-radius: 10px;
+  box-shadow: 0px 2px 12px rgb(30,30,30) inset;
+  padding: 7px;
+}
+
+
+/*******************************************************MENU PRODUITS*************************************************************/
+
+.menu_products
+{
+  background-color: rgb(69,69,69);
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 13px;
+  box-shadow: 0px 3px 12px rgb(20,20,20) inset;
+
+  /*border: 5px solid green;*/
+}
+
+.trait
+{
+border-left: 1.5px solid;
+border-color: rgba(255, 255, 255, 0.6);
+margin-left: 30px;
+margin-right: 30px;
+}
+
+.text_menu_products
+{
+  text-decoration: none;
+  color: white;
+  font-family: 'gr-book';
+  padding: 8px;
+  /*border: 5px solid green;*/
+}
+
+.menu_products_elements
+{
+  list-style: none;
+  margin-left: 50px;
+  margin-right: 50px;
+
+  /*border: 1px solid green;*/
+}
+
+.text_menu_products:hover
+{
+  border: 1px solid rgb(100,100,100);
+  border-radius: 10px;
+  box-shadow: 0px 2px 12px rgb(30,30,30) inset;
+  padding: 7px;
+}
+
+
+/*************************************************************ABOUT_US**********************************************************************/
+
+.flex_art_about_us
+{
+  display: flex;
+}
+
+
+/************************************************************PRODUCTS**********************************************************************/
+
+.text_ehome
+{
+  color: rgb(210,0,0);
+  /*border: 1px solid green;*/
+}
+
+
+.flex_products
+{
+  display: flex;
+  justify-content: space-between;
+  /*border: 1px solid green;*/
+}
+
+.flex_products2
+{
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  /*border: 1px solid green;*/
+}
+
+.image_products
+{
+  width: 200px;
+  height: 200px;
+}
+
+
+/************************************************************FORMULAIRE********************************************************************/
+
+textarea
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+  border: 1px solid rgba(210,0,0,0.85);
+  border-radius: 4px;
+  padding: 10px 10px;
+}
+
+button
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+  border: 1px solid rgba(210,0,0,0.85);
+  border-radius: 2px;
+  padding: 10px 10px;
+}
+
+input
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+  border: 1px solid rgb(210,0,0);
+  border-radius: 4px;
+  padding: 10px 10px;
+}
+
+input[type=text] {
+  color: black;
+}
+
+input[type=submit] {
+  background-color: rgba(210, 0, 0, 0.85);
+  color: white;
+}
+input[type=reset] {
+  background-color: rgba(210, 0, 0, 0.85);
+  color: white;
+}
+
+.bouton_connexion
+{
+  text-align: right;
+}
+.bouton
+{
+ text-align: center;
+}
+
+select
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+  border: 1px solid rgba(155,155,155,0.85);
+  border-radius: 4px;
+  padding: 10px 10px;
+}
+
+label
+{
+  font-variant: 'gr-book';
+  font-size: 100%;
+}
+
+fieldset
+{
+  text-align: justify;
+  text-indent: 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(229,229,229,0.75);
+}
+
+.lien
+{
+  color: rgb(210,0,0);
+}
+
+
+/**********************************************************FOOTER********************************************************************/
+.footer
+{
+  background-image: url("footer.jpg");
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  margin: 0px;
+  color: white;
+  font-style: normal;
+  text-decoration: none;
+
+  /*position:absolute;
+bottom:0px;*/
+
+
+  box-shadow: 0px 4px 12px rgb(12,12,12) inset;
+/*
+  /*border: 1px solid yellow;*/
+}
+
+.footer_elements
+{
+  list-style: none;
+  text-align: center;
+
+
+
+  margin-left: 45px;
+  margin-right: 45px;
+
+  /*border: 4px solid green;*/
+}
+
+.map
+{
+  width: 90px;
+  height: 70px;
+  box-shadow: 4px 4px 12px rgb(12,12,12);
+  margin-top: 6px;
+
+  /*
+  border: 4px solid yellow;*/
+}
+
+
+/***********************************************************FOOTER_S********************************************************************/
+
+
+.footer_s
+{
+  background-color: rgb(205,205,193);
+  color: black;
+  margin: 0px;
+
+  padding-left: 0px;
+
+  box-shadow: 0px 3px 10px rgb(45,45,45) inset;
+
+  /*border: 1px solid blue;*/
+}
+
+
+.footer_s_text
+{
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  color: black;
+
+  /*border: 1px solid yellow;*/
+
+}
+
+.flex_footer_s
+{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
+  padding-bottom: 6px;
+
+  /*border: 1px solid blue;*/
+}
+
+.facebook
+{
+  height: 45px;
+  width: 45px;
+  margin-left: : 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  /*border: 1px solid pink;*/
+}
+
+.instagram
+{
+  height: 45px;
+  width: 45px;
+  margin-left: : 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.twitter
+{
+  height: 45px;
+  width: 45px;
+  margin-left: : 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.linkedin
+{
+  height: 45px;
+  width: 45px;
+  margin-left: : 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.youtube
+{
+  height: 45px;
+  width: 45px;
+  margin-left: : 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+
+/**********************************************************CARROUSSEL********************************************************************/
+
+#imgs img
+{
+    /*overlays all the imgs */
+    /*You see only the first img, for now*/
+    width:100%;
+    height:350px;
+    position:absolute;
+    margin: 0px;
+    /*border: 3px solid rgba(100, 100, 100, 1);*/
+
+    transition: 1s; /* durée de transition entre chaque image */
+    visibility:hidden; /* pour n'avoir qu'une image à la fois */
+
+    /*border: 4px solid green;*/
+}
+
+/* contient les flèches, le texte, la zone de texte, le #Snav up et les dots*/
+#Snav
+{
+    display:block;
+    width:100%;
+    height:350px;
+    margin: 0px;
+    position: relative;
+
+    /*top: -100px;*/
+
+    /*border: 1px solid rgba(0, 0, 0, 0);*/
+    /*border: 4px solid pink;*/
+}
+
+/* where the circles are going to be*/
+#SnavUp
+{
+    display:block;
+    /*border: 4px solid purple;*/
+    border: 1px solid rgba(0, 0, 0, 0);
+    /* à laisser sinon tout descend... */
+}
+
+/* position du block de cercles qui indiquent à quelle image on est*/
+#Scircles
+{
+    display:block;
+    position: absolute;
+    top: 255px;
+    right: 55px;
+    padding: 0px;
+    margin: 0px;
+
+    /*border: 2px solid blue;*/
+}
+
+/* les carés bleu et vert qui entourent les dots noirs et blancs */
+#Scircles ul
+{
+    margin:0;
+    display:block;
+    width:auto;
+    height:auto;
+    padding: 0px;
+
+    /*border: 2px solid green;*/
+}
+
+/* ce sont les 3 boutons noirs ou blancs */
+#Scircles li
+{
+    list-style:none;
+    display:block;
+    background-color:rgba(0, 0, 0, 1);
+    width:25px;
+    height:10px;
+    margin-right: 5px;
+
+    /* pour mettre les boutons sur une ligne et pas en colonne */
+    float:left;
+    visibility:hidden;
+
+    /* pour faires des boutons ronds */
+    border-bottom-left-radius:12px;
+    border-top-left-radius:12px;
+    border-bottom-right-radius:12px;
+    border-top-right-radius:12px;
+/*
+    border: 2px solid pink;*/
+}
+
+/* position des boutons-flèches */
+#SnavMiddle
+{
+    display:block;
+    position: relative;
+    width:100%;
+    height:35px;
+    margin-top: 150px;
+/*
+    border: 2px solid pink;*/
+}
+
+/*left button*/
+#Sleft
+{
+    height:100%;
+    float:left;
+    margin-left:20px;
+    opacity:0.8;
+
+}
+
+/*button effect*/
+#Sleft:hover
+{
+    opacity:1;
+}
+
+#Sright
+{
+    height:100%;
+    float:right;
+    margin-right:20px;
+    opacity:0.8;
+
+}
+
+#Sright:hover
+{
+    opacity:1;
+}
+
+/* informations et texte en bas du slider */
+#SnavBottom
+{
+    display:block;
+    background-color:rgba(0, 0, 0, 0.8);
+    width:100%;
+    height:70px;
+    position:absolute;
+    bottom:0; /* par rapport au conteneur */
+    left:0;
+
+    /*border: 2px solid pink;*/
+}
+
+/* texte d'info sur la slide */
+#SnavBottom p
+{
+    color: white;
+    position:absolute;
+    margin-top: 13px;
+    margin-left: 13px;
+    visibility:hidden;
+
+    /*border: 2px solid blue;*/
+}

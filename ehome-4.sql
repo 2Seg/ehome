@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 19 Mai 2017 à 21:39
+-- Généré le :  Mer 31 Mai 2017 à 09:35
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -72,21 +72,12 @@ CREATE TABLE `administrateur` (
   `nb_user` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `capteur`
+-- Contenu de la table `administrateur`
 --
 
-CREATE TABLE `capteur` (
-  `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `numero_serie` varchar(10) NOT NULL,
-  `type_capteur` varchar(20) NOT NULL,
-  `mesure` varchar(20) NOT NULL,
-  `date_mesure` datetime NOT NULL,
-  `etat` varchar(7) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `administrateur` (`id`, `civilite`, `nom`, `prenom`, `identifiant`, `mot_de_passe`, `date_naissance`, `nationalite`, `pays`, `mail`, `telephone`, `nb_user`) VALUES
+(1, 'monsieur', 'Jalabert', 'Tom', 'tom', '96835dd8bfa718bd6447ccc87af89ae1675daeca', '1996-02-15', 'Française', 'france', 'tomjaja@gmail.com', '0123654789', 0);
 
 -- --------------------------------------------------------
 
@@ -100,6 +91,34 @@ CREATE TABLE `consommation` (
   `eau` int(11) NOT NULL,
   `electricite` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `dispositif`
+--
+
+CREATE TABLE `dispositif` (
+  `id` int(11) NOT NULL,
+  `id_piece` int(11) NOT NULL,
+  `type_dispositif` varchar(255) NOT NULL,
+  `etat` varchar(7) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `dispositif`
+--
+
+INSERT INTO `dispositif` (`id`, `id_piece`, `type_dispositif`, `etat`) VALUES
+(1, 1, 'capteur de luminosité', 'off'),
+(12, 1, 'détecteur de fumée', 'off'),
+(10, 1, 'capteur d\'humidité', 'off'),
+(4, 1, 'capteur de luminosité', 'off'),
+(5, 1, 'capteur d\'humidité', 'off'),
+(6, 1, 'capteur de température', 'off'),
+(7, 2, 'capteur d\'humidité', 'off'),
+(8, 2, 'caméra', 'off'),
+(9, 2, 'capteur d\'humidité', 'off');
 
 -- --------------------------------------------------------
 
@@ -125,7 +144,7 @@ CREATE TABLE `logement` (
 
 INSERT INTO `logement` (`id`, `id_user`, `adresse`, `code_postal`, `ville`, `pays`, `nb_habitant`, `nb_piece`, `superficie`) VALUES
 (1, 1, '69 rue Balard', 75015, 'Paris', 'france', 6, 2, 98),
-(2, 2, '45 rue du Swag', 75116, 'Paris', 'france', 15, 4, 250);
+(2, 2, '1 rue de Tours', 75014, 'Paris', 'France', 2, 1, 45);
 
 -- --------------------------------------------------------
 
@@ -151,10 +170,9 @@ CREATE TABLE `messagerie` (
 
 CREATE TABLE `mesure` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_logement` int(11) NOT NULL,
-  `numero_serie` varchar(10) NOT NULL,
-  `piece` int(11) NOT NULL
+  `id_dispositif` int(11) NOT NULL,
+  `mesure` varchar(255) NOT NULL,
+  `date_mesure` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -166,15 +184,18 @@ CREATE TABLE `mesure` (
 CREATE TABLE `piece` (
   `id` int(11) NOT NULL,
   `id_logement` int(11) NOT NULL,
-  `piece` varchar(255) NOT NULL,
-  `capteur_luminosite` int(11) NOT NULL,
-  `capteur_temperature` int(11) NOT NULL,
-  `capteur_humidite` int(11) NOT NULL,
-  `detecteur_mouvement` int(11) NOT NULL,
-  `detecteur_fumee` int(11) NOT NULL,
-  `camera` int(11) NOT NULL,
-  `actionneur` int(11) NOT NULL
+  `piece` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `piece`
+--
+
+INSERT INTO `piece` (`id`, `id_logement`, `piece`) VALUES
+(1, 1, 'Salon'),
+(5, 1, 'Sofa'),
+(3, 1, 'Cuisine'),
+(4, 2, 'Entrée');
 
 -- --------------------------------------------------------
 
@@ -185,8 +206,6 @@ CREATE TABLE `piece` (
 CREATE TABLE `utilisateur` (
   `id` int(11) NOT NULL,
   `id_admin` int(11) NOT NULL,
-  `id_logement` int(11) NOT NULL,
-  `id_abonnement` int(11) NOT NULL,
   `civilite` varchar(10) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
@@ -206,9 +225,9 @@ CREATE TABLE `utilisateur` (
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id`, `id_admin`, `id_logement`, `id_abonnement`, `civilite`, `nom`, `prenom`, `identifiant`, `mot_de_passe`, `date_naissance`, `nationalite`, `pays`, `mail`, `telephone`, `info_paiement`, `date_connexion`, `date_inscription`) VALUES
-(1, 1, 1, 1, 'monsieur', 'Eliott', 'de Séguier', 'eliott', 'fdcc008c5a13011d7470010f3f572b80fe4b47c2', '1995-06-29', 'Française', 'placeholder', 'eliott@gmail.com', '0123456789', 'prélèvement_mensuel', '2017-05-19 09:49:14', '2017-05-19'),
-(2, 2, 2, 2, 'madame', 'Saad Marzouk', 'Myriam', 'myriam', '2ef4f19de87532afb29e571e9b5fc8fc96a189c3', '1995-08-02', 'Marocaine', 'france', 'myriam@gmail.com', '0123456789', 'chèque_mensuel', '2017-05-19 10:54:01', '2017-05-19');
+INSERT INTO `utilisateur` (`id`, `id_admin`, `civilite`, `nom`, `prenom`, `identifiant`, `mot_de_passe`, `date_naissance`, `nationalite`, `pays`, `mail`, `telephone`, `info_paiement`, `date_connexion`, `date_inscription`) VALUES
+(1, 1, 'monsieur', 'de Séguier', 'Eliott', 'eliott', 'fdcc008c5a13011d7470010f3f572b80fe4b47c2', '1995-06-29', 'Française', 'france', 'eliottdes@gmail.com', '0123456789', 'prélèvement_mensuel', '2017-05-24 18:17:28', '2017-05-24'),
+(2, 1, 'Monsieur', 'Robic', 'Alan', 'alan', '91e38e63b890fbb214c8914809fde03c73e7f24d', '4562-06-29', 'Française', 'France', 'alan@gmail.com', '0123456789', 'prélèvement_mensuel', '2017-05-28 16:58:38', '2017-05-28');
 
 --
 -- Index pour les tables exportées
@@ -233,15 +252,15 @@ ALTER TABLE `administrateur`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `capteur`
---
-ALTER TABLE `capteur`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Index pour la table `consommation`
 --
 ALTER TABLE `consommation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `dispositif`
+--
+ALTER TABLE `dispositif`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -287,17 +306,17 @@ ALTER TABLE `abonnement`
 -- AUTO_INCREMENT pour la table `administrateur`
 --
 ALTER TABLE `administrateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT pour la table `capteur`
---
-ALTER TABLE `capteur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `consommation`
 --
 ALTER TABLE `consommation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `dispositif`
+--
+ALTER TABLE `dispositif`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `logement`
 --
@@ -317,7 +336,7 @@ ALTER TABLE `mesure`
 -- AUTO_INCREMENT pour la table `piece`
 --
 ALTER TABLE `piece`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
