@@ -719,7 +719,7 @@ function my_home_info($info_home) {
     <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
     <p><strong>Nombre de pièce : </strong><?php echo($info_home['nb_piece']); ?></p>
 
-    <p><a href="index.php?cible=edit_info_home">Modifier les informations</a></p>
+    <p><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></p>
     </section>
   <?php
   $home = ob_get_clean();

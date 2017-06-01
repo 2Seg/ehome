@@ -379,11 +379,6 @@ button:focus
   cursor: pointer;
 }
 
-#trash:hover
-{
-  cursor: pointer;
-}
-
 input
 {
   font-variant: 'gr-book';

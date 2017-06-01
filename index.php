@@ -49,6 +49,10 @@ if (isset($_SESSION['type'])) {
         include('controlers/room_add.php');
       } elseif ($_GET['cible'] == 'room_del') {
         include('controlers/room_del.php');
+      } /*elseif ($_GET['cible'] == 'room_upd') {
+        include('controlers/room_upd.php');
+      } */elseif ($_GET['cible'] == 'room_del') {
+        include('controlers/room_del.php');
       } else {
         include ('views/error.php');
       }

@@ -19,7 +19,7 @@ $contenu = my_home_info($info_home);
 
 // $my_home = array();
 
-print_r($my_home);
+//print_r($my_home);
 
 $contenu .= my_room($my_home);
 
