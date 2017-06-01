@@ -115,9 +115,9 @@ function type_user() {
   <section>
     <article>
       <h3 class="titre">Vous êtes ?</h3>
-      <a href="index.php?cible=join-us_user">Utilisateur</a>
-      <a href="index.php?cible=join-us_admin">Administrateur</a>
-  </article>
+      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
+      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
+    </article>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -182,7 +182,7 @@ function footer() {
 	<ul class="footer">
     <ul>
 		  <li class="footer_elements">Localisation</li>
-		  <li class="footer_elements"><p><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></p></li>
+		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
     </ul>
 
     <ul>
@@ -199,6 +199,27 @@ function footer() {
   $footer = ob_get_clean();
   return $footer;
 }
+
+
+function footer_s() {
+  ob_start();
+	?>
+
+	<ul class="footer_s">
+    <h3 class="footer_s_text"> Suivez-nous sur les réseaux sociaux ! </h3>
+    <div class="flex_footer_s">
+      <li><a href="https://www.facebook.com/" target="_blank"><img class="facebook" src="views\ressources\icons\facebook.png" alt="Icon Facebook"  title="Cliquez ici pour accéder à notre page Facebook" /></a></li>
+      <li><a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="views\ressources\icons\Instagram.png" alt="Icon Instagram"  title="Cliquez ici pour accéder à notre page Instagram" /></a></li>
+      <li><a href="https://twitter.com/?lang=fr" target="_blank"><img class="twitter" src="views\ressources\icons\twitter.png" alt="Icon Twitter"  title="Cliquez ici pour accéder à notre page Twitter" /></a></li>
+      <li><a href="https://fr.linkedin.com/" target="_blank"><img class="linkedin" src="views\ressources\icons\linkedin.png" alt="Icon Linkedin"  title="Cliquez ici pour accéder à notre page Linkedin" /></a></li>
+      <li><a href="https://www.youtube.com/" target="_blank"><img class="youtube" src="views\ressources\icons\youtube.png" alt="Icon Youtube"  title="Cliquez ici pour accéder à notre chaîne Youtube" /></a></li>
+    </div>
+	</ul>
+	<?php
+  $footer = ob_get_clean();
+  return $footer;
+}
+
 
 // fonction qui génère l'affichage du formulaire de connexion
 // l'argument permet un affichage des messages d'erreur
@@ -766,6 +787,7 @@ function my_home_info($info_home) {
   return $home;
 }
 
+
 function content_actuators() {
   ob_start();
   ?>
@@ -822,6 +844,7 @@ function content_products() {
   ob_start();
   ?>
   <section>
+
     <h2>Nos produits</h2>
     <article>
     <p> <strong class="text_ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
@@ -832,15 +855,15 @@ function content_products() {
       chacun d’entre eux.</p>
       Elle permet d’accommoder les nécessités individuelles :
     <ul>
-      <li class = "element_products"> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
-      <li class = "element_products"> Vous êtes une personne à mobilité réduite </li>
-      <li class = "element_products"> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
+      <li> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
+      <li> Vous êtes une personne à mobilité réduite </li>
+      <li> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
     </ul>
     Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
     <ul>
-      <li class = "element_products"> Capteurs : de luminosité, de température, de mouvement.</li>
-      <li class = "element_products"> Actionneurs : volets, portail, garage.</li>
-      <li class = "element_products"> Caméras : pour la surveillance</li>
+      <li> Capteurs : de luminosité, de température, de mouvement.</li>
+      <li> Actionneurs : volets, portail, garage.</li>
+      <li> Caméras : pour la surveillance</li>
     </ul>
 
     <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
@@ -858,39 +881,49 @@ function content_sensors() {
   ?>
   <section>
     <h2>Nos capteurs</h2>
-    <article class="products">
-      <div>
-        <h2>Capteur de luminosité</h2>
-        <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Capteur de luminosité</h2>
+          <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
+        </div>
         <img class="image_products" src="views/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
       </div>
     </article>
-    <article class="products">
-      <div>
-        <h2>Capteur de température</h2>
-        <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Capteur de température</h2>
+          <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
+        </div>
         <img class="image_products" src="views/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
       </div>
     </article>
-    <article class="products">
-      <div>
-        <h2>Capteur d'humidité</h2>
-        <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
-        <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Capteur d'humidité</h2>
+          <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
+        </div>
+      <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
       </div>
     </article>
-    <article class="products">
-      <div>
-        <h2>Detecteur de mouvement</h2>
-        <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Detecteur de mouvement</h2>
+          <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
            et sera relié au système de sécurité pour prévenir les intrusions.</p>
+        </div>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_mouv.jpg" alt="detecteur mouv" title="detecteur mouv">
       </div>
     </article>
-    <article class="products">
-      <div>
-        <h2>Détecteur de fumée</h2>
-        <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Détecteur de fumée</h2>
+          <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
+        </div>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
       </div>
     </article>
@@ -898,6 +931,64 @@ function content_sensors() {
   <?php
   $contenu = ob_get_clean();
   return $contenu;
+}
+
+function content_actuators() {
+  ob_start();
+  ?>
+  <section>
+    <h2> Nos actionneurs </h2>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2> Actionneur volet roulant électrique </h2>
+          <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2> Actionneur portail électrique </h2>
+          <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
+      </div>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_cameras() {
+  ob_start();
+  ?>
+  <section>
+    <h2> Nos caméras </h2>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Caméra de surveillance</h2>
+          <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Caméra de palier </h2>
+          <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
+      </div>
+    </article>
+  </section>
+  <?php
+  $home = ob_get_clean();
+  return $home;
 }
 
 function content_home() {
@@ -914,6 +1005,7 @@ function content_home() {
     </article>
 
     <h2>Vos avis</h2>
+
     <article>
       <h3>Déploiement de qualité</h3>
       <p>"eHome a effectué l’installation de capteurs de température
@@ -932,8 +1024,6 @@ function content_home() {
       <p>M.T (La Garenne 92)</p>
     </article>
   </section>
-
-  <p><img class="bandeau_info" src="views\ressources\images\bandeau_info.png" alt="bandeau d'information"/></p>
 
  <?php
   $contenu = ob_get_clean();
@@ -985,11 +1075,11 @@ function content_about_us(){
         <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
       </ul>
     </article>
-  </section>
 
 
-  <section>
-    <h2 class="titre_section_about_us"> L’innovation au cœur de l’internet des objets </h2>
+
+
+    <h2> L’innovation au cœur de l’internet des objets </h2>
     <article>
       <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
         Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
@@ -997,35 +1087,35 @@ function content_about_us(){
         comme l'éclairage ou le chauffage, peuvent être automatisés
         pour gagner du temps et faire des économies !" </p>
     </article>
-  </section>
 
-  <section>
-    <h2 class="titre_section_about_us"> eHome plus en détail </h2>
-    <div class="ensemble_articles">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
-      <article class="article_about_us">
+
+
+    <h2> eHome plus en détail </h2>
+    <div class="flex_art_about_us">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
+      <article>
         <h3> Notre histoire </h3>
         <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
           dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
       </article>
 
 
-      <article class="article_about_us">
+      <article>
         <h3> Espace presse </h3>
         <p> Découvrez nos dernières annonces </p>
       </article>
 
 
-      <article class="article_about_us">
+      <article>
         <h3> Document de référence </h3>
         <p> Lire le rapport annuel </p>
       </article>
     </div>
-  </section>
 
 
-  <section>
-    <h2 class="titre_section_about_us"> Ce que nous vous proposons </h2>
-    <article class="article_about_us">
+
+
+    <h2> Ce que nous vous proposons </h2>
+    <article>
       <h3> Un gain de temps et de confort au quotidient </h3>
       <p> Il est 7h00. Vous vous réveillez au son de votre
         radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
@@ -1041,7 +1131,7 @@ function content_about_us(){
     </article>
 
 
-    <article class="article_about_us">
+    <article>
       <h3> Des économies d'énergie à la clé </h3>
       <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
         chauffage en marche. En vous équipant de notre installation domotique,
@@ -1055,7 +1145,7 @@ function content_about_us(){
     </article>
 
 
-    <article class="article_about_us">
+    <article>
       <h3> Pour votre sécurité et celle de votre maison </h3>
       <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
         passer toutes les pièces en revue. Comme les équipements domotiques sont
@@ -1069,6 +1159,49 @@ function content_about_us(){
         recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
     </article>
   </section>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function carroussel_home() {
+  ob_start();
+  ?>
+  <div id="slider">
+      <div id="imgs">
+          <!-- here you have to add the img tag -->
+          <img id="Img3" src="views/ressources/images/c3.jpg"/>
+          <img id="Img2" src="views/ressources/images/c2.jpg"/>
+          <img id="Img1" src="views/ressources/images/c1.jpg"/>
+      </div>
+      <!--Here is going to be the left right buttons, the info and the imgs shown-->
+      <div id="Snav">
+          <!-- here is the circles , showes the current img -->
+          <div id="SnavUp">
+              <div id="Scircles">
+                  <ul>
+                      <!-- here you have to add the li tag-->
+                      <li id="S0"></li>
+                      <li id="S1"></li>
+                      <li id="S2"></li>
+                  </ul>
+              </div>
+          </div>
+          <!-- the left and right button -->
+          <div id="SnavMiddle">
+              <img id="Sleft" src="views/ressources/images/left.png" onclick="prev()"/>
+              <img id="Sright" src="views/ressources/images/right.png" onclick="next()"/>
+          </div>
+          <!-- the info -->
+          <div id="SnavBottom">
+              <!-- here you have to add the p tag-->
+              <p id="SP0">Nature</p>
+              <p id="SP1">Lake</p>
+              <p id="SP2">Game of Thrones</p>
+          </div>
+      </div>
+  </div>
 
   <?php
   $contenu = ob_get_clean();

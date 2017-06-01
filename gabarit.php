@@ -7,10 +7,11 @@
     <link rel="icon" type="image/x-icon" href="views/ressources/logos/main_logo.png" />
     <link rel="stylesheet" href="views/styles/structure_new.css">
     <link rel="stylesheet" href="views/styles/home_management.css">
+
     <script type="text/javascript" src="views/jscarroussel.js"></script>
   </head>
 
-  <body>
+  <body onload="Load()">
       <nav>
         <?php echo $menu;?>
       </nav>
