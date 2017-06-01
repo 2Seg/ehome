@@ -47,24 +47,12 @@ if (isset($_SESSION['type'])) {
         include('views/messaging_user.php');
       } */elseif ($_GET['cible'] == 'room_add') {
         include('controlers/room_add.php');
-      } elseif ($_GET['cible'] == 'control_sensor_add') {
-        include('controlers/sensor_add.php');
-      } elseif ($_GET['cible'] == 'control_sensor_edit') {
-        include('controlers/sensor_edit.php');
-      } elseif ($_GET['cible'] == 'control_sensor_delete') {
-        include('controlers/sensor_delete.php');
-      } elseif ($_GET['cible'] == 'sensor_add') {
-        include('views/sensor_add.php');
-      } elseif ($_GET['cible'] == 'sensor_edit') {
-        include('views/sensor_edit.php');
-      } elseif ($_GET['cible'] == 'sensor_delete') {
-        include('views/sensor_delete.php');
-      } elseif ($_GET['cible'] == 'choice_nb_room') {
-        include("views/choice_nb_room.php");
-      } elseif ($_GET['cible'] == 'choice_nb_room2') {
-        include("views/choice_nb_room2.php");
-      } elseif ($_GET['cible'] == 'control_nb_room') {
-        include("controlers/choice_nb_room.php");
+      } elseif ($_GET['cible'] == 'room_del') {
+        include('controlers/room_del.php');
+      } /*elseif ($_GET['cible'] == 'room_upd') {
+        include('controlers/room_upd.php');
+      } */elseif ($_GET['cible'] == 'room_del') {
+        include('controlers/room_del.php');
       } else {
         include ('views/error.php');
       }
@@ -97,7 +85,7 @@ if (isset($_SESSION['type'])) {
       }
 
       elseif ($_GET['cible'] == 'home_admin') {
-        include("views/home_admin.php");
+        include("controlers/home_admin.php");
       } else {
         include ('views/error.php');
       }

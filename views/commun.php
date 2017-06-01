@@ -3,6 +3,31 @@
 vue répertoriant les fonctions gérant l'affichage des différentes parties des pages
 */
 
+function strtolower_utf8($string){
+  $convert_to = array(
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+    "v", "w", "x", "y", "z", "à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï",
+    "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û", "ü", "ý", "а", "б", "в", "г", "д", "е", "ё", "ж",
+    "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы",
+    "ь", "э", "ю", "я"
+  );
+  $convert_from = array(
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+    "V", "W", "X", "Y", "Z", "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï",
+    "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж",
+    "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ъ",
+    "Ь", "Э", "Ю", "Я"
+  );
+
+  return str_replace($convert_from, $convert_to, $string);
+}
+
+// fonction qui met seulement la 1ère lettre d'une string en majuscules
+function maj_lettre1($str) {
+  $str1 = strtolower_utf8($str);
+  $str2 = ucfirst($str1);
+  return $str2;
+}
 
 // fonction qui gère l'affichage du menu et qui redirige l'utilisateur à travers toutes les pages du site grâce aux 'cibles' dans les URL
 function menu() {
@@ -75,14 +100,13 @@ function menu_home() {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
-    ?>
-    </ul>
-  </div>
-    <?php
-  $menu = ob_get_clean();
-  return $menu;
+   ?>
+   </ul>
+   </div>
+   <?php
+   $menu = ob_get_clean();
+   return $menu;
 }
-
 
 // fonction permettant de choisir le type d'utilisateur
 function type_user() {
@@ -91,8 +115,8 @@ function type_user() {
   <section>
     <article>
       <h3 class="titre">Vous êtes ?</h3>
-      <a href="index.php?cible=join-us_user">Utilisateur</a><br/>
-      <a href="index.php?cible=join-us_admin">Administrateur</a>
+      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
+      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
     </article>
   </section>
   <?php
@@ -237,8 +261,6 @@ function form_signin($erreur) {
 }
 
 // fonction qui génère l'affichage du formulaire d'inscription en fonction du type de personne qui s'inscrit (admnistrateur ou utilisateur)
-// génère par défaut l'affichage du formulaire utilisateur
-// génère l'affichage du formulaire administrateur si on lui passe 'administrateur' en argument
 function form_subscribe_user() {
   ob_start();
   ?>
@@ -267,9 +289,9 @@ function form_subscribe_user() {
       <legend><h3>Informations personnelles</h3></legend>
         <p>
           <label for="civilité"> Civilité <br/>
-          <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
+          <input type="radio" name="civilite" value="Monsieur" id="monsieur"/>
           <label for="monsieur">Monsieur</label><br/>
-          <input type="radio" name="civilite" value="madame" id="madame"/>
+          <input type="radio" name="civilite" value="Madame" id="madame"/>
           <label for="madame">Madame</label>
         </p>
         <p>
@@ -293,36 +315,36 @@ function form_subscribe_user() {
           <select name="pays_user" id="pays_user" required>
             <option value="placeholder" selected>-- Sélectionnez un pays --</option>
             <optgroup label="Europe">
-              <option value="allemagne">Allemagne</option>
-              <option value="autriche">Autriche</option>
-              <option value="belgique">Belgique</option>
-              <option value="bulgarie">Bulgarie</option>
-              <option value="chypre">Chypre</option>
-              <option value="croatie">Croatie</option>
-              <option value="danemark">Danemark</option>
-              <option value="espagne">Espagne</option>
-              <option value="estonie">Estonie</option>
-              <option value="finlande">Finlande</option>
-              <option value="france">France</option>
-              <option value="grece">Grèce</option>
-              <option value="hongrie">Hongrie</option>
-              <option value="irlande">Irlande</option>
-              <option value="italie">Italie</option>
-              <option value="lettonie">Lettonie</option>
-              <option value="lituanie">Lituanie</option>
-              <option value="luxembourg">Luxembourg</option>
-              <option value="malte">Malte</option>
-              <option value="norvege">Norvège</option>
-              <option value="paysBas">Pays-Bas</option>
-              <option value="pologne">Pologne</option>
-              <option value="portugal">Portugal</option>
-              <option value="république_tchèque">République tchèque</option>
-              <option value="roumanie">Roumanie</option>
-              <option value="royaume_uni">Royaume-Uni</option>
-              <option value="slovaquie">Slovaquie</option>
-              <option value="slovenie">Slovénie</option>
-              <option value="suede">Suède</option>
-              <option value="suisse">Suisse</option>
+              <option value="Allemagne">Allemagne</option>
+              <option value="Autriche">Autriche</option>
+              <option value="Belgique">Belgique</option>
+              <option value="Bulgarie">Bulgarie</option>
+              <option value="Chypre">Chypre</option>
+              <option value="Croatie">Croatie</option>
+              <option value="Danemark">Danemark</option>
+              <option value="Espagne">Espagne</option>
+              <option value="Estonie">Estonie</option>
+              <option value="Finlande">Finlande</option>
+              <option value="France">France</option>
+              <option value="Grece">Grèce</option>
+              <option value="Hongrie">Hongrie</option>
+              <option value="Irlande">Irlande</option>
+              <option value="Italie">Italie</option>
+              <option value="Lettonie">Lettonie</option>
+              <option value="Lituanie">Lituanie</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malte">Malte</option>
+              <option value="Norvege">Norvège</option>
+              <option value="Pays-Bas">Pays-Bas</option>
+              <option value="Pologne">Pologne</option>
+              <option value="Portugal">Portugal</option>
+              <option value="République-Tchèque">République tchèque</option>
+              <option value="Roumanie">Roumanie</option>
+              <option value="Royaume-Uni">Royaume-Uni</option>
+              <option value="Slovaquie">Slovaquie</option>
+              <option value="Slovenie">Slovénie</option>
+              <option value="Suede">Suède</option>
+              <option value="Suisse">Suisse</option>
             </optgroup>
           </select>
         </p>
@@ -367,36 +389,36 @@ function form_subscribe_user() {
           <select name="pays_logement" id="pays_logement" required>
             <option value="placeholder" selected>-- Sélectionnez un pays --</option>
             <optgroup label="Europe">
-              <option value="allemagne">Allemagne</option>
-              <option value="autriche">Autriche</option>
-              <option value="belgique">Belgique</option>
-              <option value="bulgarie">Bulgarie</option>
-              <option value="chypre">Chypre</option>
-              <option value="croatie">Croatie</option>
-              <option value="danemark">Danemark</option>
-              <option value="espagne">Espagne</option>
-              <option value="estonie">Estonie</option>
-              <option value="finlande">Finlande</option>
-              <option value="france">France</option>
-              <option value="grece">Grèce</option>
-              <option value="hongrie">Hongrie</option>
-              <option value="irlande">Irlande</option>
-              <option value="italie">Italie</option>
-              <option value="lettonie">Lettonie</option>
-              <option value="lituanie">Lituanie</option>
-              <option value="luxembourg">Luxembourg</option>
-              <option value="malte">Malte</option>
-              <option value="norvege">Norvège</option>
-              <option value="paysBas">Pays-Bas</option>
-              <option value="pologne">Pologne</option>
-              <option value="portugal">Portugal</option>
-              <option value="république_tchèque">République tchèque</option>
-              <option value="roumanie">Roumanie</option>
-              <option value="royaume_uni">Royaume-Uni</option>
-              <option value="slovaquie">Slovaquie</option>
-              <option value="slovenie">Slovénie</option>
-              <option value="suede">Suède</option>
-              <option value="suisse">Suisse</option>
+              <option value="Allemagne">Allemagne</option>
+              <option value="Autriche">Autriche</option>
+              <option value="Belgique">Belgique</option>
+              <option value="Bulgarie">Bulgarie</option>
+              <option value="Chypre">Chypre</option>
+              <option value="Croatie">Croatie</option>
+              <option value="Danemark">Danemark</option>
+              <option value="Espagne">Espagne</option>
+              <option value="Estonie">Estonie</option>
+              <option value="Finlande">Finlande</option>
+              <option value="France">France</option>
+              <option value="Grece">Grèce</option>
+              <option value="Hongrie">Hongrie</option>
+              <option value="Irlande">Irlande</option>
+              <option value="Italie">Italie</option>
+              <option value="Lettonie">Lettonie</option>
+              <option value="Lituanie">Lituanie</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malte">Malte</option>
+              <option value="Norvege">Norvège</option>
+              <option value="Pays-Bas">Pays-Bas</option>
+              <option value="Pologne">Pologne</option>
+              <option value="Portugal">Portugal</option>
+              <option value="République-Tchèque">République tchèque</option>
+              <option value="Roumanie">Roumanie</option>
+              <option value="Royaume-Uni">Royaume-Uni</option>
+              <option value="Slovaquie">Slovaquie</option>
+              <option value="Slovenie">Slovénie</option>
+              <option value="Suede">Suède</option>
+              <option value="Suisse">Suisse</option>
             </optgroup>
           </select>
         </p>
@@ -450,9 +472,9 @@ function form_subscribe_admin() {
       <legend>Informations personnelles</legend>
         <p>
           <label for="civilité"> Civilité <br/>
-          <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
+          <input type="radio" name="civilite" value="Monsieur" id="monsieur"/>
           <label for="monsieur">Monsieur</label><br/>
-          <input type="radio" name="civilite" value="madame" id="madame"/>
+          <input type="radio" name="civilite" value="Madame" id="madame"/>
           <label for="madame">Madame</label>
         </p>
         <p>
@@ -530,168 +552,109 @@ function form_subscribe_admin() {
   return $contenu;
 }
 
-// fonction qui génère un formulaire en fonction du nb de pièces en entrée
-function form_sensor_room() {
+// fonction responsable de l'affichage du bloc "Pièce(s)" dans home_management.php
+function my_room($my_home) {
   ob_start();
   ?>
-  <section>
-  <form method="post" action='index.php?cible=control_sensor_add'>
-    <fieldset>
-      <legend><h3>Zone d'ajout</h3></legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
+  <section id="room">
+    <h3><?php if(count($my_home) == 1) {
+                echo('Pièce');
+                } else {
+                  echo('Pièces');
+                }?>
+    </h3>
+    <?php
+    if ($my_home == array()) {
       ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-      </tr>
-
+      <h2 class="except_h2">Veuillez ajouter des pièces pour permettre d'afficher les données</h2>
       <?php
+    } else {
+      for($i = 0; $i < count($my_home); $i++) {
+        if($i % 2 == 0) {
+          echo('<article><h3>'.$my_home[$i][1].'</h3>');
+          ?>
+          <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer la pièce'
+          onclick="deleteRoom(<?php echo("'".$my_home[$i][1]."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
+          onmouseout="this.src='views/ressources/icons/trash1.png'">
+          <script type="text/javascript">
+            function deleteRoom(nomPiece, id_piece) {
+              if(confirm("Voulez-vous vraiment supprimer la pièce " + nomPiece + " ?")) {
+                window.location = "index.php?cible=room_del&id_piece=" + id_piece;
+              } else {
+                alert("non");
+              }
+            }
+          </script>
+          <?php
+        } else {
+          if($my_home[$i] == array()) {
+            ?>
+            <h2 class="except_h2">Aucun dispositif</h2>
+            <p><a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter</button></a></p></article>
+            <?php
+          } else {
+            for($j = 0; $j < count($my_home[$i]); $j++) {
+              if($j % 2 == 0) {
+                echo('<p>'.$my_home[$i][$j].' x ');
+              } else {
+                echo($my_home[$i][$j].'</p>');
+              }
+            }
+            ?>
+            <p><a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter</button></a></p>
+            <p><a href='index.php?cible=device_edit&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier</button></a></p>
+            <p><a href='index.php?cible=device_delete&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Supprimer</button></a></p></article>
+            <?php
+          }
+        }
       }
+    }
       ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
-}
+      <form id="form" method="post" action="index.php?cible=room_add">
+        <script type="text/javascript">
+          var i = 0;
+          var div = document.createElement("div");
+          div.id = "zoneAjout";
+          document.getElementById("form").insertBefore(div, document.getElementById("submit"));
 
-// function qui génère un formulaire de mise à jour des dispositifs dans les pièces
-function edit_sensor_room() {
-  ob_start();
-  ?>
-  <section>
-  <form method="post" action='index.php?cible=control_sensor_edit'>
-    <fieldset>
-      <legend>Mise à jour des capteurs</legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" value="<?php echo($_SESSION['piece_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" value="<?php echo($_SESSION['luminosite_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" value="<?php echo($_SESSION['temperature_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" value="<?php echo($_SESSION['humidite_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" value="<?php echo($_SESSION['mouvement_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" value="<?php echo($_SESSION['fumee_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" value="<?php echo($_SESSION['camera_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" value="<?php echo($_SESSION['actionneur_'.$i]); ?>" required/>
-        </td>
-      </tr>
+          function addRoom() {
+            if(!document.getElementById("zoneAjout")) {
+              i = 0;
+              div = document.createElement("div");
+              div.id = "zoneAjout";
+              document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+            }
+            var article = document.createElement("article");
+            var input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("placeholder", "Nom de la pièce à ajouter");
+            input.name = "piece[]";
+            input.setAttribute("required", "");
+            article.id = "newArticle" + i;
+            document.getElementById("zoneAjout").appendChild(article);
+            document.getElementById("newArticle" + i).appendChild(input);
+            i++;
+          }
 
-      <?php
-      }
-      ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
-}
+          function annuler() {
+            document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
+            i = 0;
+            div = document.createElement("div");
+            div.id = "zoneAjout";
+            document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+          }
+        </script>
+        <p><input id="submit" type="submit" value="Confirmer les modifications"></p>
+      </form>
+      <p><button onclick="addRoom()">Ajouter une pièce</button></p>
+      <p><button onclick="annuler()">Annuler</button></p>
 
-function erase_sensor_room() {
-  ob_start();
-  ?>
-  <section>
-  <!-- <article> -->
-  <form method="post" action='index.php?cible=control_sensor_delete'>
-    <fieldset>
-      <legend>Suppression de pièce</legend>
-      <table>
-        <tr>
-          <th>Sélection</th>
-          <th>Pièce</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="checkbox" name="<?php echo('piece_'.$i); ?>" />
-        </td>
-        <td>
-          <?php echo($_SESSION['piece_'.$i]); ?>
-        </td>
+      </section>
+    <?php
 
-      </tr>
 
-      <?php
-      }
-      ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Confirmer la suppression" />
-  </fieldset>
-  <!-- </article> -->
-  </section>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
+  $content = ob_get_clean();
+  return $content;
 }
 
 // fonction qui récupère la date du jour
@@ -745,8 +708,8 @@ function current_date() {
   return $date;
 }
 
-// fonction responsable de l'affichage du bloc "Mon domicile"
-function my_home() {
+// fonction responsable de l'affichage du bloc "Mon domicile" dans home_user.php
+function my_notif() {
   ob_start();
   ?>
   <section>
@@ -768,39 +731,33 @@ function my_basic_info($info_user) {
   ob_start();
 
   if ($_SESSION['type'] == 'user') {
-    foreach ($info_user as $info) {
     ?>
       <section>
       <article>
         <h3>Mes informations client</h3>
-        <p><strong>Civilité : </strong><?php echo($info['civilite']); ?></p>
-        <p><strong>Nom : </strong><?php echo($info['nom']); ?></p>
-        <p><strong>Prénom : </strong><?php echo($info['prenom']); ?></p>
-        <p><strong>Adresse : </strong><?php echo($info['adresse']); ?></p>
-        <p><strong>Code postal : </strong><?php echo($info['code_postal']); ?></p>
-        <p><strong>Ville : </strong><?php echo($info['ville']); ?></p>
-        <p><strong>Pays : </strong><?php echo($info['pays']); ?></p>
+        <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+        <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+        <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+        <p><strong>Adresse : </strong><?php echo($info_user['adresse']); ?></p>
+        <p><strong>Code postal : </strong><?php echo($info_user['code_postal']); ?></p>
+        <p><strong>Ville : </strong><?php echo($info_user['ville']); ?></p>
+        <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
 
-        <form method="post" action="index.php?cible=info_user">
-          <input type="submit" value="Voir les informations complètes">
-        </form>
+        <p><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></p>
       </article>
       </section>
     <?php
-    }
-  } else{
+  } else {
     ?>
     <section>
     <article>
       <h3>Mes informations administrateur</h3>
-      <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
-      <p><strong>Nom : </strong><?php echo($_SESSION['nom']); ?></p>
-      <p><strong>Prénom : </strong><?php echo($_SESSION['prenom']); ?></p>
-      <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
+      <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+      <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
 
-      <form method="post" action="index.php?cible=info_admin">
-        <input type="submit" value="Voir les informations complètes">
-      </form>
+      <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
     </article>
     </section>
     <?php
@@ -810,255 +767,85 @@ function my_basic_info($info_user) {
 }
 
 // fonction gérant l'affichage des informations sur le domicile utilisateur
-function my_home_information() {
+function my_home_info($info_home) {
   ob_start();
   ?>
   <section>
     <h3>Informations du logement</h3>
-    <p><strong>Adresse : </strong><?php echo($_SESSION['adresse']); ?></p>
-    <p><strong>Code postal : </strong><?php echo($_SESSION['code_postal']); ?></p>
-    <p><strong>Ville : </strong><?php echo($_SESSION['ville']); ?></p>
-    <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
-    <p><strong>Nombre d'habitant : </strong><?php echo($_SESSION['nb_habitant']); ?></p>
-    <p><strong>Nombre de pièce : </strong><?php echo($_SESSION['nb_piece']); ?></p>
-    <p><strong>Superficie : </strong><?php echo($_SESSION['superficie'].' m²'); ?></p>
+    <p><strong>Adresse : </strong><?php echo($info_home['adresse']); ?></p>
+    <p><strong>Code postal : </strong><?php echo($info_home['code_postal']); ?></p>
+    <p><strong>Ville : </strong><?php echo($info_home['ville']); ?></p>
+    <p><strong>Pays : </strong><?php echo($info_home['pays']); ?></p>
+    <p><strong>Nombre d'habitant : </strong><?php echo($info_home['nb_habitant']); ?></p>
+    <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
+    <p><strong>Nombre de pièce : </strong><?php echo($info_home['nb_piece']); ?></p>
 
-    <form method="post" action="index.php?cible=edit_info_home">
-      <input type="submit" value="Modifier les informations">
-    </form>
-
-  </section>
+    <p><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></p>
+    </section>
   <?php
   $home = ob_get_clean();
   return $home;
 }
 
-// fonction gérant l'affichage des informations sur les capteurs présents dans les pièces d'un logement
-function my_sensor_room() {
-  ob_start();
-  ?>
 
-  <section>
-  <h3>Dispositifs et pièces du domicile</h3>
-  <?php
-  if ($_SESSION['data_room'] == 'false') {
-    ?>
-    <h2>Veuillez ajouter des pièces pour permettre l'affichage des données</h2>
-    <form method="post" action="index.php?cible=room_add">
-      <p>
-        <label for="nb_piece">Nombre de pièces à ajouter</label><br/>
-        <input type="number" name="nb_piece" min="0" placeholder="Nombre de pièces"/>
-      </p>
-      <input type="submit" value="Ajouter">
-    </form>
-    <?php
-  } else {
-    ?>
-    <table>
-      <tr>
-        <th>Pièce</th>
-        <th>Capteur de luminosité</th>
-        <th>Capteur de température</th>
-        <th>Capteur d'humidité</th>
-        <th>Détecteur de mouvement</th>
-        <th>Détecteur de fumée</th>
-        <th>Caméra</th>
-        <th>Actionneur</th>
-      </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <?php echo($_SESSION['piece_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['luminosite_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['temperature_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['humidite_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['mouvement_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['fumee_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['camera_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['actionneur_'.$i]); ?>
-        </td>
-      </tr>
-    <?php
-    }
-    ?>
-  </table>
-  <form method="post" action="index.php?cible=choice_nb_room">
-    <input type="submit" value="Ajouter">
-  </form>
-  <form method="post" action="index.php?cible=sensor_edit">
-    <input type="submit" value="Modifier">
-  </form>
-  <form method="post" action="index.php?cible=sensor_delete">
-    <input type="submit" value="Supprimer">
-  </form>
-
-  </section>
-  <?php
-  }
-  $room = ob_get_clean();
-  return $room;
-}
-
-function my_actual_room() {
+function content_actuators() {
   ob_start();
   ?>
   <section>
-  <table>
-    <tr>
-      <th>Pièce</th>
-      <th>Capteur de luminosité</th>
-      <th>Capteur de température</th>
-      <th>Capteur d'humidité</th>
-      <th>Détecteur de mouvement</th>
-      <th>Détecteur de fumée</th>
-      <th>Caméra</th>
-      <th>Actionneur</th>
-    </tr>
-    <?php
-    for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-    ?>
-    <tr>
-      <td>
-        <?php echo($_SESSION['piece_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['luminosite_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['temperature_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['humidite_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['mouvement_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['fumee_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['camera_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['actionneur_'.$i]); ?>
-      </td>
-    </tr>
-    <?php
-  }
-  ?>
-  </table>
+    <h2>Nos actionneurs</h2>
+    <article class="products">
+      <div>
+        <h2> Actionneur volet roulant électrique </h2>
+        <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
+        <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
+      </div>
+    </article>
+    <article>
+      <div>
+        <h2 class="titre"> Actionneur portail électrique </h2>
+        <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
+        <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
+      </div>
+    </article>
   </section>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
 }
 
-// fonction qui affiche un formulaire pour choisir un nombre de pièces
-function form_nb_room() {
+function content_cameras() {
   ob_start();
   ?>
   <section>
-  <fieldset>
-  <legend>Sélectionner le nombre de pièces à ajouter</legend>
-  <form method="post" action="index.php?cible=choice_nb_room2">
-    <p>
-      <input type="number" name="nb_piece_ajout" min="1" placeholder="Nombre de pièces">
-    </p>
-    <p>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Suivant">
-    </p>
-  </form>
-  </fieldset>
+    <h2>Nos caméras</h2>
+    <article class="products">
+      <div>
+        <h2>Caméra de surveillance</h2>
+        <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
+        <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
+      </div>
+    </article>
+    <article class="products">
+      <div>
+        <h2>Caméra de palier </h2>
+        <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
+        <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
+      </div>
+    </article>
   </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
 
-function form_nb_room2() {
-  ob_start();
-  ?>
-  <section>
-  <form method="post" action='index.php?cible=control_nb_room'>
-    <fieldset>
-      <legend><h3>Zone d'ajout</h3></legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = $_SESSION['nb_piece'] + 1; $i <= $_SESSION['nb_piece'] + $_POST['nb_piece_ajout']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-      </tr>
-
-      <?php
-    }
-    $_SESSION['nb_piece_ajout'] = $_POST['nb_piece_ajout'];
-    ?>
-    </table>
-    <input type="reset" value="Rafraichir">
-    <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
   <?php
-  $contenu = ob_get_clean();
-  return $contenu;
+
+  $home = ob_get_clean();
+  return $home;
 }
 
 function content_products() {
   ob_start();
   ?>
   <section>
-    <h2> Nos produits </h2>
+
+    <h2>Nos produits</h2>
     <article>
     <p> <strong class="text_ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
       d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
@@ -1093,7 +880,7 @@ function content_sensors() {
   ob_start();
   ?>
   <section>
-    <h2> Nos capteurs </h2>
+    <h2>Nos capteurs</h2>
     <article>
       <div class="flex_products">
         <div class="flex_products2">
@@ -1208,7 +995,7 @@ function content_home() {
   ob_start();
   ?>
   <section>
-    <h2> Accueil eHome </h2>
+    <h2>Accueil eHome</h2>
     <article>
       <p>Notre <a class="lien" href="index.php?cible=about-us">société</a> propose des systèmes électroniques de domotique depuis 2016. Nous
         mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
@@ -1217,7 +1004,8 @@ function content_home() {
         adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure."</p>
     </article>
 
-    <h2> Vos avis</h2>
+    <h2>Vos avis</h2>
+
     <article>
       <h3>Déploiement de qualité</h3>
       <p>"eHome a effectué l’installation de capteurs de température
@@ -1278,7 +1066,7 @@ function content_about_us(){
   ob_start();
   ?>
   <section>
-    <h2> A propos d'eHome </h2>
+    <h2>A propos d'eHome</h2>
     <article>
       <h3> Les valeurs des eHomers </h3>
       <ul>

@@ -1,12 +1,30 @@
 <?php
 /*
-controleur gérant l'ajout de pièces
+controleur gérant l'extraction des données néccessaires pour l'affichage du bloc "Pièces" de la page "home_user.php"
 */
 
-include('modeles/functions.php');
+include_once('modeles/functions.php');
 
-update_nb_piece($bdd, $_SESSION['id_logement'], $_POST['nb_piece']);
-
-$_SESSION['nb_piece'] = $_POST['nb_piece'];
-
-include('views/sensor_add.php');
+if(isset($_GET['cible']) && $_GET['cible'] == 'room_add') {
+  for($i = 0; $i < count($_POST['piece']); $i++) {
+    insert_room($bdd, $_SESSION['id'], maj_lettre1($_POST['piece'][$i]));
+  }
+  if (count($_POST['piece']) == 1) {
+    $message = 'La pièce \''.maj_lettre1($_POST['piece'][0]).'\' a bien été ajoutée';
+  } else {
+    $message = 'Les pieces ';
+    for($i = 0; $i < count($_POST['piece'])-1; $i++) {
+        $message .= '\''.maj_lettre1($_POST['piece'][$i]);
+        if($i != count($_POST['piece']) - 2) {
+          $message .= '\', ';
+        } else {
+          $message .= '\' ';
+        }
+    }
+    $message .= 'et \''.maj_lettre1($_POST['piece'][count($_POST['piece'])-1]).'\' ';
+    $message .= 'ont bien été ajoutées';
+  }
+  include('controlers/home_management.php');
+} else {
+  include('controlers/home_management.php');
+}
