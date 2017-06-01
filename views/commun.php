@@ -3,6 +3,32 @@
 vue répertoriant les fonctions gérant l'affichage des différentes parties des pages
 */
 
+function strtolower_utf8($string){
+  $convert_to = array(
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+    "v", "w", "x", "y", "z", "à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï",
+    "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û", "ü", "ý", "а", "б", "в", "г", "д", "е", "ё", "ж",
+    "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы",
+    "ь", "э", "ю", "я"
+  );
+  $convert_from = array(
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+    "V", "W", "X", "Y", "Z", "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï",
+    "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж",
+    "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ъ",
+    "Ь", "Э", "Ю", "Я"
+  );
+
+  return str_replace($convert_from, $convert_to, $string);
+}
+
+// fonction qui met seulement la 1ère lettre d'une string en majuscules
+function maj_lettre1($str) {
+  $str1 = strtolower_utf8($str);
+  $str2 = ucfirst($str1);
+  return $str2;
+}
+
 // fonction qui gère l'affichage du menu et qui redirige l'utilisateur à travers toutes les pages du site grâce aux 'cibles' dans les URL
 function menu() {
   ob_start();
@@ -480,21 +506,30 @@ function my_room($my_home) {
     if ($my_home == array()) {
       ?>
       <h2 class="except_h2">Veuillez ajouter des pièces pour permettre d'afficher les données</h2>
-      <p><a href="index.php?cible=room_add"><button>Ajouter</button></p></section>
       <?php
     } else {
       for($i = 0; $i < count($my_home); $i++) {
         if($i % 2 == 0) {
-          echo('<article><h3>'.$my_home[$i].'</h3>');
+          echo('<article><h3>'.$my_home[$i][1].'</h3>');
           ?>
-          <img id="trash" src="views/ressources/icons/trash1.png" title="Supprimer la pièce"
-          onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'">
+          <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer la pièce'
+          onclick="deleteRoom(<?php echo("'".$my_home[$i][1]."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
+          onmouseout="this.src='views/ressources/icons/trash1.png'">
+          <script type="text/javascript">
+            function deleteRoom(nomPiece, id_piece) {
+              if(confirm("Voulez-vous vraiment supprimer la pièce " + nomPiece + " ?")) {
+                window.location = "index.php?cible=room_del&id_piece=" + id_piece;
+              } else {
+                alert("non");
+              }
+            }
+          </script>
           <?php
         } else {
           if($my_home[$i] == array()) {
             ?>
             <h2 class="except_h2">Aucun dispositif</h2>
-            <p><a href='index.php?cible=device_add&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Ajouter</button></a></p></article>
+            <p><a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter</button></a></p></article>
             <?php
           } else {
             for($j = 0; $j < count($my_home[$i]); $j++) {
@@ -505,13 +540,14 @@ function my_room($my_home) {
               }
             }
             ?>
-            <p><a href='index.php?cible=device_add&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Ajouter</button></a></p>
-            <p><a href='index.php?cible=device_edit&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Modifier</button></a></p>
-            <p><a href='index.php?cible=device_delete&amp;piece=<?php echo($my_home[$i-1]); ?>'><button>Supprimer</button></a></p></article>
+            <p><a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter</button></a></p>
+            <p><a href='index.php?cible=device_edit&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier</button></a></p>
+            <p><a href='index.php?cible=device_delete&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Supprimer</button></a></p></article>
             <?php
           }
         }
       }
+    }
       ?>
       <form id="form" method="post" action="index.php?cible=room_add">
         <script type="text/javascript">
@@ -551,8 +587,10 @@ function my_room($my_home) {
       </form>
       <button onclick="addRoom()">Ajouter une pièce</button>
       <button onclick="annuler()">Annuler</button>
+
+      </section>
     <?php
-    }
+
 
   $content = ob_get_clean();
   return $content;

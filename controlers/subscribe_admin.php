@@ -11,8 +11,9 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'subscribe_admin') {
     if($_POST['password'] == $_POST['conf_password']) {
       $mot_de_passe = sha1($_POST['password']);
 
-      insert_info_admin($bdd, $_POST['civilite'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $mot_de_passe, $_POST['date_naissance'],
-                       $_POST['nationalite'], $_POST['pays_admin'], $_POST['telephone'], $_POST['email'], 0);
+      insert_info_admin($bdd, maj_lettre1($_POST['civilite']), $_POST['nom'], maj_lettre1($_POST['prenom']), $_POST['login'],
+                        $mot_de_passe, $_POST['date_naissance'], maj_lettre1($_POST['nationalite']), maj_lettre1($_POST['pays_admin']),
+                        $_POST['telephone'], $_POST['email'], 0);
 
       include('views/conf_join-us.php');
     } else {

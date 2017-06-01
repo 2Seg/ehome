@@ -214,21 +214,21 @@ function update_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_lumin
                         'detecteur_fumee' => $detecteur_fumee,
                         'camera' => $camera,
                         'actionneur' => $actionneur));
-  return $req;
 }
 
 // fonction modifiant le nb de piece d'un logement
 function update_nb_piece($db, $id_logement, $nb_piece) {
   $req = $db -> prepare('UPDATE logement SET nb_piece = :nb_piece WHERE id_user = :id_logement');
   $req -> execute(array('id_logement' => $id_logement, 'nb_piece' => $nb_piece));
-  return $req;
 }
 
 /*****************************************************************DELETE***********************************************************************/
 
-// function qui supprime une pièce d'un logement
-function delete_sensor_room($db, $id_logement, $id_piece) {
-  $req = $db -> prepare('DELETE FROM piece WHERE id_logement = :id_logement AND id_piece = :id_piece');
+// function qui supprime une pièce d'un logement ainsi que tous les capteurs associés
+function delete_room($db, $id_logement, $id_piece) {
+  $req = $db -> prepare('DELETE FROM piece WHERE id_logement = :id_logement AND id = :id_piece');
   $req -> execute(array('id_logement' => $id_logement, 'id_piece' => $id_piece));
-  return $req;
+  $req -> closeCursor();
+  $req = $db -> prepare('DELETE FROM dispositif WHERE id_piece = ?');
+  $req -> execute(array($id_piece));
 }

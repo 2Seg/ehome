@@ -15,7 +15,8 @@ if($info_home['nb_piece'] == 0) {
   $data_room = select_info_room($bdd, $_SESSION['id']);
   $i = 0;
   while($info_room = $data_room -> fetch()) {
-    $my_home[$i] = $info_room['piece'];
+    $my_home[$i][0] = $info_room['id'];
+    $my_home[$i][1] = $info_room['piece'];
     $i++;
     $data_device = select_info_device($bdd, $info_room['id']);
     if($data_device -> rowcount() == 0) {
