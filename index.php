@@ -90,7 +90,7 @@ if (isset($_SESSION['type'])) {
         include ('views/error.php');
       }
     } else {
-      include ('views/error.php');
+      include ('views/home.php');
     }
   }
 }

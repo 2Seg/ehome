@@ -118,8 +118,8 @@ function count_piece($db, $id_logement) {
   $info = array();
   $req = $db -> prepare('SELECT COUNT(piece) AS nb_piece FROM piece WHERE id_logement = ?');
   $req -> execute(array($id_logement));
-  $nb_piece = $req -> fetch();
-  return $nb_piece;
+  $data = $req -> fetch();
+  return $data['nb_piece'];
 }
 
 function select_info_device($db, $id_piece) {

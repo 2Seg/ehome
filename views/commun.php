@@ -3,6 +3,8 @@
 vue répertoriant les fonctions gérant l'affichage des différentes parties des pages
 */
 
+/*****************************************************************Fonctions utilitaires***********************************************************************/
+
 function strtolower_utf8($string){
   $convert_to = array(
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
@@ -28,6 +30,59 @@ function maj_lettre1($str) {
   $str2 = ucfirst($str1);
   return $str2;
 }
+
+// fonction qui récupère la date du jour
+function current_date() {
+  $now = getdate();
+  $day = '';
+  $month = '';
+  if ($now['weekday'] == 'Monday') {
+    $day = 'Lundi';
+  } else if ($now['weekday'] == 'Tuesday') {
+    $day = 'Mardi';
+  } else if ($now['weekday'] == 'Wednesday') {
+    $day = 'Mercredi';
+  } else if ($now['weekday'] == 'Thursday') {
+    $day = 'Jeudi';
+  } else if ($now['weekday'] == 'Friday') {
+    $day = 'Vendredi';
+  } else if ($now['weekday'] == 'Saturday') {
+    $day = 'Samedi';
+  } else {
+    $day = 'Dimanche';
+  }
+
+  if ($now['month'] == 'January') {
+    $month = 'janvier';
+  } elseif ($now['month'] == 'February') {
+    $month = 'février';
+  } elseif ($now['month'] == 'March') {
+    $month = 'mars';
+  } elseif ($now['month'] == 'April') {
+    $month = 'avril';
+  } elseif ($now['month'] == 'May') {
+    $month = 'mai';
+  } elseif ($now['month'] == 'June') {
+    $month = 'juin';
+  } elseif ($now['month'] == 'July') {
+    $month = 'juillet';
+  } elseif ($now['month'] == 'August') {
+    $month = 'août';
+  } elseif ($now['month'] == 'September') {
+    $month = 'septembre';
+  } elseif ($now['month'] == 'October') {
+    $month = 'octobre';
+  } elseif ($now['month'] == 'November') {
+    $month = 'novembre';
+  } else {
+    $month = 'décembre';
+  }
+
+  $date = ''.$day.' '.$now['mday'].' '.$month.'';
+  return $date;
+}
+
+/*****************************************************************Fonctions $menu***********************************************************************/
 
 // fonction qui gère l'affichage du menu et qui redirige l'utilisateur à travers toutes les pages du site grâce aux 'cibles' dans les URL
 function menu() {
@@ -108,22 +163,6 @@ function menu_home() {
    return $menu;
 }
 
-// fonction permettant de choisir le type d'utilisateur
-function type_user() {
-  ob_start();
-  ?>
-  <section>
-    <article>
-      <h3 class="titre">Vous êtes ?</h3>
-      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
-      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
-    </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
 // fonction qui gère l'affichage du menu classique + celui des produits
 function menu_products() {
   ob_start();
@@ -176,53 +215,350 @@ function menu_user($type) {
   return $menu;
 }
 
-function footer() {
+/*****************************************************************Fonctions $contenu***********************************************************************/
+
+// fonction permettant de choisir le type d'utilisateur
+function type_user() {
   ob_start();
-	?>
-	<ul class="footer">
-    <ul>
-		  <li class="footer_elements">Localisation</li>
-		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
-    </ul>
-
-    <ul>
-		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
-    </ul>
-
-    <ul>
-		  <li class="footer_elements">Contact</li>
-		  <li class="footer_elements">+33 1 23 45 67 89</li>
-		  <li class="footer_elements"> accueil@ehome.com</li>
-    </ul>
-	</ul>
-	<?php
-  $footer = ob_get_clean();
-  return $footer;
+  ?>
+  <section>
+    <article>
+      <h2 class="except_h2">Vous êtes :</h2>
+      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
+      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
 }
 
-
-function footer_s() {
+function content_products() {
   ob_start();
-	?>
+  ?>
+  <section>
 
-	<ul class="footer_s">
-    <h3 class="footer_s_text"> Suivez-nous sur les réseaux sociaux ! </h3>
-    <div class="flex_footer_s">
-      <li><a href="https://www.facebook.com/" target="_blank"><img class="facebook" src="views\ressources\icons\facebook.png" alt="Icon Facebook"  title="Cliquez ici pour accéder à notre page Facebook" /></a></li>
-      <li><a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="views\ressources\icons\Instagram.png" alt="Icon Instagram"  title="Cliquez ici pour accéder à notre page Instagram" /></a></li>
-      <li><a href="https://twitter.com/?lang=fr" target="_blank"><img class="twitter" src="views\ressources\icons\twitter.png" alt="Icon Twitter"  title="Cliquez ici pour accéder à notre page Twitter" /></a></li>
-      <li><a href="https://fr.linkedin.com/" target="_blank"><img class="linkedin" src="views\ressources\icons\linkedin.png" alt="Icon Linkedin"  title="Cliquez ici pour accéder à notre page Linkedin" /></a></li>
-      <li><a href="https://www.youtube.com/" target="_blank"><img class="youtube" src="views\ressources\icons\youtube.png" alt="Icon Youtube"  title="Cliquez ici pour accéder à notre chaîne Youtube" /></a></li>
+    <h2>Nos produits</h2>
+    <article>
+    <p> <strong class="text_ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
+      d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
+      compte personnel sur le site internet www.ehome.fr.
+      Quel est l’intérêt de tels dispositifs ?
+      L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
+      chacun d’entre eux.</p>
+      Elle permet d’accommoder les nécessités individuelles :
+    <ul>
+      <li> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
+      <li> Vous êtes une personne à mobilité réduite </li>
+      <li> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
+    </ul>
+    Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
+    <ul>
+      <li> Capteurs : de luminosité, de température, de mouvement.</li>
+      <li> Actionneurs : volets, portail, garage.</li>
+      <li> Caméras : pour la surveillance</li>
+    </ul>
+
+    <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
+      contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> +33 1 23 45 67 89 </a> </p>
+
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_sensors() {
+  ob_start();
+  ?>
+  <section>
+    <h2>Nos capteurs</h2>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Capteur de luminosité</h2>
+          <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Capteur de température</h2>
+          <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Capteur d'humidité</h2>
+          <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
+        </div>
+      <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Detecteur de mouvement</h2>
+          <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
+           et sera relié au système de sécurité pour prévenir les intrusions.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_detecteur_mouv.jpg" alt="detecteur mouv" title="detecteur mouv">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Détecteur de fumée</h2>
+          <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
+      </div>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_actuators() {
+  ob_start();
+  ?>
+  <section>
+    <h2> Nos actionneurs </h2>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2> Actionneur volet roulant électrique </h2>
+          <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2> Actionneur portail électrique </h2>
+          <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
+      </div>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_cameras() {
+  ob_start();
+  ?>
+  <section>
+    <h2> Nos caméras </h2>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Caméra de surveillance</h2>
+          <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
+      </div>
+    </article>
+    <article>
+      <div class="flex_products">
+        <div class="flex_products2">
+          <h2>Caméra de palier </h2>
+          <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
+        </div>
+        <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
+      </div>
+    </article>
+  </section>
+  <?php
+  $home = ob_get_clean();
+  return $home;
+}
+
+function content_home() {
+  ob_start();
+  ?>
+  <section>
+    <h2>Accueil eHome</h2>
+    <article>
+      <p>Notre <a class="lien" href="index.php?cible=about-us">société</a> propose des systèmes électroniques de domotique depuis 2016. Nous
+        mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
+        par le suivi de vos équipements. Ces équipements vous permettront d’allier sécurité de
+        votre habitation et économie, dans le respect de l’environnement. Les systèmes sont
+        adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure."</p>
+    </article>
+
+    <h2>Vos avis</h2>
+
+    <article>
+      <h3>Déploiement de qualité</h3>
+      <p>"eHome a effectué l’installation de capteurs de température
+        et de luminosité dans toutes les pièces de notre appartement
+        de 90m2. Ces équipements ont été parfaitement installés. En
+        effet, nous n’avons jamais eu de problèmes techniques, et nous
+        avons même pu effectué des économies sur nos factures."</p>
+      <p>Y.S (Paris 75)<p>
+      </article>
+      <article>
+      <h3>Entreprise très professionnelle</h3>
+      <p>"Le SAV est très bon. Il répond vite, le seul petit soucis que nous
+        avons eu avec un capteur a été réglé très rapidement par l’équipe
+        technique. Des professionnels à l’écoute de leur client et
+        très efficaces."</p>
+      <p>M.T (La Garenne 92)</p>
+    </article>
+  </section>
+
+ <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_legal_information() {
+  ob_start();
+  ?>
+  <section>
+  <article>
+    <em>Informations légales : </em><br/>
+
+    <p> eHome (SAS) fabrique, distribue et vend des produits électroniques (les “Équipements”).
+    Les Services sont la propriété de eHome, société par actions simplifiée à associé unique :
+    au capital de 10 000 euros immatriculée au Registre du Commerce et des Sociétés de Paris, sous le numéro xxx xxx xxx
+    VA intracommunautaire : xxx xx xx xxxxxxxxx xxxxxxxxxxxxx
+    et dont le siège social est situé: </p>
+
+    <ul>
+	     <li> 10 rue de Vanves </li>
+	     <li> 92130 Issy-les-Moulineaux </li>
+	     <li> tél : +33 1 23 45 67 89 </li>
+	     <li> courriel : serviceclient@ehome.fr </li>
+    </ul>
+  </article>
+
+  <article>
+    <p> Le directeur de publication des Services eHome est Mme/M xxxxxxxxxx, en qualité de Directrice/Directeur Générale de eHome.
+      Le site www.eHome.fr est hébergé sur les matériels informatiques de la société  eHome, sur le site de Paris, dont le siège social est situé au 10 rue de Vanves, 92130 Issy-les-Moulineaux. </p>
+  </article>
+  </section>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_about_us(){
+  ob_start();
+  ?>
+  <section>
+    <h2>A propos d'eHome</h2>
+    <article>
+      <h3> Les valeurs des eHomers </h3>
+      <ul>
+        <li> Rechercher le confort de chacun de nos clients. </li>
+        <li> Innover pour avancer et faire avancer le monde. </li>
+        <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
+      </ul>
+    </article>
+
+
+
+
+    <h2> L’innovation au cœur de l’internet des objets </h2>
+    <article>
+      <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
+        Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
+        Au-delà des volets roulants, de nombreux équipements,
+        comme l'éclairage ou le chauffage, peuvent être automatisés
+        pour gagner du temps et faire des économies !" </p>
+    </article>
+
+
+
+    <h2> eHome plus en détail </h2>
+    <div class="flex_art_about_us">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
+      <article>
+        <h3> Notre histoire </h3>
+        <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
+          dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
+      </article>
+
+
+      <article>
+        <h3> Espace presse </h3>
+        <p> Découvrez nos dernières annonces </p>
+      </article>
+
+
+      <article>
+        <h3> Document de référence </h3>
+        <p> Lire le rapport annuel </p>
+      </article>
     </div>
-	</ul>
-	<?php
-  $footer = ob_get_clean();
-  return $footer;
+
+
+
+
+    <h2> Ce que nous vous proposons </h2>
+    <article>
+      <h3> Un gain de temps et de confort au quotidient </h3>
+      <p> Il est 7h00. Vous vous réveillez au son de votre
+        radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
+        L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
+        à la température idéale pour votre douche matinale. Tout est prêt pour démarrer votre journée
+        dans les meilleures conditions... Ceci n'est pas un rêve, mais la réalité.
+        En plus de vous simplifier les gestes de la vie de courante, nos solutions
+        domotiques vous permettent de programmer une multitude de scénarios
+        (éclairage, température...) en fonction de vos habitudes et vos envies.
+        Vous allez vous coucher ? A partir d'une seule commande, vous fermez
+        tous les volets roulants, abaissez le chauffage et éteignez les lumières.
+        Le confort absolu ! </p>
+    </article>
+
+
+    <article>
+      <h3> Des économies d'énergie à la clé </h3>
+      <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
+        chauffage en marche. En vous équipant de notre installation domotique,
+        vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
+        éteindre les éclairages inutiles, couper les appareils électriques en veille
+        ou tempérer le chauffage. Mieux encore : un thermostat d’ambiance à gestion
+        programmée vous permettra par exemple de réduire vos consommations d'énergie
+        sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
+        pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
+        en s'adaptant à votre style de vie et votre présence dans la maison. </p>
+    </article>
+
+
+    <article>
+      <h3> Pour votre sécurité et celle de votre maison </h3>
+      <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
+        passer toutes les pièces en revue. Comme les équipements domotiques sont
+        désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
+        ou votre tablette. Vous restez donc en contact avec votre maison où que
+        vous soyez, même à l'autre bout du monde ! A tout moment, vous pouvez par
+        exemple vérifier que tout est en ordre, de la lumière des différentes pièces
+        à la mise en route de l’alarme. Mais aussi, grâce à un visiophone ou un portier
+        vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
+        Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
+        recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
+    </article>
+  </section>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
 }
 
-
-// fonction qui génère l'affichage du formulaire de connexion
-// l'argument permet un affichage des messages d'erreur
+// fonction qui génère l'affichage du formulaire de connexion, l'argument permet un affichage des messages d'erreur
 function form_signin($erreur) {
   ob_start();
   ?>
@@ -657,57 +993,6 @@ function my_room($my_home) {
   return $content;
 }
 
-// fonction qui récupère la date du jour
-function current_date() {
-  $now = getdate();
-  $day = '';
-  $month = '';
-  if ($now['weekday'] == 'Monday') {
-    $day = 'Lundi';
-  } else if ($now['weekday'] == 'Tuesday') {
-    $day = 'Mardi';
-  } else if ($now['weekday'] == 'Wednesday') {
-    $day = 'Mercredi';
-  } else if ($now['weekday'] == 'Thursday') {
-    $day = 'Jeudi';
-  } else if ($now['weekday'] == 'Friday') {
-    $day = 'Vendredi';
-  } else if ($now['weekday'] == 'Saturday') {
-    $day = 'Samedi';
-  } else {
-    $day = 'Dimanche';
-  }
-
-  if ($now['month'] == 'January') {
-    $month = 'janvier';
-  } elseif ($now['month'] == 'February') {
-    $month = 'février';
-  } elseif ($now['month'] == 'March') {
-    $month = 'mars';
-  } elseif ($now['month'] == 'April') {
-    $month = 'avril';
-  } elseif ($now['month'] == 'May') {
-    $month = 'mai';
-  } elseif ($now['month'] == 'June') {
-    $month = 'juin';
-  } elseif ($now['month'] == 'July') {
-    $month = 'juillet';
-  } elseif ($now['month'] == 'August') {
-    $month = 'août';
-  } elseif ($now['month'] == 'September') {
-    $month = 'septembre';
-  } elseif ($now['month'] == 'October') {
-    $month = 'octobre';
-  } elseif ($now['month'] == 'November') {
-    $month = 'novembre';
-  } else {
-    $month = 'décembre';
-  }
-
-  $date = ''.$day.' '.$now['mday'].' '.$month.'';
-  return $date;
-}
-
 // fonction responsable de l'affichage du bloc "Mon domicile" dans home_user.php
 function my_notif() {
   ob_start();
@@ -788,382 +1073,51 @@ function my_home_info($info_home) {
 }
 
 
-function content_actuators() {
+/*****************************************************************Fonctions $footer***********************************************************************/
+function footer() {
   ob_start();
-  ?>
-  <section>
-    <h2>Nos actionneurs</h2>
-    <article class="products">
-      <div>
-        <h2> Actionneur volet roulant électrique </h2>
-        <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
-        <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
-      </div>
-    </article>
-    <article>
-      <div>
-        <h2 class="titre"> Actionneur portail électrique </h2>
-        <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
-        <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
-      </div>
-    </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_cameras() {
-  ob_start();
-  ?>
-  <section>
-    <h2>Nos caméras</h2>
-    <article class="products">
-      <div>
-        <h2>Caméra de surveillance</h2>
-        <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
-        <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
-      </div>
-    </article>
-    <article class="products">
-      <div>
-        <h2>Caméra de palier </h2>
-        <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
-        <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
-      </div>
-    </article>
-  </section>
-
-  <?php
-
-  $home = ob_get_clean();
-  return $home;
-}
-
-function content_products() {
-  ob_start();
-  ?>
-  <section>
-
-    <h2>Nos produits</h2>
-    <article>
-    <p> <strong class="text_ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
-      d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
-      compte personnel sur le site internet www.ehome.fr.
-      Quel est l’intérêt de tels dispositifs ?
-      L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
-      chacun d’entre eux.</p>
-      Elle permet d’accommoder les nécessités individuelles :
+	?>
+	<ul class="footer">
     <ul>
-      <li> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
-      <li> Vous êtes une personne à mobilité réduite </li>
-      <li> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
-    </ul>
-    Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
-    <ul>
-      <li> Capteurs : de luminosité, de température, de mouvement.</li>
-      <li> Actionneurs : volets, portail, garage.</li>
-      <li> Caméras : pour la surveillance</li>
+		  <li class="footer_elements">Localisation</li>
+		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
     </ul>
 
-    <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
-      contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> +33 1 23 45 67 89 </a> </p>
-
-    </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_sensors() {
-  ob_start();
-  ?>
-  <section>
-    <h2>Nos capteurs</h2>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2>Capteur de luminosité</h2>
-          <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
-        </div>
-        <img class="image_products" src="views/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
-      </div>
-    </article>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2>Capteur de température</h2>
-          <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
-        </div>
-        <img class="image_products" src="views/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
-      </div>
-    </article>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2>Capteur d'humidité</h2>
-          <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
-        </div>
-      <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
-      </div>
-    </article>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2>Detecteur de mouvement</h2>
-          <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
-           et sera relié au système de sécurité pour prévenir les intrusions.</p>
-        </div>
-        <img class="image_products" src="views/ressources/images/rsz_detecteur_mouv.jpg" alt="detecteur mouv" title="detecteur mouv">
-      </div>
-    </article>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2>Détecteur de fumée</h2>
-          <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
-        </div>
-        <img class="image_products" src="views/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
-      </div>
-    </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_actuators() {
-  ob_start();
-  ?>
-  <section>
-    <h2> Nos actionneurs </h2>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2> Actionneur volet roulant électrique </h2>
-          <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
-        </div>
-        <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
-      </div>
-    </article>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2> Actionneur portail électrique </h2>
-          <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
-        </div>
-        <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
-      </div>
-    </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_cameras() {
-  ob_start();
-  ?>
-  <section>
-    <h2> Nos caméras </h2>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2>Caméra de surveillance</h2>
-          <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
-        </div>
-        <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
-      </div>
-    </article>
-    <article>
-      <div class="flex_products">
-        <div class="flex_products2">
-          <h2>Caméra de palier </h2>
-          <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
-        </div>
-        <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
-      </div>
-    </article>
-  </section>
-  <?php
-  $home = ob_get_clean();
-  return $home;
-}
-
-function content_home() {
-  ob_start();
-  ?>
-  <section>
-    <h2>Accueil eHome</h2>
-    <article>
-      <p>Notre <a class="lien" href="index.php?cible=about-us">société</a> propose des systèmes électroniques de domotique depuis 2016. Nous
-        mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
-        par le suivi de vos équipements. Ces équipements vous permettront d’allier sécurité de
-        votre habitation et économie, dans le respect de l’environnement. Les systèmes sont
-        adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure."</p>
-    </article>
-
-    <h2>Vos avis</h2>
-
-    <article>
-      <h3>Déploiement de qualité</h3>
-      <p>"eHome a effectué l’installation de capteurs de température
-        et de luminosité dans toutes les pièces de notre appartement
-        de 90m2. Ces équipements ont été parfaitement installés. En
-        effet, nous n’avons jamais eu de problèmes techniques, et nous
-        avons même pu effectué des économies sur nos factures."</p>
-      <p>Y.S (Paris 75)<p>
-      </article>
-      <article>
-      <h3>Entreprise très professionnelle</h3>
-      <p>"Le SAV est très bon. Il répond vite, le seul petit soucis que nous
-        avons eu avec un capteur a été réglé très rapidement par l’équipe
-        technique. Des professionnels à l’écoute de leur client et
-        très efficaces."</p>
-      <p>M.T (La Garenne 92)</p>
-    </article>
-  </section>
-
- <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_legal_information() {
-  ob_start();
-  ?>
-  <section>
-  <article>
-    <em>Informations légales : </em><br/>
-
-    <p> eHome (SAS) fabrique, distribue et vend des produits électroniques (les “Équipements”).
-    Les Services sont la propriété de eHome, société par actions simplifiée à associé unique :
-    au capital de 10 000 euros immatriculée au Registre du Commerce et des Sociétés de Paris, sous le numéro xxx xxx xxx
-    VA intracommunautaire : xxx xx xx xxxxxxxxx xxxxxxxxxxxxx
-    et dont le siège social est situé: </p>
+    <ul>
+		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
+    </ul>
 
     <ul>
-	     <li> 10 rue de Vanves </li>
-	     <li> 92130 Issy-les-Moulineaux </li>
-	     <li> tél : +33 1 23 45 67 89 </li>
-	     <li> courriel : serviceclient@ehome.fr </li>
+		  <li class="footer_elements">Contact</li>
+		  <li class="footer_elements">+33 1 23 45 67 89</li>
+		  <li class="footer_elements"> accueil@ehome.com</li>
     </ul>
-  </article>
-
-  <article>
-    <p> Le directeur de publication des Services eHome est Mme/M xxxxxxxxxx, en qualité de Directrice/Directeur Générale de eHome.
-      Le site www.eHome.fr est hébergé sur les matériels informatiques de la société  eHome, sur le site de Paris, dont le siège social est situé au 10 rue de Vanves, 92130 Issy-les-Moulineaux. </p>
-  </article>
-  </section>
-
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
+	</ul>
+	<?php
+  $footer = ob_get_clean();
+  return $footer;
 }
 
-function content_about_us(){
+function footer_s() {
   ob_start();
-  ?>
-  <section>
-    <h2>A propos d'eHome</h2>
-    <article>
-      <h3> Les valeurs des eHomers </h3>
-      <ul>
-        <li> Rechercher le confort de chacun de nos clients. </li>
-        <li> Innover pour avancer et faire avancer le monde. </li>
-        <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
-      </ul>
-    </article>
+	?>
 
-
-
-
-    <h2> L’innovation au cœur de l’internet des objets </h2>
-    <article>
-      <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
-        Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
-        Au-delà des volets roulants, de nombreux équipements,
-        comme l'éclairage ou le chauffage, peuvent être automatisés
-        pour gagner du temps et faire des économies !" </p>
-    </article>
-
-
-
-    <h2> eHome plus en détail </h2>
-    <div class="flex_art_about_us">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
-      <article>
-        <h3> Notre histoire </h3>
-        <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
-          dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
-      </article>
-
-
-      <article>
-        <h3> Espace presse </h3>
-        <p> Découvrez nos dernières annonces </p>
-      </article>
-
-
-      <article>
-        <h3> Document de référence </h3>
-        <p> Lire le rapport annuel </p>
-      </article>
+	<ul class="footer_s">
+    <h3 class="footer_s_text"> Suivez-nous sur les réseaux sociaux ! </h3>
+    <div class="flex_footer_s">
+      <li><a href="https://www.facebook.com/" target="_blank"><img class="facebook" src="views\ressources\icons\facebook.png" alt="Icon Facebook"  title="Cliquez ici pour accéder à notre page Facebook" /></a></li>
+      <li><a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="views\ressources\icons\Instagram.png" alt="Icon Instagram"  title="Cliquez ici pour accéder à notre page Instagram" /></a></li>
+      <li><a href="https://twitter.com/?lang=fr" target="_blank"><img class="twitter" src="views\ressources\icons\twitter.png" alt="Icon Twitter"  title="Cliquez ici pour accéder à notre page Twitter" /></a></li>
+      <li><a href="https://fr.linkedin.com/" target="_blank"><img class="linkedin" src="views\ressources\icons\linkedin.png" alt="Icon Linkedin"  title="Cliquez ici pour accéder à notre page Linkedin" /></a></li>
+      <li><a href="https://www.youtube.com/" target="_blank"><img class="youtube" src="views\ressources\icons\youtube.png" alt="Icon Youtube"  title="Cliquez ici pour accéder à notre chaîne Youtube" /></a></li>
     </div>
-
-
-
-
-    <h2> Ce que nous vous proposons </h2>
-    <article>
-      <h3> Un gain de temps et de confort au quotidient </h3>
-      <p> Il est 7h00. Vous vous réveillez au son de votre
-        radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
-        L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
-        à la température idéale pour votre douche matinale. Tout est prêt pour démarrer votre journée
-        dans les meilleures conditions... Ceci n'est pas un rêve, mais la réalité.
-        En plus de vous simplifier les gestes de la vie de courante, nos solutions
-        domotiques vous permettent de programmer une multitude de scénarios
-        (éclairage, température...) en fonction de vos habitudes et vos envies.
-        Vous allez vous coucher ? A partir d'une seule commande, vous fermez
-        tous les volets roulants, abaissez le chauffage et éteignez les lumières.
-        Le confort absolu ! </p>
-    </article>
-
-
-    <article>
-      <h3> Des économies d'énergie à la clé </h3>
-      <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
-        chauffage en marche. En vous équipant de notre installation domotique,
-        vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
-        éteindre les éclairages inutiles, couper les appareils électriques en veille
-        ou tempérer le chauffage. Mieux encore : un thermostat d’ambiance à gestion
-        programmée vous permettra par exemple de réduire vos consommations d'énergie
-        sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
-        pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
-        en s'adaptant à votre style de vie et votre présence dans la maison. </p>
-    </article>
-
-
-    <article>
-      <h3> Pour votre sécurité et celle de votre maison </h3>
-      <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
-        passer toutes les pièces en revue. Comme les équipements domotiques sont
-        désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
-        ou votre tablette. Vous restez donc en contact avec votre maison où que
-        vous soyez, même à l'autre bout du monde ! A tout moment, vous pouvez par
-        exemple vérifier que tout est en ordre, de la lumière des différentes pièces
-        à la mise en route de l’alarme. Mais aussi, grâce à un visiophone ou un portier
-        vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
-        Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
-        recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
-    </article>
-  </section>
-
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
+	</ul>
+	<?php
+  $footer = ob_get_clean();
+  return $footer;
 }
+
+/*****************************************************************Fonctions JavaScript***********************************************************************/
 
 function carroussel_home() {
   ob_start();

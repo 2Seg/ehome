@@ -1,6 +1,6 @@
 <?php
 /*
-controleur gérant l'extraction des données néccessaires pour l'affichage du bloc "Pièces" de la page "home_user.php"
+controleur gérant l'extraction des données néccessaires pour l'affichage du bloc "Pièces" de la page "home_management.php"
 */
 
 include_once('modeles/functions.php');
@@ -11,6 +11,7 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'room_add') {
   }
   if (count($_POST['piece']) == 1) {
     $message = 'La pièce \''.maj_lettre1($_POST['piece'][0]).'\' a bien été ajoutée';
+    update_nb_piece($bdd, $_SESSION['id'], count_piece($bdd, $_SESSION['id']));
   } else {
     $message = 'Les pieces ';
     for($i = 0; $i < count($_POST['piece'])-1; $i++) {
@@ -23,6 +24,7 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'room_add') {
     }
     $message .= 'et \''.maj_lettre1($_POST['piece'][count($_POST['piece'])-1]).'\' ';
     $message .= 'ont bien été ajoutées';
+    update_nb_piece($bdd, $_SESSION['id'], count_piece($bdd, $_SESSION['id']));
   }
   include('controlers/home_management.php');
 } else {
