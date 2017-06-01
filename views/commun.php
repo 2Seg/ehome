@@ -68,13 +68,53 @@ function menu() {
   return $menu;
 }
 
+function menu_home() {
+  ob_start();
+  ?>
+  <div class="conteneur_menu_home">
+    <ul class="menu_home">
+      <li class="li_logo_menu"><a  href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
+      <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
+    <?php
+    if (isset($_SESSION['type'])) {
+      if($_SESSION['type'] == 'user') {
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        if($_SESSION['civilite'] == 'madame') {
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        } else {
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        }
+      } elseif ($_SESSION['type'] == 'admin') {
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        if($_SESSION['civilite'] == 'madame') {
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        } else {
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+        }
+      } else {
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
+        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+      }
+    } else {
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
+      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+    }
+   ?>
+   </ul>
+   </div>
+   <?php
+   $menu = ob_get_clean();
+   return $menu;
+}
+
 // fonction permettant de choisir le type d'utilisateur
 function type_user() {
   ob_start();
   ?>
   <section>
     <article>
-      <h3>Vous êtes ?</h3>
+      <h3 class="titre">Vous êtes ?</h3>
       <a href="index.php?cible=join-us_user">Utilisateur</a>
       <a href="index.php?cible=join-us_admin">Administrateur</a>
   </article>
@@ -170,7 +210,7 @@ function form_signin($erreur) {
     <section>
     <article>
     <fieldset>
-      <legend><h3>Connexion</h3></legend>
+      <legend><h3 class="titre">Connexion</h3></legend>
       <?php
       if ($erreur != '') {
         echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
@@ -583,10 +623,10 @@ function my_room($my_home) {
             document.getElementById("form").insertBefore(div, document.getElementById("submit"));
           }
         </script>
-        <input id="submit" type="submit" value="Confirmer les modifications">
+        <p><input id="submit" type="submit" value="Confirmer les modifications"></p>
       </form>
-      <button onclick="addRoom()">Ajouter une pièce</button>
-      <button onclick="annuler()">Annuler</button>
+      <p><button onclick="addRoom()">Ajouter une pièce</button></p>
+      <p><button onclick="annuler()">Annuler</button></p>
 
       </section>
     <?php
@@ -682,7 +722,7 @@ function my_basic_info($info_user) {
         <p><strong>Ville : </strong><?php echo($info_user['ville']); ?></p>
         <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
 
-        <p><a href="index.php?cible=info_user">Voir les informations complètes</a></p>
+        <p><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></p>
       </article>
       </section>
     <?php
@@ -730,15 +770,15 @@ function content_actuators() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos actionneurs </h2>
+    <h2>Nos actionneurs</h2>
     <article class="products">
       <div>
-        <h2 class="titre"> Actionneur volet roulant électrique </h2>
+        <h2> Actionneur volet roulant électrique </h2>
         <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
         <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
       </div>
     </article>
-    <article class="products">
+    <article>
       <div>
         <h2 class="titre"> Actionneur portail électrique </h2>
         <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
@@ -755,17 +795,17 @@ function content_cameras() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos caméras </h2>
+    <h2>Nos caméras</h2>
     <article class="products">
       <div>
-        <h2 class="titre">Caméra de surveillance</h2>
+        <h2>Caméra de surveillance</h2>
         <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
         <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Caméra de palier </h2>
+        <h2>Caméra de palier </h2>
         <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
         <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
       </div>
@@ -782,9 +822,9 @@ function content_products() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos produits </h2>
+    <h2>Nos produits</h2>
     <article>
-    <p> <strong class="ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
+    <p> <strong class="text_ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
       d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
       compte personnel sur le site internet www.ehome.fr.
       Quel est l’intérêt de tels dispositifs ?
@@ -817,31 +857,31 @@ function content_sensors() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre"> Nos capteurs </h2>
+    <h2>Nos capteurs</h2>
     <article class="products">
       <div>
-        <h2 class="titre">Capteur de luminosité</h2>
+        <h2>Capteur de luminosité</h2>
         <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
         <img class="image_products" src="views/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Capteur de température</h2>
+        <h2>Capteur de température</h2>
         <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
         <img class="image_products" src="views/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Capteur d'humidité</h2>
+        <h2>Capteur d'humidité</h2>
         <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
         <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
       </div>
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Detecteur de mouvement</h2>
+        <h2>Detecteur de mouvement</h2>
         <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
            et sera relié au système de sécurité pour prévenir les intrusions.</p>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_mouv.jpg" alt="detecteur mouv" title="detecteur mouv">
@@ -849,7 +889,7 @@ function content_sensors() {
     </article>
     <article class="products">
       <div>
-        <h2 class="titre">Détecteur de fumée</h2>
+        <h2>Détecteur de fumée</h2>
         <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
         <img class="image_products" src="views/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
       </div>
@@ -864,7 +904,7 @@ function content_home() {
   ob_start();
   ?>
   <section>
-    <h2 class="titre_section_home"> Accueil eHome </h2>
+    <h2>Accueil eHome</h2>
     <article>
       <p>Notre <a class="lien" href="index.php?cible=about-us">société</a> propose des systèmes électroniques de domotique depuis 2016. Nous
         mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
@@ -873,7 +913,7 @@ function content_home() {
         adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure."</p>
     </article>
 
-    <h2 class="titre_section_home"> Vos avis</h2>
+    <h2>Vos avis</h2>
     <article>
       <h3>Déploiement de qualité</h3>
       <p>"eHome a effectué l’installation de capteurs de température
@@ -936,7 +976,7 @@ function content_about_us(){
   ob_start();
   ?>
   <section>
-    <h2 class="titre_section_about_us"> A propos d'eHome </h2>
+    <h2>A propos d'eHome</h2>
     <article>
       <h3> Les valeurs des eHomers </h3>
       <ul>
