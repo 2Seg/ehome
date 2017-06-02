@@ -7,9 +7,9 @@ $titre = 'Nous rejoindre';
 
 $menu = menu();
 
-$contenu = type_user();
+$contenu = content_type_user();
 
-$footer = footer();
+$footer = footer2();
 
 include('gabarit.php');
 ?>

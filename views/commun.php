@@ -155,12 +155,30 @@ function menu_home() {
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
       echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
-   ?>
-   </ul>
-   </div>
-   <?php
-   $menu = ob_get_clean();
-   return $menu;
+    ?>
+    </ul>
+  </div>
+    <?php
+  $menu = ob_get_clean();
+  return $menu;
+}
+
+
+// fonction permettant de choisir le type d'utilisateur
+function content_type_user() {
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h3 class="titre">Vous êtes ?</h3>
+      <a href="index.php?cible=join-us_user">Utilisateur</a><br/>
+      <a href="index.php?cible=join-us_admin">Administrateur</a>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+
 }
 
 // fonction qui gère l'affichage du menu classique + celui des produits
@@ -258,15 +276,39 @@ function content_products() {
       <li> Actionneurs : volets, portail, garage.</li>
       <li> Caméras : pour la surveillance</li>
     </ul>
-
     <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
       contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> +33 1 23 45 67 89 </a> </p>
-
     </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
+</section>
+<?php
+$contenu = ob_get_clean();
+return $contenu;
+}
+
+function footer2() {
+  ob_start();
+	?>
+  <div id="footer2">
+  	<ul class="footer2">
+      <ul>
+  		  <li class="footer_elements">Localisation</li>
+  		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
+      </ul>
+
+      <ul>
+  		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
+      </ul>
+
+      <ul>
+  		  <li class="footer_elements">Contact</li>
+  		  <li class="footer_elements">+33 1 23 45 67 89</li>
+  		  <li class="footer_elements"> accueil@ehome.com</li>
+      </ul>
+  	</ul>
+   </div>
+	<?php
+  $footer = ob_get_clean();
+  return $footer;
 }
 
 function content_sensors() {

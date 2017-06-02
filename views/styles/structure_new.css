@@ -429,7 +429,7 @@ fieldset
   text-decoration: none;
 
   /*position:absolute;
-bottom:0px;*/
+  bottom:0px;*/
 
 
   box-shadow: 0px 4px 12px rgb(12,12,12) inset;
@@ -437,12 +437,36 @@ bottom:0px;*/
   /*border: 1px solid yellow;*/
 }
 
+#footer2
+{
+  background-image: url("footer.jpg");
+  background-repeat: no-repeat;
+  width: 100%;
+  color: white;
+  font-style: normal;
+  text-decoration: none;
+
+  position:absolute;
+  bottom:0px;
+
+  box-shadow: 0px 4px 12px rgb(12,12,12) inset;
+
+  /*border: 1px solid yellow;*/
+}
+
+.footer2
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  height: 120px;
+}
+
 .footer_elements
 {
   list-style: none;
   text-align: center;
-
-
 
   margin-left: 45px;
   margin-right: 45px;
