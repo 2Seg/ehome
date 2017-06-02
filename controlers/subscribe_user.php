@@ -11,12 +11,13 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'form_subscribe_user') {
     if($_POST['password'] == $_POST['conf_password']) {
       $mot_de_passe = sha1($_POST['password']);
 
-      insert_info_user($bdd, 1, $_POST['civilite'], $_POST['nom'], $_POST['prenom'], $_POST['login'], $mot_de_passe,
-                            $_POST['date_naissance'], $_POST['nationalite'], $_POST['pays_user'], $_POST['telephone'], $_POST['email'],
-                            $_POST['paiement']);
+      insert_info_user($bdd, 1, maj_lettre1($_POST['civilite']), $_POST['nom'], maj_lettre1($_POST['prenom']), $_POST['login'],
+                            $mot_de_passe, $_POST['date_naissance'], maj_lettre1($_POST['nationalite']), maj_lettre1($_POST['pays_user']),
+                            $_POST['telephone'], $_POST['email'], $_POST['paiement']);
 
       insert_info_home($bdd, select_id_user($bdd, $_POST['login']), $_POST['adresse_logement'], $_POST['code_postal_logement'],
-                      $_POST['ville_logement'], $_POST['pays_logement'], $_POST['nb_habitant'], 0, $_POST['superficie']);
+                      maj_lettre1($_POST['ville_logement']), maj_lettre1($_POST['pays_logement']), $_POST['nb_habitant'], 0,
+                      $_POST['superficie']);
 
       include('views/conf_join-us.php');
     } else {

@@ -3,6 +3,86 @@
 vue répertoriant les fonctions gérant l'affichage des différentes parties des pages
 */
 
+/*****************************************************************Fonctions utilitaires***********************************************************************/
+
+function strtolower_utf8($string){
+  $convert_to = array(
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+    "v", "w", "x", "y", "z", "à", "á", "â", "ã", "ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï",
+    "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û", "ü", "ý", "а", "б", "в", "г", "д", "е", "ё", "ж",
+    "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы",
+    "ь", "э", "ю", "я"
+  );
+  $convert_from = array(
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U",
+    "V", "W", "X", "Y", "Z", "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï",
+    "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж",
+    "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ъ",
+    "Ь", "Э", "Ю", "Я"
+  );
+
+  return str_replace($convert_from, $convert_to, $string);
+}
+
+// fonction qui met seulement la 1ère lettre d'une string en majuscules
+function maj_lettre1($str) {
+  $str1 = strtolower_utf8($str);
+  $str2 = ucfirst($str1);
+  return $str2;
+}
+
+// fonction qui récupère la date du jour
+function current_date() {
+  $now = getdate();
+  $day = '';
+  $month = '';
+  if ($now['weekday'] == 'Monday') {
+    $day = 'Lundi';
+  } else if ($now['weekday'] == 'Tuesday') {
+    $day = 'Mardi';
+  } else if ($now['weekday'] == 'Wednesday') {
+    $day = 'Mercredi';
+  } else if ($now['weekday'] == 'Thursday') {
+    $day = 'Jeudi';
+  } else if ($now['weekday'] == 'Friday') {
+    $day = 'Vendredi';
+  } else if ($now['weekday'] == 'Saturday') {
+    $day = 'Samedi';
+  } else {
+    $day = 'Dimanche';
+  }
+
+  if ($now['month'] == 'January') {
+    $month = 'janvier';
+  } elseif ($now['month'] == 'February') {
+    $month = 'février';
+  } elseif ($now['month'] == 'March') {
+    $month = 'mars';
+  } elseif ($now['month'] == 'April') {
+    $month = 'avril';
+  } elseif ($now['month'] == 'May') {
+    $month = 'mai';
+  } elseif ($now['month'] == 'June') {
+    $month = 'juin';
+  } elseif ($now['month'] == 'July') {
+    $month = 'juillet';
+  } elseif ($now['month'] == 'August') {
+    $month = 'août';
+  } elseif ($now['month'] == 'September') {
+    $month = 'septembre';
+  } elseif ($now['month'] == 'October') {
+    $month = 'octobre';
+  } elseif ($now['month'] == 'November') {
+    $month = 'novembre';
+  } else {
+    $month = 'décembre';
+  }
+
+  $date = ''.$day.' '.$now['mday'].' '.$month.'';
+  return $date;
+}
+
+/*****************************************************************Fonctions $menu***********************************************************************/
 
 // fonction qui gère l'affichage du menu et qui redirige l'utilisateur à travers toutes les pages du site grâce aux 'cibles' dans les URL
 function menu() {
@@ -98,6 +178,7 @@ function content_type_user() {
   <?php
   $contenu = ob_get_clean();
   return $contenu;
+
 }
 
 // fonction qui gère l'affichage du menu classique + celui des produits
@@ -152,28 +233,56 @@ function menu_user($type) {
   return $menu;
 }
 
-function footer() {
+/*****************************************************************Fonctions $contenu***********************************************************************/
+
+// fonction permettant de choisir le type d'utilisateur
+function type_user() {
   ob_start();
-	?>
-	<ul class="footer">
-    <ul>
-		  <li class="footer_elements">Localisation</li>
-		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
-    </ul>
+  ?>
+  <section>
+    <article>
+      <h2 class="except_h2">Vous êtes :</h2>
+      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
+      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
 
-    <ul>
-		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
-    </ul>
+function content_products() {
+  ob_start();
+  ?>
+  <section>
 
+    <h2>Nos produits</h2>
+    <article>
+    <p> <strong class="text_ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
+      d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
+      compte personnel sur le site internet www.ehome.fr.
+      Quel est l’intérêt de tels dispositifs ?
+      L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
+      chacun d’entre eux.</p>
+      Elle permet d’accommoder les nécessités individuelles :
     <ul>
-		  <li class="footer_elements">Contact</li>
-		  <li class="footer_elements">+33 1 23 45 67 89</li>
-		  <li class="footer_elements"> accueil@ehome.com</li>
+      <li> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
+      <li> Vous êtes une personne à mobilité réduite </li>
+      <li> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
     </ul>
-	</ul>
-	<?php
-  $footer = ob_get_clean();
-  return $footer;
+    Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
+    <ul>
+      <li> Capteurs : de luminosité, de température, de mouvement.</li>
+      <li> Actionneurs : volets, portail, garage.</li>
+      <li> Caméras : pour la surveillance</li>
+    </ul>
+    <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
+      contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> +33 1 23 45 67 89 </a> </p>
+    </article>
+</section>
+<?php
+$contenu = ob_get_clean();
+return $contenu;
 }
 
 function footer2() {
@@ -196,929 +305,17 @@ function footer2() {
   		  <li class="footer_elements"> accueil@ehome.com</li>
       </ul>
   	</ul>
-  </div>
+   </div>
 	<?php
   $footer = ob_get_clean();
   return $footer;
-}
-
-function footer_s() {
-  ob_start();
-	?>
-
-	<ul class="footer_s">
-    <h3 class="footer_s_text"> Suivez-nous sur les réseaux sociaux ! </h3>
-    <div class="flex_footer_s">
-      <li><a href="https://www.facebook.com/" target="_blank"><img class="facebook" src="views\ressources\icons\facebook.png" alt="Icon Facebook"  title="Cliquez ici pour accéder à notre page Facebook" /></a></li>
-      <li><a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="views\ressources\icons\Instagram.png" alt="Icon Instagram"  title="Cliquez ici pour accéder à notre page Instagram" /></a></li>
-      <li><a href="https://twitter.com/?lang=fr" target="_blank"><img class="twitter" src="views\ressources\icons\twitter.png" alt="Icon Twitter"  title="Cliquez ici pour accéder à notre page Twitter" /></a></li>
-      <li><a href="https://fr.linkedin.com/" target="_blank"><img class="linkedin" src="views\ressources\icons\linkedin.png" alt="Icon Linkedin"  title="Cliquez ici pour accéder à notre page Linkedin" /></a></li>
-      <li><a href="https://www.youtube.com/" target="_blank"><img class="youtube" src="views\ressources\icons\youtube.png" alt="Icon Youtube"  title="Cliquez ici pour accéder à notre chaîne Youtube" /></a></li>
-    </div>
-	</ul>
-	<?php
-  $footer = ob_get_clean();
-  return $footer;
-}
-
-
-// fonction qui génère l'affichage du formulaire de connexion
-// l'argument permet un affichage des messages d'erreur
-function form_signin($erreur) {
-  ob_start();
-  ?>
-
-  <form method="post" action="index.php?cible=connexion_request">
-    <section>
-    <article>
-    <fieldset>
-      <legend><h3 class="titre">Connexion</h3></legend>
-      <?php
-      if ($erreur != '') {
-        echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
-      }
-      ?>
-      <p>
-        <label for="login">Identifiant</label><br/>
-        <input type="text" name="login" id="login" placeholder="Votre identifiant"/>
-        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant">
-      </p>
-      <p>
-        <label for="password">Mot de passe</label><br/>
-        <input type="password" name="password" id="password" placeholder="Votre mot de passe"/>
-        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte">
-      </p>
-      <p class="bouton_connexion">
-        <input type="submit" value="Se connecter"/>
-      </p>
-      <p>Pas encore inscrit ? Rejoignez-nous en cliquant <a class="lien" href="index.php?cible=join-us_type">ici</a>.</p>
-    </fieldset>
-    </article>
-  </section>
-  </form>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
-}
-
-// fonction qui génère l'affichage du formulaire d'inscription en fonction du type de personne qui s'inscrit (admnistrateur ou utilisateur)
-// génère par défaut l'affichage du formulaire utilisateur
-// génère l'affichage du formulaire administrateur si on lui passe 'administrateur' en argument
-function form_subscribe_user() {
-  ob_start();
-  ?>
-  <form method="post" action="index.php?cible=form_subscribe_user">
-    <section>
-    <article>
-    <fieldset>
-      <legend><h3>Informations de connexion</h3></legend>
-        <p>
-          <label for="login">Identifiant</label><br/>
-          <input type="text" name="login" id="login" placeholder="Identifiant de connexion" required/>
-        </p>
-        <p>
-          <label for="password">Mot de passe</label><br/>
-          <input type="password" name="password" id="password" placeholder="Mot de passe" required/>
-        </p>
-        <p>
-          <label for="conf_password">Confirmez le mot de passe</label><br/>
-          <input type="password" name="conf_password" id="conf_password" placeholder="Confirmation du mot de passe" required/>
-        </p>
-    </fieldset>
-    </article>
-
-    <article>
-    <fieldset>
-      <legend><h3>Informations personnelles</h3></legend>
-        <p>
-          <label for="civilité"> Civilité <br/>
-          <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
-          <label for="monsieur">Monsieur</label><br/>
-          <input type="radio" name="civilite" value="madame" id="madame"/>
-          <label for="madame">Madame</label>
-        </p>
-        <p>
-          <label for="nom">Nom</label><br/>
-          <input type="text" name="nom" id="nom" placeholder="Votre nom" required/>
-        </p>
-        <p>
-          <label for="prenom">Prénom</label><br/>
-          <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required/>
-        </p>
-        <p>
-          <label for="date_naissance">Date de naissance</label><br/>
-          <input type="date" name="date_naissance" id="date_naissance" placeholder="Votre date de naissance" required/>
-        </p>
-        <p>
-          <label for="nationalite">Nationalité</label><br/>
-          <input type="text" name="nationalite" id="nationalite" placeholder="Votre nationalité" />
-        </p>
-        <p>
-          <label for="pays_user">Pays</label><br/>
-          <select name="pays_user" id="pays_user" required>
-            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
-            <optgroup label="Europe">
-              <option value="allemagne">Allemagne</option>
-              <option value="autriche">Autriche</option>
-              <option value="belgique">Belgique</option>
-              <option value="bulgarie">Bulgarie</option>
-              <option value="chypre">Chypre</option>
-              <option value="croatie">Croatie</option>
-              <option value="danemark">Danemark</option>
-              <option value="espagne">Espagne</option>
-              <option value="estonie">Estonie</option>
-              <option value="finlande">Finlande</option>
-              <option value="france">France</option>
-              <option value="grece">Grèce</option>
-              <option value="hongrie">Hongrie</option>
-              <option value="irlande">Irlande</option>
-              <option value="italie">Italie</option>
-              <option value="lettonie">Lettonie</option>
-              <option value="lituanie">Lituanie</option>
-              <option value="luxembourg">Luxembourg</option>
-              <option value="malte">Malte</option>
-              <option value="norvege">Norvège</option>
-              <option value="paysBas">Pays-Bas</option>
-              <option value="pologne">Pologne</option>
-              <option value="portugal">Portugal</option>
-              <option value="république_tchèque">République tchèque</option>
-              <option value="roumanie">Roumanie</option>
-              <option value="royaume_uni">Royaume-Uni</option>
-              <option value="slovaquie">Slovaquie</option>
-              <option value="slovenie">Slovénie</option>
-              <option value="suede">Suède</option>
-              <option value="suisse">Suisse</option>
-            </optgroup>
-          </select>
-        </p>
-        <p>
-          <label for="telephone">Téléphone</label><br/>
-          <input type="tel" name="telephone" id="telephone" maxlength="12" placeholder="Votre téléphone" required/>
-        </p>
-        <p>
-          <label for="email">E-mail</label><br/>
-          <input type="email" name="email" id="email" placeholder="Votre e-mail" required/>
-        </p>
-        <p>
-          <label for="paiement">Option de paiement</label><br/>
-          <select name="paiement" id="paiement" required>
-            <option value="placeholder" selected>-- Choisissez un moyen de paiement --</option>
-            <option value="prélèvement_mensuel">Prélèvement automatique mensuel</option>
-            <option value="prélèvement_annuel">Prélèvement automatique annuel</option>
-            <option value="chèque_mensuel">Chèque mensuel</option>
-            <option value="chèque_annuel">Chèque annuel</option>
-          </select>
-        </p>
-    </fieldset>
-    </article>
-
-    <article>
-    <fieldset>
-      <legend><h3>Logement</h3></legend>
-        <p>
-          <label for="adresse_logement">Adresse</label><br/>
-          <input type="text" name="adresse_logement" id="adresse_logement" placeholder="Adresse du domicile" required/>
-        </p>
-        <p>
-          <label for="code_postal_logement">Code postal</label><br/>
-          <input type="number" name="code_postal_logement" id="code_postal_logement" min="0" placeholder="Code postal" required/>
-        </p>
-        <p>
-          <label for="ville_logement">Ville</label><br/>
-          <input type="text" name="ville_logement" id="ville_logement" placeholder="Ville" required/>
-        </p>
-        <p>
-          <label for="pays_logement">Pays</label><br/>
-          <select name="pays_logement" id="pays_logement" required>
-            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
-            <optgroup label="Europe">
-              <option value="allemagne">Allemagne</option>
-              <option value="autriche">Autriche</option>
-              <option value="belgique">Belgique</option>
-              <option value="bulgarie">Bulgarie</option>
-              <option value="chypre">Chypre</option>
-              <option value="croatie">Croatie</option>
-              <option value="danemark">Danemark</option>
-              <option value="espagne">Espagne</option>
-              <option value="estonie">Estonie</option>
-              <option value="finlande">Finlande</option>
-              <option value="france">France</option>
-              <option value="grece">Grèce</option>
-              <option value="hongrie">Hongrie</option>
-              <option value="irlande">Irlande</option>
-              <option value="italie">Italie</option>
-              <option value="lettonie">Lettonie</option>
-              <option value="lituanie">Lituanie</option>
-              <option value="luxembourg">Luxembourg</option>
-              <option value="malte">Malte</option>
-              <option value="norvege">Norvège</option>
-              <option value="paysBas">Pays-Bas</option>
-              <option value="pologne">Pologne</option>
-              <option value="portugal">Portugal</option>
-              <option value="république_tchèque">République tchèque</option>
-              <option value="roumanie">Roumanie</option>
-              <option value="royaume_uni">Royaume-Uni</option>
-              <option value="slovaquie">Slovaquie</option>
-              <option value="slovenie">Slovénie</option>
-              <option value="suede">Suède</option>
-              <option value="suisse">Suisse</option>
-            </optgroup>
-          </select>
-        </p>
-        <p>
-          <label for="nb_habitant">Nombre d'habitants</label><br/>
-          <input type="number" name="nb_habitant" id="nb_habitant" min="0" placeholder="Nombre d'habitants" required/>
-        </p>
-        <p>
-          <label for="superficie">Superficie (m²)</label><br/>
-          <input type="text" name="superficie" id="superficie" min="0" placeholder="Superficie (m²)" required/>
-        </p>
-    </fieldset>
-    </article>
-
-    <p class="bouton">
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="S'inscrire"/>
-    </p>
-  </form>
-
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
-}
-
-function form_subscribe_admin() {
-  ob_start();
-  ?>
-  <form method="post" action="index.php?cible=subscribe_admin">
-    <section>
-    <article>
-    <fieldset>
-      <legend>Informations de connexion</legend>
-        <p>
-          <label for="login">Identifiant</label><br/>
-          <input type="text" name="login" id="login" placeholder="Identifiant de connexion" required/>
-        </p>
-        <p>
-          <label for="password">Mot de passe</label><br/>
-          <input type="password" name="password" id="password" placeholder="Mot de passe" required/>
-        </p>
-        <p>
-          <label for="conf_password">Confirmez le mot de passe</label><br/>
-          <input type="password" name="conf_password" id="conf_password" placeholder="Confirmation du mot de passe" required/>
-        </p>
-    </fieldset>
-    </article>
-
-    <article>
-    <fieldset>
-      <legend>Informations personnelles</legend>
-        <p>
-          <label for="civilité"> Civilité <br/>
-          <input type="radio" name="civilite" value="monsieur" id="monsieur"/>
-          <label for="monsieur">Monsieur</label><br/>
-          <input type="radio" name="civilite" value="madame" id="madame"/>
-          <label for="madame">Madame</label>
-        </p>
-        <p>
-          <label for="nom">Nom</label><br/>
-          <input type="text" name="nom" id="nom" placeholder="Votre nom" required/>
-        </p>
-        <p>
-          <label for="prenom">Prénom</label><br/>
-          <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required/>
-        </p>
-        <p>
-          <label for="date_naissance">Date de naissance</label><br/>
-          <input type="date" name="date_naissance" id="date_naissance" placeholder="Votre date de naissance" required/>
-        </p>
-        <p>
-          <label for="nationalite">Nationalité</label><br/>
-          <input type="text" name="nationalite" id="nationalite" placeholder="Votre nationalité" />
-        </p>
-        <p>
-          <label for="pays_admin">Pays</label><br/>
-          <select name="pays_admin" id="pays_admin" required>
-            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
-            <optgroup label="Europe">
-              <option value="allemagne">Allemagne</option>
-              <option value="autriche">Autriche</option>
-              <option value="belgique">Belgique</option>
-              <option value="bulgarie">Bulgarie</option>
-              <option value="chypre">Chypre</option>
-              <option value="croatie">Croatie</option>
-              <option value="danemark">Danemark</option>
-              <option value="espagne">Espagne</option>
-              <option value="estonie">Estonie</option>
-              <option value="finlande">Finlande</option>
-              <option value="france">France</option>
-              <option value="grece">Grèce</option>
-              <option value="hongrie">Hongrie</option>
-              <option value="irlande">Irlande</option>
-              <option value="italie">Italie</option>
-              <option value="lettonie">Lettonie</option>
-              <option value="lituanie">Lituanie</option>
-              <option value="luxembourg">Luxembourg</option>
-              <option value="malte">Malte</option>
-              <option value="norvege">Norvège</option>
-              <option value="paysBas">Pays-Bas</option>
-              <option value="pologne">Pologne</option>
-              <option value="portugal">Portugal</option>
-              <option value="république_tchèque">République tchèque</option>
-              <option value="roumanie">Roumanie</option>
-              <option value="royaume_uni">Royaume-Uni</option>
-              <option value="slovaquie">Slovaquie</option>
-              <option value="slovenie">Slovénie</option>
-              <option value="suede">Suède</option>
-              <option value="suisse">Suisse</option>
-            </optgroup>
-          </select>
-        </p>
-        <p>
-          <label for="telephone">Téléphone</label><br/>
-          <input type="tel" name="telephone" id="telephone" maxlength="12" placeholder="Votre téléphone" required/>
-        </p>
-        <p>
-          <label for="email">E-mail</label><br/>
-          <input type="email" name="email" id="email" placeholder="Votre e-mail" required/>
-        </p>
-    </fieldset>
-    </article>
-
-    <p class="bouton">
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="S'inscrire"/>
-    </p>
-  </form>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-// fonction qui génère un formulaire en fonction du nb de pièces en entrée
-function form_sensor_room() {
-  ob_start();
-  ?>
-  <section>
-  <form method="post" action='index.php?cible=control_sensor_add'>
-    <fieldset>
-      <legend><h3>Zone d'ajout</h3></legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-      </tr>
-
-      <?php
-      }
-      ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
-}
-
-// function qui génère un formulaire de mise à jour des dispositifs dans les pièces
-function edit_sensor_room() {
-  ob_start();
-  ?>
-  <section>
-  <form method="post" action='index.php?cible=control_sensor_edit'>
-    <fieldset>
-      <legend>Mise à jour des capteurs</legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" value="<?php echo($_SESSION['piece_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" value="<?php echo($_SESSION['luminosite_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" value="<?php echo($_SESSION['temperature_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" value="<?php echo($_SESSION['humidite_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" value="<?php echo($_SESSION['mouvement_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" value="<?php echo($_SESSION['fumee_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" value="<?php echo($_SESSION['camera_'.$i]); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" value="<?php echo($_SESSION['actionneur_'.$i]); ?>" required/>
-        </td>
-      </tr>
-
-      <?php
-      }
-      ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
-}
-
-function erase_sensor_room() {
-  ob_start();
-  ?>
-  <section>
-  <!-- <article> -->
-  <form method="post" action='index.php?cible=control_sensor_delete'>
-    <fieldset>
-      <legend>Suppression de pièce</legend>
-      <table>
-        <tr>
-          <th>Sélection</th>
-          <th>Pièce</th>
-        </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="checkbox" name="<?php echo('piece_'.$i); ?>" />
-        </td>
-        <td>
-          <?php echo($_SESSION['piece_'.$i]); ?>
-        </td>
-
-      </tr>
-
-      <?php
-      }
-      ?>
-      </table>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Confirmer la suppression" />
-  </fieldset>
-  <!-- </article> -->
-  </section>
-  <?php
-  $formulaire = ob_get_clean();
-  return $formulaire;
-}
-
-// fonction qui récupère la date du jour
-function current_date() {
-  $now = getdate();
-  $day = '';
-  $month = '';
-  if ($now['weekday'] == 'Monday') {
-    $day = 'Lundi';
-  } else if ($now['weekday'] == 'Tuesday') {
-    $day = 'Mardi';
-  } else if ($now['weekday'] == 'Wednesday') {
-    $day = 'Mercredi';
-  } else if ($now['weekday'] == 'Thursday') {
-    $day = 'Jeudi';
-  } else if ($now['weekday'] == 'Friday') {
-    $day = 'Vendredi';
-  } else if ($now['weekday'] == 'Saturday') {
-    $day = 'Samedi';
-  } else {
-    $day = 'Dimanche';
-  }
-
-  if ($now['month'] == 'January') {
-    $month = 'janvier';
-  } elseif ($now['month'] == 'February') {
-    $month = 'février';
-  } elseif ($now['month'] == 'March') {
-    $month = 'mars';
-  } elseif ($now['month'] == 'April') {
-    $month = 'avril';
-  } elseif ($now['month'] == 'May') {
-    $month = 'mai';
-  } elseif ($now['month'] == 'June') {
-    $month = 'juin';
-  } elseif ($now['month'] == 'July') {
-    $month = 'juillet';
-  } elseif ($now['month'] == 'August') {
-    $month = 'août';
-  } elseif ($now['month'] == 'September') {
-    $month = 'septembre';
-  } elseif ($now['month'] == 'October') {
-    $month = 'octobre';
-  } elseif ($now['month'] == 'November') {
-    $month = 'novembre';
-  } else {
-    $month = 'décembre';
-  }
-
-  $date = ''.$day.' '.$now['mday'].' '.$month.'';
-  return $date;
-}
-
-// fonction responsable de l'affichage du bloc "Mon domicile"
-function my_home() {
-  ob_start();
-  ?>
-  <section>
-  <article>
-    <h3>Mon domicile</h3>
-    <p><strong><?php echo(current_date()); ?></strong></p>
-
-    <h2>Aucune notification</h2>
-  </article>
-  </section>
-
-  <?php
-  $home = ob_get_clean();
-  return $home;
-}
-
-// fonction gérant l'affichage des informations générales de l'utilisateur
-function my_basic_info($info_user) {
-  ob_start();
-
-  if ($_SESSION['type'] == 'user') {
-    foreach ($info_user as $info) {
-    ?>
-      <section>
-      <article>
-        <h3>Mes informations client</h3>
-        <p><strong>Civilité : </strong><?php echo($info['civilite']); ?></p>
-        <p><strong>Nom : </strong><?php echo($info['nom']); ?></p>
-        <p><strong>Prénom : </strong><?php echo($info['prenom']); ?></p>
-        <p><strong>Adresse : </strong><?php echo($info['adresse']); ?></p>
-        <p><strong>Code postal : </strong><?php echo($info['code_postal']); ?></p>
-        <p><strong>Ville : </strong><?php echo($info['ville']); ?></p>
-        <p><strong>Pays : </strong><?php echo($info['pays']); ?></p>
-
-        <form method="post" action="index.php?cible=info_user">
-          <input type="submit" value="Voir les informations complètes">
-        </form>
-      </article>
-      </section>
-    <?php
-    }
-  } else{
-    ?>
-    <section>
-    <article>
-      <h3>Mes informations administrateur</h3>
-      <p><strong>Civilité : </strong><?php echo($_SESSION['civilite']); ?></p>
-      <p><strong>Nom : </strong><?php echo($_SESSION['nom']); ?></p>
-      <p><strong>Prénom : </strong><?php echo($_SESSION['prenom']); ?></p>
-      <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
-
-      <form method="post" action="index.php?cible=info_admin">
-        <input type="submit" value="Voir les informations complètes">
-      </form>
-    </article>
-    </section>
-    <?php
-  }
-  $info = ob_get_clean();
-  return $info;
-}
-
-// fonction gérant l'affichage des informations sur le domicile utilisateur
-function my_home_information() {
-  ob_start();
-  ?>
-  <section>
-    <h3>Informations du logement</h3>
-    <p><strong>Adresse : </strong><?php echo($_SESSION['adresse']); ?></p>
-    <p><strong>Code postal : </strong><?php echo($_SESSION['code_postal']); ?></p>
-    <p><strong>Ville : </strong><?php echo($_SESSION['ville']); ?></p>
-    <p><strong>Pays : </strong><?php echo($_SESSION['pays']); ?></p>
-    <p><strong>Nombre d'habitant : </strong><?php echo($_SESSION['nb_habitant']); ?></p>
-    <p><strong>Nombre de pièce : </strong><?php echo($_SESSION['nb_piece']); ?></p>
-    <p><strong>Superficie : </strong><?php echo($_SESSION['superficie'].' m²'); ?></p>
-
-    <form method="post" action="index.php?cible=edit_info_home">
-      <input type="submit" value="Modifier les informations">
-    </form>
-
-  </section>
-  <?php
-  $home = ob_get_clean();
-  return $home;
-}
-
-// fonction gérant l'affichage des informations sur les capteurs présents dans les pièces d'un logement
-function my_sensor_room() {
-  ob_start();
-  ?>
-
-  <section>
-  <h3>Dispositifs et pièces du domicile</h3>
-  <?php
-  if ($_SESSION['data_room'] == 'false') {
-    ?>
-    <h2>Veuillez ajouter des pièces pour permettre l'affichage des données</h2>
-    <form method="post" action="index.php?cible=room_add">
-      <p>
-        <label for="nb_piece">Nombre de pièces à ajouter</label><br/>
-        <input type="number" name="nb_piece" min="0" placeholder="Nombre de pièces"/>
-      </p>
-      <input type="submit" value="Ajouter">
-    </form>
-    <?php
-  } else {
-    ?>
-    <table>
-      <tr>
-        <th>Pièce</th>
-        <th>Capteur de luminosité</th>
-        <th>Capteur de température</th>
-        <th>Capteur d'humidité</th>
-        <th>Détecteur de mouvement</th>
-        <th>Détecteur de fumée</th>
-        <th>Caméra</th>
-        <th>Actionneur</th>
-      </tr>
-      <?php
-      for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <?php echo($_SESSION['piece_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['luminosite_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['temperature_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['humidite_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['mouvement_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['fumee_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['camera_'.$i]); ?>
-        </td>
-        <td>
-          <?php echo($_SESSION['actionneur_'.$i]); ?>
-        </td>
-      </tr>
-    <?php
-    }
-    ?>
-  </table>
-  <form method="post" action="index.php?cible=choice_nb_room">
-    <input type="submit" value="Ajouter">
-  </form>
-  <form method="post" action="index.php?cible=sensor_edit">
-    <input type="submit" value="Modifier">
-  </form>
-  <form method="post" action="index.php?cible=sensor_delete">
-    <input type="submit" value="Supprimer">
-  </form>
-
-  </section>
-  <?php
-  }
-  $room = ob_get_clean();
-  return $room;
-}
-
-function my_actual_room() {
-  ob_start();
-  ?>
-  <section>
-  <table>
-    <tr>
-      <th>Pièce</th>
-      <th>Capteur de luminosité</th>
-      <th>Capteur de température</th>
-      <th>Capteur d'humidité</th>
-      <th>Détecteur de mouvement</th>
-      <th>Détecteur de fumée</th>
-      <th>Caméra</th>
-      <th>Actionneur</th>
-    </tr>
-    <?php
-    for($i = 1; $i <= $_SESSION['nb_piece']; $i++) {
-    ?>
-    <tr>
-      <td>
-        <?php echo($_SESSION['piece_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['luminosite_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['temperature_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['humidite_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['mouvement_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['fumee_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['camera_'.$i]); ?>
-      </td>
-      <td>
-        <?php echo($_SESSION['actionneur_'.$i]); ?>
-      </td>
-    </tr>
-    <?php
-  }
-  ?>
-  </table>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-// fonction qui affiche un formulaire pour choisir un nombre de pièces
-function form_nb_room() {
-  ob_start();
-  ?>
-  <section>
-  <fieldset>
-  <legend>Sélectionner le nombre de pièces à ajouter</legend>
-  <form method="post" action="index.php?cible=choice_nb_room2">
-    <p>
-      <input type="number" name="nb_piece_ajout" min="1" placeholder="Nombre de pièces">
-    </p>
-    <p>
-      <input type="reset" value="Rafraichir">
-      <input type="submit" value="Suivant">
-    </p>
-  </form>
-  </fieldset>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function form_nb_room2() {
-  ob_start();
-  ?>
-  <section>
-  <form method="post" action='index.php?cible=control_nb_room'>
-    <fieldset>
-      <legend><h3>Zone d'ajout</h3></legend>
-      <table>
-        <tr>
-          <th>Pièce</th>
-          <th>Capteur de luminosité</th>
-          <th>Capteur de température</th>
-          <th>Capteur d'humidité</th>
-          <th>Détecteur de mouvement</th>
-          <th>Détecteur de fumée</th>
-          <th>Caméra</th>
-          <th>Actionneur</th>
-        </tr>
-      <?php
-      for($i = $_SESSION['nb_piece'] + 1; $i <= $_SESSION['nb_piece'] + $_POST['nb_piece_ajout']; $i++) {
-      ?>
-      <tr>
-        <td>
-          <input type="text" name="<?php echo('piece_'.$i); ?>" size="10" placeholder="<?php echo('Pièce '.$i); ?>" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('luminosite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('temperature_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('humidite_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('mouvement_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('fumee_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('camera_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-        <td>
-          <input type="number" name="<?php echo('actionneur_'.$i); ?>" min="0" placeholder="Nombre" required/>
-        </td>
-      </tr>
-
-      <?php
-    }
-    $_SESSION['nb_piece_ajout'] = $_POST['nb_piece_ajout'];
-    ?>
-    </table>
-    <input type="reset" value="Rafraichir">
-    <input type="submit" value="Envoyer" />
-  </fieldset>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_products() {
-  ob_start();
-  ?>
-  <section>
-    <h2> Nos produits </h2>
-    <article>
-    <p> <strong class="text_ehome">eHome</strong> met à votre disposition une large gamme d’équipements très divers vous permettant
-      d’enregistrer certaines valeurs afin d’adapter vos besoins par la suite en vous connectant à votre
-      compte personnel sur le site internet www.ehome.fr.
-      Quel est l’intérêt de tels dispositifs ?
-      L’habitation connectée offre à ses résidants un confort de haut niveau qui simplifie le quotidien de
-      chacun d’entre eux.</p>
-      Elle permet d’accommoder les nécessités individuelles :
-    <ul>
-      <li> Vous n’êtes pas souvent chez vous et voulez garder un oeil sur votre maison </li>
-      <li> Vous êtes une personne à mobilité réduite </li>
-      <li> Vous voulez simplement un système regroupant tous vos équipements électroniques afin de bénéficier d’un gain de temps et d’argent l’habitation connectée est faite pour vous. </li>
-    </ul>
-    Vous trouverez ici notre catalogue d’équipements domotiques, classés par type :
-    <ul>
-      <li> Capteurs : de luminosité, de température, de mouvement.</li>
-      <li> Actionneurs : volets, portail, garage.</li>
-      <li> Caméras : pour la surveillance</li>
-    </ul>
-
-    <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
-      contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> +33 1 23 45 67 89 </a> </p>
-
-    </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
 }
 
 function content_sensors() {
   ob_start();
   ?>
   <section>
-    <h2> Nos capteurs </h2>
+    <h2>Nos capteurs</h2>
     <article>
       <div class="flex_products">
         <div class="flex_products2">
@@ -1233,7 +430,7 @@ function content_home() {
   ob_start();
   ?>
   <section>
-    <h2> Accueil eHome </h2>
+    <h2>Accueil eHome</h2>
     <article>
       <p>Notre <a class="lien" href="index.php?cible=about-us">société</a> propose des systèmes électroniques de domotique depuis 2016. Nous
         mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
@@ -1242,7 +439,8 @@ function content_home() {
         adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure."</p>
     </article>
 
-    <h2> Vos avis</h2>
+    <h2>Vos avis</h2>
+
     <article>
       <h3>Déploiement de qualité</h3>
       <p>"eHome a effectué l’installation de capteurs de température
@@ -1303,7 +501,7 @@ function content_about_us(){
   ob_start();
   ?>
   <section>
-    <h2> A propos d'eHome </h2>
+    <h2>A propos d'eHome</h2>
     <article>
       <h3> Les valeurs des eHomers </h3>
       <ul>
@@ -1401,6 +599,567 @@ function content_about_us(){
   $contenu = ob_get_clean();
   return $contenu;
 }
+
+// fonction qui génère l'affichage du formulaire de connexion, l'argument permet un affichage des messages d'erreur
+function form_signin($erreur) {
+  ob_start();
+  ?>
+
+  <form method="post" action="index.php?cible=connexion_request">
+    <section>
+    <article>
+    <fieldset>
+      <legend><h3 class="titre">Connexion</h3></legend>
+      <?php
+      if ($erreur != '') {
+        echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
+      }
+      ?>
+      <p>
+        <label for="login">Identifiant</label><br/>
+        <input type="text" name="login" id="login" placeholder="Votre identifiant"/>
+        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant">
+      </p>
+      <p>
+        <label for="password">Mot de passe</label><br/>
+        <input type="password" name="password" id="password" placeholder="Votre mot de passe"/>
+        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte">
+      </p>
+      <p class="bouton_connexion">
+        <input type="submit" value="Se connecter"/>
+      </p>
+      <p>Pas encore inscrit ? Rejoignez-nous en cliquant <a class="lien" href="index.php?cible=join-us_type">ici</a>.</p>
+    </fieldset>
+    </article>
+  </section>
+  </form>
+  <?php
+  $formulaire = ob_get_clean();
+  return $formulaire;
+}
+
+// fonction qui génère l'affichage du formulaire d'inscription en fonction du type de personne qui s'inscrit (admnistrateur ou utilisateur)
+function form_subscribe_user() {
+  ob_start();
+  ?>
+  <form method="post" action="index.php?cible=form_subscribe_user">
+    <section>
+    <article>
+    <fieldset>
+      <legend><h3>Informations de connexion</h3></legend>
+        <p>
+          <label for="login">Identifiant</label><br/>
+          <input type="text" name="login" id="login" placeholder="Identifiant de connexion" required/>
+        </p>
+        <p>
+          <label for="password">Mot de passe</label><br/>
+          <input type="password" name="password" id="password" placeholder="Mot de passe" required/>
+        </p>
+        <p>
+          <label for="conf_password">Confirmez le mot de passe</label><br/>
+          <input type="password" name="conf_password" id="conf_password" placeholder="Confirmation du mot de passe" required/>
+        </p>
+    </fieldset>
+    </article>
+
+    <article>
+    <fieldset>
+      <legend><h3>Informations personnelles</h3></legend>
+        <p>
+          <label for="civilité"> Civilité <br/>
+          <input type="radio" name="civilite" value="Monsieur" id="monsieur"/>
+          <label for="monsieur">Monsieur</label><br/>
+          <input type="radio" name="civilite" value="Madame" id="madame"/>
+          <label for="madame">Madame</label>
+        </p>
+        <p>
+          <label for="nom">Nom</label><br/>
+          <input type="text" name="nom" id="nom" placeholder="Votre nom" required/>
+        </p>
+        <p>
+          <label for="prenom">Prénom</label><br/>
+          <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required/>
+        </p>
+        <p>
+          <label for="date_naissance">Date de naissance</label><br/>
+          <input type="date" name="date_naissance" id="date_naissance" placeholder="Votre date de naissance" required/>
+        </p>
+        <p>
+          <label for="nationalite">Nationalité</label><br/>
+          <input type="text" name="nationalite" id="nationalite" placeholder="Votre nationalité" />
+        </p>
+        <p>
+          <label for="pays_user">Pays</label><br/>
+          <select name="pays_user" id="pays_user" required>
+            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
+            <optgroup label="Europe">
+              <option value="Allemagne">Allemagne</option>
+              <option value="Autriche">Autriche</option>
+              <option value="Belgique">Belgique</option>
+              <option value="Bulgarie">Bulgarie</option>
+              <option value="Chypre">Chypre</option>
+              <option value="Croatie">Croatie</option>
+              <option value="Danemark">Danemark</option>
+              <option value="Espagne">Espagne</option>
+              <option value="Estonie">Estonie</option>
+              <option value="Finlande">Finlande</option>
+              <option value="France">France</option>
+              <option value="Grece">Grèce</option>
+              <option value="Hongrie">Hongrie</option>
+              <option value="Irlande">Irlande</option>
+              <option value="Italie">Italie</option>
+              <option value="Lettonie">Lettonie</option>
+              <option value="Lituanie">Lituanie</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malte">Malte</option>
+              <option value="Norvege">Norvège</option>
+              <option value="Pays-Bas">Pays-Bas</option>
+              <option value="Pologne">Pologne</option>
+              <option value="Portugal">Portugal</option>
+              <option value="République-Tchèque">République tchèque</option>
+              <option value="Roumanie">Roumanie</option>
+              <option value="Royaume-Uni">Royaume-Uni</option>
+              <option value="Slovaquie">Slovaquie</option>
+              <option value="Slovenie">Slovénie</option>
+              <option value="Suede">Suède</option>
+              <option value="Suisse">Suisse</option>
+            </optgroup>
+          </select>
+        </p>
+        <p>
+          <label for="telephone">Téléphone</label><br/>
+          <input type="tel" name="telephone" id="telephone" maxlength="12" placeholder="Votre téléphone" required/>
+        </p>
+        <p>
+          <label for="email">E-mail</label><br/>
+          <input type="email" name="email" id="email" placeholder="Votre e-mail" required/>
+        </p>
+        <p>
+          <label for="paiement">Option de paiement</label><br/>
+          <select name="paiement" id="paiement" required>
+            <option value="placeholder" selected>-- Choisissez un moyen de paiement --</option>
+            <option value="prélèvement_mensuel">Prélèvement automatique mensuel</option>
+            <option value="prélèvement_annuel">Prélèvement automatique annuel</option>
+            <option value="chèque_mensuel">Chèque mensuel</option>
+            <option value="chèque_annuel">Chèque annuel</option>
+          </select>
+        </p>
+    </fieldset>
+    </article>
+
+    <article>
+    <fieldset>
+      <legend><h3>Logement</h3></legend>
+        <p>
+          <label for="adresse_logement">Adresse</label><br/>
+          <input type="text" name="adresse_logement" id="adresse_logement" placeholder="Adresse du domicile" required/>
+        </p>
+        <p>
+          <label for="code_postal_logement">Code postal</label><br/>
+          <input type="number" name="code_postal_logement" id="code_postal_logement" min="0" placeholder="Code postal" required/>
+        </p>
+        <p>
+          <label for="ville_logement">Ville</label><br/>
+          <input type="text" name="ville_logement" id="ville_logement" placeholder="Ville" required/>
+        </p>
+        <p>
+          <label for="pays_logement">Pays</label><br/>
+          <select name="pays_logement" id="pays_logement" required>
+            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
+            <optgroup label="Europe">
+              <option value="Allemagne">Allemagne</option>
+              <option value="Autriche">Autriche</option>
+              <option value="Belgique">Belgique</option>
+              <option value="Bulgarie">Bulgarie</option>
+              <option value="Chypre">Chypre</option>
+              <option value="Croatie">Croatie</option>
+              <option value="Danemark">Danemark</option>
+              <option value="Espagne">Espagne</option>
+              <option value="Estonie">Estonie</option>
+              <option value="Finlande">Finlande</option>
+              <option value="France">France</option>
+              <option value="Grece">Grèce</option>
+              <option value="Hongrie">Hongrie</option>
+              <option value="Irlande">Irlande</option>
+              <option value="Italie">Italie</option>
+              <option value="Lettonie">Lettonie</option>
+              <option value="Lituanie">Lituanie</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Malte">Malte</option>
+              <option value="Norvege">Norvège</option>
+              <option value="Pays-Bas">Pays-Bas</option>
+              <option value="Pologne">Pologne</option>
+              <option value="Portugal">Portugal</option>
+              <option value="République-Tchèque">République tchèque</option>
+              <option value="Roumanie">Roumanie</option>
+              <option value="Royaume-Uni">Royaume-Uni</option>
+              <option value="Slovaquie">Slovaquie</option>
+              <option value="Slovenie">Slovénie</option>
+              <option value="Suede">Suède</option>
+              <option value="Suisse">Suisse</option>
+            </optgroup>
+          </select>
+        </p>
+        <p>
+          <label for="nb_habitant">Nombre d'habitants</label><br/>
+          <input type="number" name="nb_habitant" id="nb_habitant" min="0" placeholder="Nombre d'habitants" required/>
+        </p>
+        <p>
+          <label for="superficie">Superficie (m²)</label><br/>
+          <input type="text" name="superficie" id="superficie" min="0" placeholder="Superficie (m²)" required/>
+        </p>
+    </fieldset>
+    </article>
+
+    <p class="bouton">
+      <input type="reset" value="Rafraichir">
+      <input type="submit" value="S'inscrire"/>
+    </p>
+  </form>
+
+  <?php
+  $formulaire = ob_get_clean();
+  return $formulaire;
+}
+
+function form_subscribe_admin() {
+  ob_start();
+  ?>
+  <form method="post" action="index.php?cible=subscribe_admin">
+    <section>
+    <article>
+    <fieldset>
+      <legend>Informations de connexion</legend>
+        <p>
+          <label for="login">Identifiant</label><br/>
+          <input type="text" name="login" id="login" placeholder="Identifiant de connexion" required/>
+        </p>
+        <p>
+          <label for="password">Mot de passe</label><br/>
+          <input type="password" name="password" id="password" placeholder="Mot de passe" required/>
+        </p>
+        <p>
+          <label for="conf_password">Confirmez le mot de passe</label><br/>
+          <input type="password" name="conf_password" id="conf_password" placeholder="Confirmation du mot de passe" required/>
+        </p>
+    </fieldset>
+    </article>
+
+    <article>
+    <fieldset>
+      <legend>Informations personnelles</legend>
+        <p>
+          <label for="civilité"> Civilité <br/>
+          <input type="radio" name="civilite" value="Monsieur" id="monsieur"/>
+          <label for="monsieur">Monsieur</label><br/>
+          <input type="radio" name="civilite" value="Madame" id="madame"/>
+          <label for="madame">Madame</label>
+        </p>
+        <p>
+          <label for="nom">Nom</label><br/>
+          <input type="text" name="nom" id="nom" placeholder="Votre nom" required/>
+        </p>
+        <p>
+          <label for="prenom">Prénom</label><br/>
+          <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required/>
+        </p>
+        <p>
+          <label for="date_naissance">Date de naissance</label><br/>
+          <input type="date" name="date_naissance" id="date_naissance" placeholder="Votre date de naissance" required/>
+        </p>
+        <p>
+          <label for="nationalite">Nationalité</label><br/>
+          <input type="text" name="nationalite" id="nationalite" placeholder="Votre nationalité" />
+        </p>
+        <p>
+          <label for="pays_admin">Pays</label><br/>
+          <select name="pays_admin" id="pays_admin" required>
+            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
+            <optgroup label="Europe">
+              <option value="allemagne">Allemagne</option>
+              <option value="autriche">Autriche</option>
+              <option value="belgique">Belgique</option>
+              <option value="bulgarie">Bulgarie</option>
+              <option value="chypre">Chypre</option>
+              <option value="croatie">Croatie</option>
+              <option value="danemark">Danemark</option>
+              <option value="espagne">Espagne</option>
+              <option value="estonie">Estonie</option>
+              <option value="finlande">Finlande</option>
+              <option value="france">France</option>
+              <option value="grece">Grèce</option>
+              <option value="hongrie">Hongrie</option>
+              <option value="irlande">Irlande</option>
+              <option value="italie">Italie</option>
+              <option value="lettonie">Lettonie</option>
+              <option value="lituanie">Lituanie</option>
+              <option value="luxembourg">Luxembourg</option>
+              <option value="malte">Malte</option>
+              <option value="norvege">Norvège</option>
+              <option value="paysBas">Pays-Bas</option>
+              <option value="pologne">Pologne</option>
+              <option value="portugal">Portugal</option>
+              <option value="république_tchèque">République tchèque</option>
+              <option value="roumanie">Roumanie</option>
+              <option value="royaume_uni">Royaume-Uni</option>
+              <option value="slovaquie">Slovaquie</option>
+              <option value="slovenie">Slovénie</option>
+              <option value="suede">Suède</option>
+              <option value="suisse">Suisse</option>
+            </optgroup>
+          </select>
+        </p>
+        <p>
+          <label for="telephone">Téléphone</label><br/>
+          <input type="tel" name="telephone" id="telephone" maxlength="12" placeholder="Votre téléphone" required/>
+        </p>
+        <p>
+          <label for="email">E-mail</label><br/>
+          <input type="email" name="email" id="email" placeholder="Votre e-mail" required/>
+        </p>
+    </fieldset>
+    </article>
+
+    <p class="bouton">
+      <input type="reset" value="Rafraichir">
+      <input type="submit" value="S'inscrire"/>
+    </p>
+  </form>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+// fonction responsable de l'affichage du bloc "Pièce(s)" dans home_management.php
+function my_room($my_home) {
+  ob_start();
+  ?>
+  <section id="room">
+    <h3><?php if(count($my_home) == 1) {
+                echo('Pièce');
+                } else {
+                  echo('Pièces');
+                }?>
+    </h3>
+    <?php
+    if ($my_home == array()) {
+      ?>
+      <h2 class="except_h2">Veuillez ajouter des pièces pour permettre d'afficher les données</h2>
+      <?php
+    } else {
+      for($i = 0; $i < count($my_home); $i++) {
+        if($i % 2 == 0) {
+          echo('<article><h3>'.$my_home[$i][1].'</h3>');
+          ?>
+          <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer la pièce'
+          onclick="deleteRoom(<?php echo("'".$my_home[$i][1]."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
+          onmouseout="this.src='views/ressources/icons/trash1.png'">
+          <script type="text/javascript">
+            function deleteRoom(nomPiece, id_piece) {
+              if(confirm("Voulez-vous vraiment supprimer la pièce " + nomPiece + " ?")) {
+                window.location = "index.php?cible=room_del&id_piece=" + id_piece;
+              } else {
+                alert("non");
+              }
+            }
+          </script>
+          <?php
+        } else {
+          if($my_home[$i] == array()) {
+            ?>
+            <h2 class="except_h2">Aucun dispositif</h2>
+            <p><a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter</button></a></p></article>
+            <?php
+          } else {
+            for($j = 0; $j < count($my_home[$i]); $j++) {
+              if($j % 2 == 0) {
+                echo('<p>'.$my_home[$i][$j].' x ');
+              } else {
+                echo($my_home[$i][$j].'</p>');
+              }
+            }
+            ?>
+            <p><a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter</button></a></p>
+            <p><a href='index.php?cible=device_edit&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier</button></a></p>
+            <p><a href='index.php?cible=device_delete&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Supprimer</button></a></p></article>
+            <?php
+          }
+        }
+      }
+    }
+      ?>
+      <form id="form" method="post" action="index.php?cible=room_add">
+        <script type="text/javascript">
+          var i = 0;
+          var div = document.createElement("div");
+          div.id = "zoneAjout";
+          document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+
+          function addRoom() {
+            if(!document.getElementById("zoneAjout")) {
+              i = 0;
+              div = document.createElement("div");
+              div.id = "zoneAjout";
+              document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+            }
+            var article = document.createElement("article");
+            var input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("placeholder", "Nom de la pièce à ajouter");
+            input.name = "piece[]";
+            input.setAttribute("required", "");
+            article.id = "newArticle" + i;
+            document.getElementById("zoneAjout").appendChild(article);
+            document.getElementById("newArticle" + i).appendChild(input);
+            i++;
+          }
+
+          function annuler() {
+            document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
+            i = 0;
+            div = document.createElement("div");
+            div.id = "zoneAjout";
+            document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+          }
+        </script>
+        <p><input id="submit" type="submit" value="Confirmer les modifications"></p>
+      </form>
+      <p><button onclick="addRoom()">Ajouter une pièce</button></p>
+      <p><button onclick="annuler()">Annuler</button></p>
+
+      </section>
+    <?php
+
+
+  $content = ob_get_clean();
+  return $content;
+}
+
+// fonction responsable de l'affichage du bloc "Mon domicile" dans home_user.php
+function my_notif() {
+  ob_start();
+  ?>
+  <section>
+  <article>
+    <h3>Mon domicile</h3>
+    <p><strong><?php echo(current_date()); ?></strong></p>
+
+    <h2>Aucune notification</h2>
+  </article>
+  </section>
+
+  <?php
+  $home = ob_get_clean();
+  return $home;
+}
+
+// fonction gérant l'affichage des informations générales de l'utilisateur
+function my_basic_info($info_user) {
+  ob_start();
+
+  if ($_SESSION['type'] == 'user') {
+    ?>
+      <section>
+      <article>
+        <h3>Mes informations client</h3>
+        <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+        <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+        <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+        <p><strong>Adresse : </strong><?php echo($info_user['adresse']); ?></p>
+        <p><strong>Code postal : </strong><?php echo($info_user['code_postal']); ?></p>
+        <p><strong>Ville : </strong><?php echo($info_user['ville']); ?></p>
+        <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+
+        <p><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></p>
+      </article>
+      </section>
+    <?php
+  } else {
+    ?>
+    <section>
+    <article>
+      <h3>Mes informations administrateur</h3>
+      <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+      <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+
+      <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
+    </article>
+    </section>
+    <?php
+  }
+  $info = ob_get_clean();
+  return $info;
+}
+
+// fonction gérant l'affichage des informations sur le domicile utilisateur
+function my_home_info($info_home) {
+  ob_start();
+  ?>
+  <section>
+    <h3>Informations du logement</h3>
+    <p><strong>Adresse : </strong><?php echo($info_home['adresse']); ?></p>
+    <p><strong>Code postal : </strong><?php echo($info_home['code_postal']); ?></p>
+    <p><strong>Ville : </strong><?php echo($info_home['ville']); ?></p>
+    <p><strong>Pays : </strong><?php echo($info_home['pays']); ?></p>
+    <p><strong>Nombre d'habitant : </strong><?php echo($info_home['nb_habitant']); ?></p>
+    <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
+    <p><strong>Nombre de pièce : </strong><?php echo($info_home['nb_piece']); ?></p>
+
+    <p><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></p>
+    </section>
+  <?php
+  $home = ob_get_clean();
+  return $home;
+}
+
+
+/*****************************************************************Fonctions $footer***********************************************************************/
+function footer() {
+  ob_start();
+	?>
+	<ul class="footer">
+    <ul>
+		  <li class="footer_elements">Localisation</li>
+		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
+    </ul>
+
+    <ul>
+		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
+    </ul>
+
+    <ul>
+		  <li class="footer_elements">Contact</li>
+		  <li class="footer_elements">+33 1 23 45 67 89</li>
+		  <li class="footer_elements"> accueil@ehome.com</li>
+    </ul>
+	</ul>
+	<?php
+  $footer = ob_get_clean();
+  return $footer;
+}
+
+function footer_s() {
+  ob_start();
+	?>
+
+	<ul class="footer_s">
+    <h3 class="footer_s_text"> Suivez-nous sur les réseaux sociaux ! </h3>
+    <div class="flex_footer_s">
+      <li><a href="https://www.facebook.com/" target="_blank"><img class="facebook" src="views\ressources\icons\facebook.png" alt="Icon Facebook"  title="Cliquez ici pour accéder à notre page Facebook" /></a></li>
+      <li><a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="views\ressources\icons\Instagram.png" alt="Icon Instagram"  title="Cliquez ici pour accéder à notre page Instagram" /></a></li>
+      <li><a href="https://twitter.com/?lang=fr" target="_blank"><img class="twitter" src="views\ressources\icons\twitter.png" alt="Icon Twitter"  title="Cliquez ici pour accéder à notre page Twitter" /></a></li>
+      <li><a href="https://fr.linkedin.com/" target="_blank"><img class="linkedin" src="views\ressources\icons\linkedin.png" alt="Icon Linkedin"  title="Cliquez ici pour accéder à notre page Linkedin" /></a></li>
+      <li><a href="https://www.youtube.com/" target="_blank"><img class="youtube" src="views\ressources\icons\youtube.png" alt="Icon Youtube"  title="Cliquez ici pour accéder à notre chaîne Youtube" /></a></li>
+    </div>
+	</ul>
+	<?php
+  $footer = ob_get_clean();
+  return $footer;
+}
+
+/*****************************************************************Fonctions JavaScript***********************************************************************/
 
 function carroussel_home() {
   ob_start();
