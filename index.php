@@ -82,6 +82,14 @@ if (isset($_SESSION['type'])) {
         include("views/cameras.php");
       } elseif ($_GET['cible'] == 'legal_information') {
         include("views/legal_information.php");
+      }elseif ($_GET['cible'] == 'user_management') {
+        include("views/user_management.php");
+      }elseif ($_GET['cible'] == 'notif_ad') {
+        include("views/notif_ad.php");
+      }elseif ($_GET['cible'] == 'security') {
+        include("views/security.php");
+      }elseif ($_GET['cible'] == 'messaging_ad') {
+        include("views/messaging_ad.php");
       }
 
       elseif ($_GET['cible'] == 'home_admin') {
