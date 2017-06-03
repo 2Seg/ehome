@@ -45,7 +45,7 @@ aside
 article
 {
   background-color: rgba(155, 155, 155, 0.85);
-  padding: 25px;
+  padding: 0px 18px 0px 18px;
   margin : 25px;
   border: 1px solid rgba(155,155,155,0.85);
   border-radius: 7px;
@@ -54,12 +54,12 @@ article
   border: 4px solid blue;*/
 }
 
-section
+section:not(.home_info, .room_info)
 {
   background-color: rgba(229,229, 229, 0.75);
   padding: 5px 15px 15px 15px;
   width: 80%;
-  margin: 40px auto 40px auto ;
+  margin: 40px 0px 40px 0px ;
   border-radius: 7px;
   display: flex;
   flex-direction: column;
@@ -100,9 +100,7 @@ h3
   padding-bottom: 5px;
   box-shadow: 0px 3px 12px rgb(60,60,60);
   margin: 0px;
-
-
-
+  height: 55px;
   /*border: 1px solid green;*/
 }
 
@@ -117,7 +115,6 @@ h3
 
 .menu_home
 {
-
   list-style: none;
   background-color: rgba(200, 200, 200, 0.2);
   display: flex;
@@ -125,15 +122,6 @@ h3
   padding-bottom: 5px;
   box-shadow: 0px 4px 25px rgba(200, 200, 200, 0.28);
   margin: 0px;
-
-
-  /*background-color: rgba(200, 200, 200, 0.2);
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0px;
-  padding: 3px 0 0 20px;*/
 }
 
 .menu_profil
@@ -145,14 +133,12 @@ h3
 
 .menu_elements
 {
-
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  border-radius: 10px;
   text-align: center;
   margin: 6px 2.5% 0 0;
-  padding: 11px;
-
-
-  /*border: 5px solid green;*/
-
+  padding: 10px;
 }
 
 .text_menu
@@ -160,9 +146,6 @@ h3
   text-decoration: none;
   color: white;
   font-family: 'gr-med';
-
-  /*border: 5px solid green;
-  */
 }
 
 .li_logo_menu
@@ -170,18 +153,17 @@ h3
   margin: 25px 10px 15px 10px;
   position: relative;
   right: 24px;
-
 }
 
 .logo_menu
 {
   width: 150px;
-
 }
 
 
 .menu_elements:not(.menu_profil):hover
 {
+  transition-duration: 0.3s;
   border: 1px solid rgb(210,0,0);
   border-radius: 10px;
   box-shadow: 0px 2px 20px rgb(100,0,0) inset;
@@ -196,10 +178,10 @@ h3
   list-style: none;
   background-color: rgb(69,69,69);
   display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 13px;
+  align-items: center;
+  padding-bottom: 5px;
   box-shadow: 0px 3px 12px rgb(20,20,20) inset;
+  margin: 0px;
 }
 
 .trait_u
@@ -219,17 +201,20 @@ h3
 
 .menu_user_elements
 {
-  list-style: none;
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 8px;
+  transition-duration: 0.3s;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-align: center;
+  margin: 6px 2.5% 0 0;
+  padding: 7px;
 }
 
 .menu_user_elements:hover
 {
-  border: 1px solid rgb(100,100,100);
+  transition-duration: 0.3s;
+  border: 1px solid rgb(80,80,80);
   border-radius: 10px;
-  box-shadow: 0px 2px 12px rgb(30,30,30) inset;
+  box-shadow: 0px 2px 20px rgb(0,0,0) inset;
   padding: 7px;
 }
 
@@ -335,13 +320,14 @@ textarea
 
 button,input[type=submit]
 {
+  height: 40px;
+  transition-duration: 0.2s;
   font-family: 'gr-book';
   font-size: 100%;
   color: white;
   background-color: rgba(210,0,0,0.85);
   border: 1px solid rgba(210,0,0,0.85);
   border-radius: 5px;
-  padding: 10px 10px;
   cursor: pointer;
 }
 

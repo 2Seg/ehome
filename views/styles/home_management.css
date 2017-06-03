@@ -1,6 +1,146 @@
+aside
+{
+  display:flex;
+}
 
+.home_info
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 7px;
+  margin: 20px 10px 20px 20px;
+  width: 300px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#content_info_home
+{
+  display: flex;
+  flex-direction: column;
+}
+
+#child_content_info_home
+{
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#bouton_info_home
+{
+  text-align: right;
+  margin: 0px;
+}
+
+.room_info
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  width: 80%;
+  border-radius: 7px;
+  margin: 20px 20px 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#room_block
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-around;
+}
+
+#room_block h2
+{
+  padding-top: 130px;
+  text-align: center;
+}
+
+#room_block #no_device
+{
+  padding-top: 0px;
+}
+
+#room_block article:not(.room_article)
+{
+  height: 250px;
+}
+
+#room_block article
+{
+  width: 300px;
+  padding: 15px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+article .top
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+#room_block article a, #room_block article h2, .room_article div
+{
+  text-align: center;
+}
+
+.devices
+{
+  height: 170px;
+  margin: 10px 0px 10px 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#zoneAjout
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-around;
+}
+
+#room_block .newArticle
+{
+  height: 100px;
+}
+
+.bouttons_pièce
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+.bouttons_pièce .add_boutons
+{
+  order: 1;
+}
+
+.bouttons_pièce input
+{
+  order: 2;
+}
+
+#trash
+{
+  height: 18px;
+}
 
 #trash:hover
 {
   cursor: pointer;
+}
+
+h3
+{
+  margin: 0px;
 }

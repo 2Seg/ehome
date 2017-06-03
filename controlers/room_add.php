@@ -5,7 +5,7 @@ controleur gérant l'extraction des données néccessaires pour l'affichage du b
 
 include_once('modeles/functions.php');
 
-if(isset($_GET['cible']) && $_GET['cible'] == 'room_add') {
+if(isset($_GET['cible']) && $_GET['cible'] == 'room_add' && isset($_POST['piece'])) {
   for($i = 0; $i < count($_POST['piece']); $i++) {
     insert_room($bdd, $_SESSION['id'], maj_lettre1($_POST['piece'][$i]));
   }

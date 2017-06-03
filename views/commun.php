@@ -236,7 +236,7 @@ function menu_user($type) {
 /*****************************************************************Fonctions $contenu***********************************************************************/
 
 // fonction permettant de choisir le type d'utilisateur
-function type_user() {
+function content_type_user() {
   ob_start();
   ?>
   <section>
@@ -934,29 +934,32 @@ function form_subscribe_admin() {
 function my_room($my_home) {
   ob_start();
   ?>
-  <section id="room">
-    <h3><?php if(count($my_home) == 1) {
+  <section class="room_info">
+    <div id="content_info_room">
+    <h3><?php if(count($my_home) == 2) {
                 echo('Pièce');
                 } else {
                   echo('Pièces');
                 }?>
     </h3>
+    <div id="room_block">
     <?php
     if ($my_home == array()) {
       ?>
-      <h2 class="except_h2">Veuillez ajouter des pièces pour permettre d'afficher les données</h2>
+      <h2 class="except_h2">Veuillez ajouter des pièces pour permettre l'affichage les données</h2>
       <?php
     } else {
       for($i = 0; $i < count($my_home); $i++) {
         if($i % 2 == 0) {
-          echo('<article><h3>'.$my_home[$i][1].'</h3>');
+          echo('<article><div class="top"><h3>'.$my_home[$i][1].'</h3>');
           ?>
           <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer la pièce'
           onclick="deleteRoom(<?php echo("'".$my_home[$i][1]."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
           onmouseout="this.src='views/ressources/icons/trash1.png'">
+          </div>
           <script type="text/javascript">
             function deleteRoom(nomPiece, id_piece) {
-              if(confirm("Voulez-vous vraiment supprimer la pièce " + nomPiece + " ?")) {
+              if(confirm("Voulez-vous vraiment supprimer la pièce '" + nomPiece + "' ainsi que tous les dispositifs qui y sont présents ?")) {
                 window.location = "index.php?cible=room_del&id_piece=" + id_piece;
               } else {
                 alert("non");
@@ -967,65 +970,83 @@ function my_room($my_home) {
         } else {
           if($my_home[$i] == array()) {
             ?>
-            <h2 class="except_h2">Aucun dispositif</h2>
-            <p><a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter</button></a></p></article>
+            <h2 class="except_h2" id="no_device">Aucun dispositif</h2>
+            <a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter des dispositifs</button></a></article>
             <?php
           } else {
-            for($j = 0; $j < count($my_home[$i]); $j++) {
+            ?>
+            <div class="devices">
+            <?php
+            for($j = 0; $j < count($my_home[$i])-1; $j++) {
               if($j % 2 == 0) {
-                echo('<p>'.$my_home[$i][$j].' x ');
+                echo($my_home[$i][$j].' x ');
               } else {
-                echo($my_home[$i][$j].'</p>');
+                echo($my_home[$i][$j].'<br/><br/>');
               }
             }
+            if($j % 2 == 0) {
+              echo($my_home[$i][count($my_home[$i])-1].' x ');
+            } else {
+              echo($my_home[$i][count($my_home[$i])-1]);
+            }
             ?>
-            <p><a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter</button></a></p>
-            <p><a href='index.php?cible=device_edit&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier</button></a></p>
-            <p><a href='index.php?cible=device_delete&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Supprimer</button></a></p></article>
+            </div>
+            <a href='index.php?cible=device_edit&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier les dispositifs</button></a>
+            </article>
             <?php
           }
         }
       }
     }
       ?>
-      <form id="form" method="post" action="index.php?cible=room_add">
-        <script type="text/javascript">
-          var i = 0;
-          var div = document.createElement("div");
-          div.id = "zoneAjout";
-          document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+        <form id="form" method="post" action="index.php?cible=room_add">
+          <script type="text/javascript">
+            var i = 0;
+            var div = document.createElement("div");
+            div.id = "zoneAjout";
+            document.getElementById("form").appendChild(div);
 
-          function addRoom() {
-            if(!document.getElementById("zoneAjout")) {
+            function addRoom() {
+              if(!document.getElementById("zoneAjout")) {
+                i = 0;
+                div = document.createElement("div");
+                div.id = "zoneAjout";
+                document.getElementById("form").appendChild(div);
+              }
+              var article = document.createElement("article");
+              var div = document.createElement("div");
+              var input = document.createElement("input");
+              input.setAttribute("type", "text");
+              input.setAttribute("placeholder", "Nom de la pièce à ajouter");
+              input.name = "piece[]";
+              input.setAttribute("required", "");
+              article.id = "newArticle" + i;
+              article.setAttribute("class", "room_article");
+              div.id = "div" + i;
+              document.getElementById("zoneAjout").appendChild(article);
+              document.getElementById("newArticle" + i).appendChild(div);
+              document.getElementById("div" + i).appendChild(input);
+              i++;
+            }
+
+            function annuler() {
+              document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
               i = 0;
               div = document.createElement("div");
               div.id = "zoneAjout";
-              document.getElementById("form").insertBefore(div, document.getElementById("submit"));
+              document.getElementById("form").appendChild(div);
             }
-            var article = document.createElement("article");
-            var input = document.createElement("input");
-            input.setAttribute("type", "text");
-            input.setAttribute("placeholder", "Nom de la pièce à ajouter");
-            input.name = "piece[]";
-            input.setAttribute("required", "");
-            article.id = "newArticle" + i;
-            document.getElementById("zoneAjout").appendChild(article);
-            document.getElementById("newArticle" + i).appendChild(input);
-            i++;
-          }
-
-          function annuler() {
-            document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
-            i = 0;
-            div = document.createElement("div");
-            div.id = "zoneAjout";
-            document.getElementById("form").insertBefore(div, document.getElementById("submit"));
-          }
-        </script>
-        <p><input id="submit" type="submit" value="Confirmer les modifications"></p>
-      </form>
-      <p><button onclick="addRoom()">Ajouter une pièce</button></p>
-      <p><button onclick="annuler()">Annuler</button></p>
+          </script>
+          </div>
+          </div>
+          <div class="bouttons_pièce">
+          <input id="submit" type="submit" value="Confirmer les modifications">
+        </form>
+        <div class="add_bouttons">
+          <button onclick="addRoom()">Ajouter une pièce</button>
+          <button onclick="annuler()">Annuler</button>
+        </div>
+      </div>
 
       </section>
     <?php
@@ -1059,7 +1080,7 @@ function my_basic_info($info_user) {
 
   if ($_SESSION['type'] == 'user') {
     ?>
-      <section>
+      <section class="basic_info">
       <article>
         <h3>Mes informations client</h3>
         <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
@@ -1076,7 +1097,7 @@ function my_basic_info($info_user) {
     <?php
   } else {
     ?>
-    <section>
+    <section class="basic_room">
     <article>
       <h3>Mes informations administrateur</h3>
       <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
@@ -1097,17 +1118,21 @@ function my_basic_info($info_user) {
 function my_home_info($info_home) {
   ob_start();
   ?>
-  <section>
-    <h3>Informations du logement</h3>
-    <p><strong>Adresse : </strong><?php echo($info_home['adresse']); ?></p>
-    <p><strong>Code postal : </strong><?php echo($info_home['code_postal']); ?></p>
-    <p><strong>Ville : </strong><?php echo($info_home['ville']); ?></p>
-    <p><strong>Pays : </strong><?php echo($info_home['pays']); ?></p>
-    <p><strong>Nombre d'habitant : </strong><?php echo($info_home['nb_habitant']); ?></p>
-    <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
-    <p><strong>Nombre de pièce : </strong><?php echo($info_home['nb_piece']); ?></p>
+  <section class="home_info">
+    <div id="content_info_home">
+      <h3>Informations du logement</h3>
+      <div id="child_content_info_home">
+        <p><strong>Adresse : </strong><?php echo($info_home['adresse']); ?></p>
+        <p><strong>Code postal : </strong><?php echo($info_home['code_postal']); ?></p>
+        <p><strong>Ville : </strong><?php echo($info_home['ville']); ?></p>
+        <p><strong>Pays : </strong><?php echo($info_home['pays']); ?></p>
+        <p><strong>Nombre d'habitant : </strong><?php echo($info_home['nb_habitant']); ?></p>
+        <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
+        <p><strong>Nombre de pièce : </strong><?php echo($info_home['nb_piece']); ?></p>
+      </div>
+    </div>
 
-    <p><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></p>
+    <p id="bouton_info_home"><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></p>
     </section>
   <?php
   $home = ob_get_clean();

@@ -7,7 +7,6 @@ include_once('modeles/functions.php');
 
 $info_home = select_info_home($bdd, $_SESSION['id']);
 $my_home = array();
-echo(count_piece($bdd, $_SESSION['id']));
 
 if($info_home['nb_piece'] == 0) {
   include('views/home_management.php');
