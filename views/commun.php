@@ -163,24 +163,6 @@ function menu_home() {
   return $menu;
 }
 
-
-// fonction permettant de choisir le type d'utilisateur
-function content_type_user() {
-  ob_start();
-  ?>
-  <section>
-    <article>
-      <h3 class="titre">Vous êtes ?</h3>
-      <a href="index.php?cible=join-us_user">Utilisateur</a><br/>
-      <a href="index.php?cible=join-us_admin">Administrateur</a>
-    </article>
-  </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-
-}
-
 // fonction qui gère l'affichage du menu classique + celui des produits
 function menu_products() {
   ob_start();
@@ -279,10 +261,10 @@ function content_products() {
     <p> Si vous ne trouvez pas le produit recherché ou si vous avez des questions, vous pouvez nous
       contacter à l’adresse mail suivante : <a class="lien"> serviceclient@ehome.fr </a> ou par téléphone au <a class="lien"> +33 1 23 45 67 89 </a> </p>
     </article>
-</section>
-<?php
-$contenu = ob_get_clean();
-return $contenu;
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
 }
 
 function footer2() {
