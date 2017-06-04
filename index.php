@@ -51,12 +51,14 @@ if (isset($_SESSION['type'])) {
         include('controlers/room_del.php');
       } /*elseif ($_GET['cible'] == 'room_upd') {
         include('controlers/room_upd.php');
-      } */elseif ($_GET['cible'] == 'room_del') {
-        include('controlers/room_del.php');
-      }
+      } */
 
       elseif ($_GET['cible'] == 'device_management') {
         include('controlers/device_management.php');
+      } elseif ($_GET['cible'] == 'device_add') {
+        include('controlers/device_add.php');
+      } elseif ($_GET['cible'] == 'device_del') {
+        include('controlers/device_del.php');
       } else {
         include ('views/error.php');
       }

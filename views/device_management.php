@@ -23,4 +23,12 @@ $contenu = my_device($my_room);
 
 $footer = footer();
 
+if(isset($message)) {
+  ?>
+  <script type="text/javascript">
+    alert("<?php echo($message); ?>");
+  </script>
+  <?php
+}
+
 include('gabarit.php');

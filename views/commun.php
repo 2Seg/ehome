@@ -1148,7 +1148,7 @@ function my_device($my_room) {
                   <a href="#"><?php echo($my_room[$i][1]); ?></a>
                 </h3>
                 <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer le dispositif'
-                onclick="deleteDevice(<?php echo("'".$my_room[$i][1]."'");?>, <?php echo("'".$my_room[$i][0]."'") ?>, <?php echo("'".$my_room[0][1]."'"); ?>)"
+                onclick="deleteDevice(<?php echo("'".$my_room[$i][1]."'");?>, <?php echo("'".$my_room[$i][0]."'") ?>, <?php echo("'".$my_room[0][1]."'"); ?>, <?php echo("'".$my_room[0][0]."'"); ?>)"
                 onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'">
               </div>
               <div class="content">
@@ -1156,21 +1156,78 @@ function my_device($my_room) {
                 <p><strong>Etat : </strong><?php echo($my_room[$i][2]); ?></p>
               </div>
               <script type="text/javascript">
-                function deleteDevice(nomDispositif, id_dispositif, nomPiece) {
+                function deleteDevice(nomDispositif, id_dispositif, nomPiece, id_piece) {
                   if(confirm("Voulez-vous vraiment supprimer le dispositif '" + nomDispositif + "' de la pièce '" + nomPiece + "' ?")) {
-                    window.location = "index.php?cible=device_del&id_device=" + id_dispositif;
+                    window.location = "index.php?cible=device_del&id_device=" + id_dispositif + "&id_piece=" + id_piece;
                   }
                 }
               </script>
-              <button><a href="#"></a>Voir les données</button>
+              <button><a href="#"></a>Données complètes</button>
             </article>
             <?php
           }
         }
-         ?>
+        ?>
+        <form id="form" method="post" action="index.php?cible=device_add">
+          <script type="text/javascript">
+            var i = 0;
+            var div = document.createElement("div");
+            div.id = "zoneAjout";
+            document.getElementById("form").appendChild(div);
+
+            function addDevice() {
+              if(!document.getElementById("zoneAjout")) {
+                i = 0;
+                div = document.createElement("div");
+                div.id = "zoneAjout";
+                document.getElementById("form").appendChild(div);
+              }
+              var dispositifs = ["-- Sélectionnez un dispositif --", "Capteur de luminosité", "Capteur de température", "Capteur d'humidité", "Détecteur de mouvement",
+                                  "Détecteur de fumée", "Actionneur chauffage", "Actionneur porte", "Actionneur fenêtre", "Actionneur volet", "Actionneur portail",
+                                  "Caméra de surveillance"];
+              var article = document.createElement("article");
+              var div = document.createElement("div");
+              var select = document.createElement("select");
+              article.id = "newArticle" + i;
+              article.class = "device_article"
+              div.id = "div" + i;
+              select.id = "select" + i;
+              select.setAttribute("required", "");
+              document.getElementById("zoneAjout").appendChild(article);
+              document.getElementById("newArticle" + i).appendChild(div);
+              document.getElementById("div" + i).appendChild(select);
+              for(var j = 0; j < dispositifs.length; j++) {
+                var option = document.createElement("option");
+                if (j === 0) {
+                  option.text = dispositifs[j];
+                  option.value = "placeholder";
+                } else {
+                  option.text = option.value = dispositifs[j];
+                }
+                document.getElementById("select" + i).appendChild(option);
+              }
+              i++;
+
+            }
+
+            function annuler() {
+              document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
+              i = 0;
+              div = document.createElement("div");
+              div.id = "zoneAjout";
+              document.getElementById("form").appendChild(div);
+            }
+          </script>
       </div>
     </div>
-
+    <div class="bouttons_dispositif">
+      <input id="submit" type="submit" value="Confirmer les modifications">
+      </form>
+      <div class="add_bouttons">
+        <button onclick="addDevice()">Ajouter un dispositif</button>
+        <button onclick="annuler()">Annuler</button>
+      </div>
+    </div>
   </section>
   <?php
   $contenu = ob_get_clean();

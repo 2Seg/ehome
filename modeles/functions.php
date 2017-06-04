@@ -244,3 +244,8 @@ function delete_room($db, $id_logement, $id_piece) {
   $req = $db -> prepare('DELETE FROM dispositif WHERE id_piece = ?');
   $req -> execute(array($id_piece));
 }
+
+function delete_device($db, $id_device) {
+  $req = $db -> prepare('DELETE FROM dispositif WHERE id = ?');
+  $req -> execute(array($id_device));
+}
