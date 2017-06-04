@@ -123,9 +123,21 @@ function count_piece($db, $id_logement) {
 }
 
 function select_info_device($db, $id_piece) {
-  $info = array();
   $req = $db -> prepare('SELECT COUNT(type_dispositif) AS nb, type_dispositif AS type FROM dispositif WHERE id_piece = ?
                         GROUP BY type_dispositif ORDER BY type');
+  $req -> execute(array($id_piece));
+  return $req;
+}
+
+function select_room_name($db, $id_piece) {
+  $req = $db -> prepare('SELECT piece FROM piece WHERE id = ?');
+  $req -> execute(array($id_piece));
+  $data = $req -> fetch();
+  return $data['piece'];
+}
+
+function select_device($db, $id_piece) {
+  $req = $db -> prepare('SELECT * FROM dispositif WHERE id_piece = ? ORDER BY id');
   $req -> execute(array($id_piece));
   return $req;
 }

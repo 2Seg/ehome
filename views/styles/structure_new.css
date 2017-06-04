@@ -44,6 +44,7 @@ aside
 
 article
 {
+  transition-duration: 0.2s;
   background-color: rgba(155, 155, 155, 0.85);
   padding: 0px 18px 0px 18px;
   margin : 25px;

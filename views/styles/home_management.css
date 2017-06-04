@@ -82,6 +82,12 @@ aside
   justify-content: space-between;
 }
 
+#room_block article:hover
+{
+  transition-duration: 0.2s;
+  background-color: rgba(168, 168, 168, 0.85);
+}
+
 article .top
 {
   display: flex;
@@ -143,4 +149,16 @@ article .top
 h3
 {
   margin: 0px;
+}
+
+h3 a
+{
+  text-decoration: none;
+  color: rgb(210,0,0);
+}
+
+h3 a:hover
+{
+  color: rgb(210,30,30);
+  text-decoration: underline;
 }

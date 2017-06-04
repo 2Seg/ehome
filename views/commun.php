@@ -933,8 +933,14 @@ function my_room($my_home) {
     } else {
       for($i = 0; $i < count($my_home); $i++) {
         if($i % 2 == 0) {
-          echo('<article><div class="top"><h3>'.$my_home[$i][1].'</h3>');
           ?>
+          <article>
+            <div class="top">
+              <h3>
+                <a href='index.php?cible=device_management&amp;id_piece=<?php echo($my_home[$i][0]); ?>'>
+                  <?php echo($my_home[$i][1]); ?></a>
+              </h3>
+
           <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer la pièce'
           onclick="deleteRoom(<?php echo("'".$my_home[$i][1]."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
           onmouseout="this.src='views/ressources/icons/trash1.png'">
@@ -1027,11 +1033,8 @@ function my_room($my_home) {
           <button onclick="annuler()">Annuler</button>
         </div>
       </div>
-
       </section>
     <?php
-
-
   $content = ob_get_clean();
   return $content;
 }
@@ -1119,10 +1122,56 @@ function my_home_info($info_home) {
   return $home;
 }
 
-function my_devices($my_room) {
+function my_device($my_room) {
   ob_start();
   ?>
+  <section class="devices_info">
+    <div id="content_info_device">
+      <h3><?php if(count($my_room) == 2) {
+                  echo('Dispositif de la pièce \''.$my_room[0][1].'\'');
+                  } else {
+                    echo('Dispositifs de la pièce \''.$my_room[0][1].'\'');
+                  }?>
+      </h3>
+      <div id="device_block">
+        <?php
+        if(count($my_room) == 1) {
+          ?>
+          <h2 class="except_h2">Cette pièce ne contient pas de dispositifs</h2>
+          <?php
+        } else {
+          for($i = 1; $i < count($my_room); $i++) {
+            ?>
+            <article>
+              <div class="top">
+                <h3>
+                  <a href="#"><?php echo($my_room[$i][1]); ?></a>
+                </h3>
+                <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer le dispositif'
+                onclick="deleteDevice(<?php echo("'".$my_room[$i][1]."'");?>, <?php echo("'".$my_room[$i][0]."'") ?>, <?php echo("'".$my_room[0][1]."'"); ?>)"
+                onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'">
+              </div>
+              <div class="content">
+                <p><strong>Numéro de série : </strong><?php echo($my_room[$i][0]); ?></p>
+                <p><strong>Etat : </strong><?php echo($my_room[$i][2]); ?></p>
+              </div>
+              <script type="text/javascript">
+                function deleteDevice(nomDispositif, id_dispositif, nomPiece) {
+                  if(confirm("Voulez-vous vraiment supprimer le dispositif '" + nomDispositif + "' de la pièce '" + nomPiece + "' ?")) {
+                    window.location = "index.php?cible=device_del&id_device=" + id_dispositif;
+                  }
+                }
+              </script>
+              <button><a href="#"></a>Voir les données</button>
+            </article>
+            <?php
+          }
+        }
+         ?>
+      </div>
+    </div>
 
+  </section>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
