@@ -58,8 +58,11 @@ aside
 
 #room_block h2
 {
-  padding-top: 130px;
+  padding-top: 100px;
+  padding-bottom: 80px;
   text-align: center;
+  width: 100%;
+  margin: auto;
 }
 
 #room_block #no_device
@@ -85,7 +88,7 @@ aside
 #room_block article:hover
 {
   transition-duration: 0.2s;
-  background-color: rgba(168, 168, 168, 0.85);
+  background-color: rgba(169, 169, 169, 0.85);
 }
 
 article .top
@@ -124,6 +127,7 @@ article .top
 {
   display: flex;
   justify-content: space-between;
+  padding-top: 6px;
 }
 
 .bouttons_pièce .add_boutons
@@ -134,16 +138,6 @@ article .top
 .bouttons_pièce input
 {
   order: 2;
-}
-
-#trash
-{
-  height: 18px;
-}
-
-#trash:hover
-{
-  cursor: pointer;
 }
 
 h3

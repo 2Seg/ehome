@@ -206,6 +206,11 @@ function insert_room($db, $id_logement, $piece) {
   $req -> execute(array('id_logement' => $id_logement, 'piece' => $piece));
 }
 
+function insert_device($db, $id_piece, $dispositif) {
+  $req = $db -> prepare('INSERT INTO dispositif(id_piece, type_dispositif, etat) VALUES(:id_piece, :dispositif, \'off\')');
+  $req -> execute(array('id_piece' => $id_piece, 'dispositif' => $dispositif));
+}
+
 /*****************************************************************UPDATE***********************************************************************/
 
 // function qui met à jour les dispositifs présent dans les différentes pièces
