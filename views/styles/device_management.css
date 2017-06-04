@@ -1,0 +1,104 @@
+
+.device_info
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 7px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#device_block
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+
+#device_block h2
+{
+  padding-top: 100px;
+  padding-bottom: 80px;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+#device_block article:not(.device_article)
+{
+  height: 160px;
+}
+
+#device_block article
+{
+  width: 265px;
+  padding: 15px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#device_block article:hover
+{
+  transition-duration: 0.2s;
+  background-color: rgba(169, 169, 169, 0.85);
+}
+
+article .top
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+#device_block article a, #device_block article h2, .device_article div
+{
+  text-align: center;
+}
+
+#zoneAjout
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-around;
+}
+
+
+
+.bouttons_dispositif
+{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 6px;
+}
+
+.bouttons_dispositif .add_boutons
+{
+  order: 1;
+}
+
+.bouttons_dispositif input
+{
+  order: 2;
+}
+
+h3
+{
+  margin: 0px;
+}
+
+h3 a
+{
+  text-decoration: none;
+  color: rgb(210,0,0);
+}
+
+h3 a:hover
+{
+  color: rgb(210,30,30);
+  text-decoration: underline;
+}

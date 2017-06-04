@@ -96,14 +96,14 @@ function menu() {
     if (isset($_SESSION['type'])) {
       if($_SESSION['type'] == 'user') {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
-        if($_SESSION['civilite'] == 'madame') {
+        if($_SESSION['civilite'] == 'Madame') {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } elseif ($_SESSION['type'] == 'admin') {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
-        if($_SESSION['civilite'] == 'madame') {
+        if($_SESSION['civilite'] == 'Madame') {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
@@ -933,10 +933,16 @@ function my_room($my_home) {
     } else {
       for($i = 0; $i < count($my_home); $i++) {
         if($i % 2 == 0) {
-          echo('<article><div class="top"><h3>'.$my_home[$i][1].'</h3>');
           ?>
+          <article>
+            <div class="top">
+              <h3>
+                <a href='index.php?cible=device_management&amp;id_piece=<?php echo($my_home[$i][0]); ?>'>
+                  <?php echo($my_home[$i][1]); ?></a>
+              </h3>
+
           <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer la pièce'
-          onclick="deleteRoom(<?php echo("'".$my_home[$i][1]."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
+          onclick="deleteRoom(<?php echo("'".addslashes($my_home[$i][1])."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
           onmouseout="this.src='views/ressources/icons/trash1.png'">
           </div>
           <script type="text/javascript">
@@ -1027,11 +1033,8 @@ function my_room($my_home) {
           <button onclick="annuler()">Annuler</button>
         </div>
       </div>
-
       </section>
     <?php
-
-
   $content = ob_get_clean();
   return $content;
 }
@@ -1119,10 +1122,114 @@ function my_home_info($info_home) {
   return $home;
 }
 
-function my_devices($my_room) {
+function my_device($my_room) {
   ob_start();
   ?>
+  <section class="device_info">
+    <div id="content_info_device">
+      <h3><?php if(count($my_room) == 2) {
+                  echo('Dispositif de la pièce \''.$my_room[0][1].'\'');
+                  } else {
+                    echo('Dispositifs de la pièce \''.$my_room[0][1].'\'');
+                  }?>
+      </h3>
+      <div id="device_block">
+        <?php
+        if(count($my_room) == 1) {
+          ?>
+          <h2 class="except_h2">Cette pièce ne contient pas de dispositifs</h2>
+          <?php
+        } else {
+          for($i = 1; $i < count($my_room); $i++) {
+            ?>
+            <article>
+              <div class="top">
+                <h3>
+                  <a href="#"><?php echo($my_room[$i][1]); ?></a>
+                </h3>
+                <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer le dispositif'
+                onclick="deleteDevice(<?php echo("'".addslashes($my_room[$i][1])."'");?>, <?php echo("'".$my_room[$i][0]."'") ?>, <?php echo("'".addslashes($my_room[0][1])."'"); ?>, <?php echo("'".$my_room[0][0]."'"); ?>)"
+                onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'">
+              </div>
+              <div class="content">
+                <p><strong>Numéro de série : </strong><?php echo($my_room[$i][0]); ?></p>
+                <p><strong>Etat : </strong><?php echo($my_room[$i][2]); ?></p>
+              </div>
+              <script type="text/javascript">
+                function deleteDevice(nomDispositif, id_dispositif, nomPiece, id_piece) {
+                  if(confirm("Voulez-vous vraiment supprimer le dispositif '" + nomDispositif + "' de la pièce '" + nomPiece + "' ?")) {
+                    window.location = "index.php?cible=device_del&id_device=" + id_dispositif + "&id_piece=" + id_piece;
+                  }
+                }
+              </script>
+              <a href="#"><button>Données complètes</button></a>
+            </article>
+            <?php
+          }
+        }
+        ?>
+        <form id="form" method="post" action="index.php?cible=device_add&amp;id_piece=<?php echo($my_room[0][0]); ?>">
+          <script type="text/javascript">
+            var i = 0;
+            var div = document.createElement("div");
+            div.id = "zoneAjout";
+            document.getElementById("form").appendChild(div);
 
+            function addDevice() {
+              if(!document.getElementById("zoneAjout")) {
+                i = 0;
+                div = document.createElement("div");
+                div.id = "zoneAjout";
+                document.getElementById("form").appendChild(div);
+              }
+              var dispositifs = ["-- Sélectionnez un dispositif --", "Capteur de luminosité", "Capteur de température", "Capteur d'humidité", "Détecteur de mouvement",
+                                  "Détecteur de fumée", "Actionneur chauffage", "Actionneur porte", "Actionneur fenêtre", "Actionneur volet", "Actionneur portail",
+                                  "Caméra de surveillance"];
+              var article = document.createElement("article");
+              var div = document.createElement("div");
+              var select = document.createElement("select");
+              article.id = "newArticle" + i;
+              article.setAttribute("class", "device_article");
+              div.id = "div" + i;
+              select.id = "select" + i;
+              select.name = "dispositif[]";
+              select.setAttribute("required", "");
+              document.getElementById("zoneAjout").appendChild(article);
+              document.getElementById("newArticle" + i).appendChild(div);
+              document.getElementById("div" + i).appendChild(select);
+              for(var j = 0; j < dispositifs.length; j++) {
+                var option = document.createElement("option");
+                if (j === 0) {
+                  option.text = dispositifs[j];
+                  option.value = "";
+                } else {
+                  option.text = option.value = dispositifs[j];
+                }
+                document.getElementById("select" + i).appendChild(option);
+              }
+              i++;
+
+            }
+
+            function annuler() {
+              document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
+              i = 0;
+              div = document.createElement("div");
+              div.id = "zoneAjout";
+              document.getElementById("form").appendChild(div);
+            }
+          </script>
+      </div>
+    </div>
+    <div class="bouttons_dispositif">
+      <input id="submit" type="submit" value="Confirmer les modifications">
+      </form>
+      <div class="add_bouttons">
+        <button onclick="addDevice()">Ajouter un dispositif</button>
+        <button onclick="annuler()">Annuler</button>
+      </div>
+    </div>
+  </section>
   <?php
   $contenu = ob_get_clean();
   return $contenu;

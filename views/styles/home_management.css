@@ -58,8 +58,11 @@ aside
 
 #room_block h2
 {
-  padding-top: 130px;
+  padding-top: 100px;
+  padding-bottom: 80px;
   text-align: center;
+  width: 100%;
+  margin: auto;
 }
 
 #room_block #no_device
@@ -80,6 +83,12 @@ aside
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+#room_block article:hover
+{
+  transition-duration: 0.2s;
+  background-color: rgba(169, 169, 169, 0.85);
 }
 
 article .top
@@ -118,6 +127,7 @@ article .top
 {
   display: flex;
   justify-content: space-between;
+  padding-top: 6px;
 }
 
 .bouttons_pièce .add_boutons
@@ -130,17 +140,19 @@ article .top
   order: 2;
 }
 
-#trash
-{
-  height: 18px;
-}
-
-#trash:hover
-{
-  cursor: pointer;
-}
-
 h3
 {
   margin: 0px;
+}
+
+h3 a
+{
+  text-decoration: none;
+  color: rgb(210,0,0);
+}
+
+h3 a:hover
+{
+  color: rgb(210,30,30);
+  text-decoration: underline;
 }
