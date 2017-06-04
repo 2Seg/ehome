@@ -943,8 +943,6 @@ function my_room($my_home) {
             function deleteRoom(nomPiece, id_piece) {
               if(confirm("Voulez-vous vraiment supprimer la pièce '" + nomPiece + "' ainsi que tous les dispositifs qui y sont présents ?")) {
                 window.location = "index.php?cible=room_del&id_piece=" + id_piece;
-              } else {
-                alert("non");
               }
             }
           </script>
@@ -953,7 +951,7 @@ function my_room($my_home) {
           if($my_home[$i] == array()) {
             ?>
             <h2 class="except_h2" id="no_device">Aucun dispositif</h2>
-            <a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter des dispositifs</button></a></article>
+            <a href='index.php?cible=device_management&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter des dispositifs</button></a></article>
             <?php
           } else {
             ?>
@@ -973,7 +971,7 @@ function my_room($my_home) {
             }
             ?>
             </div>
-            <a href='index.php?cible=device_edit&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier les dispositifs</button></a>
+            <a href='index.php?cible=device_management&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier les dispositifs</button></a>
             </article>
             <?php
           }
@@ -1121,6 +1119,14 @@ function my_home_info($info_home) {
   return $home;
 }
 
+function my_devices($my_room) {
+  ob_start();
+  ?>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
 
 /*****************************************************************Fonctions $footer***********************************************************************/
 function footer() {
