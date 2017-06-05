@@ -39,9 +39,9 @@ if (isset($_SESSION['type'])) {
         include("controlers/home_management.php");
       } /*elseif ($_GET['cible'] == 'notif_user') {
         include("views/notif_user.php");
-      } elseif ($_GET['cible'] == 'info_user') {
+      }*/ elseif ($_GET['cible'] == 'info_user') {
         include("views/info_user.php");
-      }elseif ($_GET['cible'] == 'subcription_user') {
+      } /*elseif ($_GET['cible'] == 'subcription_user') {
         include("views/subcription_user.php");
       } elseif ($_GET['cible'] == 'messaging_user') {
         include('views/messaging_user.php');

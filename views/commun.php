@@ -185,28 +185,18 @@ function menu_user($type) {
   if($type == 'user') {?>
     <ul class="menu_user">
       <li class="menu_user_elements"><a href="index.php?cible=home_user" class="text_menu_user">Mon domicile</a></li>
-      <div class="trait_u"></div>
       <li class="menu_user_elements"><a href="index.php?cible=home_management" class="text_menu_user">Gestion du domicile</a></li>
-      <div class="trait_u"></div>
       <li class="menu_user_elements"><a href="index.php?cible=notif_user" class="text_menu_user">Notifications</a></li>
-      <div class="trait_u"></div>
       <li class="menu_user_elements"><a href="index.php?cible=info_user" class="text_menu_user">Mes informations</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=subcription_user" class="text_menu_user">Mon abonnement</a></li>
-      <div class="trait_u"></div>
       <li class="menu_user_elements"><a href="index.php?cible=messaging_user" class="text_menu_user">Messagerie</a></li>
     </ul>
   <?php
   } elseif ($type == 'admin') {?>
     <ul class="menu_user">
       <li class="menu_user_elements"><a href="index.php?cible=home_admin" class="text_menu_user">Vue d'ensemble</a></li>
-      <div class="trait_u"></div>
       <li class="menu_user_elements"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
-      <div class="trait_u"></div>
       <li class="menu_user_elements"><a href="index.php?cible=notification" class="text_menu_user">Notifications</a></li>
-      <div class="trait_u"></div>
       <li class="menu_user_elements"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
-      <div class="trait_u"></div>
       <li class="menu_user_elements"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
     </ul>
   <?php
@@ -1043,13 +1033,23 @@ function my_room($my_home) {
 function my_notif() {
   ob_start();
   ?>
-  <section>
-  <article>
-    <h3>Mon domicile</h3>
-    <p><strong><?php echo(current_date()); ?></strong></p>
-
-    <h2>Aucune notification</h2>
-  </article>
+  <section class="notif_info">
+    <div class="top_notif">
+      <h3>Mon domicile</h3>
+      <strong>
+        <?php echo(current_date()); ?>
+        <div id="afficherheure"></div>
+      </strong>
+    </div>
+    <div class="content_notif">
+      <h2 class="except_h2">Aucune notification</h2>
+    </div>
+    <div id="bouton_notif_info"><a href="index.php?cible=notif_user"><button>Voir toutes les notifications</button></a></div>
+    <script type="text/javascript">
+      setInterval(function(){
+          document.getElementById('afficherheure').innerHTML = new Date().toLocaleTimeString();
+      }, 1000);
+    </script>
   </section>
 
   <?php
@@ -1064,18 +1064,19 @@ function my_basic_info($info_user) {
   if ($_SESSION['type'] == 'user') {
     ?>
       <section class="basic_info">
-      <article>
-        <h3>Mes informations client</h3>
-        <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
-        <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
-        <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
-        <p><strong>Adresse : </strong><?php echo($info_user['adresse']); ?></p>
-        <p><strong>Code postal : </strong><?php echo($info_user['code_postal']); ?></p>
-        <p><strong>Ville : </strong><?php echo($info_user['ville']); ?></p>
-        <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
-
-        <p><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></p>
-      </article>
+        <div class="content_my_info">
+          <h3>Mes informations client</h3>
+          <div id="child_content_my_info">
+            <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+            <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+            <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+            <p><strong>Adresse : </strong><?php echo($info_user['adresse']); ?></p>
+            <p><strong>Code postal : </strong><?php echo($info_user['code_postal']); ?></p>
+            <p><strong>Ville : </strong><?php echo($info_user['ville']); ?></p>
+            <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+          </div>
+        </div>
+        <div id="bouton_basic_info"><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></div>
       </section>
     <?php
   } else {
@@ -1097,6 +1098,15 @@ function my_basic_info($info_user) {
   return $info;
 }
 
+function my_full_info() {
+  ob_start();
+  ?>
+
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
 // fonction gérant l'affichage des informations sur le domicile utilisateur
 function my_home_info($info_home) {
   ob_start();
@@ -1115,7 +1125,7 @@ function my_home_info($info_home) {
       </div>
     </div>
 
-    <p id="bouton_info_home"><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></p>
+    <div id="bouton_info_home"><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></div>
     </section>
   <?php
   $home = ob_get_clean();
@@ -1182,9 +1192,10 @@ function my_device($my_room) {
                 div.id = "zoneAjout";
                 document.getElementById("form").appendChild(div);
               }
-              var dispositifs = ["-- Sélectionnez un dispositif --", "Capteur de luminosité", "Capteur de température", "Capteur d'humidité", "Détecteur de mouvement",
-                                  "Détecteur de fumée", "Actionneur chauffage", "Actionneur porte", "Actionneur fenêtre", "Actionneur volet", "Actionneur portail",
-                                  "Caméra de surveillance"];
+              var dispositifs = ["-- Sélectionnez un dispositif --", "Capteur de luminosité", "Capteur de température",
+                                "Capteur d'humidité", "Détecteur de mouvement", "Détecteur de fumée", "Actionneur chauffage",
+                                "Actionneur climatisation", "Actionneur porte", "Actionneur fenêtre", "Actionneur volet",
+                                "Actionneur portail", "Actionneur lumière", "Caméra de surveillance", "Alarme"];
               var article = document.createElement("article");
               var div = document.createElement("div");
               var select = document.createElement("select");
