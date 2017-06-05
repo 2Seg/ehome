@@ -9,6 +9,7 @@ $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
 $contenu = my_basic_info($general_info_admin);
+$contenu .= content_home_admin();
 
 $footer = footer();
 
