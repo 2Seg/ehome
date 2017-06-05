@@ -13,6 +13,8 @@
       echo('<link rel="stylesheet" href="views/styles/home_management.css">');
     } elseif (substr($titre, 0, 36) == 'Gestion des dispositifs de la pièce') {
       echo('<link rel="stylesheet" href="views/styles/device_management.css">');
+    } elseif ($titre == 'Mes informations') {
+      echo('<link rel="stylesheet" href="views/styles/info_user.css">');
     }
     ?>
 

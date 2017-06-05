@@ -1,4 +1,4 @@
-#home_user
+#info_user
 {
   transition-duration: 0.3s;
   border: 1px solid rgba(80,80,80,0.8);
@@ -7,7 +7,7 @@
   padding: 7px;
 }
 
-#home_user:hover
+#info_user:hover
 {
   transition-duration: 0.3s;
   border: 1px solid rgb(80,80,80);
@@ -18,80 +18,43 @@
 
 aside
 {
-  display:flex;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
-.basic_info
+.user_info, .home_info
 {
   background-color: rgba(229,229, 229, 0.75);
   padding: 15px;
   border-radius: 7px;
-  margin: 20px 20px 20px 10px;
+  margin: 10px;
   min-width: 270px;
-  height: 500px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-#content_my_info
+.paiement_info, .connection_info, .button_edit
 {
-  display: flex;
-  flex-direction: column;
-}
-
-#child_content_my_info
-{
-  height: 300px;
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 7px;
+  margin: 10px;
+  width: 270px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-#bouton_notif_info, #bouton_basic_info
+.button_edit
 {
   text-align: center;
-}
-
-.notif_info
-{
-  background-color: rgba(229,229, 229, 0.75);
-  padding: 15px;
-  width: 80%;
-  border-radius: 7px;
-  margin: 20px 10px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.top_notif
-{
-  display: flex;
-  justify-content: space-between;
-}
-
-.top_notif strong
-{
-  padding-top: 3px;
-  width: 210px;
-  display: flex;
-  justify-content: space-between;
-}
-
-#afficherheure
-{
-  width: 50px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 h3
 {
   margin: 0px;
-}
-
-.except_h2
-{
-  text-align: center;
 }

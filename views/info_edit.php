@@ -3,7 +3,7 @@
 vue gérant l'affichage de la page "Mes informations"
 */
 
-$titre = "Mes informations";
+$titre = "Modifier mes informations";
 
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);
@@ -14,7 +14,7 @@ $menu .= menu_user($_SESSION['type']);
 //                       array("eliottdes"));
 //print_r($my_full_info);
 
-$contenu = my_full_info($my_full_info);
+$contenu = form_full_info($my_full_info);
 
 $footer = footer();
 

@@ -92,6 +92,16 @@ function select_general_info_admin($db, $id) {
   return $info;
 }
 
+// fonction récupérant les informations complètes de l'utilisateur pour affichage sur la page "Mes informations"
+function select_full_info_user($db, $id) {
+  $req = $db -> prepare("SELECT *, DATE_FORMAT(date_naissance, '%d/%m/%Y') AS date_naissance_format, utilisateur.pays AS pays_utilisateur,
+                        logement.pays AS pays_logement FROM utilisateur INNER JOIN logement ON logement.id_user = utilisateur.id
+                        WHERE utilisateur.id = ?");
+  $req -> execute(array($id));
+  $data = $req -> fetch();
+  return $data;
+}
+
 // fonction récupérant les informations du domicile l'utilisateur pour affichage sur la page "Gestion du domicile"
 function select_info_home($db, $id) {
   $info = array();

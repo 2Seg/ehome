@@ -196,14 +196,6 @@ h3
   margin: 0px;
 }
 
-.trait_u
-{
-  border-left: 1.5px solid;
-  border-color: rgba(255, 255, 255, 0.6);
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
 .text_menu_user
 {
   text-decoration: none;
@@ -330,7 +322,7 @@ textarea
   padding: 10px 10px;
 }
 
-button,input[type=submit]
+button,input[type=submit],input[type=reset]
 {
   height: 38px;
   transition-duration: 0.2s;
@@ -343,7 +335,7 @@ button,input[type=submit]
   cursor: pointer;
 }
 
-button:hover,input[type=submit]:hover
+button:hover,input[type=submit],input[type=reset]:hover
 {
   transition-duration: 0.2s;
   background-color: rgba(210, 30, 30, 0.85);
