@@ -91,11 +91,11 @@ if (isset($_SESSION['type'])) {
       }elseif ($_GET['cible'] == 'user_management') {
         include("views/user_management.php");
       }elseif ($_GET['cible'] == 'notification') {
-        include("views/notif_ad.php");
+        include("views/notification.php");
       }elseif ($_GET['cible'] == 'security') {
         include("views/security.php");
       }elseif ($_GET['cible'] == 'messaging') {
-        include("views/messaging_ad.php");
+        include("views/messaging.php");
       }
 
       elseif ($_GET['cible'] == 'home_admin') {
