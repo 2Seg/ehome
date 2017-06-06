@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 31 Mai 2017 à 09:35
+-- Généré le :  Ven 02 Juin 2017 à 09:23
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -77,7 +77,7 @@ CREATE TABLE `administrateur` (
 --
 
 INSERT INTO `administrateur` (`id`, `civilite`, `nom`, `prenom`, `identifiant`, `mot_de_passe`, `date_naissance`, `nationalite`, `pays`, `mail`, `telephone`, `nb_user`) VALUES
-(1, 'monsieur', 'Jalabert', 'Tom', 'tom', '96835dd8bfa718bd6447ccc87af89ae1675daeca', '1996-02-15', 'Française', 'france', 'tomjaja@gmail.com', '0123654789', 0);
+(1, 'monsieur', 'Jalabert', 'Tom', 'tom', '96835dd8bfa718bd6447ccc87af89ae1675daeca', '1996-02-15', 'FranÃ§aise', 'france', 'tomjaja@gmail.com', '0123654789', 0);
 
 -- --------------------------------------------------------
 
@@ -115,10 +115,7 @@ INSERT INTO `dispositif` (`id`, `id_piece`, `type_dispositif`, `etat`) VALUES
 (10, 1, 'capteur d\'humidité', 'off'),
 (4, 1, 'capteur de luminosité', 'off'),
 (5, 1, 'capteur d\'humidité', 'off'),
-(6, 1, 'capteur de température', 'off'),
-(7, 2, 'capteur d\'humidité', 'off'),
-(8, 2, 'caméra', 'off'),
-(9, 2, 'capteur d\'humidité', 'off');
+(6, 1, 'capteur de température', 'off');
 
 -- --------------------------------------------------------
 
@@ -143,7 +140,7 @@ CREATE TABLE `logement` (
 --
 
 INSERT INTO `logement` (`id`, `id_user`, `adresse`, `code_postal`, `ville`, `pays`, `nb_habitant`, `nb_piece`, `superficie`) VALUES
-(1, 1, '69 rue Balard', 75015, 'Paris', 'france', 6, 2, 98),
+(1, 1, '69 rue Balard', 75015, 'Paris', 'france', 6, 4, 98),
 (2, 2, '1 rue de Tours', 75014, 'Paris', 'France', 2, 1, 45);
 
 -- --------------------------------------------------------
@@ -193,9 +190,9 @@ CREATE TABLE `piece` (
 
 INSERT INTO `piece` (`id`, `id_logement`, `piece`) VALUES
 (1, 1, 'Salon'),
-(5, 1, 'Sofa'),
-(3, 1, 'Cuisine'),
-(4, 2, 'Entrée');
+(25, 1, 'Terrasse'),
+(26, 1, 'Cuisine'),
+(24, 1, 'Sofa');
 
 -- --------------------------------------------------------
 
@@ -226,8 +223,8 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `id_admin`, `civilite`, `nom`, `prenom`, `identifiant`, `mot_de_passe`, `date_naissance`, `nationalite`, `pays`, `mail`, `telephone`, `info_paiement`, `date_connexion`, `date_inscription`) VALUES
-(1, 1, 'monsieur', 'de Séguier', 'Eliott', 'eliott', 'fdcc008c5a13011d7470010f3f572b80fe4b47c2', '1995-06-29', 'Française', 'france', 'eliottdes@gmail.com', '0123456789', 'prélèvement_mensuel', '2017-05-24 18:17:28', '2017-05-24'),
-(2, 1, 'Monsieur', 'Robic', 'Alan', 'alan', '91e38e63b890fbb214c8914809fde03c73e7f24d', '4562-06-29', 'Française', 'France', 'alan@gmail.com', '0123456789', 'prélèvement_mensuel', '2017-05-28 16:58:38', '2017-05-28');
+(1, 1, 'monsieur', 'de SÃ©guier', 'Eliott', 'eliott', 'fdcc008c5a13011d7470010f3f572b80fe4b47c2', '1995-06-29', 'FranÃ§aise', 'france', 'eliottdes@gmail.com', '0123456789', 'prÃ©lÃ¨vement_mensuel', '2017-05-24 18:17:28', '2017-05-24'),
+(2, 1, 'Monsieur', 'Robic', 'Alan', 'alan', '91e38e63b890fbb214c8914809fde03c73e7f24d', '4562-06-29', 'FranÃ§aise', 'France', 'alan@gmail.com', '0123456789', 'prÃ©lÃ¨vement_mensuel', '2017-05-28 16:58:38', '2017-05-28');
 
 --
 -- Index pour les tables exportées
@@ -321,7 +318,7 @@ ALTER TABLE `dispositif`
 -- AUTO_INCREMENT pour la table `logement`
 --
 ALTER TABLE `logement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `messagerie`
 --
@@ -336,12 +333,12 @@ ALTER TABLE `mesure`
 -- AUTO_INCREMENT pour la table `piece`
 --
 ALTER TABLE `piece`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
