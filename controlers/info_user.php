@@ -14,4 +14,6 @@ $my_full_info = array(array(maj_lettre1($data['civilite']), $data['nom'], maj_le
                       array(maj_lettre1($data['info_paiement'])),
                       array($data['identifiant']));
 
+
+
 include('views/info_user.php');

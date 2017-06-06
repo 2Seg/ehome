@@ -1059,7 +1059,6 @@ function my_notif() {
   return $home;
 }
 
-
 // fonction gérant l'affichage des informations générales de l'utilisateur
 function my_basic_info($info_user) {
   ob_start();
@@ -1163,152 +1162,157 @@ function form_full_info($my_full_info) {
   ob_start();
   ?>
   <form method="post" action="index.php?cible=info_edit">
-    <section class="user_info">
-      <div class="content_user_info">
-        <h3>Informations client</h3>
-        <div id="child_content_user_info">
-          <p>
-            <label for="civilite"><strong>Civilité : </strong></label><br/>
-            <input type="text" name="civilite" id="civilite" value="<?php echo($my_full_info[0][0]); ?>" required/>
-          </p>
-          <p>
-            <label for="nom"><strong>Nom : </strong></label><br/>
-            <input type="text" name="nom" id="nom" value="<?php echo($my_full_info[0][1]); ?>" required/>
-          </p>
-          <p>
-            <label for="prenom"><strong>Prénom : </strong></label><br/>
-            <input type="text" name="prenom" id="prenom" value="<?php echo($my_full_info[0][2]); ?>" required/>
-          </p>
-          <p>
-            <label for="date_naissance"><strong>Date de naissance : </strong></label><br/>
-            <input type="date" name="date_naissance" id="date_naissance" value="<?php echo($my_full_info[0][3]); ?>" required/>
-          </p>
-          <p>
-            <label for="nationalite"><strong>Nationalité : </strong></label><br/>
-            <input type="text" name="nationalite" id="nationalite" value="<?php echo($my_full_info[0][4]); ?>" required/>
-          </p>
-          <p>
-            <label for="pays_utilisateur"><strong>Pays : </strong></label><br/>
-            <?php
-              $pays = array("Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Norvège", "Pays-Bas", "Pologne", "Portugal",
-                            "République-Tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède", "Suisse");
-              $select = '<select name="pays_utilisateur" id="pays_utilisateur">';
-              foreach ($pays as $option) {
-                $select .= '<option value="'.$option.'"';
-                if ($option == $my_full_info[0][5]) {
-                  $select .= ' selected';
-                }
-                $select .= '>'.$option.'</option>';
-              }
-              $select .= '</select>';
-              echo ($select);
-            ?>
-          </p>
-          <p>
-            <label for="mail"><strong>E-mail : </strong></label><br/>
-            <input type="mail" name="mail" id="mail" value="<?php echo($my_full_info[0][6]); ?>" required/>
-          </p>
-          <p>
-            <label for="telephone"><strong>Téléphone : </strong></label><br/>
-            <input type="tel" name="telephone" id="telephone" maxlength="12" value="<?php echo($my_full_info[0][7]); ?>" required/>
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="home_info">
-      <div class="content_home_info">
-        <h3>Informations du domicile</h3>
-        <div id="child_content_home_info">
-          <p>
-            <label for="adresse"><strong>Adresse : </strong></label><br/>
-            <input type="text" name="adresse" id="adresse" value="<?php echo($my_full_info[1][0]); ?>" required/>
-          </p>
-          <p>
-            <label for="code_postal"><strong>Code postal : </strong></label><br/>
-            <input type="number" name="code_postal" id="code_postal" value="<?php echo($my_full_info[1][1]); ?>" min="0" required/>
-          <p>
-            <label for="ville"><strong>Ville : </strong></label><br/>
-            <input type="text" name="ville" id="ville" value="<?php echo($my_full_info[1][2]); ?>" required/>
-          </p>
-          <p>
-            <label for="pays_logement"><strong>Pays : </strong></label><br/>
-            <?php
-              $pays = array("Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Norvège", "Pays-Bas", "Pologne", "Portugal",
-                            "République-Tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède", "Suisse");
-              $select = '<select name="pays_logement" id="pays_logement">';
-              foreach ($pays as $option) {
-                $select .= '<option value="'.$option.'"';
-                if ($option == $my_full_info[1][3]) {
-                  $select .= ' selected';
-                }
-                $select .= '>'.$option.'</option>';
-              }
-              $select .= '</select>';
-              echo ($select);
-            ?>
-          </p>
-          <p>
-            <label for="superficie"><strong>Superficie (m²) : </strong></label><br/>
-            <input type="number" name="superficie" id="superficie" value="<?php echo($my_full_info[1][5]); ?>" min="0" required/>
-          </p>
-          <p>
-            <label for="nb_habitant"><strong>Nombre d'habitants : </strong></label><br/>
-            <input type="number" name="nb_habitant" id="nb_habitant" value="<?php echo($my_full_info[1][6]); ?>" min="0" required/>
-          </p>
-        </div>
-      </div>
-    </section>
-    <div class="paiement_connection_info">
-      <section class="paiement_info">
-        <div class="content_paiement_info">
-          <h3>Informations paiement</h3>
-          <div id="child_content_paiement_info">
-            <p>
-              <label for="paiement"><strong>Paiement par : </strong></label><br/>
-              <?php
-                $moyen_paiement = array("Prélèvement automatique mensuel", "Prélèvement automatique annuel", "Chèque mensuel", "Chèque annuel");
-                $select = '<select name="paiement" id="paiement">';
-                foreach ($moyen_paiement as $option) {
-                  $select .= '<option value="'.$option.'"';
-                  if ($option == $my_full_info[2][0]) {
-                    $select .= ' selected';
+    <div class="form">
+      <h2>Modifier mes informations</h2>
+      <div class="content_info">
+        <section class="user_info">
+          <div class="content_user_info">
+            <h3>Informations client</h3>
+            <div id="child_content_user_info">
+              <p>
+                <label for="civilite"><strong>Civilité : </strong></label><br/>
+                <input type="text" name="civilite" id="civilite" value="<?php echo($my_full_info[0][0]); ?>" required/>
+              </p>
+              <p>
+                <label for="nom"><strong>Nom : </strong></label><br/>
+                <input type="text" name="nom" id="nom" value="<?php echo($my_full_info[0][1]); ?>" required/>
+              </p>
+              <p>
+                <label for="prenom"><strong>Prénom : </strong></label><br/>
+                <input type="text" name="prenom" id="prenom" value="<?php echo($my_full_info[0][2]); ?>" required/>
+              </p>
+              <p>
+                <label for="date_naissance"><strong>Date de naissance : </strong></label><br/>
+                <input type="date" name="date_naissance" id="date_naissance" value="<?php echo($my_full_info[0][3]); ?>" required/>
+              </p>
+              <p>
+                <label for="nationalite"><strong>Nationalité : </strong></label><br/>
+                <input type="text" name="nationalite" id="nationalite" value="<?php echo($my_full_info[0][4]); ?>" required/>
+              </p>
+              <p>
+                <label for="pays_utilisateur"><strong>Pays : </strong></label><br/>
+                <?php
+                  $pays = array("Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Norvège", "Pays-Bas", "Pologne", "Portugal",
+                                "République-Tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède", "Suisse");
+                  $select = '<select name="pays_utilisateur" id="pays_utilisateur">';
+                  foreach ($pays as $option) {
+                    $select .= '<option value="'.$option.'"';
+                    if ($option == $my_full_info[0][5]) {
+                      $select .= ' selected';
+                    }
+                    $select .= '>'.$option.'</option>';
                   }
-                  $select .= '>'.$option.'</option>';
-                }
-                $select .= '</select>';
-                echo ($select);
-              ?>
-            </p>
+                  $select .= '</select>';
+                  echo ($select);
+                ?>
+              </p>
+              <p>
+                <label for="mail"><strong>E-mail : </strong></label><br/>
+                <input type="mail" name="mail" id="mail" value="<?php echo($my_full_info[0][6]); ?>" required/>
+              </p>
+              <p>
+                <label for="telephone"><strong>Téléphone : </strong></label><br/>
+                <input type="tel" name="telephone" id="telephone" maxlength="12" value="<?php echo($my_full_info[0][7]); ?>" required/>
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
-      <section class="connection_info">
-        <div class="content_connection_info">
-          <h3>Informations de connexion</h3>
-          <div id="child_content_connection_info">
-            <p>
-              <label for="identifiant"><strong>Identifiant : </strong></label><br/>
-              <input type="text" name="identifiant" id="identifiant" value="<?php echo($my_full_info[3][0]); ?>"/>
-            </p>
-            <p>
-              <label for="ancien_mdp"><strong>Ancien mot de passe : </strong></label><br/>
-              <input type="password" name="ancien_mdp" id="ancien_mdp"/>
-            </p>
-            <p>
-              <label for="nouveau_mdp"><strong>Nouveau mot de passe : </strong></label><br/>
-              <input type="password" name="nouveau_mdp" id="nouveau_mdp"/>
-            </p>
-            <p>
-              <label for="conf_mdp"><strong>Confirmez le mot de passe : </strong></label><br/>
-              <input type="password" name="conf_mdp" id="conf_mdp"/>
-            </p>
+        </section>
+        <section class="home_info">
+          <div class="content_home_info">
+            <h3>Informations du domicile</h3>
+            <div id="child_content_home_info">
+              <p>
+                <label for="adresse"><strong>Adresse : </strong></label><br/>
+                <input type="text" name="adresse" id="adresse" value="<?php echo($my_full_info[1][0]); ?>" required/>
+              </p>
+              <p>
+                <label for="code_postal"><strong>Code postal : </strong></label><br/>
+                <input type="number" name="code_postal" id="code_postal" value="<?php echo($my_full_info[1][1]); ?>" min="0" required/>
+              <p>
+                <label for="ville"><strong>Ville : </strong></label><br/>
+                <input type="text" name="ville" id="ville" value="<?php echo($my_full_info[1][2]); ?>" required/>
+              </p>
+              <p>
+                <label for="pays_logement"><strong>Pays : </strong></label><br/>
+                <?php
+                  $pays = array("Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Norvège", "Pays-Bas", "Pologne", "Portugal",
+                                "République-Tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède", "Suisse");
+                  $select = '<select name="pays_logement" id="pays_logement">';
+                  foreach ($pays as $option) {
+                    $select .= '<option value="'.$option.'"';
+                    if ($option == $my_full_info[1][3]) {
+                      $select .= ' selected';
+                    }
+                    $select .= '>'.$option.'</option>';
+                  }
+                  $select .= '</select>';
+                  echo ($select);
+                ?>
+              </p>
+              <p>
+                <label for="superficie"><strong>Superficie (m²) : </strong></label><br/>
+                <input type="number" name="superficie" id="superficie" value="<?php echo($my_full_info[1][5]); ?>" min="0" required/>
+              </p>
+              <p>
+                <label for="nb_habitant"><strong>Nombre d'habitants : </strong></label><br/>
+                <input type="number" name="nb_habitant" id="nb_habitant" value="<?php echo($my_full_info[1][6]); ?>" min="0" required/>
+              </p>
+            </div>
           </div>
+        </section>
+        <div class="paiement_connection_info">
+          <section class="paiement_info">
+            <div class="content_paiement_info">
+              <h3>Informations paiement</h3>
+              <div id="child_content_paiement_info">
+                <p>
+                  <label for="paiement"><strong>Paiement par : </strong></label><br/>
+                  <?php
+                    $moyen_paiement = array("Prélèvement automatique mensuel", "Prélèvement automatique annuel", "Chèque mensuel", "Chèque annuel");
+                    $select = '<select name="paiement" id="paiement">';
+                    foreach ($moyen_paiement as $option) {
+                      $select .= '<option value="'.$option.'"';
+                      if ($option == $my_full_info[2][0]) {
+                        $select .= ' selected';
+                      }
+                      $select .= '>'.$option.'</option>';
+                    }
+                    $select .= '</select>';
+                    echo ($select);
+                  ?>
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="connection_info">
+            <div class="content_connection_info">
+              <h3>Informations de connexion</h3>
+              <div id="child_content_connection_info">
+                <p>
+                  <label for="identifiant"><strong>Identifiant : </strong></label><br/>
+                  <input type="text" name="identifiant" id="identifiant" value="<?php echo($my_full_info[3][0]); ?>"/>
+                </p>
+                <p>
+                  <label for="ancien_mdp"><strong>Ancien mot de passe : </strong></label><br/>
+                  <input type="password" name="ancien_mdp" id="ancien_mdp"/>
+                </p>
+                <p>
+                  <label for="nouveau_mdp"><strong>Nouveau mot de passe : </strong></label><br/>
+                  <input type="password" name="nouveau_mdp" id="nouveau_mdp"/>
+                </p>
+                <p>
+                  <label for="conf_mdp"><strong>Confirmez le mot de passe : </strong></label><br/>
+                  <input type="password" name="conf_mdp" id="conf_mdp"/>
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="button_edit">
+            <input type="reset" value="Rafraichir">
+            <input type="submit" value="Modifier">
+          </section>
         </div>
-      </section>
-      <section class="button_edit">
-        <input type="reset" value="Rafraichir">
-        <input type="submit" value="Confirmer les modificiations">
-      </section>
+      </div>
     </div>
   </form>
   <?php
@@ -1334,7 +1338,7 @@ function my_home_info($info_home) {
       </div>
     </div>
 
-    <div id="bouton_info_home"><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></div>
+    <div id="bouton_info_home"><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></div>
     </section>
   <?php
   $home = ob_get_clean();

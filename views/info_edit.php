@@ -1,6 +1,6 @@
 <?php
 /*
-vue gérant l'affichage de la page "Mes informations"
+vue gérant l'affichage de la page des modification des inforamtions utilisateur
 */
 
 $titre = "Modifier mes informations";
@@ -14,7 +14,12 @@ $menu .= menu_user($_SESSION['type']);
 //                       array("eliottdes"));
 //print_r($my_full_info);
 
-$contenu = form_full_info($my_full_info);
+if (isset($erreur)) {
+  $contenu = '<h2 class="except_h2" id="error_h2">Erreur : '.$erreur.'</h2>';
+  $contenu .= form_full_info($my_full_info);
+} else {
+  $contenu = form_full_info($my_full_info);
+}
 
 $footer = footer();
 

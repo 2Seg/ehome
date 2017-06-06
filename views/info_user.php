@@ -18,4 +18,12 @@ $contenu = my_full_info($my_full_info);
 
 $footer = footer();
 
+if(isset($message)) {
+  ?>
+  <script type="text/javascript">
+    alert("<?php echo($message); ?>");
+  </script>
+  <?php
+}
+
 include('gabarit.php');

@@ -15,6 +15,8 @@
       echo('<link rel="stylesheet" href="views/styles/device_management.css">');
     } elseif ($titre == 'Mes informations') {
       echo('<link rel="stylesheet" href="views/styles/info_user.css">');
+    } elseif ($titre == 'Modifier mes informations') {
+      echo('<link rel="stylesheet" href="views/styles/info_edit.css">');
     }
     ?>
 
