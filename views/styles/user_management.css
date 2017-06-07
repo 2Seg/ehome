@@ -1,0 +1,35 @@
+#user_management
+{
+  transition-duration: 0.3s;
+  border: 1px solid rgba(80,80,80,0.8);
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(10,10,10,0.9) inset;
+  padding: 7px;
+}
+
+#user_management:hover
+{
+  transition-duration: 0.3s;
+  border: 1px solid rgb(80,80,80);
+  border-radius: 10px;
+  box-shadow: 0px 2px 20px rgb(0,0,0) inset;
+  padding: 7px;
+}
+
+aside
+{
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.list_users
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 7px;
+  margin: 100px auto 120px auto;
+  width: 500px;
+  /*border: 2px solid green;*/
+}

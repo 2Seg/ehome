@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'gr-med';
-  src: url('fonts/GothamRnd-Medium.otf');
+  src: url('ressources/fonts/GothamRnd-Medium.otf');
 }
 
 
 @font-face {
   font-family: 'gr-book';
-  src: url('fonts/GothamRnd-Book.otf');
+  src: url('ressources/fonts/GothamRnd-Book.otf');
 }
 
 html
@@ -411,7 +411,7 @@ fieldset
 /**********************************************************FOOTER********************************************************************/
 .footer
 {
-  background-image: url("footer.jpg");
+  background-image: url("ressources/images/footer.jpg");
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
@@ -433,7 +433,7 @@ fieldset
 
 #footer2
 {
-  background-image: url("footer.jpg");
+  background-image: url("ressources/images/footer.jpg");
   background-repeat: no-repeat;
   width: 100%;
   color: white;
