@@ -1470,7 +1470,9 @@ function footer() {
     </ul>
 
     <ul>
-		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
+		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a>
+      <br> <img class="paypal" src="views\ressources\icons\paypal.png" alt="Icon Paypal" width="180px" height="40px" /></br></li>
+
     </ul>
 
     <ul>
