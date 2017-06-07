@@ -87,13 +87,16 @@ if (isset($_SESSION['type'])) {
         include("views/cameras.php");
       } elseif ($_GET['cible'] == 'legal_information') {
         include("views/legal_information.php");
-      }elseif ($_GET['cible'] == 'user_management') {
+      } elseif ($_GET['cible'] == 'user_management') {
         include("views/user_management.php");
-      }elseif ($_GET['cible'] == 'notification') {
+      } elseif ($_GET['cible'] == 'info_admin') {
+        include("views/info_admin.php");
+      } elseif ($_GET['cible'] == 'notification') {
         include("views/notification.php");
-      }elseif ($_GET['cible'] == 'security') {
+
+      } elseif ($_GET['cible'] == 'security') {
         include("views/security.php");
-      }elseif ($_GET['cible'] == 'messaging') {
+      } elseif ($_GET['cible'] == 'messaging') {
         include("views/messaging.php");
       }
 

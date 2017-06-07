@@ -222,6 +222,84 @@ function content_type_user() {
   return $contenu;
 }
 
+function content_home_admin() {
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h3>Gestion des utilisateurs</h3>
+      <p><a href="index.php?cible=user_management"><button>Gestion des utilisateurs</button></a></p>
+    </article>
+  </section>
+  <section>
+    <article>
+      <h3>Notifications</h3>
+      <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
+    </article>
+  </section>
+  <section>
+    <article>
+      <h3>Sécurité</h3>
+      <p><a href="index.php?cible=security"><button>Sécurité</button></a></p>
+    </article>
+  </section>
+  <section>
+    <article>
+      <h3>Messagerie</h3>
+      <p><a href="index.php?cible=messaging"><button>Messagerie</button></a></p>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+
+function content_security() {
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h3>Page content_security</h3>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function admin_listing($list_users){
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h3>Utilisateurs</h3>
+      <p>Liste des tous les utilisateurs :</p>
+      <p><strong>Id : </strong><?php echo($list_users['id']);?> </p>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_user_management() {
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h3>Graphique des connexions</h3>
+      <p>Graphique des connexions par jour semaines moi et année</p>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
 function content_products() {
   ob_start();
   ?>
@@ -1100,6 +1178,31 @@ function my_basic_info($info_user) {
   return $info;
 }
 
+
+function content_info_admin($info_user) {
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h3>Page content_info_admin</h3>
+      <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
+      <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
+      <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+      <p><strong>Date de naissance : </strong><?php echo($info_user['date_naissance']); ?></p>
+      <p><strong>Nationalité : </strong><?php echo($info_user['nationalite']); ?></p>
+      <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+      <p><strong>Mail : </strong><?php echo($info_user['mail']); ?></p>
+      <p><strong>Téléphone : </strong><?php echo($info_user['telephone']); ?></p>
+      <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($info_user['nb_user']); ?></p>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+    
 function my_full_info($my_full_info) {
   ob_start();
   ?>
