@@ -572,7 +572,7 @@ function content_about_us(){
 }
 
 // fonction qui génère l'affichage du formulaire de connexion, l'argument permet un affichage des messages d'erreur
-function form_signin($erreur) {
+function form_signin() {
   ob_start();
   ?>
 
@@ -580,11 +580,6 @@ function form_signin($erreur) {
     <section class="form_signin">
       <fieldset>
         <legend><h3 class="titre">Connexion</h3></legend>
-        <?php
-        if ($erreur != '') {
-          echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
-        }
-        ?>
         <div class="content_center">
           <div class="input">
             <label for="login"><strong>Identifiant :</strong></label><br/>

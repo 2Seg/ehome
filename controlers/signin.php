@@ -13,7 +13,7 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connexion_request') {
 
       if($admin_data -> rowcount() == 0) {
         $erreur = 'utilisateur inconnu.';
-        include('views/signin_error.php');
+        include('views/signin.php');
       } else {
         include('controlers/signin_admin.php');
       }
@@ -30,24 +30,24 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'connexion_request') {
 
       } else {
         $erreur = 'mot de passe est incorrect';
-        include('views/signin_error.php');
+        include('views/signin.php');
       }
     }
 
   } elseif (!empty($_POST['login']) && empty($_POST['password'])) {
     // user n'a pas saisi de mot de passe
     $erreur = 'veuillez saisir un mot de passe.';
-    include('views/signin_error.php');
+    include('views/signin.php');
 
   } elseif (empty($_POST['login']) && !empty($_POST['password'])) {
     // user n'a pas saisi d'identifiant
     $erreur = 'veuillez saisir un identifiant.';
-    include('views/signin_error.php');
+    include('views/signin.php');
 
   } else {
     // user n'a pas rempli les champs
     $erreur = 'veuillez remplir l\'intégralité des champs.';
-    include('views/signin_error.php');
+    include('views/signin.php');
   }
 
 } else {
