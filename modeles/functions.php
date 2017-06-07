@@ -9,9 +9,16 @@ require("db_access.php");
 
 // fonction récupérant l'id et le mot de passe d'un utilisateur en fonction du login passé en entrée
 function user_in_db($db, $login) {
-  $req = $db -> prepare('SELECT id, identifiant,mot_de_passe FROM utilisateur WHERE identifiant = ?');
+  $req = $db -> prepare('SELECT id, identifiant, mot_de_passe FROM utilisateur WHERE identifiant = ?');
   $req -> execute(array($login));
   return $req;
+}
+
+function select_password_user($db, $id) {
+  $req = $db -> prepare('SELECT mot_de_passe FROM utilisateur WHERE id = ?');
+  $req -> execute(array($id));
+  $info = $req -> fetch();
+  return $info['mot_de_passe'];
 }
 
 // fonction récupérant l'id et le mot de passe d'un administrateur s'il est présent dans la bdd
@@ -92,6 +99,7 @@ function select_general_info_admin($db, $id) {
   return $info;
 }
 
+
 // fonction récupérant ltoutes les informations de l'administrateur pour affichage sur la page d'info administrateur (info_admin)
 function select_info_admin($db, $id) {
   $info = array();
@@ -101,6 +109,16 @@ function select_info_admin($db, $id) {
     $info = $data;
   }
   return $info;
+}
+
+// fonction récupérant les informations complètes de l'utilisateur pour affichage sur la page "Mes informations"
+function select_full_info_user($db, $id) {
+  $req = $db -> prepare("SELECT *, DATE_FORMAT(date_naissance, '%d/%m/%Y') AS date_naissance_format, utilisateur.pays AS pays_utilisateur,
+                        logement.pays AS pays_logement FROM utilisateur INNER JOIN logement ON logement.id_user = utilisateur.id
+                        WHERE utilisateur.id = ?");
+  $req -> execute(array($id));
+  $data = $req -> fetch();
+  return $data;
 }
 
 // fonction récupérant les informations du domicile l'utilisateur pour affichage sur la page "Gestion du domicile"
@@ -147,9 +165,21 @@ function count_piece($db, $id_logement) {
 }
 
 function select_info_device($db, $id_piece) {
-  $info = array();
   $req = $db -> prepare('SELECT COUNT(type_dispositif) AS nb, type_dispositif AS type FROM dispositif WHERE id_piece = ?
                         GROUP BY type_dispositif ORDER BY type');
+  $req -> execute(array($id_piece));
+  return $req;
+}
+
+function select_room_name($db, $id_piece) {
+  $req = $db -> prepare('SELECT piece FROM piece WHERE id = ?');
+  $req -> execute(array($id_piece));
+  $data = $req -> fetch();
+  return $data['piece'];
+}
+
+function select_device($db, $id_piece) {
+  $req = $db -> prepare('SELECT * FROM dispositif WHERE id_piece = ? ORDER BY id');
   $req -> execute(array($id_piece));
   return $req;
 }
@@ -218,27 +248,12 @@ function insert_room($db, $id_logement, $piece) {
   $req -> execute(array('id_logement' => $id_logement, 'piece' => $piece));
 }
 
-/*****************************************************************UPDATE***********************************************************************/
-
-// function qui met à jour les dispositifs présent dans les différentes pièces
-function update_sensor_room($db, $id_logement, $id_piece, $piece, $capteur_luminosite, $capteur_temperature, $capteur_humidite,
-                          $detecteur_mouvement, $detecteur_fumee, $camera, $actionneur) {
-  $req = $db -> prepare('UPDATE piece SET piece = :piece,
-                        capteur_luminosite = :capteur_luminosite, capteur_temperature = :capteur_temperature,
-                        capteur_humidite = :capteur_humidite, detecteur_mouvement = :detecteur_mouvement,
-                        detecteur_fumee = :detecteur_fumee, camera = :camera, actionneur = :actionneur
-                        WHERE id_logement = :id_logement AND id_piece = :id_piece');
-  $req -> execute(array('id_logement' => $id_logement,
-                        'id_piece' => $id_piece,
-                        'piece' => $piece,
-                        'capteur_luminosite' => $capteur_luminosite,
-                        'capteur_temperature' => $capteur_temperature,
-                        'capteur_humidite' => $capteur_humidite,
-                        'detecteur_mouvement' => $detecteur_mouvement,
-                        'detecteur_fumee' => $detecteur_fumee,
-                        'camera' => $camera,
-                        'actionneur' => $actionneur));
+function insert_device($db, $id_piece, $dispositif) {
+  $req = $db -> prepare('INSERT INTO dispositif(id_piece, type_dispositif, etat) VALUES(:id_piece, :dispositif, \'off\')');
+  $req -> execute(array('id_piece' => $id_piece, 'dispositif' => $dispositif));
 }
+
+/*****************************************************************UPDATE***********************************************************************/
 
 // fonction modifiant le nb de piece d'un logement
 function update_nb_piece($db, $id_logement, $nb_piece) {
@@ -246,6 +261,30 @@ function update_nb_piece($db, $id_logement, $nb_piece) {
   $req -> execute(array('id_logement' => $id_logement, 'nb_piece' => $nb_piece));
 }
 
+// fonction modifiant les infos utilisateurs
+function update_info_user($db, $id, $civilite, $nom, $prenom, $date_naissance, $nationalite, $pays_utilisateur, $mail, $telephone,
+                          $paiement, $identifiant) {
+  $req = $db -> prepare('UPDATE utilisateur
+                        SET civilite = :civilite, nom = :nom, prenom = :prenom, date_naissance = :date_naissance,
+                        nationalite = :nationalite, pays = :pays_utilisateur, mail = :mail, telephone = :telephone,
+                        info_paiement = :paiement, identifiant = :identifiant WHERE id = :id');
+  $req -> execute(array('civilite' => $civilite, 'nom' => $nom, 'prenom' => $prenom, 'date_naissance' => $date_naissance,
+                        'nationalite' => $nationalite, 'pays_utilisateur' => $pays_utilisateur, 'mail' => $mail,
+                        'telephone' => $telephone, 'paiement' => $paiement, 'identifiant' => $identifiant, 'id' => $id));
+}
+
+function update_info_home($db, $id, $adresse, $code_postal, $ville, $pays_logement, $superficie, $nb_habitant) {
+  $req = $db -> prepare('UPDATE logement
+                        SET adresse = :adresse, code_postal = :code_postal, ville = :ville,
+                        pays = :pays_logement, superficie = :superficie, nb_habitant = :nb_habitant WHERE id = :id');
+  $req -> execute(array('adresse' => $adresse, 'code_postal' => $code_postal, 'ville' => $ville, 'pays_logement' => $pays_logement,
+                        'superficie' => $superficie, 'nb_habitant' => $nb_habitant, 'id' => $id));
+}
+
+function update_pass_user($db, $id, $pass) {
+  $req = $db -> prepare('UPDATE utilisateur SET mot_de_passe = :pass WHERE id = :id');
+  $req -> execute(array('pass' => $pass, 'id' => $id));
+}
 /*****************************************************************DELETE***********************************************************************/
 
 // function qui supprime une pièce d'un logement ainsi que tous les capteurs associés
@@ -255,4 +294,9 @@ function delete_room($db, $id_logement, $id_piece) {
   $req -> closeCursor();
   $req = $db -> prepare('DELETE FROM dispositif WHERE id_piece = ?');
   $req -> execute(array($id_piece));
+}
+
+function delete_device($db, $id_device) {
+  $req = $db -> prepare('DELETE FROM dispositif WHERE id = ?');
+  $req -> execute(array($id_device));
 }

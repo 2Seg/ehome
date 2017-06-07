@@ -32,27 +32,32 @@ if (isset($_SESSION['type'])) {
         include("views/legal_information.php");
       }
 
-
       elseif ($_GET['cible'] == 'home_user') {
         include("controlers/home_user.php");
       } elseif ($_GET['cible'] == 'home_management') {
         include("controlers/home_management.php");
-      } /*elseif ($_GET['cible'] == 'notif_user') {
-        include("views/notif_user.php");
       } elseif ($_GET['cible'] == 'info_user') {
-        include("views/info_user.php");
-      }elseif ($_GET['cible'] == 'subcription_user') {
-        include("views/subcription_user.php");
+        include("controlers/info_user.php");
+      } elseif ($_GET['cible'] == 'info_edit') {
+        include("controlers/info_edit.php");
+      } /* elseif ($_GET['cible'] == 'notif_user') {
+        include("controlers/notif_user.php");
       } elseif ($_GET['cible'] == 'messaging_user') {
         include('views/messaging_user.php');
-      } */elseif ($_GET['cible'] == 'room_add') {
+      }*/ elseif ($_GET['cible'] == 'room_add') {
         include('controlers/room_add.php');
       } elseif ($_GET['cible'] == 'room_del') {
         include('controlers/room_del.php');
       } /*elseif ($_GET['cible'] == 'room_upd') {
         include('controlers/room_upd.php');
-      } */elseif ($_GET['cible'] == 'room_del') {
-        include('controlers/room_del.php');
+      } */
+
+      elseif ($_GET['cible'] == 'device_management') {
+        include('controlers/device_management.php');
+      } elseif ($_GET['cible'] == 'device_add') {
+        include('controlers/device_add.php');
+      } elseif ($_GET['cible'] == 'device_del') {
+        include('controlers/device_del.php');
       } else {
         include ('views/error.php');
       }
@@ -82,16 +87,17 @@ if (isset($_SESSION['type'])) {
         include("views/cameras.php");
       } elseif ($_GET['cible'] == 'legal_information') {
         include("views/legal_information.php");
-      }elseif ($_GET['cible'] == 'user_management') {
+      } elseif ($_GET['cible'] == 'user_management') {
         include("views/user_management.php");
-      }elseif ($_GET['cible'] == 'info_admin') {
+      } elseif ($_GET['cible'] == 'info_admin') {
         include("views/info_admin.php");
-      }elseif ($_GET['cible'] == 'notif_ad') {
-        include("views/notif_ad.php");
-      }elseif ($_GET['cible'] == 'security') {
+      } elseif ($_GET['cible'] == 'notification') {
+        include("views/notification.php");
+
+      } elseif ($_GET['cible'] == 'security') {
         include("views/security.php");
-      }elseif ($_GET['cible'] == 'messaging_ad') {
-        include("views/messaging_ad.php");
+      } elseif ($_GET['cible'] == 'messaging') {
+        include("views/messaging.php");
       }
 
       elseif ($_GET['cible'] == 'home_admin') {

@@ -2,6 +2,7 @@
 /*
 vue gérant l'affichage de la page "Gestion du domicile"
 */
+
 $titre = 'Gestion du domicile';
 
 $menu = menu();
@@ -34,4 +35,3 @@ if(isset($message)) {
 }
 
 include('gabarit.php');
-?>

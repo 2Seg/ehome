@@ -77,8 +77,7 @@ function current_date() {
   } else {
     $month = 'décembre';
   }
-
-  $date = ''.$day.' '.$now['mday'].' '.$month.'';
+  $date = array($day, $now['mday'], $month, $now['year']);
   return $date;
 }
 
@@ -89,32 +88,32 @@ function menu() {
   ob_start();
   ?>
     <ul class="menu">
-      <li class="li_logo_menu"><a  href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
-      <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
-      <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
+      <li class="li_logo_menu"><a href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li class="menu_elements" id="about-us"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
+      <li class="menu_elements" id="products"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
     if (isset($_SESSION['type'])) {
       if($_SESSION['type'] == 'user') {
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
-        if($_SESSION['civilite'] == 'madame') {
+        echo('<li class="menu_elements" id="disconnect"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        if($_SESSION['civilite'] == 'Madame') {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } elseif ($_SESSION['type'] == 'admin') {
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
-        if($_SESSION['civilite'] == 'madame') {
+        echo('<li class="menu_elements" id="disconnect"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        if($_SESSION['civilite'] == 'Madame') {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } else {
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+        echo('<li class="menu_elements" id="join-us"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
+        echo('<li class="menu_elements" id="connect"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
       }
     } else {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+      echo('<li class="menu_elements" id="join-us"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
+      echo('<li class="menu_elements" id="connect"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
     ?>
     </ul>
@@ -168,11 +167,11 @@ function menu_products() {
   ob_start();
   ?>
     <ul class="menu_products">
-      <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=sensors"> Capteurs </a></li>
+      <li class="menu_products_elements" id="sensors"><a class="text_menu_products" href="index.php?cible=sensors">Capteurs</a></li>
       <div class="trait"></div>
-      <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=actuators"> Actionneurs </a></li>
+      <li class="menu_products_elements" id="actuators"><a class="text_menu_products" href="index.php?cible=actuators">Actionneurs</a></li>
       <div class="trait"></div>
-      <li class="menu_products_elements"><a class="text_menu_products" href="index.php?cible=cameras"> Caméras </a></li>
+      <li class="menu_products_elements" id="cameras"><a class="text_menu_products" href="index.php?cible=cameras">Caméras</a></li>
     </ul>
     <?php
   $menu = ob_get_clean();
@@ -184,30 +183,20 @@ function menu_user($type) {
   ob_start();
   if($type == 'user') {?>
     <ul class="menu_user">
-      <li class="menu_user_elements"><a href="index.php?cible=home_user" class="text_menu_user">Mon domicile</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=home_management" class="text_menu_user">Gestion du domicile</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=notif_user" class="text_menu_user">Notifications</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=info_user" class="text_menu_user">Mes informations</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=subcription_user" class="text_menu_user">Mon abonnement</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=messaging_user" class="text_menu_user">Messagerie</a></li>
+      <li class="menu_user_elements" id="home_user"><a href="index.php?cible=home_user" class="text_menu_user">Mon domicile</a></li>
+      <li class="menu_user_elements" id="home_management"><a href="index.php?cible=home_management" class="text_menu_user">Gestion du domicile</a></li>
+      <li class="menu_user_elements" id="info_user"><a href="index.php?cible=info_user" class="text_menu_user">Mes informations</a></li>
+      <li class="menu_user_elements" id="notif_user"><a href="index.php?cible=notif_user" class="text_menu_user">Notifications</a></li>
+      <li class="menu_user_elements" id="messaging_user"><a href="index.php?cible=messaging_user" class="text_menu_user">Messagerie</a></li>
     </ul>
   <?php
   } elseif ($type == 'admin') {?>
     <ul class="menu_user">
-      <li class="menu_user_elements"><a href="index.php?cible=home_admin" class="text_menu_user">Vue d'ensemble</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=notification" class="text_menu_user">Notifications</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
-      <div class="trait_u"></div>
-      <li class="menu_user_elements"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
+      <li class="menu_user_elements" id="home_admin"><a href="index.php?cible=home_admin" class="text_menu_user">Vue d'ensemble</a></li>
+      <li class="menu_user_elements" id="user_management"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
+      <li class="menu_user_elements" id="notif_admin"><a href="index.php?cible=notif_admin" class="text_menu_user">Notifications</a></li>
+      <li class="menu_user_elements" id="security"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
+      <li class="menu_user_elements" id="messaging_admin"><a href="index.php?cible=messaging_admin" class="text_menu_user">Messagerie</a></li>
     </ul>
   <?php
   }
@@ -726,7 +715,7 @@ function form_subscribe_user() {
     <fieldset>
       <legend><h3>Informations personnelles</h3></legend>
         <p>
-          <label for="civilité"> Civilité <br/>
+          <label for="civilité">Civilité <br/>
           <input type="radio" name="civilite" value="Monsieur" id="monsieur"/>
           <label for="monsieur">Monsieur</label><br/>
           <input type="radio" name="civilite" value="Madame" id="madame"/>
@@ -751,7 +740,7 @@ function form_subscribe_user() {
         <p>
           <label for="pays_user">Pays</label><br/>
           <select name="pays_user" id="pays_user" required>
-            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
+            <option value="" selected>-- Sélectionnez un pays --</option>
             <optgroup label="Europe">
               <option value="Allemagne">Allemagne</option>
               <option value="Autriche">Autriche</option>
@@ -797,11 +786,11 @@ function form_subscribe_user() {
         <p>
           <label for="paiement">Option de paiement</label><br/>
           <select name="paiement" id="paiement" required>
-            <option value="placeholder" selected>-- Choisissez un moyen de paiement --</option>
-            <option value="prélèvement_mensuel">Prélèvement automatique mensuel</option>
-            <option value="prélèvement_annuel">Prélèvement automatique annuel</option>
-            <option value="chèque_mensuel">Chèque mensuel</option>
-            <option value="chèque_annuel">Chèque annuel</option>
+            <option value="" selected>-- Choisissez un moyen de paiement --</option>
+            <option value="Prélèvement automatique mensuel">Prélèvement automatique mensuel</option>
+            <option value="Prélèvement automatique annuel">Prélèvement automatique annuel</option>
+            <option value="Chèque mensuel">Chèque mensuel</option>
+            <option value="Chèque annuel">Chèque annuel</option>
           </select>
         </p>
     </fieldset>
@@ -825,7 +814,7 @@ function form_subscribe_user() {
         <p>
           <label for="pays_logement">Pays</label><br/>
           <select name="pays_logement" id="pays_logement" required>
-            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
+            <option value="" selected>-- Sélectionnez un pays --</option>
             <optgroup label="Europe">
               <option value="Allemagne">Allemagne</option>
               <option value="Autriche">Autriche</option>
@@ -934,7 +923,7 @@ function form_subscribe_admin() {
         <p>
           <label for="pays_admin">Pays</label><br/>
           <select name="pays_admin" id="pays_admin" required>
-            <option value="placeholder" selected>-- Sélectionnez un pays --</option>
+            <option value="" selected>-- Sélectionnez un pays --</option>
             <optgroup label="Europe">
               <option value="allemagne">Allemagne</option>
               <option value="autriche">Autriche</option>
@@ -1011,18 +1000,22 @@ function my_room($my_home) {
     } else {
       for($i = 0; $i < count($my_home); $i++) {
         if($i % 2 == 0) {
-          echo('<article><div class="top"><h3>'.$my_home[$i][1].'</h3>');
           ?>
+          <article>
+            <div class="top">
+              <h3>
+                <a href='index.php?cible=device_management&amp;id_piece=<?php echo($my_home[$i][0]); ?>'>
+                  <?php echo($my_home[$i][1]); ?></a>
+              </h3>
+
           <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer la pièce'
-          onclick="deleteRoom(<?php echo("'".$my_home[$i][1]."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
+          onclick="deleteRoom(<?php echo("'".addslashes($my_home[$i][1])."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
           onmouseout="this.src='views/ressources/icons/trash1.png'">
           </div>
           <script type="text/javascript">
             function deleteRoom(nomPiece, id_piece) {
               if(confirm("Voulez-vous vraiment supprimer la pièce '" + nomPiece + "' ainsi que tous les dispositifs qui y sont présents ?")) {
                 window.location = "index.php?cible=room_del&id_piece=" + id_piece;
-              } else {
-                alert("non");
               }
             }
           </script>
@@ -1031,7 +1024,7 @@ function my_room($my_home) {
           if($my_home[$i] == array()) {
             ?>
             <h2 class="except_h2" id="no_device">Aucun dispositif</h2>
-            <a href='index.php?cible=device_add&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter des dispositifs</button></a></article>
+            <a href='index.php?cible=device_management&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Ajouter des dispositifs</button></a></article>
             <?php
           } else {
             ?>
@@ -1051,7 +1044,7 @@ function my_room($my_home) {
             }
             ?>
             </div>
-            <a href='index.php?cible=device_edit&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier les dispositifs</button></a>
+            <a href='index.php?cible=device_management&amp;id_piece=<?php echo($my_home[$i-1][0]); ?>'><button>Modifier les dispositifs</button></a>
             </article>
             <?php
           }
@@ -1107,11 +1100,8 @@ function my_room($my_home) {
           <button onclick="annuler()">Annuler</button>
         </div>
       </div>
-
       </section>
     <?php
-
-
   $content = ob_get_clean();
   return $content;
 }
@@ -1120,13 +1110,26 @@ function my_room($my_home) {
 function my_notif() {
   ob_start();
   ?>
-  <section>
-  <article>
-    <h3>Mon domicile</h3>
-    <p><strong><?php echo(current_date()); ?></strong></p>
-
-    <h2>Aucune notification</h2>
-  </article>
+  <section class="notif_info">
+    <div class="top_notif">
+      <h3>Mon domicile</h3>
+      <strong>
+        <?php
+        $current_date = current_date();
+        echo($current_date[0].' '.$current_date[1].' '.$current_date[2].' '.$current_date[3]);
+        ?>
+        <div id="afficherheure"></div>
+      </strong>
+    </div>
+    <div class="content_notif">
+      <h2 class="except_h2">Aucune notification</h2>
+    </div>
+    <div id="bouton_notif_info"><a href="index.php?cible=notif_user"><button>Voir toutes les notifications</button></a></div>
+    <script type="text/javascript">
+      setInterval(function(){
+          document.getElementById('afficherheure').innerHTML = new Date().toLocaleTimeString();
+      }, 1000);
+    </script>
   </section>
 
   <?php
@@ -1141,18 +1144,19 @@ function my_basic_info($info_user) {
   if ($_SESSION['type'] == 'user') {
     ?>
       <section class="basic_info">
-      <article>
-        <h3>Mes informations client</h3>
-        <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
-        <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
-        <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
-        <p><strong>Adresse : </strong><?php echo($info_user['adresse']); ?></p>
-        <p><strong>Code postal : </strong><?php echo($info_user['code_postal']); ?></p>
-        <p><strong>Ville : </strong><?php echo($info_user['ville']); ?></p>
-        <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
-
-        <p><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></p>
-      </article>
+        <div class="content_my_info">
+          <h3>Mes informations client</h3>
+          <div id="child_content_my_info">
+            <p><strong>Civilité : </strong><?php echo(maj_lettre1($info_user['civilite'])); ?></p>
+            <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+            <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+            <p><strong>Adresse : </strong><?php echo($info_user['adresse']); ?></p>
+            <p><strong>Code postal : </strong><?php echo($info_user['code_postal']); ?></p>
+            <p><strong>Ville : </strong><?php echo(maj_lettre1($info_user['ville'])); ?></p>
+            <p><strong>Pays : </strong><?php echo(maj_lettre1($info_user['pays'])); ?></p>
+          </div>
+        </div>
+        <div id="bouton_basic_info"><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></div>
       </section>
     <?php
   } else {
@@ -1173,6 +1177,7 @@ function my_basic_info($info_user) {
   $info = ob_get_clean();
   return $info;
 }
+
 
 function content_info_admin($info_user) {
   ob_start();
@@ -1197,6 +1202,226 @@ function content_info_admin($info_user) {
   $contenu = ob_get_clean();
   return $contenu;
 }
+    
+function my_full_info($my_full_info) {
+  ob_start();
+  ?>
+  <section class="user_info">
+    <div class="content_user_info">
+      <h3>Informations client</h3>
+      <div id="child_content_user_info">
+        <p><strong>Civilité : </strong><?php echo($my_full_info[0][0]); ?></p>
+        <p><strong>Nom : </strong><?php echo($my_full_info[0][1]); ?></p>
+        <p><strong>Prénom : </strong><?php echo($my_full_info[0][2]); ?></p>
+        <p><strong>Date de naissance : </strong><?php echo($my_full_info[0][3]); ?></p>
+        <p><strong>Nationalité : </strong><?php echo($my_full_info[0][4]); ?></p>
+        <p><strong>Pays : </strong><?php echo($my_full_info[0][5]); ?></p>
+        <p><strong>E-mail : </strong><?php echo($my_full_info[0][6]); ?></p>
+        <p><strong>Téléphone : </strong><?php echo($my_full_info[0][7]); ?></p>
+      </div>
+    </div>
+  </section>
+  <section class="home_info">
+    <div class="content_home_info">
+      <h3>Informations du domicile</h3>
+      <div id="child_content_home_info">
+        <p><strong>Adresse : </strong><?php echo($my_full_info[1][0]); ?></p>
+        <p><strong>Code postal : </strong><?php echo($my_full_info[1][1]); ?></p>
+        <p><strong>Ville : </strong><?php echo($my_full_info[1][2]); ?></p>
+        <p><strong>Pays : </strong><?php echo($my_full_info[1][3]); ?></p>
+        <p><strong>Nombre de pièces : </strong><?php echo($my_full_info[1][4]); ?></p>
+        <p><strong>Superficie : </strong><?php echo($my_full_info[1][5].' m²'); ?></p>
+        <p><strong>Nombre d'habitants : </strong><?php echo($my_full_info[1][6]); ?></p>
+      </div>
+    </div>
+  </section>
+  <div class="paiement_connection_info">
+    <section class="paiement_info">
+      <div class="content_paiement_info">
+        <h3>Informations paiement</h3>
+        <div id="child_content_paiement_info">
+          <p><strong>Paiement par : </strong><?php echo($my_full_info[2][0]); ?></p>
+        </div>
+      </div>
+    </section>
+    <section class="connection_info">
+      <div class="content_connection_info">
+        <h3>Informations de connexion</h3>
+        <div id="child_content_connection_info">
+          <p><strong>Identifiant : </strong><?php echo($my_full_info[3][0]); ?></p>
+        </div>
+      </div>
+    </section>
+    <section class="button_edit">
+      <a href="index.php?cible=info_edit"><button>Modifier les informations</button></a>
+    </section>
+  </div>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function form_full_info($my_full_info) {
+  ob_start();
+  ?>
+  <form method="post" action="index.php?cible=info_edit">
+    <div class="form">
+      <h2>Modifier mes informations</h2>
+      <div class="content_info">
+        <section class="user_info">
+          <div class="content_user_info">
+            <h3>Informations client</h3>
+            <div id="child_content_user_info">
+              <p>
+                <label for="civilite"><strong>Civilité : </strong></label><br/>
+                <input type="text" name="civilite" id="civilite" value="<?php echo($my_full_info[0][0]); ?>" required/>
+              </p>
+              <p>
+                <label for="nom"><strong>Nom : </strong></label><br/>
+                <input type="text" name="nom" id="nom" value="<?php echo($my_full_info[0][1]); ?>" required/>
+              </p>
+              <p>
+                <label for="prenom"><strong>Prénom : </strong></label><br/>
+                <input type="text" name="prenom" id="prenom" value="<?php echo($my_full_info[0][2]); ?>" required/>
+              </p>
+              <p>
+                <label for="date_naissance"><strong>Date de naissance : </strong></label><br/>
+                <input type="date" name="date_naissance" id="date_naissance" value="<?php echo($my_full_info[0][3]); ?>" required/>
+              </p>
+              <p>
+                <label for="nationalite"><strong>Nationalité : </strong></label><br/>
+                <input type="text" name="nationalite" id="nationalite" value="<?php echo($my_full_info[0][4]); ?>" required/>
+              </p>
+              <p>
+                <label for="pays_utilisateur"><strong>Pays : </strong></label><br/>
+                <?php
+                  $pays = array("Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Norvège", "Pays-Bas", "Pologne", "Portugal",
+                                "République-Tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède", "Suisse");
+                  $select = '<select name="pays_utilisateur" id="pays_utilisateur">';
+                  foreach ($pays as $option) {
+                    $select .= '<option value="'.$option.'"';
+                    if ($option == $my_full_info[0][5]) {
+                      $select .= ' selected';
+                    }
+                    $select .= '>'.$option.'</option>';
+                  }
+                  $select .= '</select>';
+                  echo ($select);
+                ?>
+              </p>
+              <p>
+                <label for="mail"><strong>E-mail : </strong></label><br/>
+                <input type="mail" name="mail" id="mail" value="<?php echo($my_full_info[0][6]); ?>" required/>
+              </p>
+              <p>
+                <label for="telephone"><strong>Téléphone : </strong></label><br/>
+                <input type="tel" name="telephone" id="telephone" maxlength="12" value="<?php echo($my_full_info[0][7]); ?>" required/>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="home_info">
+          <div class="content_home_info">
+            <h3>Informations du domicile</h3>
+            <div id="child_content_home_info">
+              <p>
+                <label for="adresse"><strong>Adresse : </strong></label><br/>
+                <input type="text" name="adresse" id="adresse" value="<?php echo($my_full_info[1][0]); ?>" required/>
+              </p>
+              <p>
+                <label for="code_postal"><strong>Code postal : </strong></label><br/>
+                <input type="number" name="code_postal" id="code_postal" value="<?php echo($my_full_info[1][1]); ?>" min="0" required/>
+              <p>
+                <label for="ville"><strong>Ville : </strong></label><br/>
+                <input type="text" name="ville" id="ville" value="<?php echo($my_full_info[1][2]); ?>" required/>
+              </p>
+              <p>
+                <label for="pays_logement"><strong>Pays : </strong></label><br/>
+                <?php
+                  $pays = array("Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Norvège", "Pays-Bas", "Pologne", "Portugal",
+                                "République-Tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède", "Suisse");
+                  $select = '<select name="pays_logement" id="pays_logement">';
+                  foreach ($pays as $option) {
+                    $select .= '<option value="'.$option.'"';
+                    if ($option == $my_full_info[1][3]) {
+                      $select .= ' selected';
+                    }
+                    $select .= '>'.$option.'</option>';
+                  }
+                  $select .= '</select>';
+                  echo ($select);
+                ?>
+              </p>
+              <p>
+                <label for="superficie"><strong>Superficie (m²) : </strong></label><br/>
+                <input type="number" name="superficie" id="superficie" value="<?php echo($my_full_info[1][5]); ?>" min="0" required/>
+              </p>
+              <p>
+                <label for="nb_habitant"><strong>Nombre d'habitants : </strong></label><br/>
+                <input type="number" name="nb_habitant" id="nb_habitant" value="<?php echo($my_full_info[1][6]); ?>" min="0" required/>
+              </p>
+            </div>
+          </div>
+        </section>
+        <div class="paiement_connection_info">
+          <section class="paiement_info">
+            <div class="content_paiement_info">
+              <h3>Informations paiement</h3>
+              <div id="child_content_paiement_info">
+                <p>
+                  <label for="paiement"><strong>Paiement par : </strong></label><br/>
+                  <?php
+                    $moyen_paiement = array("Prélèvement automatique mensuel", "Prélèvement automatique annuel", "Chèque mensuel", "Chèque annuel");
+                    $select = '<select name="paiement" id="paiement">';
+                    foreach ($moyen_paiement as $option) {
+                      $select .= '<option value="'.$option.'"';
+                      if ($option == $my_full_info[2][0]) {
+                        $select .= ' selected';
+                      }
+                      $select .= '>'.$option.'</option>';
+                    }
+                    $select .= '</select>';
+                    echo ($select);
+                  ?>
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="connection_info">
+            <div class="content_connection_info">
+              <h3>Informations de connexion</h3>
+              <div id="child_content_connection_info">
+                <p>
+                  <label for="identifiant"><strong>Identifiant : </strong></label><br/>
+                  <input type="text" name="identifiant" id="identifiant" value="<?php echo($my_full_info[3][0]); ?>"/>
+                </p>
+                <p>
+                  <label for="ancien_mdp"><strong>Ancien mot de passe : </strong></label><br/>
+                  <input type="password" name="ancien_mdp" id="ancien_mdp"/>
+                </p>
+                <p>
+                  <label for="nouveau_mdp"><strong>Nouveau mot de passe : </strong></label><br/>
+                  <input type="password" name="nouveau_mdp" id="nouveau_mdp"/>
+                </p>
+                <p>
+                  <label for="conf_mdp"><strong>Confirmez le mot de passe : </strong></label><br/>
+                  <input type="password" name="conf_mdp" id="conf_mdp"/>
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="button_edit">
+            <input type="reset" value="Rafraichir">
+            <input type="submit" value="Modifier">
+          </section>
+        </div>
+      </div>
+    </div>
+  </form>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
 
 // fonction gérant l'affichage des informations sur le domicile utilisateur
 function my_home_info($info_home) {
@@ -1210,19 +1435,132 @@ function my_home_info($info_home) {
         <p><strong>Code postal : </strong><?php echo($info_home['code_postal']); ?></p>
         <p><strong>Ville : </strong><?php echo($info_home['ville']); ?></p>
         <p><strong>Pays : </strong><?php echo($info_home['pays']); ?></p>
-        <p><strong>Nombre d'habitant : </strong><?php echo($info_home['nb_habitant']); ?></p>
+        <p><strong>Nombre de pièces : </strong><?php echo($info_home['nb_piece']); ?></p>
         <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
-        <p><strong>Nombre de pièce : </strong><?php echo($info_home['nb_piece']); ?></p>
+        <p><strong>Nombre d'habitants : </strong><?php echo($info_home['nb_habitant']); ?></p>
       </div>
     </div>
 
-    <p id="bouton_info_home"><a href="index.php?cible=edit_info_home"><button>Modifier les informations</button></a></p>
+    <div id="bouton_info_home"><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></div>
     </section>
   <?php
   $home = ob_get_clean();
   return $home;
 }
 
+function my_device($my_room) {
+  ob_start();
+  ?>
+  <section class="device_info">
+    <div id="content_info_device">
+      <h3><?php if(count($my_room) == 2) {
+                  echo('Dispositif de la pièce \''.$my_room[0][1].'\'');
+                  } else {
+                    echo('Dispositifs de la pièce \''.$my_room[0][1].'\'');
+                  }?>
+      </h3>
+      <div id="device_block">
+        <?php
+        if(count($my_room) == 1) {
+          ?>
+          <h2 class="except_h2">Cette pièce ne contient pas de dispositifs</h2>
+          <?php
+        } else {
+          for($i = 1; $i < count($my_room); $i++) {
+            ?>
+            <article>
+              <div class="top">
+                <h3>
+                  <a href="#"><?php echo($my_room[$i][1]); ?></a>
+                </h3>
+                <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer le dispositif'
+                onclick="deleteDevice(<?php echo("'".addslashes($my_room[$i][1])."'");?>, <?php echo("'".$my_room[$i][0]."'") ?>, <?php echo("'".addslashes($my_room[0][1])."'"); ?>, <?php echo("'".$my_room[0][0]."'"); ?>)"
+                onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'">
+              </div>
+              <div class="content">
+                <p><strong>Numéro de série : </strong><?php echo($my_room[$i][0]); ?></p>
+                <p><strong>Etat : </strong><?php echo($my_room[$i][2]); ?></p>
+              </div>
+              <script type="text/javascript">
+                function deleteDevice(nomDispositif, id_dispositif, nomPiece, id_piece) {
+                  if(confirm("Voulez-vous vraiment supprimer le dispositif '" + nomDispositif + "' de la pièce '" + nomPiece + "' ?")) {
+                    window.location = "index.php?cible=device_del&id_device=" + id_dispositif + "&id_piece=" + id_piece;
+                  }
+                }
+              </script>
+              <a href="#"><button>Données complètes</button></a>
+            </article>
+            <?php
+          }
+        }
+        ?>
+        <form id="form" method="post" action="index.php?cible=device_add&amp;id_piece=<?php echo($my_room[0][0]); ?>">
+          <script type="text/javascript">
+            var i = 0;
+            var div = document.createElement("div");
+            div.id = "zoneAjout";
+            document.getElementById("form").appendChild(div);
+
+            function addDevice() {
+              if(!document.getElementById("zoneAjout")) {
+                i = 0;
+                div = document.createElement("div");
+                div.id = "zoneAjout";
+                document.getElementById("form").appendChild(div);
+              }
+              var dispositifs = ["-- Sélectionnez un dispositif --", "Capteur de luminosité", "Capteur de température",
+                                "Capteur d'humidité", "Détecteur de mouvement", "Détecteur de fumée", "Actionneur chauffage",
+                                "Actionneur climatisation", "Actionneur porte", "Actionneur fenêtre", "Actionneur volet",
+                                "Actionneur portail", "Actionneur lumière", "Caméra de surveillance", "Alarme"];
+              var article = document.createElement("article");
+              var div = document.createElement("div");
+              var select = document.createElement("select");
+              article.id = "newArticle" + i;
+              article.setAttribute("class", "device_article");
+              div.id = "div" + i;
+              select.id = "select" + i;
+              select.name = "dispositif[]";
+              select.setAttribute("required", "");
+              document.getElementById("zoneAjout").appendChild(article);
+              document.getElementById("newArticle" + i).appendChild(div);
+              document.getElementById("div" + i).appendChild(select);
+              for(var j = 0; j < dispositifs.length; j++) {
+                var option = document.createElement("option");
+                if (j === 0) {
+                  option.text = dispositifs[j];
+                  option.value = "";
+                } else {
+                  option.text = option.value = dispositifs[j];
+                }
+                document.getElementById("select" + i).appendChild(option);
+              }
+              i++;
+
+            }
+
+            function annuler() {
+              document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
+              i = 0;
+              div = document.createElement("div");
+              div.id = "zoneAjout";
+              document.getElementById("form").appendChild(div);
+            }
+          </script>
+      </div>
+    </div>
+    <div class="bouttons_dispositif">
+      <input id="submit" type="submit" value="Confirmer les modifications">
+      </form>
+      <div class="add_bouttons">
+        <button onclick="addDevice()">Ajouter un dispositif</button>
+        <button onclick="annuler()">Annuler</button>
+      </div>
+    </div>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
 
 /*****************************************************************Fonctions $footer***********************************************************************/
 function footer() {

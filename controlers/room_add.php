@@ -1,6 +1,6 @@
 <?php
 /*
-controleur gérant l'extraction des données néccessaires pour l'affichage du bloc "Pièces" de la page "home_management.php"
+controleur gérant l'insertion des données relatives à l'ajout de pièces
 */
 
 include_once('modeles/functions.php');
@@ -23,7 +23,7 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'room_add' && isset($_POST['piece'
         }
     }
     $message .= 'et \''.maj_lettre1($_POST['piece'][count($_POST['piece'])-1]).'\' ';
-    $message .= 'ont bien été ajoutées';
+    $message .= 'ont bien été ajoutées.';
     update_nb_piece($bdd, $_SESSION['id'], count_piece($bdd, $_SESSION['id']));
   }
   include('controlers/home_management.php');

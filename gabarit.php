@@ -7,8 +7,16 @@
     <link rel="icon" type="image/x-icon" href="views/ressources/logos/main_logo.png" />
     <link rel="stylesheet" href="views/styles/structure_new.css">
     <?php
-    if ($titre == 'Gestion du domicile') {
+    if (substr($titre, 0, 11) == 'Domicile de') {
+      echo('<link rel="stylesheet" href="views/styles/home_user.css">');
+    } elseif ($titre == 'Gestion du domicile') {
       echo('<link rel="stylesheet" href="views/styles/home_management.css">');
+    } elseif (substr($titre, 0, 36) == 'Gestion des dispositifs de la pièce') {
+      echo('<link rel="stylesheet" href="views/styles/device_management.css">');
+    } elseif ($titre == 'Mes informations') {
+      echo('<link rel="stylesheet" href="views/styles/info_user.css">');
+    } elseif ($titre == 'Modifier mes informations') {
+      echo('<link rel="stylesheet" href="views/styles/info_edit.css">');
     }
     ?>
 

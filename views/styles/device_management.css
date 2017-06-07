@@ -16,64 +16,26 @@
   padding: 7px;
 }
 
-aside
-{
-  display:flex;
-}
-
-.home_info
+.device_info
 {
   background-color: rgba(229,229, 229, 0.75);
   padding: 15px;
   border-radius: 7px;
-  margin: 20px 10px 20px 20px;
-  min-width: 270px;
-  height: 500px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-#content_info_home
+#device_block
 {
   display: flex;
-  flex-direction: column;
-}
-
-#child_content_info_home
-{
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#bouton_info_home
-{
-  text-align: right;
-}
-
-.room_info
-{
-  background-color: rgba(229,229, 229, 0.75);
-  padding: 15px;
-  width: 80%;
-  border-radius: 7px;
-  margin: 20px 20px 20px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#room_block
-{
-  display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
   align-content: space-around;
 }
 
-#room_block h2
+#device_block h2
 {
   padding-top: 100px;
   padding-bottom: 80px;
@@ -82,19 +44,14 @@ aside
   margin: auto;
 }
 
-#room_block #no_device
+#device_block article:not(.device_article)
 {
-  padding-top: 0px;
+  height: 160px;
 }
 
-#room_block article:not(.room_article)
+#device_block article
 {
-  height: 250px;
-}
-
-#room_block article
-{
-  width: 300px;
+  width: 265px;
   padding: 15px;
   margin: 10px;
   display: flex;
@@ -102,7 +59,7 @@ aside
   justify-content: space-between;
 }
 
-#room_block article:hover
+#device_block article:hover
 {
   transition-duration: 0.2s;
   background-color: rgba(169, 169, 169, 0.85);
@@ -114,17 +71,9 @@ article .top
   justify-content: space-between;
 }
 
-#room_block article a, #room_block article h2, .room_article div
+#device_block article a, #device_block article h2, .device_article div
 {
   text-align: center;
-}
-
-.devices
-{
-  height: 170px;
-  margin: 10px 0px 10px 0px;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 #zoneAjout
@@ -135,24 +84,21 @@ article .top
   align-content: space-around;
 }
 
-#room_block .newArticle
-{
-  height: 100px;
-}
 
-.bouttons_pièce
+
+.bouttons_dispositif
 {
   display: flex;
   justify-content: space-between;
   padding-top: 6px;
 }
 
-.bouttons_pièce .add_boutons
+.bouttons_dispositif .add_boutons
 {
   order: 1;
 }
 
-.bouttons_pièce input
+.bouttons_dispositif input
 {
   order: 2;
 }
