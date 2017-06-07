@@ -269,15 +269,39 @@ function content_security() {
   return $contenu;
 }
 
-function admin_listing($list_users){
+function list_users($list_users) { // nouvelle version
   ob_start();
   ?>
-  <section>
-    <article>
-      <h3>Utilisateurs</h3>
-      <p>Liste des tous les utilisateurs :</p>
-      <p><strong>Id : </strong><?php echo($list_users['id']);?> </p>
-    </article>
+  <section class="list_users">
+
+    <h3>Liste des utilisateurs enregistrés :</h3>
+  <?php
+  if ($list_users == array()) {
+    echo('<h2 class="except_h2">Aucun utilisateur enregistré</h2>');
+  } else {
+  ?>
+    <table>
+     <tr>
+         <th><strong>Civilité : </strong></th>
+         <th><strong>Nom : </strong></th>
+         <th><strong>Prénom : </strong></th>
+     </tr>
+    <?php
+    for ($i = 0; $i < count($list_users); $i++) {
+      ?>
+      <tr>
+          <td><?php echo($list_users[$i][0]); ?></td>
+          <td><?php echo($list_users[$i][1]); ?></td>
+          <td><?php echo($list_users[$i][2]); ?></td>
+      </tr>
+      <?php
+    }
+    ?>
+    </table>
+  <?php
+  }
+  ?>
+
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -291,7 +315,7 @@ function content_user_management() {
   <section>
     <article>
       <h3>Graphique des connexions</h3>
-      <p>Graphique des connexions par jour semaines moi et année</p>
+      <p>Graphique des connexions par jour, semaines, mois, année</p>
     </article>
   </section>
   <?php
@@ -1184,7 +1208,7 @@ function content_info_admin($info_user) {
   ?>
   <section>
     <article>
-      <h3>Page content_info_admin</h3>
+      <h3>Vos informations administrateur</h3>
       <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
       <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
       <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>

@@ -17,6 +17,12 @@
       echo('<link rel="stylesheet" href="views/styles/info_user.css">');
     } elseif ($titre == 'Modifier mes informations') {
       echo('<link rel="stylesheet" href="views/styles/info_edit.css">');
+    } elseif ($titre == 'Gestion des utilisateurs') {
+      echo('<link rel="stylesheet" href="views/styles/user_management.css">');
+    } elseif ($titre == 'Vos informations administrateur') {
+      echo('<link rel="stylesheet" href="views/styles/info_admin.css">');
+    } elseif (substr($titre, 0, 22) == 'Accueil administrateur') {
+      echo('<link rel="stylesheet" href="views/styles/home_admin.css">');
     }
     ?>
 
