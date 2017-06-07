@@ -40,11 +40,11 @@ if (isset($_SESSION['type'])) {
         include("controlers/info_user.php");
       } elseif ($_GET['cible'] == 'info_edit') {
         include("controlers/info_edit.php");
-      } /* elseif ($_GET['cible'] == 'notif_user') {
+      } elseif ($_GET['cible'] == 'notif_user') {
         include("controlers/notif_user.php");
       } elseif ($_GET['cible'] == 'messaging_user') {
         include('views/messaging_user.php');
-      }*/ elseif ($_GET['cible'] == 'room_add') {
+      } elseif ($_GET['cible'] == 'room_add') {
         include('controlers/room_add.php');
       } elseif ($_GET['cible'] == 'room_del') {
         include('controlers/room_del.php');

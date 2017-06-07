@@ -577,32 +577,32 @@ function form_signin($erreur) {
   ?>
 
   <form method="post" action="index.php?cible=connexion_request">
-    <section>
-    <article>
-    <fieldset>
-      <legend><h3 class="titre">Connexion</h3></legend>
-      <?php
-      if ($erreur != '') {
-        echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
-      }
-      ?>
-      <p>
-        <label for="login">Identifiant</label><br/>
-        <input type="text" name="login" id="login" placeholder="Votre identifiant"/>
-        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant">
-      </p>
-      <p>
-        <label for="password">Mot de passe</label><br/>
-        <input type="password" name="password" id="password" placeholder="Votre mot de passe"/>
-        <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte">
-      </p>
-      <p class="bouton_connexion">
-        <input type="submit" value="Se connecter"/>
-      </p>
-      <p>Pas encore inscrit ? Rejoignez-nous en cliquant <a class="lien" href="index.php?cible=join-us_type">ici</a>.</p>
-    </fieldset>
-    </article>
-  </section>
+    <section class="form_signin">
+      <fieldset>
+        <legend><h3 class="titre">Connexion</h3></legend>
+        <?php
+        if ($erreur != '') {
+          echo ('<h2>Erreur dans le formulaire de connexion : '.$erreur.'</h2>');
+        }
+        ?>
+        <div class="content_center">
+          <div class="input">
+            <label for="login"><strong>Identifiant :</strong></label><br/>
+            <input type="text" name="login" id="login" placeholder="Votre identifiant"/>
+            <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant">
+          </div>
+          <div class="input">
+            <label for="password"><strong>Mot de passe :</strong></label><br/>
+            <input type="password" name="password" id="password" placeholder="Votre mot de passe"/>
+            <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte">
+          </div>
+        </div>
+        <div class="bouton_connexion">
+          <input type="submit" value="Se connecter"/>
+        </div>
+        <div class="not_yet">Pas encore inscrit ? Rejoignez-nous en cliquant <a class="lien" href="index.php?cible=join-us_type">ici</a>.</div>
+      </fieldset>
+    </section>
   </form>
   <?php
   $formulaire = ob_get_clean();

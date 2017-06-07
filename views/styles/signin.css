@@ -1,0 +1,25 @@
+.form_signin
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 7px;
+  margin: 150px auto 150px auto;
+  width: 500px;
+}
+
+.bouton_connexion
+{
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.content_center
+{
+  margin: 15px auto 10px auto;
+  width: 250px;
+}
+
+.not_yet
+{
+  text-align: center;
+}
