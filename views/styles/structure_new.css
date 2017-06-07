@@ -89,14 +89,14 @@ h3
   border: 2px solid violet;
 }*/
 
-#trash
+#trash,#edit
 {
   height: 18px;
   position:relative;
   top: 2px;
 }
 
-#trash:hover
+#trash:hover,#edit:hover
 {
   cursor: pointer;
 }

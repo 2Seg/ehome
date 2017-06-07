@@ -1454,6 +1454,87 @@ function my_device($my_room) {
   return $contenu;
 }
 
+function menu_messaging($nb_unread_mail) {
+  ob_start();
+  ?>
+  <form method="post" action="index.php?cible=mail_del">
+  <section class="menu_messaging">
+    <div class="bloc_new_mail">
+      <a href="index.php?cible=new_mail"><button>Nouveau message</button></a>
+    </div>
+    <div class="bloc_menu">
+      <h3 id="mailbox"><a href="index.php?cible=mailbox">Boite de réception<?php if($nb_unread_mail > 0) {echo(' ('.$nb_unread_mail.')');} ?></a></h3>
+      <h3 id="sentmail"><a href="index.php?cible=sent_mail">Messages envoyés</a></h3>
+    </div>
+    <div class="bloc_action">
+      <h3>Actions</h3>
+      <ul>
+        <li>Marquer comme lu</li>
+        <li>Marquer comme non lu</li>
+        <li><input type="submit" value="Supprimer"></li>
+      </ul>
+    </div>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function mailbox($info_mail) {
+  ob_start();
+  ?>
+  <section class="mailbox">
+    <div class="content_mailbox">
+      <div class="mail_top">
+        <h3>Boite de réception</h3>
+      </div>
+      <div class="mail">
+        <?php
+        if ($info_mail == array()) {
+          echo('<h2 class="except_h2">Vous n\'avez reçu aucun e-mail.</h2>');
+        } else {
+          ?>
+          <table>
+            <?php
+            for ($i = 0; $i < count($info_mail); $i++) {
+              echo('<tr>');
+              for ($j = 0; $j < count($info_mail[$i]) ; $j++) {
+                if ($j == 0) {
+                  ?>
+                  <td><input type="checkbox" name="checkbox<?php echo($i);?>"></td>
+                  <?php
+                }
+                echo('<td>'.$info_mail[$i][$j].'</td>');
+                if($j == count($info_mail) - 1) {
+                  ?>
+                  <td><img id="edit" class="edit<?php echo($i);?>" src="views/ressources/icons/pen1.png" title="Répondre"
+                  onclick=""
+                  onmouseover="this.src='views/ressources/icons/pen2.png'" onmouseout="this.src='views/ressources/icons/pen1.png'"></td></td>
+                  <td><img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title="Supprimer l'e-mail"
+                  onclick=""
+                  onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'"></td>
+                  <?php
+                }
+              }
+              echo('</tr>');
+            }
+            ?>
+          </table>
+          <?php
+        }
+        ?>
+      </div>
+    </div>
+    <div class="mail_bottom">
+      <p>Page 1 sur 1</p>
+    </div>
+  </section>
+  </form>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
 /*****************************************************************Fonctions $footer***********************************************************************/
 function footer() {
   ob_start();

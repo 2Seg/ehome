@@ -15,3 +15,65 @@
   box-shadow: 0px 2px 20px rgb(0,0,0) inset;
   padding: 7px;
 }
+
+form
+{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu_messaging
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px 10px 10px 0px;
+}
+
+.bloc_new_mail,.bloc_menu,.bloc_action
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 0px 7px 7px 0px;
+  margin: 10px 0px 10px 0px;
+  padding-bottom: 5px;
+}
+
+.bloc_action ul
+{
+  margin: 10px 0px 0px 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+
+h3
+{
+  margin: 0px 0px 10px 0px;
+}
+
+button
+{
+  margin-bottom: 10px;
+}
+
+.mailbox
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 7px;
+  margin: 20px;
+  width: 1000px;
+}
+
+table
+{
+  border-collapse: collapse;
+}
+
+.ligne
+{
+  transition-duration: 0.2s;
+  background-color: rgba(155, 155, 155, 0.85);
+  border-radius: 7px;
+  margin: 10px;
+}
