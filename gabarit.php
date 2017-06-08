@@ -26,12 +26,12 @@
     }
     ?>
 
-    <script type="text/javascript" src="views/jscarroussel.js"></script>
+    <script type="text/javascript" src="views/carroussel.js"></script>
   </head>
 
   <body onload="Load()">
       <nav>
-        <?php echo $menu;?>
+        <?php echo ($menu);?>
       </nav>
 
       <aside>

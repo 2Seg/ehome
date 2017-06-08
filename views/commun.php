@@ -225,30 +225,28 @@ function content_type_user() {
 function content_home_admin() {
   ob_start();
   ?>
-  <section>
-    <article>
+
+    <section>
       <h3>Gestion des utilisateurs</h3>
       <p><a href="index.php?cible=user_management"><button>Gestion des utilisateurs</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article>
+    </section>
+
+
+    <section>
       <h3>Notifications</h3>
       <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article>
+    </section>
+
+    <section>
       <h3>Sécurité</h3>
       <p><a href="index.php?cible=security"><button>Sécurité</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article>
+    </section>
+
+    <section>
       <h3>Messagerie</h3>
       <p><a href="index.php?cible=messaging"><button>Messagerie</button></a></p>
-    </article>
-  </section>
+    </section>
+
   <?php
   $contenu = ob_get_clean();
   return $contenu;
@@ -1186,15 +1184,12 @@ function my_basic_info($info_user) {
   } else {
     ?>
     <section class="basic_room">
-    <article>
       <h3>Mes informations administrateur</h3>
       <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
       <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
       <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
       <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
-
       <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
-    </article>
     </section>
     <?php
   }
@@ -1206,8 +1201,7 @@ function my_basic_info($info_user) {
 function content_info_admin($info_user) {
   ob_start();
   ?>
-  <section>
-    <article>
+    <section>
       <h3>Vos informations administrateur</h3>
       <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
       <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
@@ -1220,8 +1214,7 @@ function content_info_admin($info_user) {
       <p><strong>Mail : </strong><?php echo($info_user['mail']); ?></p>
       <p><strong>Téléphone : </strong><?php echo($info_user['telephone']); ?></p>
       <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($info_user['nb_user']); ?></p>
-    </article>
-  </section>
+    </section>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
