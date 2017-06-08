@@ -23,3 +23,63 @@ aside
   flex-wrap: wrap;
   padding: 10px;
 }
+
+#content_info_admin
+{
+  display: flex;
+  flex-direction: column;
+}
+
+#child_content_info_admin
+{
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button
+{
+  text-align: center;
+}
+
+.info_admin
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  width: 80%;
+  border-radius: 7px;
+  margin: 20px 10px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.top_notif_admin
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+.top_notif_admin strong
+{
+  padding-top: 3px;
+  width: 210px;
+  display: flex;
+  justify-content: space-between;
+}
+
+h3
+{
+  margin: 0px;
+}
+
+.bloc
+{
+  padding: 15px;
+  border-radius: 7px;
+  margin: 20px 10px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

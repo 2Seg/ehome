@@ -226,25 +226,25 @@ function content_home_admin() {
   ob_start();
   ?>
   <section>
-    <article>
+    <article class="bloc">
       <h3>Gestion des utilisateurs</h3>
       <p><a href="index.php?cible=user_management"><button>Gestion des utilisateurs</button></a></p>
     </article>
   </section>
   <section>
-    <article>
+    <article class="bloc">
       <h3>Notifications</h3>
       <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
     </article>
   </section>
   <section>
-    <article>
+    <article class="bloc">
       <h3>Sécurité</h3>
       <p><a href="index.php?cible=security"><button>Sécurité</button></a></p>
     </article>
   </section>
   <section>
-    <article>
+    <article class="bloc">
       <h3>Messagerie</h3>
       <p><a href="index.php?cible=messaging"><button>Messagerie</button></a></p>
     </article>
@@ -1206,8 +1206,8 @@ function my_basic_info($info_user) {
 function content_info_admin($info_user) {
   ob_start();
   ?>
-  <section>
-    <article>
+  <section class="info_admin">
+      <div class="top_notif_admin">
       <h3>Vos informations administrateur</h3>
       <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
       <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
@@ -1220,7 +1220,7 @@ function content_info_admin($info_user) {
       <p><strong>Mail : </strong><?php echo($info_user['mail']); ?></p>
       <p><strong>Téléphone : </strong><?php echo($info_user['telephone']); ?></p>
       <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($info_user['nb_user']); ?></p>
-    </article>
+      </div>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -1663,9 +1663,9 @@ function carroussel_home() {
           <!-- the info -->
           <div id="SnavBottom">
               <!-- here you have to add the p tag-->
-              <p id="SP0">Nature</p>
-              <p id="SP1">Lake</p>
-              <p id="SP2">Game of Thrones</p>
+              <p id="SP0">Maison 1</p>
+              <p id="SP1">Maison 2</p>
+              <p id="SP2">Maison 3</p>
           </div>
       </div>
   </div>
