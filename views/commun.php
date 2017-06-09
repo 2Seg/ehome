@@ -210,11 +210,11 @@ function menu_user($type) {
 function content_type_user() {
   ob_start();
   ?>
-  <section class="ju_section">
-    <article class="ju_article">
+  <section>
+    <article>
       <h2 class="except_h2">Vous êtes :</h2>
-      <p><a href="index.php?cible=join-us_user"><button class="ju_button">Utilisateur</button></a></p>
-      <p><a href="index.php?cible=join-us_admin"><button class="ju_button">Administrateur</button></a></p>
+      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
+      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
     </article>
   </section>
   <?php
@@ -1642,7 +1642,8 @@ function footer() {
     </ul>
 
     <ul>
-		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
+		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a>
+      <br><img class="paiement" src="views/styles/ressources/icons/paiement.png" alt="Paiement" height="40px" width="140px" /></br></li>
     </ul>
 
     <ul>

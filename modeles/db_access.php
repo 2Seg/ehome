@@ -6,7 +6,7 @@ modele permettant l'accès à la bdd
 $host = 'localhost';
 $bdd = 'ehome';
 $user = 'root';
-$pass = '';
+$pass = 'root';
 
 
 try {
