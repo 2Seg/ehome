@@ -23,6 +23,8 @@
       echo('<link rel="stylesheet" href="views/styles/info_admin.css">');
     } elseif (substr($titre, 0, 22) == 'Accueil administrateur') {
       echo('<link rel="stylesheet" href="views/styles/home_admin.css">');
+    } elseif (substr($titre, 0, 22) == 'Nous rejoindre') {
+        echo('<link rel="stylesheet" href="views/styles/join-us_type.css">');
     }
     ?>
 
