@@ -464,6 +464,51 @@ function content_actuators() {
         <img class="image_products" src="views/styles/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
       </div>
     </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur lumière </h2>
+                  <p>Ce dispositif vous permettra d'allumer et d'eteindre vos lampes ainsi que de régler l'intensitée lumineuse des pieces , tout cela sans le moindre effort.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_lum.jpg" alt="actionneur lumiere" title="actionneur lumiere">
+          </div>
+      </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur chauffage </h2>
+                  <p>Ce dispositif vous permettra de regler le chauffage à l'intérieur de votre habitation.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_chauf.jpg" alt="actionneur chauffage" title="actionneur chauffage">
+          </div>
+      </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur climatisation </h2>
+                  <p>Ce dispositif vous permettra d'actionner la climatisation dans une piece de la masion.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_clim.jpg" alt="actionneur clim" title="actionneur clim">
+          </div>
+      </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur porte </h2>
+                  <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement une porte de votre domicile.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_porte.jpg" alt="actionneur porte" title="actionneur porte">
+          </div>
+      </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur fenêtre </h2>
+                  <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement une fenetre de votre domicile.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_fen.jpg" alt="actionneur fen" title="actionneur fen">
+          </div>
+      </article>
   </section>
   <?php
   $contenu = ob_get_clean();
