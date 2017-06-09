@@ -55,6 +55,9 @@ article
   border: 4px solid blue;*/
 }
 
+
+
+
 section:not(.home_info, .room_info)
 {
   background-color: rgba(229,229, 229, 0.75);
@@ -526,7 +529,7 @@ fieldset
 {
   height: 45px;
   width: 45px;
-  margin-left: : 10px;
+  margin-left: 10px;
   padding-left: 25px;
   padding-right: 25px;
   /*border: 1px solid pink;*/
@@ -536,7 +539,7 @@ fieldset
 {
   height: 45px;
   width: 45px;
-  margin-left: : 10px;
+  margin-left: 10px;
   padding-left: 25px;
   padding-right: 25px;
 }
@@ -545,7 +548,7 @@ fieldset
 {
   height: 45px;
   width: 45px;
-  margin-left: : 10px;
+  margin-left: 10px;
   padding-left: 25px;
   padding-right: 25px;
 }
@@ -554,7 +557,7 @@ fieldset
 {
   height: 45px;
   width: 45px;
-  margin-left: : 10px;
+  margin-left: 10px;
   padding-left: 25px;
   padding-right: 25px;
 }
@@ -563,7 +566,7 @@ fieldset
 {
   height: 45px;
   width: 45px;
-  margin-left: : 10px;
+  margin-left: 10px;
   padding-left: 25px;
   padding-right: 25px;
 }
