@@ -88,9 +88,9 @@ if (isset($_SESSION['type'])) {
       } elseif ($_GET['cible'] == 'legal_information') {
         include("views/legal_information.php");
       } elseif ($_GET['cible'] == 'user_management') {
-        include("views/user_management.php");
+        include("controlers/user_management.php");
       } elseif ($_GET['cible'] == 'info_admin') {
-        include("views/info_admin.php");
+        include("controlers/info_admin.php");
       } elseif ($_GET['cible'] == 'notification') {
         include("views/notification.php");
 

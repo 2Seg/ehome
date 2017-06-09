@@ -3,7 +3,7 @@
 vue gérant l'affichage de la page "Accueil"
 */
 
-$titre = 'Infos administrateur';
+$titre = 'Vos informations administrateur';
 
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);

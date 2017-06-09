@@ -138,13 +138,8 @@ function select_info_home($db, $id) {
 // fonction récupérant la liste des utilisateurs pour la page user_management de Views
 // cette fonction est utilisée dans la page user_management de Controles
 function select_list_users($db) {
-  $info = array();
-  $reponse = $db->query('SELECT id, civilite, nom, prenom FROM utilisateur'); // contient toutes les réponses non rangées
-  while ($donnees = $reponse->fetch()) // on prend chaque ligne de $reponse et on la met dans $donnees
-  {
-    $info = $donnees;
-  }
-  return $info; // $info est un tableau avec plusieurs valeurs dedans
+  $req = $db -> query('SELECT id, civilite, nom, prenom FROM utilisateur'); // contient toutes les réponses non rangées
+  return $req; // $info est un tableau avec plusieurs valeurs dedans
 }
 
 

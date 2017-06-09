@@ -9,4 +9,4 @@ $info_admin = select_info_admin($bdd, $_SESSION['id']);
 
 $_SESSION['civilite'] = $info_admin['civilite'];
 
-include('views/content_info_admin.php');
+include('views/info_admin.php');
