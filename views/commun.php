@@ -1480,7 +1480,7 @@ function menu_messaging($nb_unread_mail) {
   return $contenu;
 }
 
-function mailbox($info_mail) {
+function mailbox($info_mail, $current_page, $nb_page) {
   ob_start();
   ?>
   <section class="mailbox">
@@ -1497,36 +1497,35 @@ function mailbox($info_mail) {
           <table>
             <?php
             for ($i = 0; $i < count($info_mail); $i++) {
-              echo('<tr>');
-              for ($j = 0; $j < count($info_mail[$i]) ; $j++) {
-                if ($j == 0) {
-                  ?>
+              ?>
+              <tbody>
+                <tr>
                   <td><input type="checkbox" name="checkbox<?php echo($i);?>"></td>
-                  <?php
-                }
-                echo('<td>'.$info_mail[$i][$j].'</td>');
-                if($j == count($info_mail) - 1) {
-                  ?>
+                  <td><?php echo($info_mail[$i][0]); ?></td>
+                  <td><?php echo($info_mail[$i][1]); ?></td>
+                  <td><strong><?php echo($info_mail[$i][2]); ?></strong></td>
+                  <td><?php echo($info_mail[$i][3]); ?></td>
                   <td><img id="edit" class="edit<?php echo($i);?>" src="views/ressources/icons/pen1.png" title="Répondre"
                   onclick=""
                   onmouseover="this.src='views/ressources/icons/pen2.png'" onmouseout="this.src='views/ressources/icons/pen1.png'"></td></td>
                   <td><img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title="Supprimer l'e-mail"
                   onclick=""
                   onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'"></td>
-                  <?php
-                }
+              <?php
+              if ($i != count($info_mail) - 1) {
+                ?>
+                </tr></tbody>
+                <tbody><tr class="tr_vide"></tr></tbody>
+                <?php
               }
-              echo('</tr>');
             }
+          }
             ?>
           </table>
-          <?php
-        }
-        ?>
       </div>
     </div>
     <div class="mail_bottom">
-      <p>Page 1 sur 1</p>
+      <p>Page <?php echo($current_page); ?> sur <?php echo($nb_page); ?></p>
     </div>
   </section>
   </form>

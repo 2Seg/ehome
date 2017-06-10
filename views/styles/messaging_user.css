@@ -28,6 +28,7 @@ form
   flex-direction: column;
   justify-content: space-between;
   margin: 10px 10px 10px 0px;
+  height: 320px;
 }
 
 .bloc_new_mail,.bloc_menu,.bloc_action
@@ -62,18 +63,54 @@ button
   padding: 15px;
   border-radius: 7px;
   margin: 20px;
-  width: 1000px;
+  width: 1200px;
 }
 
 table
 {
   border-collapse: collapse;
+  margin: 10px;
+  width: 800px;
 }
 
-.ligne
+td
 {
-  transition-duration: 0.2s;
+  transition-duration: 0.3s;
   background-color: rgba(155, 155, 155, 0.85);
-  border-radius: 7px;
-  margin: 10px;
+}
+
+td:first-child
+{
+  background-color: rgba(155, 155, 155, 0.85);
+  border-radius: 7px 0px 0px 7px;
+}
+
+td:last-child
+{
+
+  background-color: rgba(155, 155, 155, 0.85);
+  border-radius: 0px 7px 7px 0px;
+}
+
+table
+{
+  width: 1000px;
+}
+
+tr
+{
+  transition-duration: 0.3s;
+  width: 1000px;
+  height: 50px;
+}
+
+tr:hover
+{
+  transition-duration: 0.3s;
+  background-color: black;
+}
+
+.tr_vide
+{
+  height: 20px;
 }
