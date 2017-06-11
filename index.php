@@ -43,7 +43,7 @@ if (isset($_SESSION['type'])) {
       } elseif ($_GET['cible'] == 'notif_user') {
         include("controlers/notif_user.php");
       } elseif ($_GET['cible'] == 'messaging_user') {
-        include('views/messaging_user.php');
+        include('controlers/messaging_user.php');
       } elseif ($_GET['cible'] == 'room_add') {
         include('controlers/room_add.php');
       } elseif ($_GET['cible'] == 'room_del') {

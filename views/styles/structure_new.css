@@ -339,6 +339,7 @@ button:hover,input[type=submit]:hover,input[type=reset]:hover
 {
   transition-duration: 0.2s;
   background-color: rgba(210, 30, 30, 0.85);
+  letter-spacing: 0.3px;
 }
 
 button:focus

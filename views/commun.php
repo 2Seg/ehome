@@ -1463,14 +1463,14 @@ function menu_messaging($nb_unread_mail) {
       <a href="index.php?cible=new_mail"><button>Nouveau message</button></a>
     </div>
     <div class="bloc_menu">
-      <h3 id="mailbox"><a href="index.php?cible=mailbox">Boite de réception<?php if($nb_unread_mail > 0) {echo(' ('.$nb_unread_mail.')');} ?></a></h3>
+      <h3 id="mailbox"><a href="index.php?cible=messaging_user">Boite de réception<?php if($nb_unread_mail > 0) {echo(' ('.$nb_unread_mail.')');} ?></a></h3>
       <h3 id="sentmail"><a href="index.php?cible=sent_mail">Messages envoyés</a></h3>
     </div>
     <div class="bloc_action">
       <h3>Actions</h3>
       <ul>
-        <li>Marquer comme lu</li>
-        <li>Marquer comme non lu</li>
+        <li><button class="button_space">Marquer comme lu</button></li>
+        <li><button class="button_space">Marquer comme non lu</button></li>
         <li><input type="submit" value="Supprimer"></li>
       </ul>
     </div>
@@ -1480,7 +1480,7 @@ function menu_messaging($nb_unread_mail) {
   return $contenu;
 }
 
-function mailbox($info_mail, $current_page, $nb_page) {
+function mailbox($mails, $nb_page) {
   ob_start();
   ?>
   <section class="mailbox">
@@ -1490,21 +1490,21 @@ function mailbox($info_mail, $current_page, $nb_page) {
       </div>
       <div class="mail">
         <?php
-        if ($info_mail == array()) {
+        if ($mails == array()) {
           echo('<h2 class="except_h2">Vous n\'avez reçu aucun e-mail.</h2>');
         } else {
           ?>
           <table>
             <?php
-            for ($i = 0; $i < count($info_mail); $i++) {
+            for ($i = 0; $i < count($mails); $i++) {
               ?>
               <tbody>
                 <tr>
                   <td><input type="checkbox" name="checkbox<?php echo($i);?>"></td>
-                  <td><?php echo($info_mail[$i][0]); ?></td>
-                  <td><?php echo($info_mail[$i][1]); ?></td>
-                  <td><strong><?php echo($info_mail[$i][2]); ?></strong></td>
-                  <td><?php echo($info_mail[$i][3]); ?></td>
+                  <td><?php echo($mails[$i][0]); ?></td>
+                  <td><?php echo($mails[$i][1]); ?></td>
+                  <td><strong><?php echo($mails[$i][2]); ?></strong></td>
+                  <td><?php echo($mails[$i][3]); ?></td>
                   <td><img id="edit" class="edit<?php echo($i);?>" src="views/ressources/icons/pen1.png" title="Répondre"
                   onclick=""
                   onmouseover="this.src='views/ressources/icons/pen2.png'" onmouseout="this.src='views/ressources/icons/pen1.png'"></td></td>
@@ -1512,7 +1512,7 @@ function mailbox($info_mail, $current_page, $nb_page) {
                   onclick=""
                   onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'"></td>
               <?php
-              if ($i != count($info_mail) - 1) {
+              if ($i != count($mails) - 1) {
                 ?>
                 </tr></tbody>
                 <tbody><tr class="tr_vide"></tr></tbody>
@@ -1525,7 +1525,17 @@ function mailbox($info_mail, $current_page, $nb_page) {
       </div>
     </div>
     <div class="mail_bottom">
-      <p>Page <?php echo($current_page); ?> sur <?php echo($nb_page); ?></p>
+      <?php
+      if ($nb_page > 1) {
+        echo('Page : ');
+        for ($i = 1; $i <= $nb_page; $i++) {
+          ?>
+          <a href="index.php?cible=messaging_user&amp;page=<?php echo($i); ?>"><?php echo($i); ?></a>
+          <?php
+          echo(' ');
+        }
+      }
+      ?>
     </div>
   </section>
   </form>
