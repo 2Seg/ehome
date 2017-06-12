@@ -727,12 +727,12 @@ function form_signin() {
           <div class="input">
             <label for="login"><strong>Identifiant :</strong></label><br/>
             <input type="text" name="login" id="login" placeholder="Votre identifiant"/>
-            <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant">
+            <img src="views/styles/ressources/icons/info.png" alt="icone information" title="Saisissez votre identifiant">
           </div>
           <div class="input">
             <label for="password"><strong>Mot de passe :</strong></label><br/>
             <input type="password" name="password" id="password" placeholder="Votre mot de passe"/>
-            <img src="views/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte">
+            <img src="views/styles/ressources/icons/info.png" alt="icone information" title="Saisissez le mot de passe associé à votre compte">
           </div>
         </div>
         <div class="bouton_connexion">
@@ -1672,12 +1672,12 @@ function mailbox($mails, $nb_page) {
                   <td><?php echo($mails[$i][1]); ?></td>
                   <td><strong><?php echo($mails[$i][2]); ?></strong></td>
                   <td><?php echo($mails[$i][3]); ?></td>
-                  <td><img id="edit" class="edit<?php echo($i);?>" src="views/ressources/icons/pen1.png" title="Répondre"
+                  <td><img id="edit" class="edit<?php echo($i);?>" src="views/styles/ressources/icons/pen1.png" title="Répondre"
                   onclick=""
-                  onmouseover="this.src='views/ressources/icons/pen2.png'" onmouseout="this.src='views/ressources/icons/pen1.png'"></td></td>
-                  <td><img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title="Supprimer l'e-mail"
+                  onmouseover="this.src='views/styles/ressources/icons/pen2.png'" onmouseout="this.src='views/styles/ressources/icons/pen1.png'"></td></td>
+                  <td><img id="trash" class="trash<?php echo($i);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
                   onclick=""
-                  onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'"></td>
+                  onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'"></td>
               <?php
               if ($i != count($mails) - 1) {
                 ?>
