@@ -29,6 +29,7 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
       $mails[$i][1] = '('.$info_mail['type_envoyeur'].')';
       $mails[$i][2] = $info_mail['objet'];
       $mails[$i][3] = $info_mail['date_format'];
+      $mails[$i][4] = $info_mail['id'];
       $i++;
     }
     include('views/messaging.php');
@@ -41,13 +42,14 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
   } else {
     $mail_user = select_6_mail($bdd, select_mail_admin($bdd, $_SESSION['id']), $num_count);
   }
-  
+
   $i = 0;
   while ($info_mail = $mail_user -> fetch()) {
     $mails[$i][0] = $info_mail['mail_envoyeur'];
     $mails[$i][1] = '('.$info_mail['type_envoyeur'].')';
     $mails[$i][2] = $info_mail['objet'];
     $mails[$i][3] = $info_mail['date_format'];
+    $mails[$i][4] = $info_mail['id'];
     $i++;
   }
   include('views/messaging.php');

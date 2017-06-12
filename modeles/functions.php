@@ -366,3 +366,8 @@ function delete_device($db, $id_device) {
   $req = $db -> prepare('DELETE FROM dispositif WHERE id = ?');
   $req -> execute(array($id_device));
 }
+
+function delete_mail($db, $id_mail) {
+  $req = $db -> prepare('DELETE FROM messagerie WHERE id = ?');
+  $req -> execute(array($id_mail));
+}

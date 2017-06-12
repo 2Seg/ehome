@@ -21,6 +21,7 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
       $mails[$i][1] = '('.$info_mail['type_receveur'].')';
       $mails[$i][2] = $info_mail['objet'];
       $mails[$i][3] = $info_mail['date_format'];
+      $mails[$i][4] = $info_mail['id'];
       $i++;
     }
     include('views/sent_mail.php');
@@ -35,6 +36,7 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
     $mails[$i][1] = '('.$info_mail['type_receveur'].')';
     $mails[$i][2] = $info_mail['objet'];
     $mails[$i][3] = $info_mail['date_format'];
+    $mails[$i][4] = $info_mail['id'];
     $i++;
   }
   include('views/sent_mail.php');

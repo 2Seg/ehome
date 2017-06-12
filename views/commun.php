@@ -1072,13 +1072,7 @@ function my_room($my_home) {
           onclick="deleteRoom(<?php echo("'".addslashes($my_home[$i][1])."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/styles/ressources/icons/trash2.png'"
           onmouseout="this.src='views/styles/ressources/icons/trash1.png'">
           </div>
-          <script type="text/javascript">
-            function deleteRoom(nomPiece, id_piece) {
-              if(confirm("Voulez-vous vraiment supprimer la pièce '" + nomPiece + "' ainsi que tous les dispositifs qui y sont présents ?")) {
-                window.location = "index.php?cible=room_del&id_piece=" + id_piece;
-              }
-            }
-          </script>
+          <script type="text/javascript" src="views/scripts/myRoom1.js"></script>
           <?php
         } else {
           if($my_home[$i] == array()) {
@@ -1113,51 +1107,15 @@ function my_room($my_home) {
     }
       ?>
         <form id="form" method="post" action="index.php?cible=room_add">
-          <script type="text/javascript">
-            var i = 0;
-            var div = document.createElement("div");
-            div.id = "zoneAjout";
-            document.getElementById("form").appendChild(div);
-
-            function addRoom() {
-              if(!document.getElementById("zoneAjout")) {
-                i = 0;
-                div = document.createElement("div");
-                div.id = "zoneAjout";
-                document.getElementById("form").appendChild(div);
-              }
-              var article = document.createElement("article");
-              var div = document.createElement("div");
-              var input = document.createElement("input");
-              input.setAttribute("type", "text");
-              input.setAttribute("placeholder", "Nom de la pièce à ajouter");
-              input.name = "piece[]";
-              input.setAttribute("required", "");
-              article.id = "newArticle" + i;
-              article.setAttribute("class", "room_article");
-              div.id = "div" + i;
-              document.getElementById("zoneAjout").appendChild(article);
-              document.getElementById("newArticle" + i).appendChild(div);
-              document.getElementById("div" + i).appendChild(input);
-              i++;
-            }
-
-            function annuler() {
-              document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
-              i = 0;
-              div = document.createElement("div");
-              div.id = "zoneAjout";
-              document.getElementById("form").appendChild(div);
-            }
-          </script>
+          <script type="text/javascript" src="views/scripts/myRoom2.js"></script>
           </div>
           </div>
           <div class="bouttons_pièce">
           <input id="submit" type="submit" value="Confirmer les modifications">
         </form>
         <div class="add_bouttons">
-          <button onclick="addRoom()">Ajouter une pièce</button>
-          <button onclick="annuler()">Annuler</button>
+          <button onclick="addRoom();">Ajouter une pièce</button>
+          <button onclick="annuler();">Annuler</button>
         </div>
       </div>
       </section>
@@ -1540,13 +1498,7 @@ function my_device($my_room) {
                 <p><strong>Numéro de série : </strong><?php echo($my_room[$i][0]); ?></p>
                 <p><strong>Etat : </strong><?php echo($my_room[$i][2]); ?></p>
               </div>
-              <script type="text/javascript">
-                function deleteDevice(nomDispositif, id_dispositif, nomPiece, id_piece) {
-                  if(confirm("Voulez-vous vraiment supprimer le dispositif '" + nomDispositif + "' de la pièce '" + nomPiece + "' ?")) {
-                    window.location = "index.php?cible=device_del&id_device=" + id_dispositif + "&id_piece=" + id_piece;
-                  }
-                }
-              </script>
+              <script type="text/javascript" src="views/scripts/myDevice1.js"></script>
               <a href="#"><button>Données complètes</button></a>
             </article>
             <?php
@@ -1554,57 +1506,7 @@ function my_device($my_room) {
         }
         ?>
         <form id="form" method="post" action="index.php?cible=device_add&amp;id_piece=<?php echo($my_room[0][0]); ?>">
-          <script type="text/javascript">
-            var i = 0;
-            var div = document.createElement("div");
-            div.id = "zoneAjout";
-            document.getElementById("form").appendChild(div);
-
-            function addDevice() {
-              if(!document.getElementById("zoneAjout")) {
-                i = 0;
-                div = document.createElement("div");
-                div.id = "zoneAjout";
-                document.getElementById("form").appendChild(div);
-              }
-              var dispositifs = ["-- Sélectionnez un dispositif --", "Capteur de luminosité", "Capteur de température",
-                                "Capteur d'humidité", "Détecteur de mouvement", "Détecteur de fumée", "Actionneur chauffage",
-                                "Actionneur climatisation", "Actionneur porte", "Actionneur fenêtre", "Actionneur volet",
-                                "Actionneur portail", "Actionneur lumière", "Caméra de surveillance", "Alarme"];
-              var article = document.createElement("article");
-              var div = document.createElement("div");
-              var select = document.createElement("select");
-              article.id = "newArticle" + i;
-              article.setAttribute("class", "device_article");
-              div.id = "div" + i;
-              select.id = "select" + i;
-              select.name = "dispositif[]";
-              select.setAttribute("required", "");
-              document.getElementById("zoneAjout").appendChild(article);
-              document.getElementById("newArticle" + i).appendChild(div);
-              document.getElementById("div" + i).appendChild(select);
-              for(var j = 0; j < dispositifs.length; j++) {
-                var option = document.createElement("option");
-                if (j === 0) {
-                  option.text = dispositifs[j];
-                  option.value = "";
-                } else {
-                  option.text = option.value = dispositifs[j];
-                }
-                document.getElementById("select" + i).appendChild(option);
-              }
-              i++;
-
-            }
-
-            function annuler() {
-              document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
-              i = 0;
-              div = document.createElement("div");
-              div.id = "zoneAjout";
-              document.getElementById("form").appendChild(div);
-            }
-          </script>
+          <script type="text/javascript" src="views/scripts/myDevice2.js"></script>
       </div>
     </div>
     <div class="bouttons_dispositif">
@@ -1639,8 +1541,9 @@ function menu_messaging($nb_unread_mail) {
         <li><button class="button_space">Marquer comme lu</button></li>
         <li><button class="button_space">Marquer comme non lu</button></li>
         <form method="post" action="index.php?cible=mail_del">
-        <li><input type="submit" value="Supprimer"></li>
+        <li><input type="submit" value="Supprimer" onclick=" return confirmation()"></li>
       </ul>
+      <script type="text/javascript" src="views/scripts/mailDel.js"></script>
     </div>
   </section>
   <?php
@@ -1668,17 +1571,18 @@ function mailbox($mails, $nb_page) {
               ?>
               <tbody>
                 <tr>
-                  <td><input type="checkbox" name="checkbox<?php echo($i);?>"></td>
+                  <td><input type="checkbox" name="<?php echo($mails[$i][4]);?>"></td>
                   <td><?php echo('De : '.$mails[$i][0]); ?></td>
                   <td><?php echo($mails[$i][1]); ?></td>
-                  <td><a href="index.php?cible=mail&amps;mail=<?php echo($i);?>"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
+                  <td><a href="index.php?cible=mail&amps;mail=<?php echo($mails[$i][4]);?>"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
                   <td><?php echo($mails[$i][3]); ?></td>
-                  <td><img id="edit" class="edit<?php echo($i);?>" src="views/styles/ressources/icons/pen1.png" title="Répondre"
+                  <td><img id="edit" class="edit<?php echo($mails[$i][4]);?>" src="views/styles/ressources/icons/pen1.png" title="Répondre"
                   onclick=""
                   onmouseover="this.src='views/styles/ressources/icons/pen2.png'" onmouseout="this.src='views/styles/ressources/icons/pen1.png'"></td></td>
-                  <td><img id="trash" class="trash<?php echo($i);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
-                  onclick=""
+                  <td><img id="trash" class="trash<?php echo($mails[$i][4]);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
+                  onclick="deleteMail(<?php echo($mails[$i][4]);?>)"
                   onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'"></td>
+                  <script type="text/javascript" src="views/scripts/mailbox.js"></script>
               <?php
               if ($i != count($mails) - 1) {
                 ?>
@@ -1690,8 +1594,8 @@ function mailbox($mails, $nb_page) {
               }
             }
           }
-            ?>
-          </table>
+          ?>
+        </table>
       </div>
     </div>
     <div class="mail_bottom">
@@ -1731,7 +1635,8 @@ function menu_sent_mail() {
       <h3>Actions</h3>
       <ul>
         <form method="post" action="index.php?cible=mail_del">
-        <li><input type="submit" value="Supprimer"></li>
+        <li><input type="submit" value="Supprimer" onclick=" return confirmation()"></li>
+        <script type="text/javascript" src="views/scripts/mailDel.js"></script>
       </ul>
     </div>
   </section>
@@ -1761,17 +1666,15 @@ function sent_mail($mails, $nb_page) {
 
               <tbody>
                 <tr>
-                  <td><input type="checkbox" name="checkbox<?php echo($i);?>"></td>
+                  <td><input type="checkbox" name="<?php echo($mails[$i][4]);?>"></td>
                   <td><?php echo('À : '.$mails[$i][0]); ?></td>
                   <td><?php echo($mails[$i][1]); ?></td>
-                  <td><a href="index.php?cible=mail&amps;mail=<?php echo($i);?>"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
+                  <td><a href="index.php?cible=mail&amps;mail=<?php echo($mails[$i][4]);?>"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
                   <td><?php echo($mails[$i][3]); ?></td>
-                  <td><img id="edit" class="edit<?php echo($i);?>" src="views/styles/ressources/icons/pen1.png" title="Répondre"
-                  onclick=""
-                  onmouseover="this.src='views/styles/ressources/icons/pen2.png'" onmouseout="this.src='views/styles/ressources/icons/pen1.png'"></td></td>
-                  <td><img id="trash" class="trash<?php echo($i);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
-                  onclick=""
+                  <td><img id="trash" class="trash<?php echo($mails[$i][4]);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
+                  onclick="deleteMail(<?php echo($mails[$i][4]);?>)"
                   onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'"></td>
+                  <script type="text/javascript" src="views/scripts/mailbox.js"></script>
               <?php
               if ($i != count($mails) - 1) {
                 ?>
@@ -1846,6 +1749,15 @@ function new_mail() {
       </p>
     </form>
   </section>
+  <?php
+  $content = ob_get_clean();
+  return $content;
+}
+
+function mail() {
+  ob_start();
+  ?>
+  
   <?php
   $content = ob_get_clean();
   return $content;
