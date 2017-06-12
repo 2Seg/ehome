@@ -21,7 +21,7 @@ aside
   margin: 10px 10px 10px 0px;
 }
 
-form
+.content
 {
   display: flex;
 }
@@ -131,7 +131,7 @@ button,input
   width: 100%;
 }
 
-.bloc_menu a
+.bloc_menu a, td a
 {
   transition-duration: 0.3s;
   text-decoration: none;
@@ -149,4 +149,16 @@ button,input
   transition-duration: 0.3s;
   color: rgba(0,0,0,0.75);
   letter-spacing: 0.3px;
+}
+
+td a:hover
+{
+  transition-duration: 0.3s;
+  color: rgba(0,0,0,0.75);
+}
+
+.except_h2
+{
+  padding: 100px 0px 0px 0px;
+  text-align: center;
 }

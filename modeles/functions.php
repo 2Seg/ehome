@@ -15,10 +15,25 @@ function user_in_db($db, $login) {
 }
 
 function select_mail_user($db, $id) {
-  $req = $db -> prepare('SELECT  mail FROM utilisateur WHERE id = ?');
+  $req = $db -> prepare('SELECT mail FROM utilisateur WHERE id = ?');
   $req -> execute(array($id));
-  $info = $req -> fetch();
-  return $info['mail'];
+  if ($req -> rowcount() == 0) {
+    return false;
+  } else {
+    $info = $req -> fetch();
+    return $info['mail'];
+  }
+}
+
+function select_mail_admin($db, $id) {
+  $req = $db -> prepare('SELECT mail FROM administrateur WHERE id = ?');
+  $req -> execute(array($id));
+  if ($req -> rowcount() == 0) {
+    return false;
+  } else {
+    $info = $req -> fetch();
+    return $info['mail'];
+  }
 }
 
 function select_password_user($db, $id) {
@@ -201,6 +216,29 @@ function count_nb_page($db, $mail_user) {
   $pages = $info['nb_mail'] / 6;
   return ceil($pages);
 }
+
+function select_6_mail_sent($db, $mail_user, $num_count) {
+  $req = $db -> prepare('SELECT *, DATE_FORMAT(date_envoi, \'%d/%m/%Y\') AS date_format FROM messagerie WHERE mail_envoyeur = ?
+                        ORDER BY date_envoi DESC LIMIT '.$num_count.', 6');
+  $req -> execute(array($mail_user));
+  return $req;
+}
+
+function count_nb_page_sent($db, $mail_user) {
+  $req = $db -> prepare('SELECT COUNT(*) AS nb_mail FROM messagerie WHERE mail_envoyeur = ?');
+  $req -> execute(array($mail_user));
+  $info = $req -> fetch();
+  $pages = $info['nb_mail'] / 6;
+  return ceil($pages);
+}
+
+// fonction vérifiant si l'utilisateur a saisi un mail existant dans la table choisie
+function verif_mail($db, $table, $mail) {
+  $req = $db -> prepare('SELECT * FROM '.$table.' WHERE mail = :mail');
+  $req -> execute(array('mail' => $mail));
+  return $req;
+}
+
 /*****************************************************************INSERT***********************************************************************/
 
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
@@ -268,6 +306,17 @@ function insert_room($db, $id_logement, $piece) {
 function insert_device($db, $id_piece, $dispositif) {
   $req = $db -> prepare('INSERT INTO dispositif(id_piece, type_dispositif, etat) VALUES(:id_piece, :dispositif, \'off\')');
   $req -> execute(array('id_piece' => $id_piece, 'dispositif' => $dispositif));
+}
+
+function insert_mail($db, $mail_receveur, $type_receveur, $mail_envoyeur, $type_envoyeur, $objet, $contenu) {
+  $req = $db -> prepare('INSERT INTO messagerie(mail_receveur, type_receveur, mail_envoyeur, type_envoyeur, objet, contenu, date_envoi, lecture)
+                        VALUES (:mail_receveur, :type_receveur, :mail_envoyeur, :type_envoyeur, :objet, :contenu, NOW(), \'non\')');
+  $req -> execute(array('mail_receveur' => $mail_receveur,
+                        'type_receveur' => $type_receveur,
+                        'mail_envoyeur' => $mail_envoyeur,
+                        'type_envoyeur' => $type_envoyeur,
+                        'objet' => $objet,
+                        'contenu' => $contenu));
 }
 
 /*****************************************************************UPDATE***********************************************************************/

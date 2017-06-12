@@ -22,6 +22,14 @@ $nb_unread_mail = 0;
 $contenu = menu_messaging($nb_unread_mail);
 $contenu .= mailbox($mails, $nb_page);
 
+if(isset($message)) {
+  ?>
+  <script type="text/javascript">
+    alert("<?php echo($message); ?>");
+  </script>
+  <?php
+}
+
 $footer = footer();
 
 include('gabarit.php');

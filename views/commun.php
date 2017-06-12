@@ -187,7 +187,7 @@ function menu_user($type) {
       <li class="menu_user_elements" id="home_management"><a href="index.php?cible=home_management" class="text_menu_user">Gestion du domicile</a></li>
       <li class="menu_user_elements" id="info_user"><a href="index.php?cible=info_user" class="text_menu_user">Mes informations</a></li>
       <li class="menu_user_elements" id="notif_user"><a href="index.php?cible=notif_user" class="text_menu_user">Notifications</a></li>
-      <li class="menu_user_elements" id="messaging_user"><a href="index.php?cible=messaging_user" class="text_menu_user">Messagerie</a></li>
+      <li class="menu_user_elements" id="messaging_user"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
     </ul>
   <?php
   } elseif ($type == 'admin') {?>
@@ -1624,13 +1624,13 @@ function my_device($my_room) {
 function menu_messaging($nb_unread_mail) {
   ob_start();
   ?>
-  <form method="post" action="index.php?cible=mail_del">
+  <div class="content">
   <section class="menu_messaging">
     <div class="bloc_new_mail">
       <a href="index.php?cible=new_mail"><button>Nouveau message</button></a>
     </div>
     <div class="bloc_menu">
-      <h3 id="mailbox"><a href="index.php?cible=messaging_user">Boite de réception<?php if($nb_unread_mail > 0) {echo(' ('.$nb_unread_mail.')');} ?></a></h3>
+      <h3 id="mailbox"><a href="index.php?cible=messaging">Boite de réception<?php if($nb_unread_mail > 0) {echo(' ('.$nb_unread_mail.')');} ?></a></h3>
       <h3 id="sentmail"><a href="index.php?cible=sent_mail">Messages envoyés</a></h3>
     </div>
     <div class="bloc_action">
@@ -1638,6 +1638,7 @@ function menu_messaging($nb_unread_mail) {
       <ul>
         <li><button class="button_space">Marquer comme lu</button></li>
         <li><button class="button_space">Marquer comme non lu</button></li>
+        <form method="post" action="index.php?cible=mail_del">
         <li><input type="submit" value="Supprimer"></li>
       </ul>
     </div>
@@ -1668,9 +1669,9 @@ function mailbox($mails, $nb_page) {
               <tbody>
                 <tr>
                   <td><input type="checkbox" name="checkbox<?php echo($i);?>"></td>
-                  <td><?php echo($mails[$i][0]); ?></td>
+                  <td><?php echo('De : '.$mails[$i][0]); ?></td>
                   <td><?php echo($mails[$i][1]); ?></td>
-                  <td><strong><?php echo($mails[$i][2]); ?></strong></td>
+                  <td><a href="index.php?cible=mail&amps;mail=<?php echo($i);?>"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
                   <td><?php echo($mails[$i][3]); ?></td>
                   <td><img id="edit" class="edit<?php echo($i);?>" src="views/styles/ressources/icons/pen1.png" title="Répondre"
                   onclick=""
@@ -1684,6 +1685,8 @@ function mailbox($mails, $nb_page) {
                 </tr></tbody>
                 <tbody><tr class="tr_vide"></tr></tbody>
                 <?php
+              }  else {
+                echo('</tr></tbody>');
               }
             }
           }
@@ -1697,7 +1700,7 @@ function mailbox($mails, $nb_page) {
         echo('Page : ');
         for ($i = 1; $i <= $nb_page; $i++) {
           ?>
-          <a href="index.php?cible=messaging_user&amp;page=<?php echo($i); ?>"><?php echo($i); ?></a>
+          <a href="index.php?cible=messaging&amp;page=<?php echo($i); ?>"><?php echo($i); ?></a>
           <?php
           echo(' ');
         }
@@ -1706,9 +1709,146 @@ function mailbox($mails, $nb_page) {
     </div>
   </section>
   </form>
+  </div>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
+}
+
+function menu_sent_mail() {
+  ob_start();
+  ?>
+  <div class="content">
+  <section class="menu_messaging">
+    <div class="bloc_new_mail">
+      <a href="index.php?cible=new_mail"><button>Nouveau message</button></a>
+    </div>
+    <div class="bloc_menu">
+      <h3 id="mailbox"><a href="index.php?cible=messaging">Boite de réception</a></h3>
+      <h3 id="sentmail"><a href="index.php?cible=sent_mail">Messages envoyés</a></h3>
+    </div>
+    <div class="bloc_action">
+      <h3>Actions</h3>
+      <ul>
+        <form method="post" action="index.php?cible=mail_del">
+        <li><input type="submit" value="Supprimer"></li>
+      </ul>
+    </div>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function sent_mail($mails, $nb_page) {
+  ob_start();
+  ?>
+  <section class="mailbox">
+    <div class="content_mailbox">
+      <div class="mail_top">
+        <h3>Messages envoyés</h3>
+      </div>
+      <div class="mail">
+        <?php
+        if ($mails == array()) {
+          echo('<h2 class="except_h2">Vous n\'avez envoyé aucun e-mail.</h2>');
+        } else {
+          ?>
+          <table>
+            <?php
+            for ($i = 0; $i < count($mails); $i++) {
+              ?>
+
+              <tbody>
+                <tr>
+                  <td><input type="checkbox" name="checkbox<?php echo($i);?>"></td>
+                  <td><?php echo('À : '.$mails[$i][0]); ?></td>
+                  <td><?php echo($mails[$i][1]); ?></td>
+                  <td><a href="index.php?cible=mail&amps;mail=<?php echo($i);?>"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
+                  <td><?php echo($mails[$i][3]); ?></td>
+                  <td><img id="edit" class="edit<?php echo($i);?>" src="views/styles/ressources/icons/pen1.png" title="Répondre"
+                  onclick=""
+                  onmouseover="this.src='views/styles/ressources/icons/pen2.png'" onmouseout="this.src='views/styles/ressources/icons/pen1.png'"></td></td>
+                  <td><img id="trash" class="trash<?php echo($i);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
+                  onclick=""
+                  onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'"></td>
+              <?php
+              if ($i != count($mails) - 1) {
+                ?>
+                </tr></tbody>
+                <tbody><tr class="tr_vide"></tr></tbody>
+                <?php
+              } else {
+                echo('</tr></tbody>');
+              }
+            }
+          }
+            ?>
+          </table>
+      </div>
+    </div>
+    <div class="mail_bottom">
+      <?php
+      if ($nb_page > 1) {
+        echo('Page : ');
+        for ($i = 1; $i <= $nb_page; $i++) {
+          ?>
+          <a href="index.php?cible=sent_mail&amp;page=<?php echo($i); ?>"><?php echo($i); ?></a>
+          <?php
+          echo(' ');
+        }
+      }
+      ?>
+    </div>
+  </section>
+  </form>
+  </div>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function new_mail() {
+  ob_start();
+  ?>
+  <section class="previous_page">
+    <a href="index.php?cible=messaging"><button>Page précédente</button></a>
+  </section>
+  <section class="new_mail">
+    <h3>Nouveau message</h3>
+    <form method="post" action="index.php?cible=contr_new_mail" >
+      <div class="bloc_destinataire">
+        <p>
+          <label for="mail_receveur"><strong>Destinataire :</strong></label><br/>
+          <input type="mail" name="mail_receveur" id="mail_receveur" placeholder="exemple@mail.com" required value="<?php if(isset($_POST['mail_receveur'])) {echo($_POST['mail_receveur']);}?>">
+        </p>
+        <p>
+          <label for="type_receveur"><strong>Type de destinataire :</strong></label><br/>
+          <select name="type_receveur" id="type_receveur" required>
+            <option value="" selected>-- Sélectionnez le type de destinataire --</option>
+            <option value="utilisateur">Utilisateur</option>
+            <option value="administrateur">Administrateur</option>
+          </select>
+        </p>
+      </div>
+      <div class="bloc_contenu">
+        <p>
+          <label for="objet"><strong>Objet :</strong></label><br/>
+          <input type="text" name="objet" id="objet" placeholder="Objet du message" required value="<?php if(isset($_POST['objet'])) {echo($_POST['objet']);}?>">
+        </p>
+        <p>
+          <label for="contenu"><strong>Contenu :</strong></label><br />
+          <textarea name="contenu" id="contenu" placeholder="Contenu du message" required><?php if(isset($_POST['contenu'])) {echo($_POST['contenu']);}?></textarea>
+        </p>
+      </div>
+      <p class="button">
+        <input type="submit" value="Envoyer">
+      </p>
+    </form>
+  </section>
+  <?php
+  $content = ob_get_clean();
+  return $content;
 }
 
 /*****************************************************************Fonctions $footer***********************************************************************/
