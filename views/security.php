@@ -8,7 +8,7 @@ $titre = 'Sécurité';
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
-$contenu = ' ';
+$contenu = content_security();
 
 $footer = footer();
 

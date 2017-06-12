@@ -1,0 +1,85 @@
+#home_admin
+{
+  transition-duration: 0.3s;
+  border: 1px solid rgba(80,80,80,0.8);
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(10,10,10,0.9) inset;
+  padding: 7px;
+}
+
+#home_admin:hover
+{
+  transition-duration: 0.3s;
+  border: 1px solid rgb(80,80,80);
+  border-radius: 10px;
+  box-shadow: 0px 2px 20px rgb(0,0,0) inset;
+  padding: 7px;
+}
+
+aside
+{
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+#content_info_admin
+{
+  display: flex;
+  flex-direction: column;
+}
+
+#child_content_info_admin
+{
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button
+{
+  text-align: center;
+}
+
+.info_admin
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  width: 80%;
+  border-radius: 7px;
+  margin: 20px 10px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.top_notif_admin
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+.top_notif_admin strong
+{
+  padding-top: 3px;
+  width: 210px;
+  display: flex;
+  justify-content: space-between;
+}
+
+h3
+{
+  margin: 0px;
+}
+
+.bloc
+{
+  padding: 15px;
+  border-radius: 7px;
+  margin: 20px 10px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

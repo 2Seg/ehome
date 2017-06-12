@@ -88,7 +88,7 @@ function menu() {
   ob_start();
   ?>
     <ul class="menu">
-      <li class="li_logo_menu"><a href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li class="li_logo_menu"><a href="index.php?cible=home"><img class="logo_menu" src="views/styles/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
       <li class="menu_elements" id="about-us"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
       <li class="menu_elements" id="products"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
@@ -96,16 +96,16 @@ function menu() {
       if($_SESSION['type'] == 'user') {
         echo('<li class="menu_elements" id="disconnect"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'Madame') {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/styles/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/styles/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } elseif ($_SESSION['type'] == 'admin') {
         echo('<li class="menu_elements" id="disconnect"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'Madame') {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/styles/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/styles/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } else {
         echo('<li class="menu_elements" id="join-us"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
@@ -127,7 +127,7 @@ function menu_home() {
   ?>
   <div class="conteneur_menu_home">
     <ul class="menu_home">
-      <li class="li_logo_menu"><a  href="index.php?cible=home"><img class="logo_menu" src="views/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
+      <li class="li_logo_menu"><a  href="index.php?cible=home"><img class="logo_menu" src="views/styles/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
       <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
       <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
@@ -135,16 +135,16 @@ function menu_home() {
       if($_SESSION['type'] == 'user') {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'madame') {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/styles/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/styles/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } elseif ($_SESSION['type'] == 'admin') {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'madame') {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/styles/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
-          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
+          echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/styles/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } else {
         echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
@@ -222,6 +222,108 @@ function content_type_user() {
   return $contenu;
 }
 
+function content_home_admin() {
+  ob_start();
+  ?>
+  <section>
+    <article class="bloc">
+      <h3>Gestion des utilisateurs</h3>
+      <p><a href="index.php?cible=user_management"><button>Gestion des utilisateurs</button></a></p>
+    </article>
+  </section>
+  <section>
+    <article class="bloc">
+      <h3>Notifications</h3>
+      <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
+    </article>
+  </section>
+  <section>
+    <article class="bloc">
+      <h3>Sécurité</h3>
+      <p><a href="index.php?cible=security"><button>Sécurité</button></a></p>
+    </article>
+  </section>
+  <section>
+    <article class="bloc">
+      <h3>Messagerie</h3>
+      <p><a href="index.php?cible=messaging"><button>Messagerie</button></a></p>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+
+function content_security() {
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h3>Page content_security</h3>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function list_users($list_users) { // nouvelle version
+  ob_start();
+  ?>
+  <section class="list_users">
+
+    <h3>Liste des utilisateurs enregistrés :</h3>
+  <?php
+  if ($list_users == array()) {
+    echo('<h2 class="except_h2">Aucun utilisateur enregistré</h2>');
+  } else {
+  ?>
+    <table>
+     <tr>
+         <th><strong>Civilité : </strong></th>
+         <th><strong>Nom : </strong></th>
+         <th><strong>Prénom : </strong></th>
+     </tr>
+    <?php
+    for ($i = 0; $i < count($list_users); $i++) {
+      ?>
+      <tr>
+          <td><?php echo($list_users[$i][0]); ?></td>
+          <td><?php echo($list_users[$i][1]); ?></td>
+          <td><?php echo($list_users[$i][2]); ?></td>
+      </tr>
+      <?php
+    }
+    ?>
+    </table>
+  <?php
+  }
+  ?>
+
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
+function content_user_management() {
+  ob_start();
+  ?>
+  <section>
+    <article>
+      <h3>Graphique des connexions</h3>
+      <p>Graphique des connexions par jour, semaines, mois, année</p>
+    </article>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
 function content_products() {
   ob_start();
   ?>
@@ -263,7 +365,7 @@ function footer2() {
   	<ul class="footer2">
       <ul>
   		  <li class="footer_elements">Localisation</li>
-  		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
+  		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views/styles/ressources/images/map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
       </ul>
 
       <ul>
@@ -293,7 +395,7 @@ function content_sensors() {
           <h2>Capteur de luminosité</h2>
           <p>Ce capteur vous permettra d'adapter la luminosité de la pièce que vous souhaitez.</p>
         </div>
-        <img class="image_products" src="views/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
+        <img class="image_products" src="views/styles/ressources/images/rsz_capteur_lum.jpg" alt="capteur lum" title="capteur lum">
       </div>
     </article>
     <article>
@@ -302,7 +404,7 @@ function content_sensors() {
           <h2>Capteur de température</h2>
           <p>Ce capteur vous permettra d'adapter la température de la pièce que vous souhaitez.</p>
         </div>
-        <img class="image_products" src="views/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
+        <img class="image_products" src="views/styles/ressources/images/rsz_capteur_temp.jpg" alt="capteur temp" title="capteur temp">
       </div>
     </article>
     <article>
@@ -311,7 +413,7 @@ function content_sensors() {
           <h2>Capteur d'humidité</h2>
           <p>Ce capteur vous permettra de connaître le taux d'humidité de la pièce que vous souhaitez.</p>
         </div>
-      <img class="image_products" src="views/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
+      <img class="image_products" src="views/styles/ressources/images/rsz_capteur_humi.jpg" alt="capteur humi" title="capteur humi">
       </div>
     </article>
     <article>
@@ -321,7 +423,7 @@ function content_sensors() {
           <p>Ce detecteur vous avertira des eventuels mouvements dans la pièce où celui-ci est installé
            et sera relié au système de sécurité pour prévenir les intrusions.</p>
         </div>
-        <img class="image_products" src="views/ressources/images/rsz_detecteur_mouv.jpg" alt="detecteur mouv" title="detecteur mouv">
+        <img class="image_products" src="views/styles/ressources/images/rsz_detecteur_mouv.jpg" alt="detecteur mouv" title="detecteur mouv">
       </div>
     </article>
     <article>
@@ -330,7 +432,7 @@ function content_sensors() {
           <h2>Détecteur de fumée</h2>
           <p>Ce detecteur vous avertira en cas de présence de fumée dans la pièce où celui-ci est installé.</p>
         </div>
-        <img class="image_products" src="views/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
+        <img class="image_products" src="views/styles/ressources/images/rsz_detecteur_fum.jpg" alt="capteur fum" title="detecteur fum">
       </div>
     </article>
   </section>
@@ -350,7 +452,7 @@ function content_actuators() {
           <h2> Actionneur volet roulant électrique </h2>
           <p> Ce dispositif vous permettra d'ouvrir ou fermer automatiquement tous vos volets, tout cela sans le moindre effort. </p>
         </div>
-        <img class="image_products" src="views/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
+        <img class="image_products" src="views/styles/ressources/images/rsz_actionneur_volet.jpg" alt="actionneur volet" title="actionneur volet">
       </div>
     </article>
     <article>
@@ -359,9 +461,54 @@ function content_actuators() {
           <h2> Actionneur portail électrique </h2>
           <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement votre portail, tout cela sans le moindre effort.</p>
         </div>
-        <img class="image_products" src="views/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
+        <img class="image_products" src="views/styles/ressources/images/rsz_actionneur_port.jpg" alt="actionneur port" title="actionneur port">
       </div>
     </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur lumière </h2>
+                  <p>Ce dispositif vous permettra d'allumer et d'eteindre vos lampes ainsi que de régler l'intensitée lumineuse des pieces , tout cela sans le moindre effort.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_lum.jpg" alt="actionneur lumiere" title="actionneur lumiere">
+          </div>
+      </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur chauffage </h2>
+                  <p>Ce dispositif vous permettra de regler le chauffage à l'intérieur de votre habitation.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_chauf.jpg" alt="actionneur chauffage" title="actionneur chauffage">
+          </div>
+      </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur climatisation </h2>
+                  <p>Ce dispositif vous permettra d'actionner la climatisation dans une piece de la maison.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_clim.jpg" alt="actionneur clim" title="actionneur clim">
+          </div>
+      </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur porte </h2>
+                  <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement une porte de votre domicile.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_porte.jpg" alt="actionneur porte" title="actionneur porte">
+          </div>
+      </article>
+      <article>
+          <div class="flex_products">
+              <div class="flex_products2">
+                  <h2> Actionneur fenêtre </h2>
+                  <p>Ce dispositif vous permettra d'ouvrir ou fermer automatiquement une fenetre de votre domicile.</p>
+              </div>
+              <img class="image_products" src="views/styles/ressources/images/actionneur_fen.jpg" alt="actionneur fen" title="actionneur fen">
+          </div>
+      </article>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -379,7 +526,7 @@ function content_cameras() {
           <h2>Caméra de surveillance</h2>
           <p>Les caméras de surveillance vous permettront de sécuriser d'avantage votre domicile, vous pourrez voir en direct ce qu'il se passe dans votre logement.</p>
         </div>
-        <img class="image_products" src="views/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
+        <img class="image_products" src="views/styles/ressources/images/rsz_camera_surv.jpg" alt="camera surv" title="camera surv">
       </div>
     </article>
     <article>
@@ -388,7 +535,7 @@ function content_cameras() {
           <h2>Caméra de palier </h2>
           <p>Les caméras de porte ou de palier vous permettront d'apporté une sécurité lors de l'ouverture de celle-ci, en effet vous pourrez voir qui a sonné chez vous et vous protéger d'une instrusion.</p>
         </div>
-        <img class="image_products" src="views/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
+        <img class="image_products" src="views/styles/ressources/images/rsz_camera_pal.jpg" alt="camera pal" title="camera pal">
       </div>
     </article>
   </section>
@@ -925,9 +1072,9 @@ function my_room($my_home) {
                   <?php echo($my_home[$i][1]); ?></a>
               </h3>
 
-          <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer la pièce'
-          onclick="deleteRoom(<?php echo("'".addslashes($my_home[$i][1])."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/ressources/icons/trash2.png'"
-          onmouseout="this.src='views/ressources/icons/trash1.png'">
+          <img id="trash" class="trash<?php echo($i);?>" src="views/styles/ressources/icons/trash1.png" title='Supprimer la pièce'
+          onclick="deleteRoom(<?php echo("'".addslashes($my_home[$i][1])."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/styles/ressources/icons/trash2.png'"
+          onmouseout="this.src='views/styles/ressources/icons/trash1.png'">
           </div>
           <script type="text/javascript">
             function deleteRoom(nomPiece, id_piece) {
@@ -1093,6 +1240,31 @@ function my_basic_info($info_user) {
   }
   $info = ob_get_clean();
   return $info;
+}
+
+
+function content_info_admin($info_user) {
+  ob_start();
+  ?>
+  <section class="info_admin">
+      <div class="top_notif_admin">
+      <h3>Vos informations administrateur</h3>
+      <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
+      <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
+      <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+      <p><strong>Date de naissance : </strong><?php echo($info_user['date_naissance']); ?></p>
+      <p><strong>Nationalité : </strong><?php echo($info_user['nationalite']); ?></p>
+      <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+      <p><strong>Mail : </strong><?php echo($info_user['mail']); ?></p>
+      <p><strong>Téléphone : </strong><?php echo($info_user['telephone']); ?></p>
+      <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($info_user['nb_user']); ?></p>
+      </div>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
 }
 
 function my_full_info($my_full_info) {
@@ -1365,9 +1537,9 @@ function my_device($my_room) {
                 <h3>
                   <a href="#"><?php echo($my_room[$i][1]); ?></a>
                 </h3>
-                <img id="trash" class="trash<?php echo($i);?>" src="views/ressources/icons/trash1.png" title='Supprimer le dispositif'
+                <img id="trash" class="trash<?php echo($i);?>" src="views/styles/ressources/icons/trash1.png" title='Supprimer le dispositif'
                 onclick="deleteDevice(<?php echo("'".addslashes($my_room[$i][1])."'");?>, <?php echo("'".$my_room[$i][0]."'") ?>, <?php echo("'".addslashes($my_room[0][1])."'"); ?>, <?php echo("'".$my_room[0][0]."'"); ?>)"
-                onmouseover="this.src='views/ressources/icons/trash2.png'" onmouseout="this.src='views/ressources/icons/trash1.png'">
+                onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'">
               </div>
               <div class="content">
                 <p><strong>Numéro de série : </strong><?php echo($my_room[$i][0]); ?></p>
@@ -1551,11 +1723,12 @@ function footer() {
 	<ul class="footer">
     <ul>
 		  <li class="footer_elements">Localisation</li>
-		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views\ressources\images\map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
+		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views/styles/ressources/images/map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
     </ul>
 
     <ul>
-		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
+		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a>
+      <br><img class="paiement" src="views/styles/ressources/icons/paiement.png" alt="Paiement" height="40px" width="140px" /></br></li>
     </ul>
 
     <ul>
@@ -1576,11 +1749,11 @@ function footer_s() {
 	<ul class="footer_s">
     <h3 class="footer_s_text"> Suivez-nous sur les réseaux sociaux ! </h3>
     <div class="flex_footer_s">
-      <li><a href="https://www.facebook.com/" target="_blank"><img class="facebook" src="views\ressources\icons\facebook.png" alt="Icon Facebook"  title="Cliquez ici pour accéder à notre page Facebook" /></a></li>
-      <li><a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="views\ressources\icons\Instagram.png" alt="Icon Instagram"  title="Cliquez ici pour accéder à notre page Instagram" /></a></li>
-      <li><a href="https://twitter.com/?lang=fr" target="_blank"><img class="twitter" src="views\ressources\icons\twitter.png" alt="Icon Twitter"  title="Cliquez ici pour accéder à notre page Twitter" /></a></li>
-      <li><a href="https://fr.linkedin.com/" target="_blank"><img class="linkedin" src="views\ressources\icons\linkedin.png" alt="Icon Linkedin"  title="Cliquez ici pour accéder à notre page Linkedin" /></a></li>
-      <li><a href="https://www.youtube.com/" target="_blank"><img class="youtube" src="views\ressources\icons\youtube.png" alt="Icon Youtube"  title="Cliquez ici pour accéder à notre chaîne Youtube" /></a></li>
+      <li><a href="https://www.facebook.com/" target="_blank"><img class="facebook" src="views/styles/ressources/icons/facebook.png" alt="Icon Facebook"  title="Cliquez ici pour accéder à notre page Facebook" /></a></li>
+      <li><a href="https://www.instagram.com/?hl=fr" target="_blank"><img class="instagram" src="views/styles/ressources/icons/Instagram.png" alt="Icon Instagram"  title="Cliquez ici pour accéder à notre page Instagram" /></a></li>
+      <li><a href="https://twitter.com/?lang=fr" target="_blank"><img class="twitter" src="views/styles/ressources/icons/twitter.png" alt="Icon Twitter"  title="Cliquez ici pour accéder à notre page Twitter" /></a></li>
+      <li><a href="https://fr.linkedin.com/" target="_blank"><img class="linkedin" src="views/styles/ressources/icons/linkedin.png" alt="Icon Linkedin"  title="Cliquez ici pour accéder à notre page Linkedin" /></a></li>
+      <li><a href="https://www.youtube.com/" target="_blank"><img class="youtube" src="views/styles/ressources/icons/youtube.png" alt="Icon Youtube"  title="Cliquez ici pour accéder à notre chaîne Youtube" /></a></li>
     </div>
 	</ul>
 	<?php
@@ -1596,9 +1769,9 @@ function carroussel_home() {
   <div id="slider">
       <div id="imgs">
           <!-- here you have to add the img tag -->
-          <img id="Img3" src="views/ressources/images/c3.jpg"/>
-          <img id="Img2" src="views/ressources/images/c2.jpg"/>
-          <img id="Img1" src="views/ressources/images/c1.jpg"/>
+          <img id="Img3" src="views/styles/ressources/images/c3.jpg"/>
+          <img id="Img2" src="views/styles/ressources/images/c2.jpg"/>
+          <img id="Img1" src="views/styles/ressources/images/c1.jpg"/>
       </div>
       <!--Here is going to be the left right buttons, the info and the imgs shown-->
       <div id="Snav">
@@ -1615,15 +1788,15 @@ function carroussel_home() {
           </div>
           <!-- the left and right button -->
           <div id="SnavMiddle">
-              <img id="Sleft" src="views/ressources/images/left.png" onclick="prev()"/>
-              <img id="Sright" src="views/ressources/images/right.png" onclick="next()"/>
+              <img id="Sleft" src="views/styles/ressources/images/left.png" onclick="prev()"/>
+              <img id="Sright" src="views/styles/ressources/images/right.png" onclick="next()"/>
           </div>
           <!-- the info -->
           <div id="SnavBottom">
               <!-- here you have to add the p tag-->
-              <p id="SP0">Nature</p>
-              <p id="SP1">Lake</p>
-              <p id="SP2">Game of Thrones</p>
+              <p id="SP0">Maison 1</p>
+              <p id="SP1">Maison 2</p>
+              <p id="SP2">Maison 3</p>
           </div>
       </div>
   </div>

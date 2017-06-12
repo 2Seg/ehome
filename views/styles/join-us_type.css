@@ -1,0 +1,18 @@
+.ju_section{
+    display: flex;
+    justify-content: center;
+}
+
+.ju_article
+{
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    align-items: center;
+    padding-bottom: 25px;
+}
+
+.ju_button{
+    width:200px ;
+    height:50px;
+}

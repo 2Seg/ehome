@@ -106,6 +106,18 @@ function select_general_info_admin($db, $id) {
   return $info;
 }
 
+
+// fonction récupérant ltoutes les informations de l'administrateur pour affichage sur la page d'info administrateur (info_admin)
+function select_info_admin($db, $id) {
+  $info = array();
+  $req = $db -> prepare('SELECT * FROM administrateur WHERE id = ?');
+  $req -> execute(array($id));
+  while($data = $req -> fetch()) {
+    $info = $data;
+  }
+  return $info;
+}
+
 // fonction récupérant les informations complètes de l'utilisateur pour affichage sur la page "Mes informations"
 function select_full_info_user($db, $id) {
   $req = $db -> prepare("SELECT *, DATE_FORMAT(date_naissance, '%d/%m/%Y') AS date_naissance_format, utilisateur.pays AS pays_utilisateur,
@@ -129,6 +141,14 @@ function select_info_home($db, $id) {
   }
   return $info;
 }
+
+// fonction récupérant la liste des utilisateurs pour la page user_management de Views
+// cette fonction est utilisée dans la page user_management de Controles
+function select_list_users($db) {
+  $req = $db -> query('SELECT id, civilite, nom, prenom FROM utilisateur'); // contient toutes les réponses non rangées
+  return $req; // $info est un tableau avec plusieurs valeurs dedans
+}
+
 
 // fonction récupérant les informations NON INTERPRETEES sur les pièces du logement
 function select_info_room($db, $id_logement) {
