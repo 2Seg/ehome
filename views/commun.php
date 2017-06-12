@@ -210,12 +210,10 @@ function menu_user($type) {
 function content_type_user() {
   ob_start();
   ?>
-  <section>
-    <article>
+  <section class="ju_section">
       <h2 class="except_h2">Vous êtes :</h2>
-      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
-      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
-    </article>
+      <p><a href="index.php?cible=join-us_user"><button class="ju_button">Utilisateur</button></a></p>
+      <p><a href="index.php?cible=join-us_admin"><button class="ju_button">Administrateur</button></a></p>
   </section>
   <?php
   $contenu = ob_get_clean();
