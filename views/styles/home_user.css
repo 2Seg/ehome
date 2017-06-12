@@ -27,7 +27,7 @@ aside
   padding: 15px;
   border-radius: 7px;
   margin: 20px 20px 20px 10px;
-  min-width: 270px;
+  min-width: 274px;
   height: 500px;
   display: flex;
   flex-direction: column;
@@ -74,7 +74,7 @@ aside
 .top_notif strong
 {
   padding-top: 3px;
-  width: 210px;
+  width: 250px;
   display: flex;
   justify-content: space-between;
 }

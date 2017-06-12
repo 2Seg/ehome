@@ -17,7 +17,13 @@
       echo('<link rel="stylesheet" href="views/styles/info_user.css">');
     } elseif ($titre == 'Modifier mes informations') {
       echo('<link rel="stylesheet" href="views/styles/info_edit.css">');
-    } elseif ($titre == 'Gestion des utilisateurs') {
+    } elseif ($titre == 'Mes notifications') {
+      echo('<link rel="stylesheet" href="views/styles/notif_user.css">');
+    } elseif ($titre == 'Messagerie' && $_SESSION['type'] == 'user') {
+      echo('<link rel="stylesheet" href="views/styles/messaging_user.css">');
+    }
+    
+    elseif ($titre == 'Gestion des utilisateurs') {
       echo('<link rel="stylesheet" href="views/styles/user_management.css">');
     } elseif ($titre == 'Vos informations administrateur') {
       echo('<link rel="stylesheet" href="views/styles/info_admin.css">');
@@ -25,6 +31,12 @@
       echo('<link rel="stylesheet" href="views/styles/home_admin.css">');
     } elseif (substr($titre, 0, 22) == 'Nous rejoindre') {
         echo('<link rel="stylesheet" href="views/styles/join-us_type.css">');
+    }
+
+    elseif ($titre == 'Connexion') {
+      echo('<link rel="stylesheet" href="views/styles/signin.css">');
+    } elseif ($titre == 'Erreur' || $titre == 'Déconnexion') {
+      echo('<link rel="stylesheet" href="views/styles/error_or_disconnect.css">');
     }
     ?>
 

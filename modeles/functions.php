@@ -9,9 +9,16 @@ require("db_access.php");
 
 // fonction récupérant l'id et le mot de passe d'un utilisateur en fonction du login passé en entrée
 function user_in_db($db, $login) {
-  $req = $db -> prepare('SELECT id, identifiant, mot_de_passe FROM utilisateur WHERE identifiant = ?');
+  $req = $db -> prepare('SELECT id, identifiant, mot_de_passe, mail FROM utilisateur WHERE identifiant = ?');
   $req -> execute(array($login));
   return $req;
+}
+
+function select_mail_user($db, $id) {
+  $req = $db -> prepare('SELECT  mail FROM utilisateur WHERE id = ?');
+  $req -> execute(array($id));
+  $info = $req -> fetch();
+  return $info['mail'];
 }
 
 function select_password_user($db, $id) {
@@ -179,6 +186,21 @@ function select_device($db, $id_piece) {
   return $req;
 }
 
+// fonction affichant renvoyant 6 mails de la bdd pour affichage sur la page boite de réception
+function select_6_mail($db, $mail_user, $num_count) {
+  $req = $db -> prepare('SELECT *, DATE_FORMAT(date_envoi, \'%d/%m/%Y\') AS date_format FROM messagerie WHERE mail_receveur = ?
+                        ORDER BY date_envoi DESC LIMIT '.$num_count.', 6');
+  $req -> execute(array($mail_user));
+  return $req;
+}
+
+function count_nb_page($db, $mail_user) {
+  $req = $db -> prepare('SELECT COUNT(*) AS nb_mail FROM messagerie WHERE mail_receveur = ?');
+  $req -> execute(array($mail_user));
+  $info = $req -> fetch();
+  $pages = $info['nb_mail'] / 6;
+  return ceil($pages);
+}
 /*****************************************************************INSERT***********************************************************************/
 
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd

@@ -14,4 +14,3 @@ $contenu .= my_basic_info($general_info_user);
 $footer = footer();
 
 include('gabarit.php');
-?>
