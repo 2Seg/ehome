@@ -254,8 +254,6 @@ function content_home_admin() {
   return $contenu;
 }
 
-
-
 function content_security() {
   ob_start();
   ?>
@@ -308,7 +306,6 @@ function list_users($list_users) { // nouvelle version
   return $contenu;
 }
 
-
 function content_user_management() {
   ob_start();
   ?>
@@ -322,7 +319,6 @@ function content_user_management() {
   $contenu = ob_get_clean();
   return $contenu;
 }
-
 
 function content_products() {
   ob_start();
@@ -1241,7 +1237,6 @@ function my_basic_info($info_user) {
   $info = ob_get_clean();
   return $info;
 }
-
 
 function content_info_admin($info_user) {
   ob_start();
