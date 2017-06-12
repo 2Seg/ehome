@@ -1,16 +1,15 @@
 <?php
 /*
-vue gérant l'affichage de la page "Messagerie"
+vue gérant l'affichage de la page "Mes notifications"
 */
 
-$titre = 'Messagerie';
+$titre = 'Mes notifications';
 
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
-$contenu = ' ';
+$contenu = 'notifications';
 
 $footer = footer();
 
 include('gabarit.php');
-?>

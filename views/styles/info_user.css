@@ -31,7 +31,7 @@ aside
   border-radius: 7px;
   margin: 10px;
   min-width: 270px;
-  height: 350px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -44,6 +44,19 @@ aside
   border-radius: 7px;
   margin: 10px;
   width: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.connection_info, .button_edit
+{
+  margin-top: 20px;
+}
+
+#child_content_user_info,#child_content_home_info
+{
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

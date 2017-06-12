@@ -13,5 +13,5 @@ if(sha1($_POST['password']) == $admin_line['mot_de_passe']) {
   include('controlers/home_admin.php');
 } else {
   $erreur = 'mot de passe est incorrect';
-  include('views/signin_error.php');
+  include('views/signin.php');
 }

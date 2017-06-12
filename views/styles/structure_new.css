@@ -92,14 +92,14 @@ h3
   border: 2px solid violet;
 }*/
 
-#trash
+#trash,#edit
 {
   height: 18px;
   position:relative;
   top: 2px;
 }
 
-#trash:hover
+#trash:hover,#edit:hover
 {
   cursor: pointer;
 }
@@ -343,6 +343,7 @@ button:hover,input[type=submit]:hover,input[type=reset]:hover
 {
   transition-duration: 0.2s;
   background-color: rgba(210, 30, 30, 0.85);
+  letter-spacing: 0.3px;
 }
 
 button:focus
@@ -374,10 +375,6 @@ input[type=reset] {
   color: white;
 }
 
-.bouton_connexion
-{
-  text-align: right;
-}
 .bouton
 {
  text-align: center;

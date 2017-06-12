@@ -2,11 +2,11 @@
 /*
 vue gérant l'affichage de la page "Déconnexion"
 */
-$titre = 'Déconnexion';
+$titre = "Déconnexion";
 
 $menu = menu();
 
-$contenu = '<section><article><h2 class="except_h2">Vous avez été déconnecté</h2></article></section>';
+$contenu = '<section class="error"><h2 class="except_h2">Vous avez été déconnecté</h2></section>';
 
 $footer = footer();
 
