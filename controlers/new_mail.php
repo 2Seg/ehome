@@ -34,6 +34,7 @@ if (isset($_GET['cible']) && $_GET['cible'] == 'contr_new_mail') {
     }
 
   } else {
+    echo($_POST['mail_receveur']);echo($_POST['type_receveur']);echo($_POST['objet']);echo($_POST['contenu']);
     $message = 'Erreur : les champs du formulaire n\'ont pas tous été remplis.';
     include('views/new_mail.php');
 

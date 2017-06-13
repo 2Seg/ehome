@@ -24,6 +24,7 @@ aside
 .content
 {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .menu_messaging
@@ -68,13 +69,24 @@ aside
   background-color: rgba(229,229, 229, 0.75);
   border-radius: 7px;
   padding: 15px;
-  width: 500px;
+  width: 499px;
   margin: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.bloc_destinataire
+.mail
+{
+  background-color: rgba(229,229, 229, 0.75);
+  border-radius: 7px;
+  padding: 15px;
+  width: 480px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bloc_destinataire,.bloc_expediteur,.bloc_mail_date
 {
   display: flex;
   justify-content: space-between;
@@ -101,6 +113,11 @@ textarea
   font-size: 15px;
 }
 
+.mail textarea
+{
+  width: 448px;
+}
+
 p
 {
   margin: 15px 5px 5px 5px;
@@ -116,7 +133,29 @@ h3
   width: 468px;
 }
 
+.mail #objet
+{
+  width: 448px;
+}
+
 .button
 {
   text-align: right;
+}
+
+input[type=text],textarea
+{
+  background-color: white;
+  color: black;
+}
+
+.except_h2
+{
+  margin-top : 160px;
+  text-align: justify;
+}
+
+#mail_receveur_none, #objet_none
+{
+  display: none;
 }

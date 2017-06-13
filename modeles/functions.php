@@ -239,6 +239,20 @@ function verif_mail($db, $table, $mail) {
   return $req;
 }
 
+function select_info_mail($db, $id_mail) {
+  $req = $db -> prepare('SELECT *, DATE_FORMAT(date_envoi, \'%d/%m/%Y\') AS jour_envoi, DATE_FORMAT(date_envoi, \'%Hh%i\') AS heure_envoi
+                        FROM messagerie WHERE id = ?');
+  $req -> execute(array($id_mail));
+  $info = $req -> fetch();
+  return $info;
+}
+
+function select_info_user_mail($db, $table, $mail) {
+  $req = $db -> prepare('SELECT * FROM '.$table.' WHERE mail = :mail');
+  $req -> execute(array('mail' => $mail));
+  return $req;
+}
+
 /*****************************************************************INSERT***********************************************************************/
 
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
@@ -351,6 +365,12 @@ function update_pass_user($db, $id, $pass) {
   $req = $db -> prepare('UPDATE utilisateur SET mot_de_passe = :pass WHERE id = :id');
   $req -> execute(array('pass' => $pass, 'id' => $id));
 }
+
+function update_reading_mail($db, $id_mail) {
+  $req = $db -> prepare('UPDATE messagerie SET lecture = \'oui\' WHERE messagerie.id = ?');
+  $req -> execute(array($id_mail));
+}
+
 /*****************************************************************DELETE***********************************************************************/
 
 // function qui supprime une pièce d'un logement ainsi que tous les capteurs associés

@@ -8,7 +8,6 @@ $titre = 'Messages envoyés';
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
-$nb_unread_mail = 0;
 // $mails = array(array("François Dupond", "(Administrateur)", "Votre abonnement", "6 juin", "non"),
 //                   array("Sylvie Joelle", "(Administrateur)", "RE: Ajout d'un actionneur portail", "5 juin", "oui"),
 //                   array("eHome", "(Service client)", "Confirmation de l'ajout de votre capteur d'humidité dans votre cuisine", "3 juin", "oui"),
@@ -19,7 +18,7 @@ $nb_unread_mail = 0;
 // $nb_page = 1;
 // print_r($mails);
 
-$contenu = menu_sent_mail();
+$contenu = menu_messaging($titre);
 $contenu .= sent_mail($mails, $nb_page);
 
 $footer = footer();

@@ -19,10 +19,12 @@
       echo('<link rel="stylesheet" href="views/styles/info_edit.css">');
     } elseif ($titre == 'Mes notifications') {
       echo('<link rel="stylesheet" href="views/styles/notif_user.css">');
-    } elseif (($titre == 'Messagerie' && $_SESSION['type'] == 'user') || ($titre == 'Messages envoyés' && $_SESSION['type'] == 'user')) {
+    } elseif (($titre == 'Boite de réception' && $_SESSION['type'] == 'user') || ($titre == 'Messages envoyés' && $_SESSION['type'] == 'user')) {
       echo('<link rel="stylesheet" href="views/styles/messaging.css">');
     } elseif ($titre == 'Nouveau message' && $_SESSION['type'] == 'user') {
       echo('<link rel="stylesheet" href="views/styles/new_mail.css">');
+    } elseif ($titre == 'Message' && $_SESSION['type'] == 'user') {
+      echo('<link rel="stylesheet" href="views/styles/answer_mail.css">');
     }
 
     elseif ($titre == 'Gestion des utilisateurs') {

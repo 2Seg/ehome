@@ -52,8 +52,8 @@ if (isset($_SESSION['type'])) {
         include('controlers/new_mail.php');
       } elseif ($_GET['cible'] == 'mail_del') {
         include('controlers/mail_del.php');
-      } elseif ($_GET['cible'] == 'mail') {
-        include('controlers/mail.php');
+      } elseif ($_GET['cible'] == 'answer_mail') {
+        include('controlers/answer_mail.php');
       }
 
       elseif ($_GET['cible'] == 'device_management') {
