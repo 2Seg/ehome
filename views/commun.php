@@ -211,9 +211,11 @@ function content_type_user() {
   ob_start();
   ?>
   <section class="ju_section">
-      <h2 class="except_h2">Vous êtes :</h2>
+    <fieldset>
+      <legend><h2 class="except_h2">Vous êtes :</h2></legend>
       <p><a href="index.php?cible=join-us_user"><button class="ju_button">Utilisateur</button></a></p>
       <p><a href="index.php?cible=join-us_admin"><button class="ju_button">Administrateur</button></a></p>
+    </fieldset>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -613,6 +615,7 @@ function content_about_us(){
   ob_start();
   ?>
   <section>
+
     <h2>A propos d'eHome</h2>
     <article>
       <h3> Les valeurs des eHomers </h3>
@@ -622,9 +625,6 @@ function content_about_us(){
         <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
       </ul>
     </article>
-
-
-
 
     <h2> L’innovation au cœur de l’internet des objets </h2>
     <article>
