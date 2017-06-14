@@ -45,12 +45,11 @@ aside
 article
 {
   transition-duration: 0.2s;
-  background-color: rgba(155, 155, 155, 0.85);
+  background-color: rgba(229,229, 229, 0.75);
   padding: 0px 18px 0px 18px;
   margin : 25px;
-  border: 1px solid rgba(155,155,155,0.85);
+  border: 1px solid rgba(229,229, 229, 0.75);
   border-radius: 7px;
-  box-shadow: 3px 3px 10px rgb(80,80,80);
   /*
   border: 4px solid blue;*/
 }
