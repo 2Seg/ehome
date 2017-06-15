@@ -19,6 +19,23 @@ if(isset($_GET['cible']) && $_GET['cible'] == 'form_subscribe_user') {
                       maj_lettre1($_POST['ville_logement']), maj_lettre1($_POST['pays_logement']), $_POST['nb_habitant'], 0,
                       $_POST['superficie']);
 
+      insert_mail($bdd, $_POST['email'], "Utilisateur", "noreply@ehome.com", "Service client", "Bienvenue chez eHome !",
+'Eliott,
+
+Nous tenons à vous souhaiter la bienvenue chez eHome de la part de toute l\'équipe !
+
+Votre maison peut dorénavant être totalement connectée comme bon vous semble. N\'hésitez pas à renseigner toutes vos informations personnelles ainsi que celles de votre domicile et à ajouter des dispositifs.
+
+Vous pouvez à tout moment contacter un membre de notre équipe pour tout renseignement complémentaire.
+
+Bonne connexion !
+
+Bien cordialement,
+
+l\'équipe eHome.
+
+PS: cet e-mail a été envoyé automatiquement, il est inutile d\'y répondre. Pour plus d\'informations, contacter un administrateur système.');
+
       include('views/conf_join-us.php');
     } else {
       $erreur = 'le mot de passe et sa confirmation ne sont pas les mêmes.';

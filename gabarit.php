@@ -19,20 +19,24 @@
       echo('<link rel="stylesheet" href="views/styles/info_edit.css">');
     } elseif ($titre == 'Mes notifications') {
       echo('<link rel="stylesheet" href="views/styles/notif_user.css">');
-    } elseif ($titre == 'Messagerie' && $_SESSION['type'] == 'user') {
-      echo('<link rel="stylesheet" href="views/styles/messaging_user.css">');
     } elseif (substr($titre, 0, 22) == 'Nous rejoindre') {
         echo('<link rel="stylesheet" href="views/styles/join-us_type.css">');
+    } elseif ($titre == 'Boite de réception'  || $titre == 'Messages envoyés') {
+      echo('<link rel="stylesheet" href="views/styles/messaging.css">');
+    } elseif ($titre == 'Nouveau message' && $_SESSION['type'] == 'user') {
+      echo('<link rel="stylesheet" href="views/styles/new_mail.css">');
+    } elseif ($titre == 'Message' && $_SESSION['type'] == 'user') {
+      echo('<link rel="stylesheet" href="views/styles/answer_mail.css">');
     }
 
-
+  
     elseif ($titre == 'Gestion des utilisateurs') {
       echo('<link rel="stylesheet" href="views/styles/user_management.css">');
     } elseif ($titre == 'Vos informations administrateur') {
       echo('<link rel="stylesheet" href="views/styles/info_admin.css">');
     } elseif (substr($titre, 0, 22) == 'Accueil administrateur') {
       echo('<link rel="stylesheet" href="views/styles/home_admin.css">');
-    } elseif (substr($titre, 0, 22) == 'Nous rejoindre') {
+    } elseif ($titre == 'Nous rejoindre') {
         echo('<link rel="stylesheet" href="views/styles/join-us_type.css">');
     }
 
