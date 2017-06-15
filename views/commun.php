@@ -210,12 +210,12 @@ function menu_user($type) {
 function content_type_user() {
   ob_start();
   ?>
-  <section>
-    <article>
-      <h2 class="except_h2">Vous êtes :</h2>
-      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
-      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
-    </article>
+  <section class="ju_section">
+    <fieldset>
+      <legend><h2 class="except_h2">Vous êtes :</h2></legend>
+      <p><a href="index.php?cible=join-us_user"><button class="ju_button">Utilisateur</button></a></p>
+      <p><a href="index.php?cible=join-us_admin"><button class="ju_button">Administrateur</button></a></p>
+    </fieldset>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -225,30 +225,30 @@ function content_type_user() {
 function content_home_admin() {
   ob_start();
   ?>
-  <section>
-    <article class="bloc">
-      <h3>Gestion des utilisateurs</h3>
-      <p><a href="index.php?cible=user_management"><button>Gestion des utilisateurs</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article class="bloc">
-      <h3>Notifications</h3>
-      <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article class="bloc">
-      <h3>Sécurité</h3>
-      <p><a href="index.php?cible=security"><button>Sécurité</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article class="bloc">
-      <h3>Messagerie</h3>
-      <p><a href="index.php?cible=messaging"><button>Messagerie</button></a></p>
-    </article>
-  </section>
+  <div class="flex2">
+    <section class="box">
+        <h3>Gestion des utilisateurs</h3>
+        <p><a href="index.php?cible=user_management"><button>Gestion des utilisateurs</button></a></p>
+    </section>
+
+    <section class="box">
+        <h3>Notifications</h3>
+        <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
+    </section>
+  </div>
+
+
+  <div class="flex3">
+    <section class="box">
+        <h3>Sécurité</h3>
+        <p><a href="index.php?cible=security"><button>Sécurité</button></a></p>
+    </section>
+
+    <section class="box">
+        <h3>Messagerie</h3>
+        <p><a href="index.php?cible=messaging"><button>Messagerie</button></a></p>
+    </section>
+  </div>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
@@ -615,6 +615,7 @@ function content_about_us(){
   ob_start();
   ?>
   <section>
+
     <h2>A propos d'eHome</h2>
     <article>
       <h3> Les valeurs des eHomers </h3>
@@ -624,9 +625,6 @@ function content_about_us(){
         <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
       </ul>
     </article>
-
-
-
 
     <h2> L’innovation au cœur de l’internet des objets </h2>
     <article>
@@ -1179,17 +1177,16 @@ function my_basic_info($info_user) {
     <?php
   } else {
     ?>
-    <section class="basic_room">
-    <article>
-      <h3>Mes informations administrateur</h3>
-      <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
-      <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
-      <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
-      <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+      <section class="box">
+        <h3>Mes informations administrateur</h3>
+        <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+        <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+        <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+        <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+        <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
+      </section>
 
-      <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
-    </article>
-    </section>
+
     <?php
   }
   $info = ob_get_clean();
@@ -1200,7 +1197,6 @@ function content_info_admin($info_user) {
   ob_start();
   ?>
   <section class="info_admin">
-      <div class="top_notif_admin">
       <h3>Vos informations administrateur</h3>
       <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
       <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
@@ -1213,7 +1209,6 @@ function content_info_admin($info_user) {
       <p><strong>Mail : </strong><?php echo($info_user['mail']); ?></p>
       <p><strong>Téléphone : </strong><?php echo($info_user['telephone']); ?></p>
       <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($info_user['nb_user']); ?></p>
-      </div>
   </section>
   <?php
   $contenu = ob_get_clean();

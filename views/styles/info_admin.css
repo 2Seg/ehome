@@ -23,3 +23,13 @@ aside
   flex-wrap: wrap;
   padding: 10px;
 }
+
+
+.info_admin
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 7px;
+  margin: 10px auto 10px auto;
+  width: 500px;
+}
