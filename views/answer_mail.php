@@ -14,9 +14,12 @@ $menu .= menu_user($_SESSION['type']);
 // $info_mail = array(array("Service", "Client", "eHome", "Service client", "noreply@ehome.com"),
 //                         array("11/06/17", "15h02", "Bienvenue chez nous !", "Et blabla bli et blabla bla ..."));
 
-$contenu = menu_messaging($titre);
+$contenu = menu_messaging($titre, $nb_unread_mail);
 $contenu .= mail_print($info_mail);
-$contenu .= new_mail($titre, $info_mail);
+
+if (!isset($isset_previous_page)) {
+  $contenu .= new_mail($titre, $info_mail);
+}
 
 
 $footer = footer();

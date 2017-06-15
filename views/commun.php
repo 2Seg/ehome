@@ -1523,13 +1523,13 @@ function my_device($my_room) {
   return $contenu;
 }
 
-function menu_messaging($titre) {
+function menu_messaging($titre, $nb_unread_mail) {
   ob_start();
   ?>
   <div class="content">
   <section class="menu_messaging">
     <div class="bloc_menu">
-      <h3 id="mailbox"><a href="index.php?cible=messaging">Boite de réception</a></h3>
+      <h3 id="mailbox"><a href="index.php?cible=messaging">Boite de réception <?php if($nb_unread_mail > 0) {echo('('.$nb_unread_mail.')');} ?></a></h3>
       <h3 id="sentmail"><a href="index.php?cible=sent_mail">Messages envoyés</a></h3>
     </div>
     <?php
@@ -1552,10 +1552,10 @@ function menu_messaging($titre) {
       <div class="bloc_action">
         <h3>Actions</h3>
         <ul>
-          <li><button class="button_space">Marquer comme lu</button></li>
-          <li><button class="button_space">Marquer comme non lu</button></li>
-          <form method="post" action="index.php?cible=mail_del">
-          <li><input type="submit" value="Supprimer" onclick=" return confirmation()"></li>
+          <form method="post" action="index.php?cible=mail_traitement">
+          <li><input type="submit" name="submit" value="Marquer comme lu" class="button_space"></li>
+          <li><input type="submit" name="submit" value="Marquer comme non lu" class="button_space"></li>
+          <li><input type="submit" name="submit" value="Supprimer" onclick=" return confirmation()"></li>
         </ul>
         <script type="text/javascript" src="views/scripts/mailDel.js"></script>
       </div>
@@ -1565,8 +1565,8 @@ function menu_messaging($titre) {
       <div class="bloc_action">
         <h3>Actions</h3>
         <ul>
-          <form method="post" action="index.php?cible=mail_del">
-          <li><input type="submit" value="Supprimer" onclick=" return confirmation()"></li>
+          <form method="post" action="index.php?cible=mail_traitement">
+          <li><input type="submit" name="submit" value="Supprimer" onclick="return confirmation()"></li>
         </ul>
         <script type="text/javascript" src="views/scripts/mailDel.js"></script>
       </div>
@@ -1598,7 +1598,17 @@ function mailbox($mails, $nb_page) {
             for ($i = 0; $i < count($mails); $i++) {
               ?>
               <tbody>
-                <tr>
+                <?php
+                if ($mails[$i][5] == "oui") {
+                  ?>
+                  <tr class="read">
+                  <?php
+                } else {
+                  ?>
+                  <tr class="unread">
+                  <?php
+                }
+                ?>
                   <td><input type="checkbox" name="<?php echo($mails[$i][4]);?>"></td>
                   <td><?php echo('De : '.$mails[$i][0]); ?></td>
                   <td><?php echo($mails[$i][1]); ?></td>
@@ -1608,7 +1618,7 @@ function mailbox($mails, $nb_page) {
                   onclick="printMail(<?php echo($mails[$i][4]);?>)"
                   onmouseover="this.src='views/styles/ressources/icons/pen2.png'" onmouseout="this.src='views/styles/ressources/icons/pen1.png'"></td></td>
                   <td><img id="trash" class="trash<?php echo($mails[$i][4]);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
-                  onclick="deleteMail(<?php echo($mails[$i][4]);?>)"
+                  onclick="deleteMail(<?php echo($mails[$i][4]);?>, 'reception')"
                   onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'"></td>
                   <script type="text/javascript" src="views/scripts/mailbox.js"></script>
               <?php
@@ -1667,14 +1677,14 @@ function sent_mail($mails, $nb_page) {
               ?>
 
               <tbody>
-                <tr>
+                <tr class="read">
                   <td><input type="checkbox" name="<?php echo($mails[$i][4]);?>"></td>
                   <td><?php echo('À : '.$mails[$i][0]); ?></td>
                   <td><?php echo($mails[$i][1]); ?></td>
-                  <td><a href="index.php?cible=answer_mail&amp;id_mail=<?php echo($mails[$i][4]);?>"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
+                  <td><a href="index.php?cible=answer_mail&amp;id_mail=<?php echo($mails[$i][4]);?>&amp;previous=envoyes"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
                   <td><?php echo($mails[$i][3]); ?></td>
                   <td><img id="trash" class="trash<?php echo($mails[$i][4]);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
-                  onclick="deleteMail(<?php echo($mails[$i][4]);?>)"
+                  onclick="deleteMail(<?php echo($mails[$i][4]);?>, 'envoyés')"
                   onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'"></td>
                   <script type="text/javascript" src="views/scripts/mailbox.js"></script>
               <?php
@@ -1737,7 +1747,7 @@ function new_mail($titre, $info_mail) {
       <form method="post" action="index.php?cible=contr_new_mail" >
         <div class="bloc_destinataire">
           <p>
-            <label for="mail_receveur"><strong>Destinataire :</strong></label><br/>
+            <label for="mail_receveur"><strong>E-mail du destinataire :</strong></label><br/>
             <?php
             if ($titre == "Nouveau message") {
               ?>
@@ -1828,7 +1838,7 @@ function mail_print($info_mail) {
     <h3>Message</h3>
     <div class="bloc_expediteur">
       <p>
-        <label for="expediteur"><strong>Expéditeur :</strong></label><br/>
+        <label for="expediteur"><strong>E-mail de l'expéditeur :</strong></label><br/>
         <input type="text" id="type_expediteur" value="<?php echo($info_mail[0][0].' '.$info_mail[0][1].' '.$info_mail[0][2]); ?>" disabled>
       </p>
       <p>
@@ -1842,7 +1852,7 @@ function mail_print($info_mail) {
         <input type="text" id="mail_expediteur" value="<?php echo($info_mail[0][4]); ?>" disabled>
       </p>
       <p>
-        <label for="date_envoi"><strong>Date de l'envoi :</strong></label><br/>
+        <label for="date_envoi"><strong>Date d'envoi :</strong></label><br/>
         <input type="text" id="date_envoi" value="<?php echo('Le '.$info_mail[1][0].' à '.$info_mail[1][1]); ?>" disabled>
       </p>
     </div>

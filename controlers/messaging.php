@@ -11,6 +11,12 @@ if ($_SESSION['type'] == 'user') {
   $nb_page = count_nb_page($bdd, select_mail_admin($bdd, $_SESSION['id']));
 }
 
+if ($_SESSION['type'] == 'user') {
+  $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_user($bdd, $_SESSION['id']));
+} else {
+  $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_admin($bdd, $_SESSION['id']));
+}
+
 if(!isset($_GET['page']) || $_GET['page'] == 1) {
   if ($_SESSION['type'] == 'user') {
     $mail_user = select_6_mail($bdd, select_mail_user($bdd, $_SESSION['id']), 0);
@@ -30,8 +36,10 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
       $mails[$i][2] = $info_mail['objet'];
       $mails[$i][3] = $info_mail['date_format'];
       $mails[$i][4] = $info_mail['id'];
+      $mails[$i][5] = $info_mail['lecture'];
       $i++;
     }
+
     include('views/messaging.php');
   }
 
@@ -50,7 +58,9 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
     $mails[$i][2] = $info_mail['objet'];
     $mails[$i][3] = $info_mail['date_format'];
     $mails[$i][4] = $info_mail['id'];
+    $mails[$i][5] = $info_mail['lecture'];
     $i++;
   }
+
   include('views/messaging.php');
 }

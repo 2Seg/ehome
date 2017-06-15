@@ -47,11 +47,11 @@ if (isset($_SESSION['type'])) {
       } elseif ($_GET['cible'] == 'sent_mail') {
         include('controlers/sent_mail.php');
       } elseif ($_GET['cible'] == 'new_mail') {
-        include('views/new_mail.php');
-      } elseif ($_GET['cible'] == 'contr_new_mail') {
         include('controlers/new_mail.php');
-      } elseif ($_GET['cible'] == 'mail_del') {
-        include('controlers/mail_del.php');
+      } elseif ($_GET['cible'] == 'contr_new_mail') {
+        include('controlers/contr_new_mail.php');
+      } elseif ($_GET['cible'] == 'mail_traitement') {
+        include('controlers/mail_traitement.php');
       } elseif ($_GET['cible'] == 'answer_mail') {
         include('controlers/answer_mail.php');
       }

@@ -8,7 +8,8 @@ $titre = 'Nouveau message';
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
-$contenu = menu_messaging($titre);
+
+$contenu = menu_messaging($titre, $nb_unread_mail);
 $contenu .= new_mail($titre, array());
 
 $footer = footer();

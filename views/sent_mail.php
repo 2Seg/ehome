@@ -18,7 +18,7 @@ $menu .= menu_user($_SESSION['type']);
 // $nb_page = 1;
 // print_r($mails);
 
-$contenu = menu_messaging($titre);
+$contenu = menu_messaging($titre, $nb_unread_mail);
 $contenu .= sent_mail($mails, $nb_page);
 
 $footer = footer();

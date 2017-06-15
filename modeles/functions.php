@@ -164,7 +164,6 @@ function select_list_users($db) {
   return $req; // $info est un tableau avec plusieurs valeurs dedans
 }
 
-
 // fonction récupérant les informations NON INTERPRETEES sur les pièces du logement
 function select_info_room($db, $id_logement) {
   $info = array();
@@ -251,6 +250,13 @@ function select_info_user_mail($db, $table, $mail) {
   $req = $db -> prepare('SELECT * FROM '.$table.' WHERE mail = :mail');
   $req -> execute(array('mail' => $mail));
   return $req;
+}
+
+function count_nb_unread_mail($db, $mail) {
+  $req = $db -> prepare('SELECT COUNT(*) AS nb_unread_mail FROM messagerie WHERE mail_receveur = ? AND lecture = \'non\'');
+  $req -> execute(array($mail));
+  $info = $req -> fetch();
+  return $info['nb_unread_mail'];
 }
 
 /*****************************************************************INSERT***********************************************************************/
@@ -368,6 +374,11 @@ function update_pass_user($db, $id, $pass) {
 
 function update_reading_mail($db, $id_mail) {
   $req = $db -> prepare('UPDATE messagerie SET lecture = \'oui\' WHERE messagerie.id = ?');
+  $req -> execute(array($id_mail));
+}
+
+function update_unreading_mail($db, $id_mail) {
+  $req = $db -> prepare('UPDATE messagerie SET lecture = \'non\' WHERE messagerie.id = ?');
   $req -> execute(array($id_mail));
 }
 

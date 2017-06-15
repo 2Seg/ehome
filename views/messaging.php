@@ -18,7 +18,7 @@ $menu .= menu_user($_SESSION['type']);
 // $nb_page = 2;
 // print_r($mails);
 
-$contenu = menu_messaging($titre);
+$contenu = menu_messaging($titre, $nb_unread_mail);
 $contenu .= mailbox($mails, $nb_page);
 
 if(isset($message)) {

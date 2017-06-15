@@ -7,6 +7,12 @@ include_once('modeles/functions.php');
 
 $nb_page = count_nb_page_sent($bdd, select_mail_user($bdd, $_SESSION['id']));
 
+if ($_SESSION['type'] == 'user') {
+  $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_user($bdd, $_SESSION['id']));
+} else {
+  $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_admin($bdd, $_SESSION['id']));
+}
+
 if(!isset($_GET['page']) || $_GET['page'] == 1) {
   $mail_user = select_6_mail_sent($bdd, select_mail_user($bdd, $_SESSION['id']), 0);
 
@@ -24,6 +30,7 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
       $mails[$i][4] = $info_mail['id'];
       $i++;
     }
+
     include('views/sent_mail.php');
   }
 
@@ -39,7 +46,6 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
     $mails[$i][4] = $info_mail['id'];
     $i++;
   }
+
   include('views/sent_mail.php');
 }
-
-include('views/sent_mail.php');

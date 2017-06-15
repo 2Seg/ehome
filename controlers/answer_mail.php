@@ -5,6 +5,16 @@ controleur gérant l'extraction des données nécessaires à l'affichage des mai
 
 include_once('modeles/functions.php');
 
+if (isset($_GET['previous'])) {
+  $isset_previous_page = $_GET['previous'];
+}
+
+if ($_SESSION['type'] == 'user') {
+  $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_user($bdd, $_SESSION['id']));
+} else {
+  $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_admin($bdd, $_SESSION['id']));
+}
+
 update_reading_mail($bdd, $_GET['id_mail']);
 
 // $info_mail = array(array("Service", "Client", "eHome", "Service client", "noreply@ehome.com"),
@@ -42,5 +52,10 @@ $info_mail[1][2] = $info_mail_user['objet'];
 $info_mail[1][3] = $info_mail_user['contenu'];
 
 // print_r($info_mail);
+if ($_SESSION['type'] == 'user') {
+  $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_user($bdd, $_SESSION['id']));
+} else {
+  $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_admin($bdd, $_SESSION['id']));
+}
 
 include('views/answer_mail.php');
