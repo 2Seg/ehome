@@ -22,10 +22,9 @@ update_reading_mail($bdd, $_GET['id_mail']);
 
 $info_mail = array(array(), array());
 
-$info_mail_user = select_info_mail($bdd, $_GET['id_mail']);
-
-$type_envoyeur = $info_mail_user['type_envoyeur'];
-$mail_envoyeur = $info_mail_user['mail_envoyeur'];
+$info_mail_perso = select_info_mail($bdd, $_GET['id_mail']);
+$type_envoyeur = $info_mail_perso['type_envoyeur'];
+$mail_envoyeur = $info_mail_perso['mail_envoyeur'];
 
 if ($type_envoyeur == "Service client") {
   $info_mail[0][0] = "Service";
@@ -35,23 +34,22 @@ if ($type_envoyeur == "Service client") {
   $info_mail[0][4] = $mail_envoyeur;
 
 } else {
-  $data_user = select_info_user_mail($bdd, strtolower_utf8($type_envoyeur), $mail_envoyeur);
+  $data_perso = select_info_perso_mail($bdd, strtolower_utf8($type_envoyeur), $mail_envoyeur);
 
-  $info_user = $data_user -> fetch();
+  $info_perso = $data_perso -> fetch();
 
-  $info_mail[0][0] = $info_user['civilite'];
-  $info_mail[0][1] = $info_user['prenom'];
-  $info_mail[0][2] = $info_user['nom'];
+  $info_mail[0][0] = $info_perso['civilite'];
+  $info_mail[0][1] = $info_perso['prenom'];
+  $info_mail[0][2] = $info_perso['nom'];
   $info_mail[0][3] = $type_envoyeur;
   $info_mail[0][4] = $mail_envoyeur;
 }
 
-$info_mail[1][0] = $info_mail_user['jour_envoi'];
-$info_mail[1][1] = $info_mail_user['heure_envoi'];
-$info_mail[1][2] = $info_mail_user['objet'];
-$info_mail[1][3] = $info_mail_user['contenu'];
+$info_mail[1][0] = $info_mail_perso['jour_envoi'];
+$info_mail[1][1] = $info_mail_perso['heure_envoi'];
+$info_mail[1][2] = $info_mail_perso['objet'];
+$info_mail[1][3] = $info_mail_perso['contenu'];
 
-// print_r($info_mail);
 if ($_SESSION['type'] == 'user') {
   $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_user($bdd, $_SESSION['id']));
 } else {

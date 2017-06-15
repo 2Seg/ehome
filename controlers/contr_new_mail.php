@@ -13,19 +13,27 @@ if (isset($_GET['cible']) && $_GET['cible'] == 'contr_new_mail') {
       $message = 'L\'e-mail saisi n\'a aucune correspondance dans la base de données.';
       include('views/new_mail.php');
     } else {
-      $test = select_mail_user($bdd, $_SESSION['id']);
-      if ($test == false) {
-        $test == select_mail_admin($bdd, $_SESSION['id']);
-        if ($test == false) {
-          $message = 'Erreur inconnue.';
-          include('views/new_mail.php');
-        } else {
-          $mail_envoyeur = $test;
-          $type_envoyeur = "Administrateur";
-        }
-      } else {
-        $mail_envoyeur = $test;
+      // $test = select_mail_user($bdd, $_SESSION['id']);
+      // if ($test == false) {
+      //   $test == select_mail_admin($bdd, $_SESSION['id']);
+      //   if ($test == false) {
+      //     $message = 'Erreur inconnue.';
+      //     include('views/new_mail.php');
+      //   } else {
+      //     $mail_envoyeur = $test;
+      //     $type_envoyeur = "Administrateur";
+      //   }
+      // } else {
+      //   $mail_envoyeur = $test;
+      //   $type_envoyeur = "Utilisateur";
+      // }
+
+      if ($_SESSION['type'] == 'user') {
+        $mail_envoyeur = select_mail_user($bdd, $_SESSION['id']);
         $type_envoyeur = "Utilisateur";
+      } else {
+        $mail_envoyeur = select_mail_admin($bdd, $_SESSION['id']);
+        $type_envoyeur = "Administrateur";
       }
 
       insert_mail($bdd, $_POST['mail_receveur'], maj_lettre1($_POST['type_receveur']), $mail_envoyeur, $type_envoyeur, $_POST['objet'], $_POST['contenu']);

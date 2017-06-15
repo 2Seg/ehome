@@ -246,7 +246,7 @@ function select_info_mail($db, $id_mail) {
   return $info;
 }
 
-function select_info_user_mail($db, $table, $mail) {
+function select_info_perso_mail($db, $table, $mail) {
   $req = $db -> prepare('SELECT * FROM '.$table.' WHERE mail = :mail');
   $req -> execute(array('mail' => $mail));
   return $req;

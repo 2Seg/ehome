@@ -5,7 +5,11 @@ controleur gérant l'extraction des données nécessaires à l'affichage de la p
 
 include_once('modeles/functions.php');
 
-$nb_page = count_nb_page_sent($bdd, select_mail_user($bdd, $_SESSION['id']));
+if ($_SESSION['type'] == 'user') {
+  $nb_page = count_nb_page($bdd, select_mail_user($bdd, $_SESSION['id']));
+} else {
+  $nb_page = count_nb_page($bdd, select_mail_admin($bdd, $_SESSION['id']));
+}
 
 if ($_SESSION['type'] == 'user') {
   $nb_unread_mail = count_nb_unread_mail($bdd, select_mail_user($bdd, $_SESSION['id']));
@@ -14,7 +18,13 @@ if ($_SESSION['type'] == 'user') {
 }
 
 if(!isset($_GET['page']) || $_GET['page'] == 1) {
-  $mail_user = select_6_mail_sent($bdd, select_mail_user($bdd, $_SESSION['id']), 0);
+
+  if ($_SESSION['type'] == 'user') {
+    $mail_user = select_6_mail_sent($bdd, select_mail_user($bdd, $_SESSION['id']), 0);
+  } else {
+    $mail_user = select_6_mail_sent($bdd, select_mail_admin($bdd, $_SESSION['id']), 0);
+  }
+
 
   if ($mail_user -> rowcount() == 0) {
     $mails = array();
@@ -36,7 +46,13 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
 
 } else {
   $num_count = ($_GET['page'] - 1) * 6;
-  $mail_user = select_6_mail_sent($bdd, select_mail_user($bdd, $_SESSION['id']), $num_count);
+
+  if ($_SESSION['type'] == 'user') {
+    $mail_user = select_6_mail_sent($bdd, select_mail_user($bdd, $_SESSION['id']), 0);
+  } else {
+    $mail_user = select_6_mail_sent($bdd, select_mail_admin($bdd, $_SESSION['id']), 0);
+  }
+
   $i = 0;
   while ($info_mail = $mail_user -> fetch()) {
     $mails[$i][0] = $info_mail['mail_receveur'];
