@@ -196,7 +196,7 @@ function menu_user($type) {
       <li class="menu_user_elements" id="user_management"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
       <li class="menu_user_elements" id="notif_admin"><a href="index.php?cible=notif_admin" class="text_menu_user">Notifications</a></li>
       <li class="menu_user_elements" id="security"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
-      <li class="menu_user_elements" id="messaging_admin"><a href="index.php?cible=messaging_admin" class="text_menu_user">Messagerie</a></li>
+      <li class="menu_user_elements" id="messaging_admin"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
     </ul>
   <?php
   }
@@ -1833,8 +1833,8 @@ function mail_print($info_mail) {
     <h3>Message</h3>
     <div class="bloc_expediteur">
       <p>
-        <label for="expediteur"><strong>E-mail de l'expéditeur :</strong></label><br/>
-        <input type="text" id="type_expediteur" value="<?php echo($info_mail[0][0].' '.$info_mail[0][1].' '.$info_mail[0][2]); ?>" disabled>
+        <label for="expediteur"><strong>Expéditeur :</strong></label><br/>
+        <input type="text" id="expediteur" value="<?php echo($info_mail[0][0].' '.$info_mail[0][1].' '.$info_mail[0][2]); ?>" disabled>
       </p>
       <p>
         <label for="type_expediteur"><strong>Type d'expéditeur :</strong></label><br/>
@@ -1843,7 +1843,7 @@ function mail_print($info_mail) {
     </div>
     <div class="bloc_mail_date">
       <p>
-        <label for="mail_expediteur"><strong>E-mail :</strong></label><br/>
+        <label for="mail_expediteur"><strong>E-mail de l'expéditeur :</strong></label><br/>
         <input type="text" id="mail_expediteur" value="<?php echo($info_mail[0][4]); ?>" disabled>
       </p>
       <p>

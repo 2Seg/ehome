@@ -18,6 +18,7 @@ if ($_SESSION['type'] == 'user') {
 }
 
 if(!isset($_GET['page']) || $_GET['page'] == 1) {
+
   if ($_SESSION['type'] == 'user') {
     $mail_user = select_6_mail($bdd, select_mail_user($bdd, $_SESSION['id']), 0);
   } else {
@@ -45,6 +46,7 @@ if(!isset($_GET['page']) || $_GET['page'] == 1) {
 
 } else {
   $num_count = ($_GET['page'] - 1) * 6;
+  
   if ($_SESSION['type'] == 'user') {
     $mail_user = select_6_mail($bdd, select_mail_user($bdd, $_SESSION['id']), $num_count);
   } else {

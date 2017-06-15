@@ -23,13 +23,13 @@
         echo('<link rel="stylesheet" href="views/styles/join-us_type.css">');
     } elseif ($titre == 'Boite de réception'  || $titre == 'Messages envoyés') {
       echo('<link rel="stylesheet" href="views/styles/messaging.css">');
-    } elseif ($titre == 'Nouveau message' && $_SESSION['type'] == 'user') {
+    } elseif ($titre == 'Nouveau message') {
       echo('<link rel="stylesheet" href="views/styles/new_mail.css">');
-    } elseif ($titre == 'Message' && $_SESSION['type'] == 'user') {
+    } elseif ($titre == 'Message') {
       echo('<link rel="stylesheet" href="views/styles/answer_mail.css">');
     }
 
-  
+
     elseif ($titre == 'Gestion des utilisateurs') {
       echo('<link rel="stylesheet" href="views/styles/user_management.css">');
     } elseif ($titre == 'Vos informations administrateur') {

@@ -101,11 +101,22 @@ if (isset($_SESSION['type'])) {
         include("controlers/info_admin.php");
       } elseif ($_GET['cible'] == 'notification') {
         include("views/notification.php");
-
       } elseif ($_GET['cible'] == 'security') {
         include("views/security.php");
-      } elseif ($_GET['cible'] == 'messaging') {
-        include("views/messaging.php");
+      }
+
+      elseif ($_GET['cible'] == 'messaging') {
+        include('controlers/messaging.php');
+      } elseif ($_GET['cible'] == 'sent_mail') {
+        include('controlers/sent_mail.php');
+      } elseif ($_GET['cible'] == 'new_mail') {
+        include('controlers/new_mail.php');
+      } elseif ($_GET['cible'] == 'contr_new_mail') {
+        include('controlers/contr_new_mail.php');
+      } elseif ($_GET['cible'] == 'mail_traitement') {
+        include('controlers/mail_traitement.php');
+      } elseif ($_GET['cible'] == 'answer_mail') {
+        include('controlers/answer_mail.php');
       }
 
       elseif ($_GET['cible'] == 'home_admin') {
