@@ -45,7 +45,7 @@ aside
 article
 {
   transition-duration: 0.2s;
-  background-color: rgba(229,229, 229, 0.75);
+  background-color: rgba(215,215,215, 0.75); /*utilisé dans la page home_management*/
   padding: 0px 18px 0px 18px;
   margin : 25px;
   border: 1px solid rgba(229,229, 229, 0.75);
@@ -53,8 +53,6 @@ article
   /*
   border: 4px solid blue;*/
 }
-
-
 
 
 section:not(.home_info, .room_info)
