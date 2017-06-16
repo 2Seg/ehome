@@ -22,7 +22,7 @@
     } elseif ($titre == 'Messagerie' && $_SESSION['type'] == 'user') {
       echo('<link rel="stylesheet" href="views/styles/messaging_user.css">');
     }
-    
+
     elseif ($titre == 'Gestion des utilisateurs') {
       echo('<link rel="stylesheet" href="views/styles/user_management.css">');
     } elseif ($titre == 'Vos informations administrateur') {
@@ -37,6 +37,8 @@
       echo('<link rel="stylesheet" href="views/styles/signin.css">');
     } elseif ($titre == 'Erreur' || $titre == 'Déconnexion') {
       echo('<link rel="stylesheet" href="views/styles/error_or_disconnect.css">');
+    }elseif ($titre == 'Accueil') {
+      echo('<link rel="stylesheet" href="views/styles/home.css">');
     }
     ?>
 

@@ -354,6 +354,44 @@ function content_products() {
   return $contenu;
 }
 
+function content_p() {
+  ob_start();
+	?>
+  <aside>
+	<ul class="content_p">
+    <h3 class="content_p_text"> eHome c'est faire un choix de ... </h3>
+    <div class="flexbox_p">
+      <li class="flex_content_p"><h4>Sécurité</h4><p class="text_p">Protection de vos bien ainsi que de vos données personelles</p></li>
+      <div class="trait_p"></div>
+      <li class="flex_content_p"><h4>Fiabilité</h4><p class="text_p">Dispositif autonome, réactif et fonctionnel</p></li>
+      <div class="trait_p"></div>
+      <li class="flex_content_p"><h4>Flexibilité</h4><p class="text_p">Système adaptable à tout type d'habitation et entièrement modulable</p></p></li>
+      <div class="trait_p"></div>
+      <li class="flex_content_p"><h4>Contrôle total</h4><p class="text_p">Supervision via l'espace utilisateur</p></li>
+    </div>
+	</ul>
+  </aside>
+	<?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function content_c() {
+  ob_start();
+	?>
+  <aside>
+    <div class="flexbox_c">
+      <section class="section_c"><section class="section2_c"><p class="text_c">1</p></section></section>
+      <section class="section_c"><section class="section2_c"><p class="text_c">2</p></section></section>
+      <section class="section_c"><section class="section2_c"><p class="text_c">3</p></section></section>
+      <section class="section_c"><section class="section2_c"><p class="text_c">4</p></section></section>
+    </div>
+  </aside>
+	<?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
 function footer2() {
   ob_start();
 	?>
@@ -543,19 +581,26 @@ function content_cameras() {
 function content_home() {
   ob_start();
   ?>
-  <section>
-    <h2>Accueil eHome</h2>
-    <article>
+  <aside>
+  <div class="home_div">
+
+    <h2 class="title_home">Accueil eHome</h2>
+
+    <section class="home_section_1">
       <p>Notre <a class="lien" href="index.php?cible=about-us">société</a> propose des systèmes électroniques de domotique depuis 2016. Nous
         mettons à votre disposition plusieurs solutions, allant de la vente à l’installation en passant
         par le suivi de vos équipements. Ces équipements vous permettront d’allier sécurité de
         votre habitation et économie, dans le respect de l’environnement. Les systèmes sont
         adaptés aux besoins de chacun afin de vous assurer une prestation sur mesure."</p>
-    </article>
+    </section>
+
+  </div>
+
+  <div class="home_div">
 
     <h2>Vos avis</h2>
-
-    <article>
+    <div class="flexbox_home">
+    <section class="home_section_2">
       <h3>Déploiement de qualité</h3>
       <p>"eHome a effectué l’installation de capteurs de température
         et de luminosité dans toutes les pièces de notre appartement
@@ -563,16 +608,19 @@ function content_home() {
         effet, nous n’avons jamais eu de problèmes techniques, et nous
         avons même pu effectué des économies sur nos factures."</p>
       <p>Y.S (Paris 75)<p>
-      </article>
-      <article>
+      </section>
+
+      <section class="home_section_2">
       <h3>Entreprise très professionnelle</h3>
       <p>"Le SAV est très bon. Il répond vite, le seul petit soucis que nous
         avons eu avec un capteur a été réglé très rapidement par l’équipe
         technique. Des professionnels à l’écoute de leur client et
         très efficaces."</p>
       <p>M.T (La Garenne 92)</p>
-    </article>
-  </section>
+    </section>
+  </div>
+  </div>
+  </aside>
 
  <?php
   $contenu = ob_get_clean();
