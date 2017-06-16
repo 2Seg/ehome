@@ -382,6 +382,13 @@ function update_unreading_mail($db, $id_mail) {
   $req -> execute(array($id_mail));
 }
 
+function update_mail($db, $previous_mail, $new_mail) {
+  $req1 = $db -> prepare('UPDATE messagerie SET mail_envoyeur = :new_mail WHERE mail_envoyeur = :previous_mail');
+  $req1 -> execute(array('previous_mail' => $previous_mail, 'new_mail' => $new_mail));
+  $req1 -> closeCursor();
+  $req2 = $db -> prepare('UPDATE messagerie SET mail_receveur = :new_mail WHERE mail_receveur = :previous_mail');
+  $req2 -> execute(array('previous_mail' => $previous_mail, 'new_mail' => $new_mail));
+}
 /*****************************************************************DELETE***********************************************************************/
 
 // function qui supprime une pièce d'un logement ainsi que tous les capteurs associés

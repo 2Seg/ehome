@@ -7,6 +7,14 @@ controleur gérant :
 
 if (isset($_POST['civilite'])) {
   include_once('modeles/functions.php');
+  if ($_SESSION['type'] == 'user') {
+    $previous_mail = select_mail_user($bdd, $_SESSION['id']);
+  } else {
+    $previous_mail = select_mail_admin($bdd, $_SESSION['id']);
+  }
+
+  update_mail($bdd, $previous_mail, $_POST['mail']);
+
   update_info_user($bdd, $_SESSION['id'], $_POST['civilite'], $_POST['nom'], $_POST['prenom'], $_POST['date_naissance'],
                   $_POST['nationalite'], $_POST['pays_utilisateur'], $_POST['mail'], $_POST['telephone'], $_POST['paiement'],
                   $_POST['identifiant']);
