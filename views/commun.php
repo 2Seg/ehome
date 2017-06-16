@@ -187,7 +187,7 @@ function menu_user($type) {
       <li class="menu_user_elements" id="home_management"><a href="index.php?cible=home_management" class="text_menu_user">Gestion du domicile</a></li>
       <li class="menu_user_elements" id="info_user"><a href="index.php?cible=info_user" class="text_menu_user">Mes informations</a></li>
       <li class="menu_user_elements" id="notif_user"><a href="index.php?cible=notif_user" class="text_menu_user">Notifications</a></li>
-      <li class="menu_user_elements" id="messaging_user"><a href="index.php?cible=messaging_user" class="text_menu_user">Messagerie</a></li>
+      <li class="menu_user_elements" id="messaging_user"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
     </ul>
   <?php
   } elseif ($type == 'admin') {?>
@@ -196,7 +196,7 @@ function menu_user($type) {
       <li class="menu_user_elements" id="user_management"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
       <li class="menu_user_elements" id="notif_admin"><a href="index.php?cible=notif_admin" class="text_menu_user">Notifications</a></li>
       <li class="menu_user_elements" id="security"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
-      <li class="menu_user_elements" id="messaging_admin"><a href="index.php?cible=messaging_admin" class="text_menu_user">Messagerie</a></li>
+      <li class="menu_user_elements" id="messaging_admin"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
     </ul>
   <?php
   }
@@ -210,12 +210,12 @@ function menu_user($type) {
 function content_type_user() {
   ob_start();
   ?>
-  <section>
-    <article>
-      <h2 class="except_h2">Vous êtes :</h2>
-      <p><a href="index.php?cible=join-us_user"><button>Utilisateur</button></a></p>
-      <p><a href="index.php?cible=join-us_admin"><button>Administrateur</button></a></p>
-    </article>
+  <section class="ju_section">
+    <fieldset>
+      <legend><h2 class="except_h2">Vous êtes :</h2></legend>
+      <p><a href="index.php?cible=join-us_user"><button class="ju_button">Utilisateur</button></a></p>
+      <p><a href="index.php?cible=join-us_admin"><button class="ju_button">Administrateur</button></a></p>
+    </fieldset>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -225,30 +225,30 @@ function content_type_user() {
 function content_home_admin() {
   ob_start();
   ?>
-  <section>
-    <article class="bloc">
-      <h3>Gestion des utilisateurs</h3>
-      <p><a href="index.php?cible=user_management"><button>Gestion des utilisateurs</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article class="bloc">
-      <h3>Notifications</h3>
-      <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article class="bloc">
-      <h3>Sécurité</h3>
-      <p><a href="index.php?cible=security"><button>Sécurité</button></a></p>
-    </article>
-  </section>
-  <section>
-    <article class="bloc">
-      <h3>Messagerie</h3>
-      <p><a href="index.php?cible=messaging"><button>Messagerie</button></a></p>
-    </article>
-  </section>
+  <div class="flex2">
+    <section class="box">
+        <h3>Gestion des utilisateurs</h3>
+        <p><a href="index.php?cible=user_management"><button>Gestion des utilisateurs</button></a></p>
+    </section>
+
+    <section class="box">
+        <h3>Notifications</h3>
+        <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
+    </section>
+  </div>
+
+
+  <div class="flex3">
+    <section class="box">
+        <h3>Sécurité</h3>
+        <p><a href="index.php?cible=security"><button>Sécurité</button></a></p>
+    </section>
+
+    <section class="box">
+        <h3>Messagerie</h3>
+        <p><a href="index.php?cible=messaging"><button>Messagerie</button></a></p>
+    </section>
+  </div>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
@@ -663,6 +663,7 @@ function content_about_us(){
   ob_start();
   ?>
   <section>
+
     <h2>A propos d'eHome</h2>
     <article>
       <h3> Les valeurs des eHomers </h3>
@@ -672,9 +673,6 @@ function content_about_us(){
         <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
       </ul>
     </article>
-
-
-
 
     <h2> L’innovation au cœur de l’internet des objets </h2>
     <article>
@@ -1120,13 +1118,7 @@ function my_room($my_home) {
           onclick="deleteRoom(<?php echo("'".addslashes($my_home[$i][1])."'");?>, <?php echo("'".$my_home[$i][0]."'") ?>)" onmouseover="this.src='views/styles/ressources/icons/trash2.png'"
           onmouseout="this.src='views/styles/ressources/icons/trash1.png'">
           </div>
-          <script type="text/javascript">
-            function deleteRoom(nomPiece, id_piece) {
-              if(confirm("Voulez-vous vraiment supprimer la pièce '" + nomPiece + "' ainsi que tous les dispositifs qui y sont présents ?")) {
-                window.location = "index.php?cible=room_del&id_piece=" + id_piece;
-              }
-            }
-          </script>
+          <script type="text/javascript" src="views/scripts/myRoom1.js"></script>
           <?php
         } else {
           if($my_home[$i] == array()) {
@@ -1161,51 +1153,15 @@ function my_room($my_home) {
     }
       ?>
         <form id="form" method="post" action="index.php?cible=room_add">
-          <script type="text/javascript">
-            var i = 0;
-            var div = document.createElement("div");
-            div.id = "zoneAjout";
-            document.getElementById("form").appendChild(div);
-
-            function addRoom() {
-              if(!document.getElementById("zoneAjout")) {
-                i = 0;
-                div = document.createElement("div");
-                div.id = "zoneAjout";
-                document.getElementById("form").appendChild(div);
-              }
-              var article = document.createElement("article");
-              var div = document.createElement("div");
-              var input = document.createElement("input");
-              input.setAttribute("type", "text");
-              input.setAttribute("placeholder", "Nom de la pièce à ajouter");
-              input.name = "piece[]";
-              input.setAttribute("required", "");
-              article.id = "newArticle" + i;
-              article.setAttribute("class", "room_article");
-              div.id = "div" + i;
-              document.getElementById("zoneAjout").appendChild(article);
-              document.getElementById("newArticle" + i).appendChild(div);
-              document.getElementById("div" + i).appendChild(input);
-              i++;
-            }
-
-            function annuler() {
-              document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
-              i = 0;
-              div = document.createElement("div");
-              div.id = "zoneAjout";
-              document.getElementById("form").appendChild(div);
-            }
-          </script>
+          <script type="text/javascript" src="views/scripts/myRoom2.js"></script>
           </div>
           </div>
           <div class="bouttons_pièce">
           <input id="submit" type="submit" value="Confirmer les modifications">
         </form>
         <div class="add_bouttons">
-          <button onclick="addRoom()">Ajouter une pièce</button>
-          <button onclick="annuler()">Annuler</button>
+          <button onclick="addRoom();">Ajouter une pièce</button>
+          <button onclick="annuler();">Annuler</button>
         </div>
       </div>
       </section>
@@ -1269,17 +1225,16 @@ function my_basic_info($info_user) {
     <?php
   } else {
     ?>
-    <section class="basic_room">
-    <article>
-      <h3>Mes informations administrateur</h3>
-      <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
-      <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
-      <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
-      <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+      <section class="box">
+        <h3>Mes informations administrateur</h3>
+        <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
+        <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
+        <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
+        <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
+        <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
+      </section>
 
-      <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
-    </article>
-    </section>
+
     <?php
   }
   $info = ob_get_clean();
@@ -1290,7 +1245,6 @@ function content_info_admin($info_user) {
   ob_start();
   ?>
   <section class="info_admin">
-      <div class="top_notif_admin">
       <h3>Vos informations administrateur</h3>
       <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
       <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
@@ -1303,7 +1257,6 @@ function content_info_admin($info_user) {
       <p><strong>Mail : </strong><?php echo($info_user['mail']); ?></p>
       <p><strong>Téléphone : </strong><?php echo($info_user['telephone']); ?></p>
       <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($info_user['nb_user']); ?></p>
-      </div>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -1546,10 +1499,10 @@ function my_home_info($info_home) {
         <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
         <p><strong>Nombre d'habitants : </strong><?php echo($info_home['nb_habitant']); ?></p>
       </div>
-    </div>
+      </div>
 
     <div id="bouton_info_home"><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></div>
-    </section>
+  </section>
   <?php
   $home = ob_get_clean();
   return $home;
@@ -1588,13 +1541,7 @@ function my_device($my_room) {
                 <p><strong>Numéro de série : </strong><?php echo($my_room[$i][0]); ?></p>
                 <p><strong>Etat : </strong><?php echo($my_room[$i][2]); ?></p>
               </div>
-              <script type="text/javascript">
-                function deleteDevice(nomDispositif, id_dispositif, nomPiece, id_piece) {
-                  if(confirm("Voulez-vous vraiment supprimer le dispositif '" + nomDispositif + "' de la pièce '" + nomPiece + "' ?")) {
-                    window.location = "index.php?cible=device_del&id_device=" + id_dispositif + "&id_piece=" + id_piece;
-                  }
-                }
-              </script>
+              <script type="text/javascript" src="views/scripts/myDevice1.js"></script>
               <a href="#"><button>Données complètes</button></a>
             </article>
             <?php
@@ -1602,57 +1549,7 @@ function my_device($my_room) {
         }
         ?>
         <form id="form" method="post" action="index.php?cible=device_add&amp;id_piece=<?php echo($my_room[0][0]); ?>">
-          <script type="text/javascript">
-            var i = 0;
-            var div = document.createElement("div");
-            div.id = "zoneAjout";
-            document.getElementById("form").appendChild(div);
-
-            function addDevice() {
-              if(!document.getElementById("zoneAjout")) {
-                i = 0;
-                div = document.createElement("div");
-                div.id = "zoneAjout";
-                document.getElementById("form").appendChild(div);
-              }
-              var dispositifs = ["-- Sélectionnez un dispositif --", "Capteur de luminosité", "Capteur de température",
-                                "Capteur d'humidité", "Détecteur de mouvement", "Détecteur de fumée", "Actionneur chauffage",
-                                "Actionneur climatisation", "Actionneur porte", "Actionneur fenêtre", "Actionneur volet",
-                                "Actionneur portail", "Actionneur lumière", "Caméra de surveillance", "Alarme"];
-              var article = document.createElement("article");
-              var div = document.createElement("div");
-              var select = document.createElement("select");
-              article.id = "newArticle" + i;
-              article.setAttribute("class", "device_article");
-              div.id = "div" + i;
-              select.id = "select" + i;
-              select.name = "dispositif[]";
-              select.setAttribute("required", "");
-              document.getElementById("zoneAjout").appendChild(article);
-              document.getElementById("newArticle" + i).appendChild(div);
-              document.getElementById("div" + i).appendChild(select);
-              for(var j = 0; j < dispositifs.length; j++) {
-                var option = document.createElement("option");
-                if (j === 0) {
-                  option.text = dispositifs[j];
-                  option.value = "";
-                } else {
-                  option.text = option.value = dispositifs[j];
-                }
-                document.getElementById("select" + i).appendChild(option);
-              }
-              i++;
-
-            }
-
-            function annuler() {
-              document.getElementById("form").removeChild(document.getElementById("zoneAjout"));
-              i = 0;
-              div = document.createElement("div");
-              div.id = "zoneAjout";
-              document.getElementById("form").appendChild(div);
-            }
-          </script>
+          <script type="text/javascript" src="views/scripts/myDevice2.js"></script>
       </div>
     </div>
     <div class="bouttons_dispositif">
@@ -1669,26 +1566,56 @@ function my_device($my_room) {
   return $contenu;
 }
 
-function menu_messaging($nb_unread_mail) {
+function menu_messaging($titre, $nb_unread_mail) {
   ob_start();
   ?>
-  <form method="post" action="index.php?cible=mail_del">
+  <div class="content">
   <section class="menu_messaging">
-    <div class="bloc_new_mail">
-      <a href="index.php?cible=new_mail"><button>Nouveau message</button></a>
-    </div>
     <div class="bloc_menu">
-      <h3 id="mailbox"><a href="index.php?cible=messaging_user">Boite de réception<?php if($nb_unread_mail > 0) {echo(' ('.$nb_unread_mail.')');} ?></a></h3>
+      <h3 id="mailbox"><a href="index.php?cible=messaging">Boite de réception <?php if($nb_unread_mail > 0) {echo('('.$nb_unread_mail.')');} ?></a></h3>
       <h3 id="sentmail"><a href="index.php?cible=sent_mail">Messages envoyés</a></h3>
     </div>
-    <div class="bloc_action">
-      <h3>Actions</h3>
-      <ul>
-        <li><button class="button_space">Marquer comme lu</button></li>
-        <li><button class="button_space">Marquer comme non lu</button></li>
-        <li><input type="submit" value="Supprimer"></li>
-      </ul>
-    </div>
+    <?php
+    if ($titre == 'Boite de réception' || $titre == 'Messages envoyés') {
+      ?>
+      <div class="bloc_new_mail">
+        <a href="index.php?cible=new_mail"><button>Nouveau message</button></a>
+      </div>
+      <?php
+    } elseif ($titre == 'Nouveau message' || $titre == 'Message') {
+      ?>
+      <div class="bloc_previous_page">
+        <a href="index.php?cible=messaging"><button>Page précédente</button></a>
+      </div>
+      <?php
+    }
+
+    if ($titre == 'Boite de réception') {
+      ?>
+      <div class="bloc_action">
+        <h3>Actions</h3>
+        <ul>
+          <form method="post" action="index.php?cible=mail_traitement">
+          <li><input type="submit" name="submit" value="Marquer comme lu" class="button_space"></li>
+          <li><input type="submit" name="submit" value="Marquer comme non lu" class="button_space"></li>
+          <li><input type="submit" name="submit" value="Supprimer" onclick=" return confirmation()"></li>
+        </ul>
+        <script type="text/javascript" src="views/scripts/mailDel.js"></script>
+      </div>
+      <?php
+    } elseif ($titre == 'Messages envoyés') {
+      ?>
+      <div class="bloc_action">
+        <h3>Actions</h3>
+        <ul>
+          <form method="post" action="index.php?cible=mail_traitement">
+          <li><input type="submit" name="submit" value="Supprimer" onclick="return confirmation()"></li>
+        </ul>
+        <script type="text/javascript" src="views/scripts/mailDel.js"></script>
+      </div>
+      <?php
+    }
+    ?>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -1714,24 +1641,103 @@ function mailbox($mails, $nb_page) {
             for ($i = 0; $i < count($mails); $i++) {
               ?>
               <tbody>
-                <tr>
-                  <td><input type="checkbox" name="checkbox<?php echo($i);?>"></td>
-                  <td><?php echo($mails[$i][0]); ?></td>
+                <?php
+                if ($mails[$i][5] == "oui") {
+                  ?>
+                  <tr class="read">
+                  <?php
+                } else {
+                  ?>
+                  <tr class="unread">
+                  <?php
+                }
+                ?>
+                  <td><input type="checkbox" name="<?php echo($mails[$i][4]);?>"></td>
+                  <td><?php echo('De : '.$mails[$i][0]); ?></td>
                   <td><?php echo($mails[$i][1]); ?></td>
-                  <td><strong><?php echo($mails[$i][2]); ?></strong></td>
+                  <td><a href="index.php?cible=answer_mail&amp;id_mail=<?php echo($mails[$i][4]);?>"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
                   <td><?php echo($mails[$i][3]); ?></td>
-                  <td><img id="edit" class="edit<?php echo($i);?>" src="views/styles/ressources/icons/pen1.png" title="Répondre"
-                  onclick=""
+                  <td><img id="edit" class="edit<?php echo($mails[$i][4]);?>" src="views/styles/ressources/icons/pen1.png" title="Répondre"
+                  onclick="printMail(<?php echo($mails[$i][4]);?>)"
                   onmouseover="this.src='views/styles/ressources/icons/pen2.png'" onmouseout="this.src='views/styles/ressources/icons/pen1.png'"></td></td>
-                  <td><img id="trash" class="trash<?php echo($i);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
-                  onclick=""
+                  <td><img id="trash" class="trash<?php echo($mails[$i][4]);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
+                  onclick="deleteMail(<?php echo($mails[$i][4]);?>, 'reception')"
                   onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'"></td>
+                  <script type="text/javascript" src="views/scripts/mailbox.js"></script>
               <?php
               if ($i != count($mails) - 1) {
                 ?>
                 </tr></tbody>
                 <tbody><tr class="tr_vide"></tr></tbody>
                 <?php
+              }  else {
+                echo('</tr></tbody>');
+              }
+            }
+          }
+          ?>
+        </table>
+      </div>
+    </div>
+    <div class="mail_bottom">
+      <?php
+      if ($nb_page > 1) {
+        echo('Page : ');
+        for ($i = 1; $i <= $nb_page; $i++) {
+          ?>
+          <a href="index.php?cible=messaging&amp;page=<?php echo($i); ?>"><?php echo($i); ?></a>
+          <?php
+          echo(' ');
+        }
+      }
+      ?>
+    </div>
+  </section>
+  </form>
+  </div>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function sent_mail($mails, $nb_page) {
+  ob_start();
+  ?>
+  <section class="mailbox">
+    <div class="content_mailbox">
+      <div class="mail_top">
+        <h3>Messages envoyés</h3>
+      </div>
+      <div class="mail">
+        <?php
+        if ($mails == array()) {
+          echo('<h2 class="except_h2">Vous n\'avez envoyé aucun e-mail.</h2>');
+        } else {
+          ?>
+          <table>
+            <?php
+            for ($i = 0; $i < count($mails); $i++) {
+              ?>
+
+              <tbody>
+                <tr class="read">
+                  <td><input type="checkbox" name="<?php echo($mails[$i][4]);?>"></td>
+                  <td><?php echo('À : '.$mails[$i][0]); ?></td>
+                  <td><?php echo($mails[$i][1]); ?></td>
+                  <td><a href="index.php?cible=answer_mail&amp;id_mail=<?php echo($mails[$i][4]);?>&amp;previous=envoyes"><strong><?php echo($mails[$i][2]); ?></strong></a></td>
+                  <td><?php echo($mails[$i][3]); ?></td>
+                  <td><img id="trash" class="trash<?php echo($mails[$i][4]);?>" src="views/styles/ressources/icons/trash1.png" title="Supprimer l'e-mail"
+                  onclick="deleteMail(<?php echo($mails[$i][4]);?>, 'envoyés')"
+                  onmouseover="this.src='views/styles/ressources/icons/trash2.png'" onmouseout="this.src='views/styles/ressources/icons/trash1.png'"></td>
+                  <script type="text/javascript" src="views/scripts/mailbox.js"></script>
+              <?php
+              if ($i != count($mails) - 1) {
+                ?>
+                </tr></tbody>
+                <tbody><tr class="tr_vide"></tr></tbody>
+                <?php
+              } else {
+                echo('</tr></tbody>');
               }
             }
           }
@@ -1745,7 +1751,7 @@ function mailbox($mails, $nb_page) {
         echo('Page : ');
         for ($i = 1; $i <= $nb_page; $i++) {
           ?>
-          <a href="index.php?cible=messaging_user&amp;page=<?php echo($i); ?>"><?php echo($i); ?></a>
+          <a href="index.php?cible=sent_mail&amp;page=<?php echo($i); ?>"><?php echo($i); ?></a>
           <?php
           echo(' ');
         }
@@ -1754,9 +1760,161 @@ function mailbox($mails, $nb_page) {
     </div>
   </section>
   </form>
+  </div>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
+}
+
+function new_mail($titre, $info_mail) {
+  ob_start();
+  if (isset($info_mail[0][3]) && $info_mail[0][3] == "Service client") {
+    ?>
+    <section class="new_mail">
+      <h3>Répondre au message</h3>
+      <h3 class="except_h2">Le message ci-contre a été envoyé automatiquement, vous ne pouvez donc pas y répondre. Pour tout renseignement, contacter un administrateur.</h3>
+    </section>
+    <?php
+  } else {
+  ?>
+    <section class="new_mail">
+      <h3>
+        <?php
+        if ($titre == 'Message') {
+          echo("Répondre au message");
+        } else {
+          echo($titre);
+        }
+        ?>
+      </h3>
+      <form method="post" action="index.php?cible=contr_new_mail" >
+        <div class="bloc_destinataire">
+          <p>
+            <label for="mail_receveur"><strong>E-mail du destinataire :</strong></label><br/>
+            <?php
+            if ($titre == "Nouveau message") {
+              ?>
+              <input type="mail" name="mail_receveur" id="mail_receveur" placeholder="exemple@mail.com" required value="<?php if(isset($_POST['mail_receveur'])) {echo($_POST['mail_receveur']);}?>">
+              <?php
+            } elseif ($titre == "Message") {
+              ?>
+              <input type="text" id="mail_receveur" disabled value="<?php echo($info_mail[0][4]);?>">
+              <input type="text" name="mail_receveur" id="mail_receveur_none" value="<?php echo($info_mail[0][4]);?>">
+              <?php
+            }
+            ?>
+          </p>
+          <p>
+            <label for="type_receveur"><strong>Type de destinataire :</strong></label><br/>
+            <select name="type_receveur" id="type_receveur" required>
+            <?php
+            if ($titre == "Nouveau message") {
+              ?>
+                <option value="" selected disabled>-- Sélectionnez une valeur --</option>
+                <option value="utilisateur">Utilisateur</option>
+                <option value="administrateur">Administrateur</option>
+              <?php
+            } elseif ($titre == "Message") {
+              if ($info_mail[0][3] == "Utilisateur") {
+              ?>
+              <option value="" disabled>-- Sélectionnez une valeur --</option>
+              <option value="utilisateur" selected>Utilisateur</option>
+              <option value="administrateur" disabled>Administrateur</option>
+              <?php
+            } elseif ($info_mail[0][3] == "Administrateur") {
+              ?>
+              <option value="" disabled>-- Sélectionnez une valeur --</option>
+              <option value="utilisateur" disabled>Utilisateur</option>
+              <option value="administrateur" selected>Administrateur</option>
+              <?php
+              }
+            }
+            ?>
+            </select>
+          </p>
+        </div>
+        <div class="bloc_contenu">
+          <p>
+            <label for="objet"><strong>Objet :</strong></label><br/>
+            <?php
+            if ($titre == "Nouveau message") {
+              ?>
+              <input type="text" name="objet" id="objet" placeholder="Objet du message" required value="<?php if(isset($_POST['objet'])) {echo($_POST['objet']);}?>">
+              <?php
+            } elseif ($titre == "Message") {
+              if (substr($info_mail[1][2], 0, 5) != "RE : ") {
+                $objet_mail = 'RE : '.$info_mail[1][2];
+                ?>
+                <input type="text" name="objet" id="objet" placeholder="Objet du message" disabled value="<?php echo($objet_mail);?>">
+                <input type="text" name="objet" id="objet_none" value="<?php echo($objet_mail);?>">
+                <?php
+              } else {
+                ?>
+                <input type="text" name="objet" id="objet" placeholder="Objet du message" disabled value="<?php echo($info_mail[1][2]);?>">
+                <input type="text" name="objet" id="objet_none" value="<?php echo($info_mail[1][2]);?>">
+                <?php
+              }
+            }
+            ?>
+          </p>
+          <p>
+            <label for="contenu"><strong>Contenu :</strong></label><br />
+            <textarea name="contenu" id="contenu" placeholder="Contenu du message" required><?php if(isset($_POST['contenu'])) {echo($_POST['contenu']);}?></textarea>
+          </p>
+        </div>
+        <p class="button">
+          <input type="submit" value="Envoyer">
+        </p>
+      </form>
+    </section>
+  </div>
+  <?php
+  }
+  $content = ob_get_clean();
+  return $content;
+}
+
+function mail_print($info_mail) {
+  ob_start();
+  ?>
+  <section class="mail">
+    <h3>Message</h3>
+    <div class="bloc_expediteur">
+      <p>
+        <label for="expediteur"><strong>Expéditeur :</strong></label><br/>
+        <input type="text" id="expediteur" value="<?php echo($info_mail[0][0].' '.$info_mail[0][1].' '.$info_mail[0][2]); ?>" disabled>
+      </p>
+      <p>
+        <label for="type_expediteur"><strong>Type d'expéditeur :</strong></label><br/>
+        <input type="text" id="type_expediteur" value="<?php echo($info_mail[0][3]); ?>" disabled>
+      </p>
+    </div>
+    <div class="bloc_mail_date">
+      <p>
+        <label for="mail_expediteur"><strong>E-mail de l'expéditeur :</strong></label><br/>
+        <input type="text" id="mail_expediteur" value="<?php echo($info_mail[0][4]); ?>" disabled>
+      </p>
+      <p>
+        <label for="date_envoi"><strong>Date d'envoi :</strong></label><br/>
+        <input type="text" id="date_envoi" value="<?php echo('Le '.$info_mail[1][0].' à '.$info_mail[1][1]); ?>" disabled>
+      </p>
+    </div>
+    <div class="bloc_objet">
+      <p>
+        <label for="objet"><strong>Objet :</strong></label><br/>
+        <input type="text" id="objet" value="<?php echo($info_mail[1][2]); ?>" disabled>
+      </p>
+    </div>
+    <div class="bloc_contenu">
+      <p>
+        <label for="contenu"><strong>Contenu :</strong></label><br/>
+        <textarea id="contenu" disabled><?php echo($info_mail[1][3]); ?></textarea>
+      </p>
+    </div>
+  </section>
+  <?php
+  $content = ob_get_clean();
+  return $content;
 }
 
 /*****************************************************************Fonctions $footer***********************************************************************/
