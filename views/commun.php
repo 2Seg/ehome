@@ -1451,10 +1451,10 @@ function my_home_info($info_home) {
         <p><strong>Superficie : </strong><?php echo($info_home['superficie'].' m²'); ?></p>
         <p><strong>Nombre d'habitants : </strong><?php echo($info_home['nb_habitant']); ?></p>
       </div>
-    </div>
+      </div>
 
     <div id="bouton_info_home"><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></div>
-    </section>
+  </section>
   <?php
   $home = ob_get_clean();
   return $home;
