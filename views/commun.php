@@ -604,7 +604,7 @@ function content_home() {
 
   <div class="home_div">
 
-    <h2>Vos avis</h2>
+    <h2 class="title_home">Vos avis</h2>
     <div class="flexbox_home">
     <section class="home_section_2">
       <h3>Déploiement de qualité</h3>
@@ -668,56 +668,62 @@ function content_legal_information() {
 function content_about_us(){
   ob_start();
   ?>
-  <section>
 
-    <h2>A propos d'eHome</h2>
-    <article>
+
+    <div class="home_div">
+        <h2 class="title_home">A propos d'eHome</h2>
+        <section class="home_section_1">
       <h3> Les valeurs des eHomers </h3>
       <ul>
         <li> Rechercher le confort de chacun de nos clients. </li>
         <li> Innover pour avancer et faire avancer le monde. </li>
         <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
       </ul>
-    </article>
+        </section>
+    </div>
 
-    <h2> L’innovation au cœur de l’internet des objets </h2>
-    <article>
+
+    <div class="home_div">
+        <section class="home_section_1">
+        <h3 class="title_home"> L’innovation au cœur de l’internet des objets </h3>
       <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
         Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
         Au-delà des volets roulants, de nombreux équipements,
         comme l'éclairage ou le chauffage, peuvent être automatisés
         pour gagner du temps et faire des économies !" </p>
-    </article>
-
-
-
-    <h2> eHome plus en détail </h2>
-    <div class="flex_art_about_us">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
-      <article>
-        <h3> Notre histoire </h3>
-        <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
-          dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
-      </article>
-
-
-      <article>
-        <h3> Espace presse </h3>
-        <p> Découvrez nos dernières annonces </p>
-      </article>
-
-
-      <article>
-        <h3> Document de référence </h3>
-        <p> Lire le rapport annuel </p>
-      </article>
+  </section>
+        <h2 class="title_home"> eHome plus en détail </h2>
     </div>
 
 
 
 
-    <h2> Ce que nous vous proposons </h2>
-    <article>
-      <h3> Un gain de temps et de confort au quotidient </h3>
+    <div class="flexbox_home">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
+
+        <section class="home_section_2">
+        <h3> Notre histoire </h3>
+        <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
+          dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
+      </section>
+
+
+      <section class="home_section_2">
+        <h3> Espace presse </h3>
+        <p> Découvrez nos dernières annonces </p>
+      </section>
+
+
+      <section class="home_section_2">
+        <h3> Document de référence </h3>
+        <p> Lire le rapport annuel </p>
+      </section>
+    </div>
+
+
+    <div class="home_div">
+    <h2 class="title_home"> Ce que nous vous proposons </h2>
+    <section class="home_section_1">
+      <h3 class="title_home"> Un gain de temps et de confort au quotidient </h3>
       <p> Il est 7h00. Vous vous réveillez au son de votre
         radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
         L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
@@ -729,11 +735,12 @@ function content_about_us(){
         Vous allez vous coucher ? A partir d'une seule commande, vous fermez
         tous les volets roulants, abaissez le chauffage et éteignez les lumières.
         Le confort absolu ! </p>
-    </article>
+    </section>
+    </div>
 
-
-    <article>
-      <h3> Des économies d'énergie à la clé </h3>
+    <div class="home_div">
+    <section class="home_section_1">
+      <h3 class="title_home"> Des économies d'énergie à la clé </h3>
       <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
         chauffage en marche. En vous équipant de notre installation domotique,
         vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
@@ -743,11 +750,12 @@ function content_about_us(){
         sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
         pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
         en s'adaptant à votre style de vie et votre présence dans la maison. </p>
-    </article>
+    </section>
+    </div>
 
-
-    <article>
-      <h3> Pour votre sécurité et celle de votre maison </h3>
+    <div class="home_div">
+    <section class="home_section_1">
+      <h3 class="title_home"> Pour votre sécurité et celle de votre maison </h3>
       <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
         passer toutes les pièces en revue. Comme les équipements domotiques sont
         désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
@@ -758,8 +766,9 @@ function content_about_us(){
         vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
         Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
         recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
-    </article>
-  </section>
+    </section>
+    </div>
+
 
   <?php
   $contenu = ob_get_clean();
