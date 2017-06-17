@@ -1,0 +1,339 @@
+h4
+{
+  text-align: center;
+  color: rgb(210,0,0);
+  vertical-align: top;
+  margin:10px;
+}
+
+/****************************************HOME**************************************/
+
+.home_div
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home_section_1
+{
+  padding: 0px 18px 0px 18px;
+  border-radius: 7px;
+  box-shadow: 3px 3px 10px rgb(80,80,80);
+  background-color: rgba(229,229, 229, 0.75);
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  align-items: center;
+  padding-bottom: 25px;
+  justify-content: center;
+}
+
+.home_section_2
+{
+  padding: 0px 18px 0px 18px;
+  border-radius: 7px;
+  box-shadow: 3px 3px 10px rgb(80,80,80);
+  background-color: rgba(229,229, 229, 0.75);
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.flexbox_home
+{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+  /*border: 1px solid pink;*/
+}
+
+.title_home
+{
+  justify-content: center;
+}
+
+/**********************************************************CARROUSSEL********************************************************************/
+
+#imgs img
+{
+    /*overlays all the imgs */
+    /*You see only the first img, for now*/
+    width:100%;
+    height:550px;
+    position:absolute;
+    margin: 0px;
+    /*border: 3px solid rgba(100, 100, 100, 1);*/
+
+    transition: 1s; /* durée de transition entre chaque image */
+    visibility:hidden; /* pour n'avoir qu'une image à la fois */
+
+    /*border: 4px solid green;*/
+}
+
+/* contient les flèches, le texte, la zone de texte, le #Snav up et les dots*/
+#Snav
+{
+    display:block;
+    width:100%;
+    height:550px;
+    margin: 0px;
+    position: relative;
+
+
+    /*top: -100px;*/
+
+    /*border: 1px solid rgba(0, 0, 0, 0);*/
+    /*border: 4px solid pink;*/
+}
+
+/* where the circles are going to be*/
+#SnavUp
+{
+    display:block;
+    /*border: 4px solid purple;*/
+    border: 1px solid rgba(0, 0, 0, 0);
+    /* à laisser sinon tout descend... */
+}
+
+/* position du block de cercles qui indiquent à quelle image on est*/
+#Scircles
+{
+    display:block;
+    position: absolute;
+    top: 525px;
+    right: 55px;
+    padding: 0px;
+    margin: 0px;
+
+    /*border: 2px solid blue;*/
+}
+
+/* les carés bleu et vert qui entourent les dots noirs et blancs */
+#Scircles ul
+{
+    margin:0;
+    display:block;
+    width:auto;
+    height:auto;
+    padding: 0px;
+
+    /*border: 2px solid green;*/
+}
+
+/* ce sont les 3 boutons noirs ou blancs */
+#Scircles li
+{
+    list-style:none;
+    display:block;
+    background-color:rgba(0, 0, 0, 1);
+    width:25px;
+    height:5px;
+    margin-right: 5px;
+
+    /* pour mettre les boutons sur une ligne et pas en colonne */
+    float:left;
+    visibility:hidden;
+
+    /* pour faires des boutons ronds */
+    border-bottom-left-radius:12px;
+    border-top-left-radius:12px;
+    border-bottom-right-radius:12px;
+    border-top-right-radius:12px;
+/*
+    border: 2px solid pink;*/
+}
+
+/* position des boutons-flèches */
+#SnavMiddle
+{
+    display:block;
+    position: relative;
+    width:100%;
+    height:35px;
+    margin-top: 225px;
+/*
+    border: 2px solid pink;*/
+}
+
+/*left button*/
+#Sleft
+{
+    height:100%;
+    float:left;
+    margin-left:20px;
+    opacity:0.8;
+
+}
+
+/*button effect*/
+#Sleft:hover
+{
+    opacity:1;
+}
+
+#Sright
+{
+    height:100%;
+    float:right;
+    margin-right:20px;
+    opacity:0.8;
+
+}
+
+#Sright:hover
+{
+    opacity:1;
+}
+
+/* informations et texte en bas du slider */
+#SnavBottom /* les textes sont dans commun.php */
+{
+    display:flex;
+    justify-content: center;
+    width:70%;
+    height:300px;
+    position:relative;
+    top: -170px;
+    margin-left: auto;
+    margin-right: auto;
+    /*top: 150px;*/
+    align-items:center;
+    /*border: 2px solid yellow;*/
+}
+
+#SP0,#SP1,#SP2
+{
+  font-family: "gr-med";
+  font-size: 1.5em;
+}
+
+/* texte d'info sur la slide */
+#SnavBottom p
+{
+    color: white;
+    position:absolute;
+    visibility:hidden;
+    text-align: center;
+    /*border: 2px solid blue;*/
+    margin: 0;
+}
+
+/***********************************************************CONTENT_P********************************************************************/
+.content_p
+{
+  background-color: rgb(205,205,193);
+  color: black;
+  padding: 0px;
+  box-shadow: -1.4px 3px 10px rgb(70,70,70);
+  margin: 0px;
+  border: 0.5px solid rgba(0,0,0,0.4);
+}
+
+.content_p_text
+{
+  color: rgb(210,0,0);
+  padding: auto;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 120%;
+  /*border: 1px solid pink;*/
+}
+
+.flexbox_p
+{
+  display: flex;
+  color: black;
+  list-style: none;
+  justify-content: space-around;
+  margin-bottom: 0px;
+  /*border: 1px solid orange;*/
+  height: 150px;
+}
+
+.flex_content_p
+{
+  width: 21%;
+  height: auto;
+  display: flex;
+  color: black;
+  list-style: none;
+  flex-direction: column;
+  margin-bottom: 0px;
+  /*border: 1px solid orange;*/
+}
+
+.text_p
+{
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.trait_p
+{
+border-left: 1.5px solid;
+border-color: rgba(0, 0, 0, 0.6);
+height:70%;
+}
+
+/***********************************************************CONTENT_C********************************************************************/
+
+.flexbox_c
+{
+  display: flex;
+  width: 100%;
+  height:180px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  justify-content: center;
+  /*border: 1px solid orange;*/
+  align-items: center;
+}
+
+.section_c /*cercle rose*/
+{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 12px 0 12px;
+  background-color: rgb(244, 194, 194);
+  /*rgb(234, 153, 153);*/
+  padding: 15px;
+}
+
+.section2_c  /*cercle rouge*/
+{
+  height: 100%;
+  /*border: 1px solid rgb(254,150,160);*/
+  border-radius: 50%;
+  background-color: rgb(210,0,0);
+}
+
+.section2small_c /*petit cercle rose*/
+{
+  height: 30px;
+  width: 30px;
+    margin: 0 7px 0 7px;
+  /*border: 1px solid rgb(254,150,160);*/
+  border-radius: 50%;
+  background-color: rgb(244, 194, 194);
+  /*border: 1px solid orange;*/
+}
+
+.text_c
+{
+  color: white;
+  text-align: center;
+  margin: 0;
+  height: 100%;
+  padding-top: 20px;
+  font-family: "gr-med";
+  /*border-radius: 50%;*/
+  /*border: 1px solid green;*/
+}

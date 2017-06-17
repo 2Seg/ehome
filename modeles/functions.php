@@ -15,10 +15,25 @@ function user_in_db($db, $login) {
 }
 
 function select_mail_user($db, $id) {
-  $req = $db -> prepare('SELECT  mail FROM utilisateur WHERE id = ?');
+  $req = $db -> prepare('SELECT mail FROM utilisateur WHERE id = ?');
   $req -> execute(array($id));
-  $info = $req -> fetch();
-  return $info['mail'];
+  if ($req -> rowcount() == 0) {
+    return false;
+  } else {
+    $info = $req -> fetch();
+    return $info['mail'];
+  }
+}
+
+function select_mail_admin($db, $id) {
+  $req = $db -> prepare('SELECT mail FROM administrateur WHERE id = ?');
+  $req -> execute(array($id));
+  if ($req -> rowcount() == 0) {
+    return false;
+  } else {
+    $info = $req -> fetch();
+    return $info['mail'];
+  }
 }
 
 function select_password_user($db, $id) {
@@ -149,7 +164,6 @@ function select_list_users($db) {
   return $req; // $info est un tableau avec plusieurs valeurs dedans
 }
 
-
 // fonction récupérant les informations NON INTERPRETEES sur les pièces du logement
 function select_info_room($db, $id_logement) {
   $info = array();
@@ -201,6 +215,50 @@ function count_nb_page($db, $mail_user) {
   $pages = $info['nb_mail'] / 6;
   return ceil($pages);
 }
+
+function select_6_mail_sent($db, $mail_user, $num_count) {
+  $req = $db -> prepare('SELECT *, DATE_FORMAT(date_envoi, \'%d/%m/%Y\') AS date_format FROM messagerie WHERE mail_envoyeur = ?
+                        ORDER BY date_envoi DESC LIMIT '.$num_count.', 6');
+  $req -> execute(array($mail_user));
+  return $req;
+}
+
+function count_nb_page_sent($db, $mail_user) {
+  $req = $db -> prepare('SELECT COUNT(*) AS nb_mail FROM messagerie WHERE mail_envoyeur = ?');
+  $req -> execute(array($mail_user));
+  $info = $req -> fetch();
+  $pages = $info['nb_mail'] / 6;
+  return ceil($pages);
+}
+
+// fonction vérifiant si l'utilisateur a saisi un mail existant dans la table choisie
+function verif_mail($db, $table, $mail) {
+  $req = $db -> prepare('SELECT * FROM '.$table.' WHERE mail = :mail');
+  $req -> execute(array('mail' => $mail));
+  return $req;
+}
+
+function select_info_mail($db, $id_mail) {
+  $req = $db -> prepare('SELECT *, DATE_FORMAT(date_envoi, \'%d/%m/%Y\') AS jour_envoi, DATE_FORMAT(date_envoi, \'%Hh%i\') AS heure_envoi
+                        FROM messagerie WHERE id = ?');
+  $req -> execute(array($id_mail));
+  $info = $req -> fetch();
+  return $info;
+}
+
+function select_info_perso_mail($db, $table, $mail) {
+  $req = $db -> prepare('SELECT * FROM '.$table.' WHERE mail = :mail');
+  $req -> execute(array('mail' => $mail));
+  return $req;
+}
+
+function count_nb_unread_mail($db, $mail) {
+  $req = $db -> prepare('SELECT COUNT(*) AS nb_unread_mail FROM messagerie WHERE mail_receveur = ? AND lecture = \'non\'');
+  $req -> execute(array($mail));
+  $info = $req -> fetch();
+  return $info['nb_unread_mail'];
+}
+
 /*****************************************************************INSERT***********************************************************************/
 
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
@@ -270,6 +328,17 @@ function insert_device($db, $id_piece, $dispositif) {
   $req -> execute(array('id_piece' => $id_piece, 'dispositif' => $dispositif));
 }
 
+function insert_mail($db, $mail_receveur, $type_receveur, $mail_envoyeur, $type_envoyeur, $objet, $contenu) {
+  $req = $db -> prepare('INSERT INTO messagerie(mail_receveur, type_receveur, mail_envoyeur, type_envoyeur, objet, contenu, date_envoi, lecture)
+                        VALUES (:mail_receveur, :type_receveur, :mail_envoyeur, :type_envoyeur, :objet, :contenu, NOW(), \'non\')');
+  $req -> execute(array('mail_receveur' => $mail_receveur,
+                        'type_receveur' => $type_receveur,
+                        'mail_envoyeur' => $mail_envoyeur,
+                        'type_envoyeur' => $type_envoyeur,
+                        'objet' => $objet,
+                        'contenu' => $contenu));
+}
+
 /*****************************************************************UPDATE***********************************************************************/
 
 // fonction modifiant le nb de piece d'un logement
@@ -302,6 +371,24 @@ function update_pass_user($db, $id, $pass) {
   $req = $db -> prepare('UPDATE utilisateur SET mot_de_passe = :pass WHERE id = :id');
   $req -> execute(array('pass' => $pass, 'id' => $id));
 }
+
+function update_reading_mail($db, $id_mail) {
+  $req = $db -> prepare('UPDATE messagerie SET lecture = \'oui\' WHERE messagerie.id = ?');
+  $req -> execute(array($id_mail));
+}
+
+function update_unreading_mail($db, $id_mail) {
+  $req = $db -> prepare('UPDATE messagerie SET lecture = \'non\' WHERE messagerie.id = ?');
+  $req -> execute(array($id_mail));
+}
+
+function update_mail($db, $previous_mail, $new_mail) {
+  $req1 = $db -> prepare('UPDATE messagerie SET mail_envoyeur = :new_mail WHERE mail_envoyeur = :previous_mail');
+  $req1 -> execute(array('previous_mail' => $previous_mail, 'new_mail' => $new_mail));
+  $req1 -> closeCursor();
+  $req2 = $db -> prepare('UPDATE messagerie SET mail_receveur = :new_mail WHERE mail_receveur = :previous_mail');
+  $req2 -> execute(array('previous_mail' => $previous_mail, 'new_mail' => $new_mail));
+}
 /*****************************************************************DELETE***********************************************************************/
 
 // function qui supprime une pièce d'un logement ainsi que tous les capteurs associés
@@ -316,4 +403,9 @@ function delete_room($db, $id_logement, $id_piece) {
 function delete_device($db, $id_device) {
   $req = $db -> prepare('DELETE FROM dispositif WHERE id = ?');
   $req -> execute(array($id_device));
+}
+
+function delete_mail($db, $id_mail) {
+  $req = $db -> prepare('DELETE FROM messagerie WHERE id = ?');
+  $req -> execute(array($id_mail));
 }
