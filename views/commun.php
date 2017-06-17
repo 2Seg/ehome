@@ -381,9 +381,15 @@ function content_c() {
 	?>
   <aside>
     <div class="flexbox_c">
-      <section class="section_c"><section class="section2_c"><p class="text_c">1</p></section></section>
+      <section class="section_c"><section class="section2_c"><p class="text_c">Post emensos insuperabilis expeditionis eventus languentibus partium animis</p></section></section>
+      <section class="section2small_c"></section>
+      <section class="section2small_c"></section>
       <section class="section_c"><section class="section2_c"><p class="text_c">2</p></section></section>
+      <section class="section2small_c"></section>
+      <section class="section2small_c"></section>
       <section class="section_c"><section class="section2_c"><p class="text_c">3</p></section></section>
+      <section class="section2small_c"></section>
+      <section class="section2small_c"></section>
       <section class="section_c"><section class="section2_c"><p class="text_c">4</p></section></section>
     </div>
   </aside>
@@ -1995,9 +2001,9 @@ function carroussel_home() {
           <!-- the info -->
           <div id="SnavBottom">
               <!-- here you have to add the p tag-->
-              <p id="SP0">Maison 1</p>
-              <p id="SP1">Maison 2</p>
-              <p id="SP2">Maison 3</p>
+              <p id="SP0">Restabat ut Caesar post haec properaret accitus et abstergendae causa suspicionis sororem suam, eius uxorem, Constantius ad se tandem desideratam venire multis fictisque blanditiis hortabatur. quae licet ambigeret metuens saepe cruentum, spe tamen quod eum lenire poterit ut germanum profecta, cum Bithyniam introisset, in statione quae Caenos Gallicanos appellatur, absumpta est vi febrium repentina. cuius post obitum maritus contemplans cecidisse fiduciam qua se fultum existimabat, anxia cogitatione, quid moliretur haerebat.</p>
+              <p id="SP1">Et licet quocumque oculos flexeris feminas adfatim multas spectare cirratas, quibus, si nupsissent, per aetatem ter iam nixus poterat suppetere liberorum, ad usque taedium pedibus pavimenta tergentes iactari volucriter gyris, dum exprimunt innumera simulacra, quae finxere fabulae theatrales.</p>
+              <p id="SP2">Eo adducta re per Isauriam, rege Persarum bellis finitimis inligato repellenteque a conlimitiis suis ferocissimas gentes, quae mente quadam versabili hostiliter eum saepe incessunt et in nos arma moventem aliquotiens iuvant, Nohodares quidam nomine e numero optimatum, incursare Mesopotamiam quotiens copia dederit ordinatus, explorabat nostra sollicite, si repperisset usquam locum vi subita perrupturus.</p>
           </div>
       </div>
   </div>
