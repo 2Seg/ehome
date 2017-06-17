@@ -1,3 +1,13 @@
+h4
+{
+  text-align: center;
+  color: rgb(210,0,0);
+  vertical-align: top;
+  margin:10px;
+}
+
+/****************************************HOME**************************************/
+
 .home_div
 {
   display: flex;
@@ -182,38 +192,47 @@
 }
 
 /* informations et texte en bas du slider */
-#SnavBottom
+#SnavBottom /* les textes sont dans commun.php */
 {
-    display:block;
-    width:100%;
-    height:70px;
-    position:absolute;
+    display:flex;
+    justify-content: center;
+    width:70%;
+    height:300px;
+    position:relative;
+    top: -170px;
+    margin-left: auto;
+    margin-right: auto;
+    /*top: 150px;*/
     align-items:center;
-    border: 2px solid yellow;
+    /*border: 2px solid yellow;*/
+}
+
+#SP0,#SP1,#SP2
+{
+  font-family: "gr-med";
+  font-size: 1.5em;
 }
 
 /* texte d'info sur la slide */
 #SnavBottom p
 {
     color: white;
-    position:relative;
-    margin-top: 50%;
-    margin-left: 50%;
+    position:absolute;
     visibility:hidden;
     text-align: center;
-    border: 2px solid blue;
-    margin: auto;
+    /*border: 2px solid blue;*/
+    margin: 0;
 }
 
-/***********************************************************FOOTER_P********************************************************************/
+/***********************************************************CONTENT_P********************************************************************/
 .content_p
 {
   background-color: rgb(205,205,193);
   color: black;
   padding: 0px;
-  box-shadow: 0px 3px 10px rgb(45,45,45) inset;
+  box-shadow: -1.4px 3px 10px rgb(70,70,70);
   margin: 0px;
-  border: 1px solid rgba(0,0,0,0);
+  border: 0.5px solid rgba(0,0,0,0.4);
 }
 
 .content_p_text
@@ -249,14 +268,6 @@
   /*border: 1px solid orange;*/
 }
 
-h4
-{
-  text-align: center;
-  color: rgb(210,0,0);
-  vertical-align: top;
-  margin:10px;
-}
-
 .text_p
 {
   text-align: center;
@@ -271,42 +282,58 @@ border-color: rgba(0, 0, 0, 0.6);
 height:70%;
 }
 
-/***********************************************************FOOTER_C********************************************************************/
+/***********************************************************CONTENT_C********************************************************************/
 
 .flexbox_c
 {
   display: flex;
   width: 100%;
-  height:175px;
-  margin-bottom: 60px;
+  height:180px;
+  margin-bottom: 40px;
   margin-top: 20px;
-  justify-content: space-around;
+  justify-content: center;
   /*border: 1px solid orange;*/
+  align-items: center;
 }
 
-.section_c
+.section_c /*cercle rose*/
 {
-  width: 160px;
-  height: 160px;
-  border: 1px solid rgb(210,0,0);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: 0 12px 0 12px;
+  background-color: rgb(244, 194, 194);
+  /*rgb(234, 153, 153);*/
+  padding: 15px;
+}
+
+.section2_c  /*cercle rouge*/
+{
+  height: 100%;
+  /*border: 1px solid rgb(254,150,160);*/
   border-radius: 50%;
   background-color: rgb(210,0,0);
-  padding:15px;
 }
 
-.section2_c
+.section2small_c /*petit cercle rose*/
 {
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgb(254,150,160);
+  height: 30px;
+  width: 30px;
+    margin: 0 7px 0 7px;
+  /*border: 1px solid rgb(254,150,160);*/
   border-radius: 50%;
-  background-color: rgb(254,150,160);
-  /*margin:15px;*/
+  background-color: rgb(244, 194, 194);
+  /*border: 1px solid orange;*/
 }
 
 .text_c
 {
   color: white;
   text-align: center;
-  margin: auto;
+  margin: 0;
+  height: 100%;
+  padding-top: 20px;
+  font-family: "gr-med";
+  /*border-radius: 50%;*/
+  /*border: 1px solid green;*/
 }

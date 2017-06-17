@@ -128,11 +128,9 @@ h3
 .menu_home
 {
   list-style: none;
-  background-color: rgba(200, 200, 200, 0.2);
   display: flex;
   align-items: center;
   padding-bottom: 5px;
-  box-shadow: 0px 4px 25px rgba(200, 200, 200, 0.28);
   margin: 0px;
   height: 55px;
 }
@@ -493,7 +491,7 @@ fieldset
 
   padding-left: 0px;
 
-  box-shadow: 0px 3px 10px rgb(45,45,45) inset;
+  box-shadow: 0px 3px 10px rgb(70,70,70) inset;
 
   /*border: 1px solid blue;*/
 }
