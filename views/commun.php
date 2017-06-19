@@ -194,6 +194,7 @@ function menu_user($type) {
     <ul class="menu_user">
       <li class="menu_user_elements" id="home_admin"><a href="index.php?cible=home_admin" class="text_menu_user">Vue d'ensemble</a></li>
       <li class="menu_user_elements" id="user_management"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
+      <li class="menu_user_elements" id="info_admin"><a href="index.php?cible=info_admin" class="text_menu_user">Mes informations</a></li>
       <li class="menu_user_elements" id="notif_admin"><a href="index.php?cible=notif_admin" class="text_menu_user">Notifications</a></li>
       <li class="menu_user_elements" id="security"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
       <li class="menu_user_elements" id="messaging_admin"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>

@@ -1,4 +1,4 @@
-#home_admin
+#info_admin
 {
   transition-duration: 0.3s;
   border: 1px solid rgba(80,80,80,0.8);
@@ -7,7 +7,7 @@
   padding: 7px;
 }
 
-#home_admin:hover
+#info_admin:hover
 {
   transition-duration: 0.3s;
   border: 1px solid rgb(80,80,80);
