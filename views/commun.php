@@ -669,98 +669,104 @@ function content_legal_information() {
 function content_about_us(){
   ob_start();
   ?>
-  <section>
-
-    <h2>A propos d'eHome</h2>
-    <article>
-      <h3> Les valeurs des eHomers </h3>
-      <ul>
-        <li> Rechercher le confort de chacun de nos clients. </li>
-        <li> Innover pour avancer et faire avancer le monde. </li>
-        <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
-      </ul>
-    </article>
-
-    <h2> L’innovation au cœur de l’internet des objets </h2>
-    <article>
-      <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
-        Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
-        Au-delà des volets roulants, de nombreux équipements,
-        comme l'éclairage ou le chauffage, peuvent être automatisés
-        pour gagner du temps et faire des économies !" </p>
-    </article>
+    <div class="home_div">
+        <h2 class="title_home">A propos d'eHome</h2>
+        <section class="home_section_1">
+            <h3> Les valeurs des eHomers </h3>
+            <ul>
+                <li> Rechercher le confort de chacun de nos clients. </li>
+                <li> Innover pour avancer et faire avancer le monde. </li>
+                <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
+            </ul>
+        </section>
+    </div>
 
 
-
-    <h2> eHome plus en détail </h2>
-    <div class="flex_art_about_us">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
-      <article>
-        <h3> Notre histoire </h3>
-        <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
-          dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
-      </article>
-
-
-      <article>
-        <h3> Espace presse </h3>
-        <p> Découvrez nos dernières annonces </p>
-      </article>
-
-
-      <article>
-        <h3> Document de référence </h3>
-        <p> Lire le rapport annuel </p>
-      </article>
+    <div class="home_div">
+        <section class="home_section_1">
+            <h3 class="title_home"> L’innovation au cœur de l’internet des objets </h3>
+            <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
+                Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
+                Au-delà des volets roulants, de nombreux équipements,
+                comme l'éclairage ou le chauffage, peuvent être automatisés
+                pour gagner du temps et faire des économies !" </p>
+        </section>
+        <h2 class="title_home"> eHome plus en détail </h2>
     </div>
 
 
 
 
-    <h2> Ce que nous vous proposons </h2>
-    <article>
-      <h3> Un gain de temps et de confort au quotidient </h3>
-      <p> Il est 7h00. Vous vous réveillez au son de votre
-        radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
-        L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
-        à la température idéale pour votre douche matinale. Tout est prêt pour démarrer votre journée
-        dans les meilleures conditions... Ceci n'est pas un rêve, mais la réalité.
-        En plus de vous simplifier les gestes de la vie de courante, nos solutions
-        domotiques vous permettent de programmer une multitude de scénarios
-        (éclairage, température...) en fonction de vos habitudes et vos envies.
-        Vous allez vous coucher ? A partir d'une seule commande, vous fermez
-        tous les volets roulants, abaissez le chauffage et éteignez les lumières.
-        Le confort absolu ! </p>
-    </article>
+    <div class="flexbox_home">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
+
+        <section class="home_section_2">
+            <h3> Notre histoire </h3>
+            <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
+                dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
+        </section>
 
 
-    <article>
-      <h3> Des économies d'énergie à la clé </h3>
-      <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
-        chauffage en marche. En vous équipant de notre installation domotique,
-        vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
-        éteindre les éclairages inutiles, couper les appareils électriques en veille
-        ou tempérer le chauffage. Mieux encore : un thermostat d’ambiance à gestion
-        programmée vous permettra par exemple de réduire vos consommations d'énergie
-        sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
-        pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
-        en s'adaptant à votre style de vie et votre présence dans la maison. </p>
-    </article>
+        <section class="home_section_2">
+            <h3> Espace presse </h3>
+            <p> Découvrez nos dernières annonces </p>
+        </section>
 
 
-    <article>
-      <h3> Pour votre sécurité et celle de votre maison </h3>
-      <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
-        passer toutes les pièces en revue. Comme les équipements domotiques sont
-        désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
-        ou votre tablette. Vous restez donc en contact avec votre maison où que
-        vous soyez, même à l'autre bout du monde ! A tout moment, vous pouvez par
-        exemple vérifier que tout est en ordre, de la lumière des différentes pièces
-        à la mise en route de l’alarme. Mais aussi, grâce à un visiophone ou un portier
-        vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
-        Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
-        recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
-    </article>
-  </section>
+        <section class="home_section_2">
+            <h3> Document de référence </h3>
+            <p> Lire le rapport annuel </p>
+        </section>
+    </div>
+
+
+    <div class="home_div">
+        <h2 class="title_home"> Ce que nous vous proposons </h2>
+        <section class="home_section_1">
+            <h3 class="title_home"> Un gain de temps et de confort au quotidient </h3>
+            <p> Il est 7h00. Vous vous réveillez au son de votre
+                radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
+                L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
+                à la température idéale pour votre douche matinale. Tout est prêt pour démarrer votre journée
+                dans les meilleures conditions... Ceci n'est pas un rêve, mais la réalité.
+                En plus de vous simplifier les gestes de la vie de courante, nos solutions
+                domotiques vous permettent de programmer une multitude de scénarios
+                (éclairage, température...) en fonction de vos habitudes et vos envies.
+                Vous allez vous coucher ? A partir d'une seule commande, vous fermez
+                tous les volets roulants, abaissez le chauffage et éteignez les lumières.
+                Le confort absolu ! </p>
+        </section>
+    </div>
+
+    <div class="home_div">
+        <section class="home_section_1">
+            <h3 class="title_home"> Des économies d'énergie à la clé </h3>
+            <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
+                chauffage en marche. En vous équipant de notre installation domotique,
+                vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
+                éteindre les éclairages inutiles, couper les appareils électriques en veille
+                ou tempérer le chauffage. Mieux encore : un thermostat d’ambiance à gestion
+                programmée vous permettra par exemple de réduire vos consommations d'énergie
+                sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
+                pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
+                en s'adaptant à votre style de vie et votre présence dans la maison. </p>
+        </section>
+    </div>
+
+    <div class="home_div">
+        <section class="home_section_1">
+            <h3 class="title_home"> Pour votre sécurité et celle de votre maison </h3>
+            <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
+                passer toutes les pièces en revue. Comme les équipements domotiques sont
+                désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
+                ou votre tablette. Vous restez donc en contact avec votre maison où que
+                vous soyez, même à l'autre bout du monde ! A tout moment, vous pouvez par
+                exemple vérifier que tout est en ordre, de la lumière des différentes pièces
+                à la mise en route de l’alarme. Mais aussi, grâce à un visiophone ou un portier
+                vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
+                Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
+                recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
+        </section>
+    </div>
 
   <?php
   $contenu = ob_get_clean();
@@ -2001,10 +2007,9 @@ function carroussel_home() {
           </div>
           <!-- the info -->
           <div id="SnavBottom">
-              <!-- here you have to add the p tag-->
-              <p id="SP0">Restabat ut Caesar post haec properaret accitus et abstergendae causa suspicionis sororem suam, eius uxorem, Constantius ad se tandem desideratam venire multis fictisque blanditiis hortabatur. quae licet ambigeret metuens saepe cruentum, spe tamen quod eum lenire poterit ut germanum profecta, cum Bithyniam introisset, in statione quae Caenos Gallicanos appellatur, absumpta est vi febrium repentina. cuius post obitum maritus contemplans cecidisse fiduciam qua se fultum existimabat, anxia cogitatione, quid moliretur haerebat.</p>
-              <p id="SP1">Et licet quocumque oculos flexeris feminas adfatim multas spectare cirratas, quibus, si nupsissent, per aetatem ter iam nixus poterat suppetere liberorum, ad usque taedium pedibus pavimenta tergentes iactari volucriter gyris, dum exprimunt innumera simulacra, quae finxere fabulae theatrales.</p>
-              <p id="SP2">Eo adducta re per Isauriam, rege Persarum bellis finitimis inligato repellenteque a conlimitiis suis ferocissimas gentes, quae mente quadam versabili hostiliter eum saepe incessunt et in nos arma moventem aliquotiens iuvant, Nohodares quidam nomine e numero optimatum, incursare Mesopotamiam quotiens copia dederit ordinatus, explorabat nostra sollicite, si repperisset usquam locum vi subita perrupturus.</p>
+              <p id="SP0">⋆⋆⋆⋆⋆<br><i>"Tout simplement époustouflant" </i><br><br> -Paulette</p>
+              <p id="SP1">⋆⋆⋆⋆<br><i>"Mécanicien très tchatcheur"</i><br><br>-Jacqueline</p>
+              <p id="SP2">⋆⋆⋆⋆⋆<br><i>"Des possibilités quasisment infinies, merci eHome" </i><br><br> -Tony</p>
           </div>
       </div>
   </div>

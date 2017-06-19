@@ -45,6 +45,10 @@
       echo('<link rel="stylesheet" href="views/styles/error_or_disconnect.css">');
     }elseif ($titre == 'Accueil') {
       echo('<link rel="stylesheet" href="views/styles/home.css">');
+    } elseif ($titre == 'Accueil') {
+        echo('<link rel="stylesheet" href="views/styles/home.css">');
+    } elseif ($titre == 'Notre entreprise') {
+        echo('<link rel="stylesheet" href="views/styles/about_us.css">');
     }
     ?>
 
