@@ -2010,9 +2010,9 @@ function carroussel_home() {
           <!-- the info -->
           <div id="SnavBottom">
               <!-- here you have to add the p tag-->
-              <p id="SP0">Restabat ut Caesar post haec properaret accitus et abstergendae causa suspicionis sororem suam, eius uxorem, Constantius ad se tandem desideratam venire multis fictisque blanditiis hortabatur. quae licet ambigeret metuens saepe cruentum, spe tamen quod eum lenire poterit ut germanum profecta, cum Bithyniam introisset, in statione quae Caenos Gallicanos appellatur, absumpta est vi febrium repentina. cuius post obitum maritus contemplans cecidisse fiduciam qua se fultum existimabat, anxia cogitatione, quid moliretur haerebat.</p>
-              <p id="SP1">Et licet quocumque oculos flexeris feminas adfatim multas spectare cirratas, quibus, si nupsissent, per aetatem ter iam nixus poterat suppetere liberorum, ad usque taedium pedibus pavimenta tergentes iactari volucriter gyris, dum exprimunt innumera simulacra, quae finxere fabulae theatrales.</p>
-              <p id="SP2">Eo adducta re per Isauriam, rege Persarum bellis finitimis inligato repellenteque a conlimitiis suis ferocissimas gentes, quae mente quadam versabili hostiliter eum saepe incessunt et in nos arma moventem aliquotiens iuvant, Nohodares quidam nomine e numero optimatum, incursare Mesopotamiam quotiens copia dederit ordinatus, explorabat nostra sollicite, si repperisset usquam locum vi subita perrupturus.</p>
+              <p id="SP0">⋆⋆⋆⋆⋆<br><i>"Tout simplement époustouflant" </i><br><br> -Paulette</p>
+              <p id="SP1">⋆⋆⋆⋆<br><i>"Mécanicien très tchatcheur"</i><br><br>-Jacqueline</p>
+              <p id="SP2">⋆⋆⋆⋆⋆<br><i>"Des possibilités quasisment infinies, merci eHome" </i><br><br> -Tony</p>
           </div>
       </div>
   </div>

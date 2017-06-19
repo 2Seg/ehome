@@ -210,7 +210,8 @@ h4
 #SP0,#SP1,#SP2
 {
   font-family: "gr-med";
-  font-size: 1.5em;
+  font-size: 2.5em;
+     text-shadow: 2px 2px 10px #000000;
 }
 
 /* texte d'info sur la slide */
