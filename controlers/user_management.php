@@ -14,7 +14,7 @@ if ($data_users -> rowCount() == 0) {
   $list_users = array();
   $i = 0;
   while ($info_users = $data_users -> fetch()) {
-    $list_users[$i] = array($info_users['civilite'], $info_users['nom'], $info_users['prenom']);
+    $list_users[$i] = array($info_users['civilite'], $info_users['nom'], $info_users['prenom'], $info_users['id']);
     $i++;
   }
 }
