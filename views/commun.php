@@ -1180,6 +1180,7 @@ function my_room($my_home) {
 function my_notif() {
   ob_start();
   ?>
+  <div class="top_aside">
   <section class="notif_info">
     <div class="top_notif">
       <h3>Mon domicile</h3>
@@ -1228,6 +1229,7 @@ function my_basic_info($info_user) {
         </div>
         <div id="bouton_basic_info"><a href="index.php?cible=info_user"><button>Voir les informations complètes</button></a></div>
       </section>
+      </div>
     <?php
   } else {
     ?>
@@ -1237,7 +1239,7 @@ function my_basic_info($info_user) {
         <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
         <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
         <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
-        <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
+        <p><a href="index.php?cible=info_admin"><button>Voir les informations complètes</button></a></p>
       </section>
 
 
@@ -1245,6 +1247,316 @@ function my_basic_info($info_user) {
   }
   $info = ob_get_clean();
   return $info;
+}
+
+function form_device_state($list_room_user, $list_device_user) {
+  ob_start();
+  if ($list_room_user != array()) {
+    ?>
+    <section class="device_state">
+      <h3>Etat du domicile</h3><br/>
+      <form name="form_device_state" method="post" action="index.php?cible=home_user">
+        <div class="zoneDefaut">
+          <div>
+            <label for="type_affichage"><strong>Affichage par :</strong></label><br/>
+            <select name="type_affichage" id="type_affichage" required onChange="printForm()">
+              <option value="" selected disabled>-- Sélectionnez un mode d'affichage --</option>
+              <option value="piece">Pièce</option>
+              <option value="dispositif">Dispositif</option>
+            </select>
+          </div>
+          <div id="zoneAjout"></div>
+        </div>
+        <div id="zoneBouton"></div>
+        <script type="text/javascript">
+          function printForm() {
+            var index = document.form_device_state.type_affichage.selectedIndex;
+            var label = document.createElement("label");
+            var strong = document.createElement("strong");
+            var br = document.createElement("br");
+            var select = document.createElement("select");
+            var options = [];
+            var submit = document.createElement("input");
+            submit.setAttribute("type", "submit");
+            submit.setAttribute("value", "Confirmer");
+            submit.id = "submit";
+            label.id = "label";
+            strong.id = "strong";
+            select.id = "select";
+            select.name = "options[]";
+            select.setAttribute("required", "");
+            label.setAttribute("for", "select");
+
+            if (document.getElementById("select")) {
+              document.getElementById("zoneAjout").replaceChild(label, document.getElementById("label"));
+              document.getElementById("label").appendChild(strong);
+              document.getElementById("label").appendChild(br);
+              document.getElementById("zoneAjout").replaceChild(select, document.getElementById("select"));
+              document.getElementById("zoneBouton").replaceChild(submit, document.getElementById("submit"));
+            } else {
+              document.getElementById("zoneAjout").appendChild(label);
+              document.getElementById("label").appendChild(strong);
+              document.getElementById("label").appendChild(br);
+              document.getElementById("zoneAjout").appendChild(select);
+              document.getElementById("zoneBouton").appendChild(submit);
+            }
+
+            if (index == 1) { // pièce
+              strong.textContent = "Pièce à afficher :";
+              <?php
+              foreach ($list_room_user as $cle => $valeur) {
+                echo "options[$cle] = '$valeur';";
+              }
+              ?>
+              options.unshift("-- Sélectionnez une pièce --");
+              submit.name = "room";
+            } else if (index == 2) { // dispositif
+              strong.textContent = "Type de dispositif à afficher :";
+              <?php
+              foreach ($list_device_user as $cle => $valeur) {
+                echo "options[$cle] = '$valeur';";
+              }
+              ?>
+              options.unshift("-- Sélectionnez un dispositif --");
+              submit.name = "device";
+            }
+            for(var j = 0; j < options.length; j++) {
+              var option = document.createElement("option");
+              if (j === 0) {
+                option.text = options[j];
+                option.value = "";
+              } else {
+                option.text = option.value = options[j];
+              }
+              document.getElementById("select").appendChild(option);
+            }
+          }
+        </script>
+      </form>
+    <?php
+   }
+  $content = ob_get_clean();
+  return $content;
+}
+
+function device_state($data_state) {
+  ob_start();
+  if ($data_state != array()) {
+    ?>
+    <div class="bloc_affichage_donnees">
+      <?php
+      if ($data_state[0] == "piece") {
+        ?>
+        <div class="child_affichage_donnees">
+          <h3><?php echo($data_state[1][1]) ?></h3>
+          <div class="content_affichage_donnees">
+            <?php
+            for ($i = 2; $i < count($data_state); $i++) {
+              ?>
+              <article>
+                <div class="top_device">
+                  <h3><a href="index.php?cible=device_info&amp;id_device=<?php echo($data_state[$i][0]); ?>"><?php echo($data_state[$i][1]); ?></a></h3>
+                  <label class="switch">
+                    <input type="checkbox" <?php if ($data_state[$i][2] == "on") {echo("checked");} ?>>
+                    <div class="slider round"></div>
+                  </label>
+                </div>
+                <div class="content_device">
+                  <?php
+                  switch ($data_state[$i][1]) {
+                    case "Capteur de luminosité":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/luminosite.png" alt="Icone luminosité" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Capteur de température":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/temperature.png" alt="Icone température" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Capteur d'humidité":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/humidite.png" alt="Icone humidité" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Détecteur de mouvement":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/mouvement.png" alt="Icone mouvement" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Détecteur de fumée":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/fumee.png" alt="Icone fumée" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Actionneur chauffage":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/chauffage.png" alt="Icone chauffage" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Actionneur climatisation":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/climatisation.png" alt="Icone climatisation" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Actionneur porte":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/porte.png" alt="Icone porte" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Actionneur fenêtre":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/fenetre.png" alt="Icone fenêtre" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Actionneur volet":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/volet.png" alt="Icone volet" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Actionneur portail":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/portail.png" alt="Icone portail" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Actionneur lumière":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/lumiere.png" alt="Icone lumiere" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Caméra de surveillance":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/camera.png" alt="Icone caméra" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                    case "Alarme":
+                      if ($data_state[$i][2] == "off") {
+                        echo('<h3 class=\'except_h2\'>Dispositif désactivé</h3>');
+                      } elseif ($data_state[$i][3] == "") {
+                        echo('<h3 class=\'except_h2\'>Aucune données</h3>');
+                      } else {
+                        ?>
+                        <img src="views/styles/ressources/icons/alarme.png" alt="Icone alarme" class="icon_device">
+                        <?php
+                      }
+                      break;
+
+                  }
+                  ?>
+                </div>
+                <div class="bottom_device">
+                  <a href="index.php?cible=device_info&amp;id_device=<?php echo($data_state[$i][0]); ?>"><button>Données complètes</button></a>
+                </div>
+              </article>
+              <?php
+            }
+            ?>
+          </div>
+        </div>
+        <?php
+      } elseif ($data_state[0] == "piece") {
+        # code...
+      }
+      ?>
+    </div>
+    <?php
+  }
+  ?>
+  </section>
+  <?php
+  $content = ob_get_clean();
+  return $content;
 }
 
 function content_info_admin($info_user) {
@@ -1537,7 +1849,7 @@ function my_device($my_room) {
             <article>
               <div class="top">
                 <h3>
-                  <a href="#"><?php echo($my_room[$i][1]); ?></a>
+                  <?php echo($my_room[$i][1]); ?>
                 </h3>
                 <img id="trash" class="trash<?php echo($i);?>" src="views/styles/ressources/icons/trash1.png" title='Supprimer le dispositif'
                 onclick="deleteDevice(<?php echo("'".addslashes($my_room[$i][1])."'");?>, <?php echo("'".$my_room[$i][0]."'") ?>, <?php echo("'".addslashes($my_room[0][1])."'"); ?>, <?php echo("'".$my_room[0][0]."'"); ?>)"
@@ -1548,7 +1860,7 @@ function my_device($my_room) {
                 <p><strong>Etat : </strong><?php echo($my_room[$i][2]); ?></p>
               </div>
               <script type="text/javascript" src="views/scripts/myDevice1.js"></script>
-              <a href="#"><button>Données complètes</button></a>
+              <a href="index.php?cible=device_info&amp;id_device=<?php echo($my_room[$i][0]); ?>"><button>Données complètes</button></a>
             </article>
             <?php
           }

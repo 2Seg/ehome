@@ -16,6 +16,11 @@
   padding: 7px;
 }
 
+body
+{
+  background: url("ressources/images/fond_7.jpg") no-repeat fixed;
+}
+
 aside
 {
   margin: 10px 10px 10px 0px;

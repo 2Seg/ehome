@@ -172,6 +172,17 @@ function select_info_room($db, $id_logement) {
   return $req;
 }
 
+function select_device_user($db, $id_logement) {
+  $req = $db -> prepare('SELECT dispositif.type_dispositif FROM dispositif
+                        INNER JOIN piece ON dispositif.id_piece = piece.id
+												INNER JOIN logement ON piece.id_logement = logement.id
+                        INNER JOIN utilisateur ON logement.id = utilisateur.id
+                        WHERE utilisateur.id = ?
+                        GROUP BY dispositif.type_dispositif');
+  $req -> execute(array($id_logement));
+  return $req;
+}
+
 function count_piece($db, $id_logement) {
   $info = array();
   $req = $db -> prepare('SELECT COUNT(piece) AS nb_piece FROM piece WHERE id_logement = ?');

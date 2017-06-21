@@ -13,7 +13,7 @@ if (isset($_SESSION['type'])) {
   if ($_SESSION['type'] == 'user') {
     if(isset($_GET['cible'])) {
       if ($_GET['cible'] == 'home') {
-        include 'views/home.php';
+        include 'controlers/home_user.php';
       } elseif ($_GET['cible'] == 'about-us') {
         include('views/about-us.php');
       } elseif ($_GET['cible'] == 'products') {
