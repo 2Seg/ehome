@@ -133,6 +133,18 @@ function select_info_admin($db, $id) {
   return $info;
 }
 
+// pour la page de management d'un seul utilisateur //
+function select_gestion_user($db, $id) {
+  $info = array();
+  $req = $db -> prepare('SELECT * FROM utilisateur WHERE id = ?');
+  $req -> execute(array($id));
+  while($data = $req -> fetch()) {
+    $info = $data;
+  }
+  return $info;
+}
+
+
 // fonction récupérant les informations complètes de l'utilisateur pour affichage sur la page "Mes informations"
 function select_full_info_user($db, $id) {
   $req = $db -> prepare("SELECT *, DATE_FORMAT(date_naissance, '%d/%m/%Y') AS date_naissance_format, utilisateur.pays AS pays_utilisateur,

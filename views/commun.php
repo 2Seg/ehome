@@ -273,7 +273,7 @@ function list_users($list_users) { // nouvelle version
   ?>
   <section class="list_users">
 
-    <h3>Liste des utilisateurs enregistrés :</h3>
+    <h3>Liste des utilisateurs enregistrés</h3>
   <?php
   if ($list_users == array()) {
     echo('<h2 class="except_h2">Aucun utilisateur enregistré</h2>');
@@ -284,6 +284,8 @@ function list_users($list_users) { // nouvelle version
          <th><strong>Civilité : </strong></th>
          <th><strong>Nom : </strong></th>
          <th><strong>Prénom : </strong></th>
+         <th><strong>Id : </strong></th>
+         <!-- <th><strong>Gestion de l'utilisateur : </strong></th> -->
      </tr>
     <?php
     for ($i = 0; $i < count($list_users); $i++) {
@@ -292,6 +294,8 @@ function list_users($list_users) { // nouvelle version
           <td><?php echo($list_users[$i][0]); ?></td>
           <td><?php echo($list_users[$i][1]); ?></td>
           <td><?php echo($list_users[$i][2]); ?></td>
+          <td><?php echo($list_users[$i][3]); ?></td>
+          <td><a href="index.php?cible=gestion_user&amp;id=<?php echo($list_users[$i][3]) ?>"><button>Gestion de l'utilisateur</button></a></td>
       </tr>
       <?php
     }
@@ -1258,7 +1262,7 @@ function content_info_admin($info_user) {
   ob_start();
   ?>
   <section class="info_admin">
-      <h3>Vos informations administrateur</h3>
+      <h3>Mes informations administrateur</h3>
       <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
       <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
       <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
@@ -1276,12 +1280,36 @@ function content_info_admin($info_user) {
   return $contenu;
 }
 
+// pour la page de gestion d'un client par l'administrateur
+function content_gestion_user($gestion_user) {
+  ob_start();
+  ?>
+  <section class="gestion_user">
+      <h3>Informations complètes du client <?php echo($gestion_user['prenom']); ?> <?php echo($gestion_user['nom']); ?></h3>
+      <p><strong>Id : </strong><?php echo($gestion_user['id']); ?></p>
+      <p><strong>Identifiant : </strong><?php echo($gestion_user['identifiant']); ?></p>
+      <p><strong>Civilité : </strong><?php echo($gestion_user['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($gestion_user['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($gestion_user['prenom']); ?></p>
+      <p><strong>Date de naissance : </strong><?php echo($gestion_user['date_naissance']); ?></p>
+      <p><strong>Nationalité : </strong><?php echo($gestion_user['nationalite']); ?></p>
+      <p><strong>Pays : </strong><?php echo($gestion_user['pays']); ?></p>
+      <p><strong>Mail : </strong><?php echo($gestion_user['mail']); ?></p>
+      <p><strong>Téléphone : </strong><?php echo($gestion_user['telephone']); ?></p>
+      <p><strong>Date d'inscription : </strong><?php echo($gestion_user['date_inscription']); ?></p>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+
 function my_full_info($my_full_info) {
   ob_start();
   ?>
   <section class="user_info">
     <div class="content_user_info">
-      <h3>Informations client</h3>
+      <h3>Mes informations client</h3>
       <div id="child_content_user_info">
         <p><strong>Civilité : </strong><?php echo($my_full_info[0][0]); ?></p>
         <p><strong>Nom : </strong><?php echo($my_full_info[0][1]); ?></p>
