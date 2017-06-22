@@ -118,6 +118,19 @@ article .top
   justify-content: space-between;
 }
 
+article .child_top
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article .child_top strong
+{
+  margin-left: 15px;
+  font-size: 18px;
+}
+
 #room_block article a, #room_block article h2, .room_article div
 {
   text-align: center;
