@@ -386,16 +386,16 @@ function content_c() {
 	?>
   <aside>
     <div class="flexbox_c">
-      <section class="section_c"><section class="section2_c"><p class="text_c">Post emensos insuperabilis expeditionis eventus languentibus partium animis</p></section></section>
+      <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">100%</font> <br>de satisfaction client</p></section></section>
       <section class="section2small_c"></section>
       <section class="section2small_c"></section>
-      <section class="section_c"><section class="section2_c"><p class="text_c">2</p></section></section>
+        <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">20</font> <br> ans d'expérience</p></section></section>
       <section class="section2small_c"></section>
       <section class="section2small_c"></section>
-      <section class="section_c"><section class="section2_c"><p class="text_c">3</p></section></section>
+        <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">1</font> <br>  seul dispositif pour toute votre maison</p></section></section>
       <section class="section2small_c"></section>
       <section class="section2small_c"></section>
-      <section class="section_c"><section class="section2_c"><p class="text_c">4</p></section></section>
+        <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">1243</font> <br> équipés par notre technologie</p></section></section>
     </div>
   </aside>
 	<?php
