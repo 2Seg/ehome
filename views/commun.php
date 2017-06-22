@@ -1248,7 +1248,7 @@ function my_basic_info($info_user) {
         <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
         <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
         <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
-        <p><a href="index.php?cible=info_admin"><button>Voir mes informations complètes</button></a></p>
+        <p><a href="index.php?cible=info_admin"><button>Voir les informations complètes</button></a></p>
       </section>
 
 
