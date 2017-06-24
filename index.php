@@ -99,6 +99,8 @@ if (isset($_SESSION['type'])) {
         include("controlers/user_management.php");
       } elseif ($_GET['cible'] == 'info_admin') {
         include("controlers/info_admin.php");
+      } elseif ($_GET['cible'] == 'admin_info_edit') {
+        include("controlers/admin_info_edit.php");
       } elseif ($_GET['cible'] == 'gestion_user') {
         include("controlers/gestion_user.php");
       } elseif ($_GET['cible'] == 'notification') {

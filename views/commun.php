@@ -1248,7 +1248,7 @@ function my_basic_info($info_user) {
         <p><strong>Nom : </strong><?php echo($info_user['nom']); ?></p>
         <p><strong>Prénom : </strong><?php echo($info_user['prenom']); ?></p>
         <p><strong>Pays : </strong><?php echo($info_user['pays']); ?></p>
-        <p><a href="index.php?cible=info_admin">Voir les informations complètes</a></p>
+        <p><a href="index.php?cible=info_admin"><button>Voir les informations complètes</button></a></p>
       </section>
 
 
@@ -1274,6 +1274,9 @@ function content_info_admin($info_user) {
       <p><strong>Mail : </strong><?php echo($info_user['mail']); ?></p>
       <p><strong>Téléphone : </strong><?php echo($info_user['telephone']); ?></p>
       <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($info_user['nb_user']); ?></p>
+  </section>
+  <section class="button_edit">
+    <a href="index.php?cible=admin_info_edit"><button>Modifier les informations</button></a>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -1355,6 +1358,43 @@ function my_full_info($my_full_info) {
     </section>
     <section class="button_edit">
       <a href="index.php?cible=info_edit"><button>Modifier les informations</button></a>
+    </section>
+  </div>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function my_full_info_admin($my_full_info_admin) {
+  ob_start();
+  ?>
+  <section class="user_info">
+    <div class="content_user_info">
+      <h3>Mes informations administrateur</h3>
+      <div id="child_content_user_info">
+        <p><strong>Civilité : </strong><?php echo($my_full_info_admin[0]); ?></p>
+        <p><strong>Nom : </strong><?php echo($my_full_info_admin[1]); ?></p>
+        <p><strong>Prénom : </strong><?php echo($my_full_info_admin[2]); ?></p>
+        <p><strong>Date de naissance : </strong><?php echo($my_full_info_admin[4]); ?></p>
+        <p><strong>Nationalité : </strong><?php echo($my_full_info_admin[5]); ?></p>
+        <p><strong>Pays : </strong><?php echo($my_full_info_admin[6]); ?></p>
+        <p><strong>E-mail : </strong><?php echo($my_full_info_admin[7]); ?></p>
+        <p><strong>Téléphone : </strong><?php echo($my_full_info_admin[8]); ?></p>
+        <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($my_full_info_admin[9]); ?></p>
+      </div>
+    </div>
+  </section>
+  <div class="paiement_connection_info">
+    <section class="connection_info">
+      <div class="content_connection_info">
+        <h3>Informations de connexion</h3>
+        <div id="child_content_connection_info">
+          <p><strong>Identifiant : </strong><?php echo($my_full_info_admin[3]); ?></p>
+        </div>
+      </div>
+    </section>
+    <section class="button_edit">
+      <a href="index.php?cible=admin_info_edit"><button>Modifier les informations</button></a>
     </section>
   </div>
   <?php
@@ -1512,6 +1552,107 @@ function form_full_info($my_full_info) {
             </div>
           </section>
           <section class="button_edit">
+            <input type="reset" value="Rafraichir">
+            <input type="submit" value="Modifier">
+          </section>
+        </div>
+      </div>
+    </div>
+  </form>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function form_full_info_admin($my_full_info_admin) {
+  ob_start();
+  ?>
+  <form method="post" action="index.php?cible=admin_info_edit">
+    <div class="form">
+      <h2>Modifier mes informations administrateur</h2>
+      <div class="content_info_admin">
+        <section class="admin_info">
+          <div class="content_info_admin">
+            <h3>Informations administrateur</h3>
+            <div id="child_content_info_admin">
+              <p>
+                <label for="civilite"><strong>Civilité : </strong></label><br/>
+                <input type="text" name="civilite" id="civilite" value="<?php echo($my_full_info_admin[0]); ?>" required/>
+              </p>
+              <p>
+                <label for="nom"><strong>Nom : </strong></label><br/>
+                <input type="text" name="nom" id="nom" value="<?php echo($my_full_info_admin[1]); ?>" required/>
+              </p>
+              <p>
+                <label for="prenom"><strong>Prénom : </strong></label><br/>
+                <input type="text" name="prenom" id="prenom" value="<?php echo($my_full_info_admin[2]); ?>" required/>
+              </p>
+              <p>
+                <label for="date_naissance"><strong>Date de naissance : </strong></label><br/>
+                <input type="date" name="date_naissance" id="date_naissance" value="<?php echo($my_full_info_admin[4]); ?>" required/>
+              </p>
+              <p>
+                <label for="nationalite"><strong>Nationalité : </strong></label><br/>
+                <input type="text" name="nationalite" id="nationalite" value="<?php echo($my_full_info_admin[5]); ?>" required/>
+              </p>
+              <p>
+                <label for="pays"><strong>Pays : </strong></label><br/>
+                <?php
+                  $pays = array("Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Norvège", "Pays-Bas", "Pologne", "Portugal",
+                                "République-Tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède", "Suisse");
+                  $select = '<select name="pays" id="pays">';
+                  foreach ($pays as $option) {
+                    $select .= '<option value="'.$option.'"';
+                    if ($option == $my_full_info_admin[6]) {
+                      $select .= ' selected';
+                    }
+                    $select .= '>'.$option.'</option>';
+                  }
+                  $select .= '</select>';
+                  echo ($select);
+                ?>
+              </p>
+              <p>
+                <label for="mail"><strong>E-mail : </strong></label><br/>
+                <input type="mail" name="mail" id="mail" value="<?php echo($my_full_info_admin[7]); ?>" required/>
+              </p>
+              <p>
+                <label for="telephone"><strong>Téléphone : </strong></label><br/>
+                <input type="tel" name="telephone" id="telephone" maxlength="12" value="<?php echo($my_full_info_admin[8]); ?>" required/>
+              </p>
+              <p>
+                <label for="prenom"><strong>Nombre d'utilisateurs à charge : </strong></label><br/>
+                <input type="number" name="nb_user" id="nb_user" value="<?php echo($my_full_info_admin[9]); ?>" required/>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="paiement_connection_info_admin">
+          <section class="connection_info_admin">
+            <div class="content_connection_info_admin">
+              <h3>Informations de connexion administrateur</h3>
+              <div id="child_content_connection_info_admin">
+                <p>
+                  <label for="identifiant"><strong>Identifiant : </strong></label><br/>
+                  <input type="text" name="identifiant" id="identifiant" value="<?php echo($my_full_info_admin[3]); ?>"/>
+                </p>
+                <p>
+                  <label for="ancien_mdp"><strong>Ancien mot de passe : </strong></label><br/>
+                  <input type="password" name="ancien_mdp" id="ancien_mdp"/>
+                </p>
+                <p>
+                  <label for="nouveau_mdp"><strong>Nouveau mot de passe : </strong></label><br/>
+                  <input type="password" name="nouveau_mdp" id="nouveau_mdp"/>
+                </p>
+                <p>
+                  <label for="conf_mdp"><strong>Confirmez le mot de passe : </strong></label><br/>
+                  <input type="password" name="conf_mdp" id="conf_mdp"/>
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="button_edit_admin">
             <input type="reset" value="Rafraichir">
             <input type="submit" value="Modifier">
           </section>

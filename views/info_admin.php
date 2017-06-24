@@ -12,5 +12,13 @@ $contenu = content_info_admin($info_admin);
 
 $footer = footer();
 
+if(isset($message)) {
+  ?>
+  <script type="text/javascript">
+    alert("<?php echo($message); ?>");
+  </script>
+  <?php
+}
+
 include('gabarit.php');
 ?>

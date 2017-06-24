@@ -33,8 +33,6 @@
       echo('<link rel="stylesheet" href="views/styles/user_management.css">');
     } elseif ($titre == 'Vos informations administrateur') {
       echo('<link rel="stylesheet" href="views/styles/info_admin.css">');
-    } elseif ($titre == 'Modifier mes informations administrateur') {
-        echo('<link rel="stylesheet" href="views/styles/admin_info_edit.css">');
     } elseif (substr($titre, 0, 22) == 'Accueil administrateur') {
       echo('<link rel="stylesheet" href="views/styles/home_admin.css">');
     } elseif ($titre == 'Nous rejoindre') {

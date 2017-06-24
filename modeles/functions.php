@@ -43,6 +43,13 @@ function select_password_user($db, $id) {
   return $info['mot_de_passe'];
 }
 
+function select_password_admin($db, $id) {
+  $req = $db -> prepare('SELECT mot_de_passe FROM administrateur WHERE id = ?');
+  $req -> execute(array($id));
+  $info = $req -> fetch();
+  return $info['mot_de_passe'];
+}
+
 // fonction récupérant l'id et le mot de passe d'un administrateur s'il est présent dans la bdd
 function admin_in_db($db, $admin) {
   $req = $db -> prepare('SELECT id, identifiant, mot_de_passe FROM administrateur WHERE identifiant = ?');
@@ -153,6 +160,17 @@ function select_full_info_user($db, $id) {
   $req -> execute(array($id));
   $data = $req -> fetch();
   return $data;
+}
+
+// pour la page de modification des informations de l'administrateur
+function select_full_info_admin($db, $id) {
+  $info = array();
+  $req = $db -> prepare('SELECT * FROM administrateur WHERE id = ?');
+  $req -> execute(array($id));
+  while($data = $req -> fetch()) {
+    $info = $data;
+  }
+  return $info;
 }
 
 // fonction récupérant les informations du domicile l'utilisateur pour affichage sur la page "Gestion du domicile"
@@ -371,6 +389,19 @@ function update_info_user($db, $id, $civilite, $nom, $prenom, $date_naissance, $
                         'telephone' => $telephone, 'paiement' => $paiement, 'identifiant' => $identifiant, 'id' => $id));
 }
 
+function update_info_admin($db, $id, $civilite, $nom, $prenom, $date_naissance, $nationalite, $pays, $mail, $telephone,
+                          $nb_user, $identifiant) {
+  $req = $db -> prepare('UPDATE administrateur
+                        SET civilite = :civilite, nom = :nom, prenom = :prenom, date_naissance = :date_naissance,
+                        nationalite = :nationalite, pays = :pays, mail = :mail, telephone = :telephone,
+                        nb_user = :nb_user, identifiant = :identifiant WHERE id = :id');
+  $req -> execute(array('civilite' => $civilite, 'nom' => $nom, 'prenom' => $prenom, 'date_naissance' => $date_naissance,
+                        'nationalite' => $nationalite, 'pays' => $pays, 'mail' => $mail,
+                        'telephone' => $telephone, 'nb_user' => $nb_user, 'identifiant' => $identifiant, 'id' => $id));
+}
+
+/********************************************/
+
 function update_info_home($db, $id, $adresse, $code_postal, $ville, $pays_logement, $superficie, $nb_habitant) {
   $req = $db -> prepare('UPDATE logement
                         SET adresse = :adresse, code_postal = :code_postal, ville = :ville,
@@ -383,6 +414,13 @@ function update_pass_user($db, $id, $pass) {
   $req = $db -> prepare('UPDATE utilisateur SET mot_de_passe = :pass WHERE id = :id');
   $req -> execute(array('pass' => $pass, 'id' => $id));
 }
+
+function update_pass_admin($db, $id, $pass) {
+  $req = $db -> prepare('UPDATE administrateur SET mot_de_passe = :pass WHERE id = :id');
+  $req -> execute(array('pass' => $pass, 'id' => $id));
+}
+
+/*******************************************/
 
 function update_reading_mail($db, $id_mail) {
   $req = $db -> prepare('UPDATE messagerie SET lecture = \'oui\' WHERE messagerie.id = ?');
@@ -401,6 +439,7 @@ function update_mail($db, $previous_mail, $new_mail) {
   $req2 = $db -> prepare('UPDATE messagerie SET mail_receveur = :new_mail WHERE mail_receveur = :previous_mail');
   $req2 -> execute(array('previous_mail' => $previous_mail, 'new_mail' => $new_mail));
 }
+
 /*****************************************************************DELETE***********************************************************************/
 
 // function qui supprime une pièce d'un logement ainsi que tous les capteurs associés
