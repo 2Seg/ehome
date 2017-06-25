@@ -103,6 +103,8 @@ if (isset($_SESSION['type'])) {
         include("controlers/admin_info_edit.php");
       } elseif ($_GET['cible'] == 'gestion_user') {
         include("controlers/gestion_user.php");
+      } elseif ($_GET['cible'] == 'user_suppression') {
+        include("controlers/user_suppression.php");
       } elseif ($_GET['cible'] == 'notification') {
         include("views/notification.php");
       } elseif ($_GET['cible'] == 'security') {
