@@ -408,7 +408,7 @@ fieldset
   align-items: center;
   height: 120px;
   margin: 0px;
-  padding: 0px;
+  padding: auto;
   color: white;
   font-style: normal;
   text-decoration: none;
@@ -422,20 +422,13 @@ fieldset
   /*border: 1px solid yellow;*/
 }
 
-.fo_ul
-{
-  padding: 0px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
 .footer_elements
 {
   list-style: none;
   text-align: center;
 
-  margin-left: 45px;
-  margin-right: 45px;
+  margin-left: 60px;
+  margin-right: 60px;
 
   /*border: 4px solid green;*/
 }
