@@ -1301,6 +1301,24 @@ function content_gestion_user($gestion_user) {
       <p><strong>Téléphone : </strong><?php echo($gestion_user['telephone']); ?></p>
       <p><strong>Date d'inscription : </strong><?php echo($gestion_user['date_inscription']); ?></p>
   </section>
+  <section class="button_edit">
+    <a href="index.php?cible=user_suppression&amp;prenom=<?php echo($gestion_user['prenom']); ?>&amp;nom=<?php echo($gestion_user['nom']); ?>&amp;id_sup=<?php echo($gestion_user['id']); ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer définitivement cet utilisateur ?');";><button>Supprimer cet utilisateur</button></a>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+// pour la page de suppression d'un utilisateur
+function content_user_suppression() {
+  ob_start();
+  ?>
+  <section class="user_suppression">
+      <h2 class="except_h2">L'utilisateur <?php echo($_GET['prenom'])?> <?php echo($_GET['nom'])?> à bien été supprimé définitivement.</h2>
+  </section>
+  <section class="button_edit">
+    <a href="index.php?cible=user_management"><button>Retourner à la liste des utilisateurs</button></a>
+  </section>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
@@ -1780,7 +1798,7 @@ function menu_messaging($titre, $nb_unread_mail) {
           <form method="post" action="index.php?cible=mail_traitement">
           <li><input type="submit" name="submit" value="Marquer comme lu" class="button_space"></li>
           <li><input type="submit" name="submit" value="Marquer comme non lu" class="button_space"></li>
-          <li><input type="submit" name="submit" value="Supprimer" onclick=" return confirmation()"></li>
+          <li><input type="submit" name="submit" value="Supprimer" onclick="return confirmation()"></li>
         </ul>
         <script type="text/javascript" src="views/scripts/mailDel.js"></script>
       </div>

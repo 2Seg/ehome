@@ -460,3 +460,8 @@ function delete_mail($db, $id_mail) {
   $req = $db -> prepare('DELETE FROM messagerie WHERE id = ?');
   $req -> execute(array($id_mail));
 }
+
+function delete_user($db, $id) {
+  $req = $db -> prepare('DELETE FROM utilisateur WHERE id = ?');
+  $req -> execute(array($id));
+}

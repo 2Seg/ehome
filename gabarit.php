@@ -41,6 +41,8 @@
         echo('<link rel="stylesheet" href="views/styles/join-us_type.css">');
     } elseif (substr($titre, 0, 12) == 'Gestion de l') {
         echo('<link rel="stylesheet" href="views/styles/gestion_user.css">');
+    } elseif ($titre == 'Suppression utilisateur') {
+        echo('<link rel="stylesheet" href="views/styles/user_suppression.css">');
     }
 
     elseif ($titre == 'Connexion') {
