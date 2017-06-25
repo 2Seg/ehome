@@ -43,6 +43,10 @@
         echo('<link rel="stylesheet" href="views/styles/gestion_user.css">');
     } elseif ($titre == 'Suppression utilisateur') {
         echo('<link rel="stylesheet" href="views/styles/user_suppression.css">');
+    } elseif ($titre == 'Mes notifications administrateur') {
+      echo('<link rel="stylesheet" href="views/styles/notif_admin.css">');
+    } elseif ($titre == 'Sécurité') {
+      echo('<link rel="stylesheet" href="views/styles/security.css">');
     }
 
     elseif ($titre == 'Connexion') {

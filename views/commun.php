@@ -234,7 +234,7 @@ function content_home_admin() {
 
     <section class="box">
         <h3>Notifications</h3>
-        <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
+        <p><a href="index.php?cible=notif_admin"><button>Notifications</button></a></p>
     </section>
   </div>
 
@@ -255,13 +255,30 @@ function content_home_admin() {
   return $contenu;
 }
 
+function content_notif_admin() {
+  ob_start();
+  ?>
+  <section class="notif_admin">
+      <h3>Mes notifications administrateur</h3>
+      <p>Aucunes nouvelles notifications disponibles.</p>
+  </section>
+  <section class="button_edit">
+      <a href="index.php?cible=home_admin"><button>Retourner sur la page d'accueil administrateur</button></a>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
 function content_security() {
   ob_start();
   ?>
-  <section>
-    <article>
-      <h3>Page content_security</h3>
-    </article>
+  <section class="security">
+      <h3>Poste de sécurité</h3>
+      <p>Aucunes alertes de sécurité pour le moment.</p>
+  </section>
+  <section class="button_edit">
+      <a href="index.php?cible=home_admin"><button>Retourner sur la page d'accueil administrateur</button></a>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -306,19 +323,8 @@ function list_users($list_users) { // nouvelle version
   ?>
 
   </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_user_management() {
-  ob_start();
-  ?>
-  <section>
-    <article>
-      <h3>Graphique des connexions</h3>
-      <p>Graphique des connexions par jour, semaines, mois, année</p>
-    </article>
+  <section class="button_edit">
+      <a href="index.php?cible=home_admin"><button>Retourner sur la page d'accueil administrateur</button></a>
   </section>
   <?php
   $contenu = ob_get_clean();

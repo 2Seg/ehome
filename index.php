@@ -105,8 +105,8 @@ if (isset($_SESSION['type'])) {
         include("controlers/gestion_user.php");
       } elseif ($_GET['cible'] == 'user_suppression') {
         include("controlers/user_suppression.php");
-      } elseif ($_GET['cible'] == 'notification') {
-        include("views/notification.php");
+      } elseif ($_GET['cible'] == 'notif_admin') {
+        include("views/notif_admin.php");
       } elseif ($_GET['cible'] == 'security') {
         include("views/security.php");
       }
