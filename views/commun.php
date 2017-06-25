@@ -409,32 +409,6 @@ function content_c() {
   return $contenu;
 }
 
-function footer2() {
-  ob_start();
-	?>
-  <div id="footer2">
-  	<ul class="footer2">
-      <ul>
-  		  <li class="footer_elements">Localisation</li>
-  		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views/styles/ressources/images/map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
-      </ul>
-
-      <ul>
-  		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
-      </ul>
-
-      <ul>
-  		  <li class="footer_elements">Contact</li>
-  		  <li class="footer_elements">+33 1 23 45 67 89</li>
-  		  <li class="footer_elements"> accueil@ehome.com</li>
-      </ul>
-  	</ul>
-   </div>
-	<?php
-  $footer = ob_get_clean();
-  return $footer;
-}
-
 function content_sensors() {
   ob_start();
   ?>
@@ -2128,17 +2102,17 @@ function footer() {
   ob_start();
 	?>
 	<ul class="footer">
-    <ul>
+    <ul class="fo_ul">
 		  <li class="footer_elements">Localisation</li>
 		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views/styles/ressources/images/map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
     </ul>
 
-    <ul>
+    <ul class="fo_ul">
 		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a>
-      <br><img class="paiement" src="views/styles/ressources/icons/paiement.png" alt="Paiement" height="40px" width="140px" /></br></li>
+      <br><img class="paiement" src="views/styles/ressources/icons/paiement.png" alt="Paiement" height="40px" width="170px" /></br></li>
     </ul>
 
-    <ul>
+    <ul class="fo_ul">
 		  <li class="footer_elements">Contact</li>
 		  <li class="footer_elements">+33 1 23 45 67 89</li>
 		  <li class="footer_elements"> accueil@ehome.com</li>

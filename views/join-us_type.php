@@ -9,7 +9,7 @@ $menu = menu();
 
 $contenu = content_type_user();
 
-$footer = footer2();
+$footer = footer();
 
 include('gabarit.php');
 ?>
