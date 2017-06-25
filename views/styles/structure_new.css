@@ -83,12 +83,6 @@ h3
   color: rgb(210,0,0);
 }
 
-
-/*footer
-{
-  border: 2px solid violet;
-}*/
-
 #trash,#edit
 {
   height: 18px;
@@ -414,6 +408,7 @@ fieldset
   align-items: center;
   height: 120px;
   margin: 0px;
+  padding: 0px;
   color: white;
   font-style: normal;
   text-decoration: none;
@@ -427,30 +422,11 @@ fieldset
   /*border: 1px solid yellow;*/
 }
 
-#footer2
+.fo_ul
 {
-  background-image: url("ressources/images/footer.jpg");
-  background-repeat: no-repeat;
-  width: 100%;
-  color: white;
-  font-style: normal;
-  text-decoration: none;
-
-  position:absolute;
-  bottom:0px;
-
-  box-shadow: 0px 4px 12px rgb(12,12,12) inset;
-
-  /*border: 1px solid yellow;*/
-}
-
-.footer2
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  height: 120px;
+  padding: 0px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .footer_elements
