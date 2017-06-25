@@ -1,21 +1,3 @@
-#user_management
-{
-  transition-duration: 0.3s;
-  border: 1px solid rgba(80,80,80,0.8);
-  border-radius: 10px;
-  box-shadow: 0px 2px 8px rgba(10,10,10,0.9) inset;
-  padding: 7px;
-}
-
-#user_management:hover
-{
-  transition-duration: 0.3s;
-  border: 1px solid rgb(80,80,80);
-  border-radius: 10px;
-  box-shadow: 0px 2px 20px rgb(0,0,0) inset;
-  padding: 7px;
-}
-
 aside
 {
   margin: auto;
@@ -25,15 +7,14 @@ aside
   padding: 10px;
 }
 
-.list_users
+.notif_admin
 {
   background-color: rgba(229,229, 229, 0.75);
   padding: 15px;
   border-radius: 7px;
   margin: 10px auto 10px auto;
   width: 500px;
-  min-height: 230px;
-  /*border: 2px solid green;*/
+  height : 250px;
 }
 
 .button_edit
