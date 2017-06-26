@@ -6,7 +6,7 @@ controleur gérant l'extraction des données néccessaires pour l'affichage de l
 include_once('modeles/functions.php');
 
 if(isset($_GET['id_piece'])) {
-  $my_room = array(array($_GET['id_piece'], select_room_name($bdd, $_SESSION['id'])));
+  $my_room = array(array($_GET['id_piece'], select_room_name($bdd, $_GET['id_piece'])));
 
   $info_device = select_device($bdd, $_GET['id_piece']);
 
