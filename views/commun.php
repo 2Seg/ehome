@@ -128,31 +128,31 @@ function menu_home() {
   <div class="conteneur_menu_home">
     <ul class="menu_home">
       <li class="li_logo_menu"><a  href="index.php?cible=home"><img class="logo_menu" src="views/styles/ressources/logos/logo1-200x40.png" alt="Logo eHome" title="ehome.com"></a></li>
-      <li class="menu_elements"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
-      <li class="menu_elements"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
+      <li class="menu_elements2"><a class="text_menu" href="index.php?cible=about-us">NOTRE ENTREPRISE</a></li>
+      <li class="menu_elements2"><a class="text_menu" href="index.php?cible=products">NOS PRODUITS</a></li>
     <?php
     if (isset($_SESSION['type'])) {
       if($_SESSION['type'] == 'user') {
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        echo('<li class="menu_elements2"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'madame') {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/styles/ressources/icons/w_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_user"><img src="views/styles/ressources/icons/m_default_user.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } elseif ($_SESSION['type'] == 'admin') {
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
+        echo('<li class="menu_elements2"><a class="text_menu" href="index.php?cible=disconnect">SE DECONNECTER</a></li>');
         if($_SESSION['civilite'] == 'madame') {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/styles/ressources/icons/w_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         } else {
           echo ('<li class="menu_profil"><a class="text_menu" href="index.php?cible=info_admin"><img src="views/styles/ressources/icons/m_default_admin.png" alt="avatar" title='.$_SESSION['identifiant'].'></a></li>');
         }
       } else {
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
-        echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+        echo('<li class="menu_elements2"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
+        echo('<li class="menu_elements2"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
       }
     } else {
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
-      echo('<li class="menu_elements"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
+      echo('<li class="menu_elements2"><a class="text_menu" href="index.php?cible=join-us_type">NOUS REJOINDRE</a></li>');
+      echo('<li class="menu_elements2"><a class="text_menu" href="index.php?cible=signin">CONNEXION</a></li>');
     }
     ?>
     </ul>
@@ -401,7 +401,7 @@ function content_c() {
         <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">1</font> <br>  seul dispositif pour toute votre maison</p></section></section>
       <section class="section2small_c"></section>
       <section class="section2small_c"></section>
-        <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">1243</font> <br> équipés par notre technologie</p></section></section>
+        <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">1243</font> <br>domiciles équipés par notre technologie</p></section></section>
     </div>
   </aside>
 	<?php
