@@ -16,15 +16,17 @@
   padding: 7px;
 }
 
-aside
+body
 {
   /*display:flex;*/
   background: url("ressources/images/fond_10.jpg") no-repeat fixed;
+  background-size: 100%;
 }
 
 .top_aside
 {
   display: flex;
+  width: 100%;
 }
 
 .basic_info

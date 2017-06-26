@@ -20,6 +20,7 @@ aside
 {
   display:flex;
   background: url("ressources/images/fond_8.jpg") no-repeat fixed;
+  background-size: 100%;
 }
 
 .home_info

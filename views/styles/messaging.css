@@ -37,6 +37,7 @@
 body
 {
   background: url("ressources/images/fond_7.jpg") no-repeat fixed;
+  background-size: 100%;
 }
 
 aside
