@@ -18,7 +18,13 @@
 
 aside
 {
-  display:flex;
+  /*display:flex;*/
+  background: url("ressources/images/fond_10.jpg") no-repeat fixed;
+}
+
+.top_aside
+{
+  display: flex;
 }
 
 .basic_info
@@ -86,12 +92,250 @@ aside
   margin-left: auto;
 }
 
+.device_state
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  border-radius: 7px;
+  margin: 0px 20px 20px 20px;
+  min-width: 765px;
+}
+
+.device_state form
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bloc_affichage_donnees
+{
+  margin: 20px 7px 10px 7px;
+}
+
+.content_affichage_donnees
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-around;
+  margin-bottom: 10px;
+}
+
+.content_affichage_donnees article
+{
+  border-color: transparent;
+  background-color: rgba(155, 155, 155, 0.85);
+  box-shadow: 3px 3px 10px rgba(80, 80, 80, 0.85);
+  width: 340px;
+  height: 220px;
+  padding: 15px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content_affichage_donnees .alerte
+{
+  background-color: rgba(200, 155, 155, 0.85);
+}
+
+.content_affichage_donnees article:hover
+{
+  transition-duration: 0.2s;
+  background-color: rgba(169, 169, 169, 0.85);
+}
+
+.content_affichage_donnees .alerte:hover
+{
+  transition-duration: 0.2s;
+  background-color: rgba(214, 169, 169, 0.85);
+}
+
+.zoneDefaut
+{
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top_device
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.child_top_device
+{
+  display: flex;
+  align-items: center;
+}
+
+.child_top_device strong
+{
+  margin-left: 15px;
+  font-size: 18px;
+}
+
+.room_device
+{
+  text-align: center;
+}
+
+.content_device
+{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.device_data
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.device_data #mesure1
+{
+  margin: 4px;
+  font-size: 40px;
+}
+
+.device_data #mesure2
+{
+  margin: 4px;
+  text-align: center;
+  font-size: 25px;
+}
+
+.device_data #date_mesure
+{
+  margin: 4px;
+  font-size: 12px;
+}
+
+input[type=number]
+{
+  font-family: "gr-book";
+  text-align: center;
+  width: 70px;
+  background-color: rgba(220, 220, 220, 0.85);;
+}
+
+#input_climatisation
+{
+  width: 60px;
+}
+
+.label_range
+{
+  width: 170px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.label_range p
+{
+  margin: 0px;
+}
+
+.bottom_device
+{
+  text-align: center;
+}
+
+.boutton_confirmation
+{
+  text-align: center;
+}
+
 h3
 {
   margin: 0px;
 }
 
+h3 a
+{
+  text-decoration: none;
+  color: rgb(210,0,0);
+}
+
+h3 a:hover
+{
+  color: rgb(210,30,30);
+  text-decoration: underline;
+}
+
 .except_h2
 {
   text-align: center;
+}
+
+
+/****************************************************SWITCH*******************************************************************/
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 22px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #D20000;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #D20000;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

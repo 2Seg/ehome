@@ -16,12 +16,17 @@
   padding: 7px;
 }
 
+body
+{
+  background: url("ressources/images/fond_1.jpg") no-repeat fixed;
+}
 aside
 {
   margin: auto;
   display: flex;
   flex-direction: column;
   padding: 10px;
+
 }
 
 #error_h2

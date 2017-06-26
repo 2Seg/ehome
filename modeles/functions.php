@@ -202,6 +202,38 @@ function select_info_room($db, $id_logement) {
   return $req;
 }
 
+function select_device_user($db, $id_logement) {
+  $req = $db -> prepare('SELECT dispositif.type_dispositif FROM dispositif
+                        INNER JOIN piece ON dispositif.id_piece = piece.id
+												INNER JOIN logement ON piece.id_logement = logement.id
+                        INNER JOIN utilisateur ON logement.id = utilisateur.id
+                        WHERE utilisateur.id = ?
+                        GROUP BY dispositif.type_dispositif');
+  $req -> execute(array($id_logement));
+  return $req;
+}
+
+function select_device_user2($db, $id, $id_room) {
+  $req = $db -> prepare('SELECT dispositif.type_dispositif, dispositif.etat, dispositif.id FROM dispositif
+                        INNER JOIN piece ON dispositif.id_piece = piece.id
+												INNER JOIN logement ON piece.id_logement = logement.id
+                        INNER JOIN utilisateur ON logement.id = utilisateur.id
+                        WHERE utilisateur.id = :id AND dispositif.id_piece = :id_room');
+  $req -> execute(array('id' => $id, 'id_room' => $id_room));
+  return $req;
+}
+
+function select_device_user3($db, $id, $type_dispositif) {
+  $req = $db -> prepare('SELECT dispositif.type_dispositif, dispositif.etat, dispositif.id, piece.piece, piece.id AS id_piece
+                        FROM dispositif
+                        INNER JOIN piece ON dispositif.id_piece = piece.id
+												INNER JOIN logement ON piece.id_logement = logement.id
+                        INNER JOIN utilisateur ON logement.id = utilisateur.id
+                        WHERE utilisateur.id = :id AND dispositif.type_dispositif = :type_dispositif');
+  $req -> execute(array('id' => $id, 'type_dispositif' => $type_dispositif));
+  return $req;
+}
+
 function count_piece($db, $id_logement) {
   $info = array();
   $req = $db -> prepare('SELECT COUNT(piece) AS nb_piece FROM piece WHERE id_logement = ?');
@@ -289,6 +321,22 @@ function count_nb_unread_mail($db, $mail) {
   return $info['nb_unread_mail'];
 }
 
+function select_mesure_choice($db, $id, $id_device) {
+  $req = $db -> prepare ('SELECT mesure.mesure, DATE_FORMAT(mesure.date_mesure, \'le %d/%m/%Y à %H:%i:%s\') AS date_format
+                          FROM mesure INNER JOIN dispositif ON mesure.id_dispositif = dispositif.id INNER JOIN piece ON dispositif.id_piece = piece.id
+                          INNER JOIN logement ON piece.id_logement = logement.id WHERE logement.id = :id_logement AND mesure.id_dispositif = :id_dispositif
+                          ORDER BY mesure.id DESC');
+  $req -> execute(array("id_logement" => $id, 'id_dispositif' => $id_device));
+  return $req;
+}
+
+function select_id_new_device($db, $id_piece, $type_dispositif) {
+  $req = $db -> prepare ('SELECT MAX(id) AS id FROM dispositif WHERE id_piece = :id_piece AND type_dispositif = :type_dispositif');
+  $req -> execute(array("id_piece" => $id_piece, 'type_dispositif' => $type_dispositif));
+  $info = $req -> fetch();
+  return $info['id'];
+}
+
 /*****************************************************************INSERT***********************************************************************/
 
 // fonction gérant l'inscription utilisateur en ajoutant les champs dans la bdd
@@ -354,7 +402,7 @@ function insert_room($db, $id_logement, $piece) {
 }
 
 function insert_device($db, $id_piece, $dispositif) {
-  $req = $db -> prepare('INSERT INTO dispositif(id_piece, type_dispositif, etat) VALUES(:id_piece, :dispositif, \'off\')');
+  $req = $db -> prepare('INSERT INTO dispositif(id_piece, type_dispositif, etat) VALUES(:id_piece, :dispositif, \'on\')');
   $req -> execute(array('id_piece' => $id_piece, 'dispositif' => $dispositif));
 }
 
@@ -367,6 +415,11 @@ function insert_mail($db, $mail_receveur, $type_receveur, $mail_envoyeur, $type_
                         'type_envoyeur' => $type_envoyeur,
                         'objet' => $objet,
                         'contenu' => $contenu));
+}
+
+function insert_state_device($db, $id_device, $mesure) {
+  $req = $db -> prepare('INSERT INTO mesure(id_dispositif, mesure, date_mesure) VALUES (:id_device, :mesure, NOW())');
+  $req -> execute(array('id_device' => $id_device, 'mesure' => $mesure));
 }
 
 /*****************************************************************UPDATE***********************************************************************/
@@ -438,6 +491,11 @@ function update_mail($db, $previous_mail, $new_mail) {
   $req1 -> closeCursor();
   $req2 = $db -> prepare('UPDATE messagerie SET mail_receveur = :new_mail WHERE mail_receveur = :previous_mail');
   $req2 -> execute(array('previous_mail' => $previous_mail, 'new_mail' => $new_mail));
+}
+
+function update_state_checkbox($db, $id_device,  $etat) {
+  $req = $db -> prepare('UPDATE dispositif SET etat = :etat WHERE dispositif.id = :id_device');
+  $req -> execute(array('id_device' => $id_device, 'etat' => $etat));
 }
 
 /*****************************************************************DELETE***********************************************************************/

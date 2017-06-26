@@ -13,7 +13,7 @@ if (isset($_SESSION['type'])) {
   if ($_SESSION['type'] == 'user') {
     if(isset($_GET['cible'])) {
       if ($_GET['cible'] == 'home') {
-        include 'views/home.php';
+        include 'controlers/home_user.php';
       } elseif ($_GET['cible'] == 'about-us') {
         include('views/about-us.php');
       } elseif ($_GET['cible'] == 'products') {
@@ -66,6 +66,8 @@ if (isset($_SESSION['type'])) {
         include('controlers/room_add.php');
       } elseif ($_GET['cible'] == 'room_del') {
         include('controlers/room_del.php');
+      } elseif ($_GET['cible'] == 'device_state_management') {
+        include('controlers/device_state_management.php');
       } else {
         include ('views/error.php');
       }

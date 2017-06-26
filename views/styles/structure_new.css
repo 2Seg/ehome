@@ -20,14 +20,7 @@ body
   display: flex;
   flex-direction: column;
   background-color: rgb(254,253,245);
-
-  /*background-image:url("1.jpg");
-  background-repeat: no-repeat;*/
-
-  /*background-attachment: fixed;*/
   font-family: 'gr-book';
-
-/*border: 3px solid pink;*/
 }
 
 nav
