@@ -194,6 +194,7 @@ function menu_user($type) {
     <ul class="menu_user">
       <li class="menu_user_elements" id="home_admin"><a href="index.php?cible=home_admin" class="text_menu_user">Vue d'ensemble</a></li>
       <li class="menu_user_elements" id="user_management"><a href="index.php?cible=user_management" class="text_menu_user">Gestion des utilisateurs</a></li>
+      <li class="menu_user_elements" id="info_admin"><a href="index.php?cible=info_admin" class="text_menu_user">Mes informations</a></li>
       <li class="menu_user_elements" id="notif_admin"><a href="index.php?cible=notif_admin" class="text_menu_user">Notifications</a></li>
       <li class="menu_user_elements" id="security"><a href="index.php?cible=security" class="text_menu_user">Sécurité</a></li>
       <li class="menu_user_elements" id="messaging_admin"><a href="index.php?cible=messaging" class="text_menu_user">Messagerie</a></li>
@@ -233,7 +234,7 @@ function content_home_admin() {
 
     <section class="box">
         <h3>Notifications</h3>
-        <p><a href="index.php?cible=notification"><button>Notifications</button></a></p>
+        <p><a href="index.php?cible=notif_admin"><button>Notifications</button></a></p>
     </section>
   </div>
 
@@ -254,13 +255,30 @@ function content_home_admin() {
   return $contenu;
 }
 
+function content_notif_admin() {
+  ob_start();
+  ?>
+  <section class="notif_admin">
+      <h3>Mes notifications administrateur</h3>
+      <p>Aucunes nouvelles notifications disponibles.</p>
+  </section>
+  <section class="button_edit">
+      <a href="index.php?cible=home_admin"><button>Retourner sur la page d'accueil administrateur</button></a>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
 function content_security() {
   ob_start();
   ?>
-  <section>
-    <article>
-      <h3>Page content_security</h3>
-    </article>
+  <section class="security">
+      <h3>Poste de sécurité</h3>
+      <p>Aucunes alertes de sécurité pour le moment.</p>
+  </section>
+  <section class="button_edit">
+      <a href="index.php?cible=home_admin"><button>Retourner sur la page d'accueil administrateur</button></a>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -272,7 +290,7 @@ function list_users($list_users) { // nouvelle version
   ?>
   <section class="list_users">
 
-    <h3>Liste des utilisateurs enregistrés :</h3>
+    <h3>Liste des utilisateurs enregistrés</h3>
   <?php
   if ($list_users == array()) {
     echo('<h2 class="except_h2">Aucun utilisateur enregistré</h2>');
@@ -283,6 +301,8 @@ function list_users($list_users) { // nouvelle version
          <th><strong>Civilité : </strong></th>
          <th><strong>Nom : </strong></th>
          <th><strong>Prénom : </strong></th>
+         <th><strong>Id : </strong></th>
+         <!-- <th><strong>Gestion de l'utilisateur : </strong></th> -->
      </tr>
     <?php
     for ($i = 0; $i < count($list_users); $i++) {
@@ -291,6 +311,8 @@ function list_users($list_users) { // nouvelle version
           <td><?php echo($list_users[$i][0]); ?></td>
           <td><?php echo($list_users[$i][1]); ?></td>
           <td><?php echo($list_users[$i][2]); ?></td>
+          <td><?php echo($list_users[$i][3]); ?></td>
+          <td><a href="index.php?cible=gestion_user&amp;id=<?php echo($list_users[$i][3]) ?>"><button>Gestion de l'utilisateur</button></a></td>
       </tr>
       <?php
     }
@@ -301,19 +323,8 @@ function list_users($list_users) { // nouvelle version
   ?>
 
   </section>
-  <?php
-  $contenu = ob_get_clean();
-  return $contenu;
-}
-
-function content_user_management() {
-  ob_start();
-  ?>
-  <section>
-    <article>
-      <h3>Graphique des connexions</h3>
-      <p>Graphique des connexions par jour, semaines, mois, année</p>
-    </article>
+  <section class="button_edit">
+      <a href="index.php?cible=home_admin"><button>Retourner sur la page d'accueil administrateur</button></a>
   </section>
   <?php
   $contenu = ob_get_clean();
@@ -381,47 +392,21 @@ function content_c() {
 	?>
   <aside>
     <div class="flexbox_c">
-      <section class="section_c"><section class="section2_c"><p class="text_c">Post emensos insuperabilis expeditionis eventus languentibus partium animis</p></section></section>
+      <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">100%</font> <br>de satisfaction client</p></section></section>
       <section class="section2small_c"></section>
       <section class="section2small_c"></section>
-      <section class="section_c"><section class="section2_c"><p class="text_c">2</p></section></section>
+        <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">20</font> <br> ans d'expérience</p></section></section>
       <section class="section2small_c"></section>
       <section class="section2small_c"></section>
-      <section class="section_c"><section class="section2_c"><p class="text_c">3</p></section></section>
+        <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">1</font> <br>  seul dispositif pour toute votre maison</p></section></section>
       <section class="section2small_c"></section>
       <section class="section2small_c"></section>
-      <section class="section_c"><section class="section2_c"><p class="text_c">4</p></section></section>
+        <section class="section_c"><section class="section2_c"><p class="text_c"><font size="7px">1243</font> <br> équipés par notre technologie</p></section></section>
     </div>
   </aside>
 	<?php
   $contenu = ob_get_clean();
   return $contenu;
-}
-
-function footer2() {
-  ob_start();
-	?>
-  <div id="footer2">
-  	<ul class="footer2">
-      <ul>
-  		  <li class="footer_elements">Localisation</li>
-  		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views/styles/ressources/images/map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
-      </ul>
-
-      <ul>
-  		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a></li>
-      </ul>
-
-      <ul>
-  		  <li class="footer_elements">Contact</li>
-  		  <li class="footer_elements">+33 1 23 45 67 89</li>
-  		  <li class="footer_elements"> accueil@ehome.com</li>
-      </ul>
-  	</ul>
-   </div>
-	<?php
-  $footer = ob_get_clean();
-  return $footer;
 }
 
 function content_sensors() {
@@ -668,98 +653,104 @@ function content_legal_information() {
 function content_about_us(){
   ob_start();
   ?>
-  <section>
-
-    <h2>A propos d'eHome</h2>
-    <article>
-      <h3> Les valeurs des eHomers </h3>
-      <ul>
-        <li> Rechercher le confort de chacun de nos clients. </li>
-        <li> Innover pour avancer et faire avancer le monde. </li>
-        <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
-      </ul>
-    </article>
-
-    <h2> L’innovation au cœur de l’internet des objets </h2>
-    <article>
-      <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
-        Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
-        Au-delà des volets roulants, de nombreux équipements,
-        comme l'éclairage ou le chauffage, peuvent être automatisés
-        pour gagner du temps et faire des économies !" </p>
-    </article>
+    <div class="home_div">
+        <h2 class="title_home">A propos d'eHome</h2>
+        <section class="home_section_1">
+            <h3> Les valeurs des eHomers </h3>
+            <ul>
+                <li> Rechercher le confort de chacun de nos clients. </li>
+                <li> Innover pour avancer et faire avancer le monde. </li>
+                <li> Fonder toutes les relations sur la confiance et la responsabilisation. </li>
+            </ul>
+        </section>
+    </div>
 
 
-
-    <h2> eHome plus en détail </h2>
-    <div class="flex_art_about_us">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
-      <article>
-        <h3> Notre histoire </h3>
-        <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
-          dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
-      </article>
-
-
-      <article>
-        <h3> Espace presse </h3>
-        <p> Découvrez nos dernières annonces </p>
-      </article>
-
-
-      <article>
-        <h3> Document de référence </h3>
-        <p> Lire le rapport annuel </p>
-      </article>
+    <div class="home_div">
+        <section class="home_section_1">
+            <h3 class="title_home"> L’innovation au cœur de l’internet des objets </h3>
+            <p> "Envie d'une maison confortable, moderne et qui vous ressemble ?
+                Découvrez tout ce qu'il est possible de faire aujourd'hui avec la domotique.
+                Au-delà des volets roulants, de nombreux équipements,
+                comme l'éclairage ou le chauffage, peuvent être automatisés
+                pour gagner du temps et faire des économies !" </p>
+        </section>
+        <h2 class="title_home"> eHome plus en détail </h2>
     </div>
 
 
 
 
-    <h2> Ce que nous vous proposons </h2>
-    <article>
-      <h3> Un gain de temps et de confort au quotidient </h3>
-      <p> Il est 7h00. Vous vous réveillez au son de votre
-        radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
-        L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
-        à la température idéale pour votre douche matinale. Tout est prêt pour démarrer votre journée
-        dans les meilleures conditions... Ceci n'est pas un rêve, mais la réalité.
-        En plus de vous simplifier les gestes de la vie de courante, nos solutions
-        domotiques vous permettent de programmer une multitude de scénarios
-        (éclairage, température...) en fonction de vos habitudes et vos envies.
-        Vous allez vous coucher ? A partir d'une seule commande, vous fermez
-        tous les volets roulants, abaissez le chauffage et éteignez les lumières.
-        Le confort absolu ! </p>
-    </article>
+    <div class="flexbox_home">  <?php /* il faudrait annuler le retour à la ligne ici...*/ ?>
+
+        <section class="home_section_2">
+            <h3> Notre histoire </h3>
+            <p> Depuis notre création en 2013, nous avons à cœur de vous accompagner
+                dans votre quotidien et de prendre part à la révolution numérique qui bouleverse nos vies. </p>
+        </section>
 
 
-    <article>
-      <h3> Des économies d'énergie à la clé </h3>
-      <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
-        chauffage en marche. En vous équipant de notre installation domotique,
-        vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
-        éteindre les éclairages inutiles, couper les appareils électriques en veille
-        ou tempérer le chauffage. Mieux encore : un thermostat d’ambiance à gestion
-        programmée vous permettra par exemple de réduire vos consommations d'énergie
-        sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
-        pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
-        en s'adaptant à votre style de vie et votre présence dans la maison. </p>
-    </article>
+        <section class="home_section_2">
+            <h3> Espace presse </h3>
+            <p> Découvrez nos dernières annonces </p>
+        </section>
 
 
-    <article>
-      <h3> Pour votre sécurité et celle de votre maison </h3>
-      <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
-        passer toutes les pièces en revue. Comme les équipements domotiques sont
-        désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
-        ou votre tablette. Vous restez donc en contact avec votre maison où que
-        vous soyez, même à l'autre bout du monde ! A tout moment, vous pouvez par
-        exemple vérifier que tout est en ordre, de la lumière des différentes pièces
-        à la mise en route de l’alarme. Mais aussi, grâce à un visiophone ou un portier
-        vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
-        Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
-        recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
-    </article>
-  </section>
+        <section class="home_section_2">
+            <h3> Document de référence </h3>
+            <p> Lire le rapport annuel </p>
+        </section>
+    </div>
+
+
+    <div class="home_div">
+        <h2 class="title_home"> Ce que nous vous proposons </h2>
+        <section class="home_section_1">
+            <h3 class="title_home"> Un gain de temps et de confort au quotidient </h3>
+            <p> Il est 7h00. Vous vous réveillez au son de votre
+                radio préférée qui s'est allumée toute seule. La cuisine est baignée d'une douce lumière.
+                L'odeur du café vous accompagne pendant que la salle de bains est réchauffée automatiquement
+                à la température idéale pour votre douche matinale. Tout est prêt pour démarrer votre journée
+                dans les meilleures conditions... Ceci n'est pas un rêve, mais la réalité.
+                En plus de vous simplifier les gestes de la vie de courante, nos solutions
+                domotiques vous permettent de programmer une multitude de scénarios
+                (éclairage, température...) en fonction de vos habitudes et vos envies.
+                Vous allez vous coucher ? A partir d'une seule commande, vous fermez
+                tous les volets roulants, abaissez le chauffage et éteignez les lumières.
+                Le confort absolu ! </p>
+        </section>
+    </div>
+
+    <div class="home_div">
+        <section class="home_section_1">
+            <h3 class="title_home"> Des économies d'énergie à la clé </h3>
+            <p> A l'approche de l’hiver, vous allumez davantage les lumières et remettez le
+                chauffage en marche. En vous équipant de notre installation domotique,
+                vous réalisez automatiquement des économies. En effet, d'un geste, vous pouvez
+                éteindre les éclairages inutiles, couper les appareils électriques en veille
+                ou tempérer le chauffage. Mieux encore : un thermostat d’ambiance à gestion
+                programmée vous permettra par exemple de réduire vos consommations d'énergie
+                sans changer vos habitudes. Vous indiquez votre température idéale pour chaque
+                pièce et chaque moment de la semaine. Puis, le système s'occupe du reste
+                en s'adaptant à votre style de vie et votre présence dans la maison. </p>
+        </section>
+    </div>
+
+    <div class="home_div">
+        <section class="home_section_1">
+            <h3 class="title_home"> Pour votre sécurité et celle de votre maison </h3>
+            <p> Au moment de sortir de chez vous ou de partir en vacances, plus besoin de
+                passer toutes les pièces en revue. Comme les équipements domotiques sont
+                désormais connectés, vous pouvez les piloter à distance depuis votre smartphone
+                ou votre tablette. Vous restez donc en contact avec votre maison où que
+                vous soyez, même à l'autre bout du monde ! A tout moment, vous pouvez par
+                exemple vérifier que tout est en ordre, de la lumière des différentes pièces
+                à la mise en route de l’alarme. Mais aussi, grâce à un visiophone ou un portier
+                vidéo connecté, voir qui sonne à votre porte ou qui est venu en votre absence.
+                Et en cas de problème (intrusion, fumée...), la sirène se déclenche et vous
+                recevez automatiquement un SMS sur votre téléphone. Alors, partez tranquille ! </p>
+        </section>
+    </div>
 
   <?php
   $contenu = ob_get_clean();
@@ -1677,7 +1668,7 @@ function content_info_admin($info_user) {
   ob_start();
   ?>
   <section class="info_admin">
-      <h3>Vos informations administrateur</h3>
+      <h3>Mes informations administrateur</h3>
       <p><strong>Id : </strong><?php echo($info_user['id']); ?></p>
       <p><strong>Identifiant : </strong><?php echo($info_user['identifiant']); ?></p>
       <p><strong>Civilité : </strong><?php echo($info_user['civilite']); ?></p>
@@ -1690,17 +1681,62 @@ function content_info_admin($info_user) {
       <p><strong>Téléphone : </strong><?php echo($info_user['telephone']); ?></p>
       <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($info_user['nb_user']); ?></p>
   </section>
+  <section class="button_edit">
+    <a href="index.php?cible=admin_info_edit"><button>Modifier les informations</button></a>
+  </section>
   <?php
   $contenu = ob_get_clean();
   return $contenu;
 }
+
+// pour la page de gestion d'un client par l'administrateur
+function content_gestion_user($gestion_user) {
+  ob_start();
+  ?>
+  <section class="gestion_user">
+      <h3>Informations complètes du client <?php echo($gestion_user['prenom']); ?> <?php echo($gestion_user['nom']); ?></h3>
+      <p><strong>Id : </strong><?php echo($gestion_user['id']); ?></p>
+      <p><strong>Identifiant : </strong><?php echo($gestion_user['identifiant']); ?></p>
+      <p><strong>Civilité : </strong><?php echo($gestion_user['civilite']); ?></p>
+      <p><strong>Nom : </strong><?php echo($gestion_user['nom']); ?></p>
+      <p><strong>Prénom : </strong><?php echo($gestion_user['prenom']); ?></p>
+      <p><strong>Date de naissance : </strong><?php echo($gestion_user['date_naissance']); ?></p>
+      <p><strong>Nationalité : </strong><?php echo($gestion_user['nationalite']); ?></p>
+      <p><strong>Pays : </strong><?php echo($gestion_user['pays']); ?></p>
+      <p><strong>Mail : </strong><?php echo($gestion_user['mail']); ?></p>
+      <p><strong>Téléphone : </strong><?php echo($gestion_user['telephone']); ?></p>
+      <p><strong>Date d'inscription : </strong><?php echo($gestion_user['date_inscription']); ?></p>
+  </section>
+  <section class="button_edit">
+    <a href="index.php?cible=user_suppression&amp;prenom=<?php echo($gestion_user['prenom']); ?>&amp;nom=<?php echo($gestion_user['nom']); ?>&amp;id_sup=<?php echo($gestion_user['id']); ?>" onclick="return confirm('Etes-vous sûr de vouloir supprimer définitivement cet utilisateur ?');";><button>Supprimer cet utilisateur</button></a>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+// pour la page de suppression d'un utilisateur
+function content_user_suppression() {
+  ob_start();
+  ?>
+  <section class="user_suppression">
+      <h2 class="except_h2">L'utilisateur <?php echo($_GET['prenom'])?> <?php echo($_GET['nom'])?> à bien été supprimé définitivement.</h2>
+  </section>
+  <section class="button_edit">
+    <a href="index.php?cible=user_management"><button>Retourner à la liste des utilisateurs</button></a>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
 
 function my_full_info($my_full_info) {
   ob_start();
   ?>
   <section class="user_info">
     <div class="content_user_info">
-      <h3>Informations client</h3>
+      <h3>Mes informations client</h3>
       <div id="child_content_user_info">
         <p><strong>Civilité : </strong><?php echo($my_full_info[0][0]); ?></p>
         <p><strong>Nom : </strong><?php echo($my_full_info[0][1]); ?></p>
@@ -1746,6 +1782,43 @@ function my_full_info($my_full_info) {
     </section>
     <section class="button_edit">
       <a href="index.php?cible=info_edit"><button>Modifier les informations</button></a>
+    </section>
+  </div>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
+function my_full_info_admin($my_full_info_admin) {
+  ob_start();
+  ?>
+  <section class="user_info">
+    <div class="content_user_info">
+      <h3>Mes informations administrateur</h3>
+      <div id="child_content_user_info">
+        <p><strong>Civilité : </strong><?php echo($my_full_info_admin[0]); ?></p>
+        <p><strong>Nom : </strong><?php echo($my_full_info_admin[1]); ?></p>
+        <p><strong>Prénom : </strong><?php echo($my_full_info_admin[2]); ?></p>
+        <p><strong>Date de naissance : </strong><?php echo($my_full_info_admin[4]); ?></p>
+        <p><strong>Nationalité : </strong><?php echo($my_full_info_admin[5]); ?></p>
+        <p><strong>Pays : </strong><?php echo($my_full_info_admin[6]); ?></p>
+        <p><strong>E-mail : </strong><?php echo($my_full_info_admin[7]); ?></p>
+        <p><strong>Téléphone : </strong><?php echo($my_full_info_admin[8]); ?></p>
+        <p><strong>Nombre d'utilisateurs à charge : </strong><?php echo($my_full_info_admin[9]); ?></p>
+      </div>
+    </div>
+  </section>
+  <div class="paiement_connection_info">
+    <section class="connection_info">
+      <div class="content_connection_info">
+        <h3>Informations de connexion</h3>
+        <div id="child_content_connection_info">
+          <p><strong>Identifiant : </strong><?php echo($my_full_info_admin[3]); ?></p>
+        </div>
+      </div>
+    </section>
+    <section class="button_edit">
+      <a href="index.php?cible=admin_info_edit"><button>Modifier les informations</button></a>
     </section>
   </div>
   <?php
@@ -1915,6 +1988,107 @@ function form_full_info($my_full_info) {
   return $contenu;
 }
 
+function form_full_info_admin($my_full_info_admin) {
+  ob_start();
+  ?>
+  <form method="post" action="index.php?cible=admin_info_edit">
+    <div class="form">
+      <h2>Modifier mes informations administrateur</h2>
+      <div class="content_info_admin">
+        <section class="admin_info">
+          <div class="content_info_admin">
+            <h3>Informations administrateur</h3>
+            <div id="child_content_info_admin">
+              <p>
+                <label for="civilite"><strong>Civilité : </strong></label><br/>
+                <input type="text" name="civilite" id="civilite" value="<?php echo($my_full_info_admin[0]); ?>" required/>
+              </p>
+              <p>
+                <label for="nom"><strong>Nom : </strong></label><br/>
+                <input type="text" name="nom" id="nom" value="<?php echo($my_full_info_admin[1]); ?>" required/>
+              </p>
+              <p>
+                <label for="prenom"><strong>Prénom : </strong></label><br/>
+                <input type="text" name="prenom" id="prenom" value="<?php echo($my_full_info_admin[2]); ?>" required/>
+              </p>
+              <p>
+                <label for="date_naissance"><strong>Date de naissance : </strong></label><br/>
+                <input type="date" name="date_naissance" id="date_naissance" value="<?php echo($my_full_info_admin[4]); ?>" required/>
+              </p>
+              <p>
+                <label for="nationalite"><strong>Nationalité : </strong></label><br/>
+                <input type="text" name="nationalite" id="nationalite" value="<?php echo($my_full_info_admin[5]); ?>" required/>
+              </p>
+              <p>
+                <label for="pays"><strong>Pays : </strong></label><br/>
+                <?php
+                  $pays = array("Allemagne", "Autriche", "Belgique", "Bulgarie", "Chypre", "Croatie", "Danemark", "Espagne", "Estonie", "Finlande", "France", "Grèce", "Hongrie", "Irlande", "Italie", "Lettonie", "Lituanie", "Luxembourg", "Malte", "Norvège", "Pays-Bas", "Pologne", "Portugal",
+                                "République-Tchèque", "Roumanie", "Royaume-Uni", "Slovaquie", "Slovénie", "Suède", "Suisse");
+                  $select = '<select name="pays" id="pays">';
+                  foreach ($pays as $option) {
+                    $select .= '<option value="'.$option.'"';
+                    if ($option == $my_full_info_admin[6]) {
+                      $select .= ' selected';
+                    }
+                    $select .= '>'.$option.'</option>';
+                  }
+                  $select .= '</select>';
+                  echo ($select);
+                ?>
+              </p>
+              <p>
+                <label for="mail"><strong>E-mail : </strong></label><br/>
+                <input type="mail" name="mail" id="mail" value="<?php echo($my_full_info_admin[7]); ?>" required/>
+              </p>
+              <p>
+                <label for="telephone"><strong>Téléphone : </strong></label><br/>
+                <input type="tel" name="telephone" id="telephone" maxlength="12" value="<?php echo($my_full_info_admin[8]); ?>" required/>
+              </p>
+              <p>
+                <label for="prenom"><strong>Nombre d'utilisateurs à charge : </strong></label><br/>
+                <input type="number" name="nb_user" id="nb_user" value="<?php echo($my_full_info_admin[9]); ?>" required/>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="paiement_connection_info_admin">
+          <section class="connection_info_admin">
+            <div class="content_connection_info_admin">
+              <h3>Informations de connexion administrateur</h3>
+              <div id="child_content_connection_info_admin">
+                <p>
+                  <label for="identifiant"><strong>Identifiant : </strong></label><br/>
+                  <input type="text" name="identifiant" id="identifiant" value="<?php echo($my_full_info_admin[3]); ?>"/>
+                </p>
+                <p>
+                  <label for="ancien_mdp"><strong>Ancien mot de passe : </strong></label><br/>
+                  <input type="password" name="ancien_mdp" id="ancien_mdp"/>
+                </p>
+                <p>
+                  <label for="nouveau_mdp"><strong>Nouveau mot de passe : </strong></label><br/>
+                  <input type="password" name="nouveau_mdp" id="nouveau_mdp"/>
+                </p>
+                <p>
+                  <label for="conf_mdp"><strong>Confirmez le mot de passe : </strong></label><br/>
+                  <input type="password" name="conf_mdp" id="conf_mdp"/>
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="button_edit_admin">
+            <input type="reset" value="Rafraichir">
+            <input type="submit" value="Modifier">
+          </section>
+        </div>
+      </div>
+    </div>
+  </form>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
 // fonction gérant l'affichage des informations sur le domicile utilisateur
 function my_home_info($info_home) {
   ob_start();
@@ -2030,7 +2204,7 @@ function menu_messaging($titre, $nb_unread_mail) {
           <form method="post" action="index.php?cible=mail_traitement">
           <li><input type="submit" name="submit" value="Marquer comme lu" class="button_space"></li>
           <li><input type="submit" name="submit" value="Marquer comme non lu" class="button_space"></li>
-          <li><input type="submit" name="submit" value="Supprimer" onclick=" return confirmation()"></li>
+          <li><input type="submit" name="submit" value="Supprimer" onclick="return confirmation()"></li>
         </ul>
         <script type="text/javascript" src="views/scripts/mailDel.js"></script>
       </div>
@@ -2354,17 +2528,17 @@ function footer() {
   ob_start();
 	?>
 	<ul class="footer">
-    <ul>
+    <ul class="fo_ul">
 		  <li class="footer_elements">Localisation</li>
 		  <li class="footer_elements"><a href="https://www.google.fr/maps/place/ISEP/@48.8243885,2.2765791,16.25z/data=!4m5!3m4!1s0x47e670797ea4730d:0xe0d3eb2ad501cb27!8m2!3d48.824529!4d2.2798536" target="_blank"><img class="map" src="views/styles/ressources/images/map_isep.png" alt="Map rue de Vanves"  title="Cliquez ici pour afficher dans Google Maps" /></a></li>
     </ul>
 
-    <ul>
+    <ul class="fo_ul">
 		  <li class="footer_elements"><p><a class="lien" href="index.php?cible=legal_information">Mentions légales</a>
-      <br><img class="paiement" src="views/styles/ressources/icons/paiement.png" alt="Paiement" height="40px" width="140px" /></br></li>
+      <br><img class="paiement" src="views/styles/ressources/icons/paiement.png" alt="Paiement" height="40px" width="170px" /></br></li>
     </ul>
 
-    <ul>
+    <ul class="fo_ul">
 		  <li class="footer_elements">Contact</li>
 		  <li class="footer_elements">+33 1 23 45 67 89</li>
 		  <li class="footer_elements"> accueil@ehome.com</li>
@@ -2426,10 +2600,9 @@ function carroussel_home() {
           </div>
           <!-- the info -->
           <div id="SnavBottom">
-              <!-- here you have to add the p tag-->
-              <p id="SP0">Restabat ut Caesar post haec properaret accitus et abstergendae causa suspicionis sororem suam, eius uxorem, Constantius ad se tandem desideratam venire multis fictisque blanditiis hortabatur. quae licet ambigeret metuens saepe cruentum, spe tamen quod eum lenire poterit ut germanum profecta, cum Bithyniam introisset, in statione quae Caenos Gallicanos appellatur, absumpta est vi febrium repentina. cuius post obitum maritus contemplans cecidisse fiduciam qua se fultum existimabat, anxia cogitatione, quid moliretur haerebat.</p>
-              <p id="SP1">Et licet quocumque oculos flexeris feminas adfatim multas spectare cirratas, quibus, si nupsissent, per aetatem ter iam nixus poterat suppetere liberorum, ad usque taedium pedibus pavimenta tergentes iactari volucriter gyris, dum exprimunt innumera simulacra, quae finxere fabulae theatrales.</p>
-              <p id="SP2">Eo adducta re per Isauriam, rege Persarum bellis finitimis inligato repellenteque a conlimitiis suis ferocissimas gentes, quae mente quadam versabili hostiliter eum saepe incessunt et in nos arma moventem aliquotiens iuvant, Nohodares quidam nomine e numero optimatum, incursare Mesopotamiam quotiens copia dederit ordinatus, explorabat nostra sollicite, si repperisset usquam locum vi subita perrupturus.</p>
+              <p id="SP0">⋆⋆⋆⋆⋆<br><i>"Tout simplement époustouflant" </i><br><br> -Paulette</p>
+              <p id="SP1">⋆⋆⋆⋆<br><i>"Mécanicien très tchatcheur"</i><br><br>-Jacqueline</p>
+              <p id="SP2">⋆⋆⋆⋆⋆<br><i>"Des possibilités quasisment infinies, merci eHome" </i><br><br> -Tony</p>
           </div>
       </div>
   </div>

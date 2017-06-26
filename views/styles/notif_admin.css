@@ -1,4 +1,4 @@
-#info_admin
+#notif_admin
 {
   transition-duration: 0.3s;
   border: 1px solid rgba(80,80,80,0.8);
@@ -7,7 +7,7 @@
   padding: 7px;
 }
 
-#info_admin:hover
+#notif_admin:hover
 {
   transition-duration: 0.3s;
   border: 1px solid rgb(80,80,80);
@@ -25,17 +25,24 @@ aside
   padding: 10px;
 }
 
-
-.info_admin, .button_edit
+.notif_admin
 {
   background-color: rgba(229,229, 229, 0.75);
   padding: 15px;
   border-radius: 7px;
   margin: 10px auto 10px auto;
   width: 500px;
+  height : 250px;
 }
 
 .button_edit
 {
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-radius: 7px;
+  margin: 10px auto 10px auto;
+  width: 500px;
   text-align: center;
 }

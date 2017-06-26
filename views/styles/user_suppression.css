@@ -1,4 +1,4 @@
-#info_admin
+#user_management
 {
   transition-duration: 0.3s;
   border: 1px solid rgba(80,80,80,0.8);
@@ -7,7 +7,7 @@
   padding: 7px;
 }
 
-#info_admin:hover
+#user_management:hover
 {
   transition-duration: 0.3s;
   border: 1px solid rgb(80,80,80);
@@ -25,11 +25,12 @@ aside
   padding: 10px;
 }
 
-
-.info_admin, .button_edit
+.user_suppression
 {
   background-color: rgba(229,229, 229, 0.75);
   padding: 15px;
+  padding-top: 80px;
+  padding-bottom: 80px;
   border-radius: 7px;
   margin: 10px auto 10px auto;
   width: 500px;
@@ -37,5 +38,12 @@ aside
 
 .button_edit
 {
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-radius: 7px;
+  margin: 10px auto 10px auto;
+  width: 500px;
   text-align: center;
 }

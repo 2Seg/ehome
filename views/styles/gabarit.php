@@ -33,20 +33,12 @@
       echo('<link rel="stylesheet" href="views/styles/user_management.css">');
     } elseif ($titre == 'Vos informations administrateur') {
       echo('<link rel="stylesheet" href="views/styles/info_admin.css">');
-    } elseif ($titre == 'Modifier mes informations administrateur') {
-        echo('<link rel="stylesheet" href="views/styles/admin_info_edit.css">');
     } elseif (substr($titre, 0, 22) == 'Accueil administrateur') {
       echo('<link rel="stylesheet" href="views/styles/home_admin.css">');
     } elseif ($titre == 'Nous rejoindre') {
         echo('<link rel="stylesheet" href="views/styles/join-us_type.css">');
     } elseif (substr($titre, 0, 12) == 'Gestion de l') {
         echo('<link rel="stylesheet" href="views/styles/gestion_user.css">');
-    } elseif ($titre == 'Suppression utilisateur') {
-        echo('<link rel="stylesheet" href="views/styles/user_suppression.css">');
-    } elseif ($titre == 'Mes notifications administrateur') {
-      echo('<link rel="stylesheet" href="views/styles/notif_admin.css">');
-    } elseif ($titre == 'Sécurité') {
-      echo('<link rel="stylesheet" href="views/styles/security.css">');
     }
 
     elseif ($titre == 'Connexion') {
@@ -55,10 +47,6 @@
       echo('<link rel="stylesheet" href="views/styles/error_or_disconnect.css">');
     }elseif ($titre == 'Accueil') {
       echo('<link rel="stylesheet" href="views/styles/home.css">');
-    } elseif ($titre == 'Accueil') {
-        echo('<link rel="stylesheet" href="views/styles/home.css">');
-    } elseif ($titre == 'Notre entreprise') {
-        echo('<link rel="stylesheet" href="views/styles/about_us.css">');
     }
     ?>
 

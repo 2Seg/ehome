@@ -3,12 +3,12 @@
 vue gérant l'affichage de la page "Notifications"
 */
 
-$titre = 'Notifications';
+$titre = 'Mes notifications administrateur';
 
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
-$contenu = ' ';
+$contenu = content_notif_admin();
 
 $footer = footer();
 

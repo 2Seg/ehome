@@ -101,8 +101,14 @@ if (isset($_SESSION['type'])) {
         include("controlers/user_management.php");
       } elseif ($_GET['cible'] == 'info_admin') {
         include("controlers/info_admin.php");
-      } elseif ($_GET['cible'] == 'notification') {
-        include("views/notification.php");
+      } elseif ($_GET['cible'] == 'admin_info_edit') {
+        include("controlers/admin_info_edit.php");
+      } elseif ($_GET['cible'] == 'gestion_user') {
+        include("controlers/gestion_user.php");
+      } elseif ($_GET['cible'] == 'user_suppression') {
+        include("controlers/user_suppression.php");
+      } elseif ($_GET['cible'] == 'notif_admin') {
+        include("views/notif_admin.php");
       } elseif ($_GET['cible'] == 'security') {
         include("views/security.php");
       }
@@ -119,9 +125,7 @@ if (isset($_SESSION['type'])) {
         include('controlers/mail_traitement.php');
       } elseif ($_GET['cible'] == 'answer_mail') {
         include('controlers/answer_mail.php');
-      }
-
-      elseif ($_GET['cible'] == 'home_admin') {
+      } elseif ($_GET['cible'] == 'home_admin') {
         include("controlers/home_admin.php");
       } else {
         include ('views/error.php');
