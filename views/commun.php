@@ -621,9 +621,8 @@ function content_home() {
 function content_legal_information() {
   ob_start();
   ?>
-  <section>
-  <article>
-    <em>Informations légales : </em><br/>
+  <section class="legal_information">
+    <h3>Informations légales : </h3>
 
     <p> eHome (SAS) fabrique, distribue et vend des produits électroniques (les “Équipements”).
     Les Services sont la propriété de eHome, société par actions simplifiée à associé unique :
@@ -637,12 +636,9 @@ function content_legal_information() {
 	     <li> tél : +33 1 23 45 67 89 </li>
 	     <li> courriel : serviceclient@ehome.fr </li>
     </ul>
-  </article>
 
-  <article>
     <p> Le directeur de publication des Services eHome est Mme/M xxxxxxxxxx, en qualité de Directrice/Directeur Générale de eHome.
       Le site www.eHome.fr est hébergé sur les matériels informatiques de la société  eHome, sur le site de Paris, dont le siège social est situé au 10 rue de Vanves, 92130 Issy-les-Moulineaux. </p>
-  </article>
   </section>
 
   <?php
