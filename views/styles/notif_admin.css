@@ -46,3 +46,9 @@ aside
   width: 500px;
   text-align: center;
 }
+
+body
+{
+    background: url("ressources/images/fond_9.jpg") no-repeat fixed;
+    background-size: 100%;
+}

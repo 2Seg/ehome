@@ -1,0 +1,19 @@
+aside
+{
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.conf_join-us
+{
+  background-color: rgba(229,229, 229, 0.75);
+  padding: 15px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  border-radius: 7px;
+  margin: 100px auto 100px auto;
+  width: 500px;
+}

@@ -111,3 +111,9 @@ h2, h3
 {
   margin: 0px;
 }
+
+body
+{
+    background: url("ressources/images/fond_5.jpg") no-repeat fixed;
+    background-size: 100%;
+}
