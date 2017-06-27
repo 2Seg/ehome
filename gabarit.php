@@ -61,6 +61,8 @@
         echo('<link rel="stylesheet" href="views/styles/home.css">');
     } elseif ($titre == 'Notre entreprise') {
         echo('<link rel="stylesheet" href="views/styles/about_us.css">');
+    } elseif ($titre == 'Mentions légales') {
+      echo('<link rel="stylesheet" href="views/styles/legal_information.css">');
     }
     ?>
 
