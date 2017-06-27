@@ -41,7 +41,7 @@ if (isset($_SESSION['type'])) {
       } elseif ($_GET['cible'] == 'info_edit') {
         include("controlers/info_edit.php");
       } elseif ($_GET['cible'] == 'notif_user') {
-        include("controlers/notif_user.php");
+        include("views/notif_user.php");
       } elseif ($_GET['cible'] == 'messaging') {
         include('controlers/messaging.php');
       } elseif ($_GET['cible'] == 'sent_mail') {

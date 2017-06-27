@@ -29,6 +29,8 @@
       echo('<link rel="stylesheet" href="views/styles/answer_mail.css">');
     } elseif (substr($titre, 0, 17) == 'Confirmation de l') {
         echo('<link rel="stylesheet" href="views/styles/conf_join-us.css">');
+    } elseif ($titre == 'Mes notifications') {
+      echo('<link rel="stylesheet" href="views/styles/notif_admin.css">');
     }
 
     elseif ($titre == 'Gestion des utilisateurs') {

@@ -8,7 +8,7 @@ $titre = 'Mes notifications';
 $menu = menu();
 $menu .= menu_user($_SESSION['type']);
 
-$contenu = 'notifications';
+$contenu = content_notif_user();
 
 $footer = footer();
 
