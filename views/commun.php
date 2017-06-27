@@ -255,6 +255,21 @@ function content_home_admin() {
   return $contenu;
 }
 
+function content_notif_user() {
+  ob_start();
+  ?>
+  <section class="notif_user">
+      <h3>Mes notifications</h3>
+      <p>Aucunes nouvelles notifications disponibles.</p>
+  </section>
+  <section class="button_edit">
+      <a href="index.php?cible=home_user"><button>Retourner sur la page d'accueil utilisateur</button></a>
+  </section>
+  <?php
+  $contenu = ob_get_clean();
+  return $contenu;
+}
+
 function content_notif_admin() {
   ob_start();
   ?>
